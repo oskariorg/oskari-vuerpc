@@ -1,0 +1,74 @@
+<template>
+  <div id="gettingStarted">
+    <h3>Including the necessary stuff to get RPC up and running</h3>
+    <div>Including RPC javascript in html available from:<br />
+      <a href="https://github.com/oskariorg/rpc-client/tree/master/dist" target="_blank">https://github.com/oskariorg/rpc-client/tree/master/dist</a></div>
+
+      <code-component snippet="&lt;script src='js/rpc-client.js'&gt;&lt;/script&gt;"></code-component>
+
+      <h3>Embedding a published map on your page</h3>
+
+      <code-component snippet="&lt;iframe id='publishedMap' src='http://www.mydomain.com/idofpublishedmap'
+      style='border: none; width: 100%; height: 100%;''&gt;&lt;/iframe&gt;"></code-component>
+
+      <h3>Initialising connection</h3>
+      IFRAME_DOMAIN must match to the source domain in the iframe.
+
+      <code-component snippet="// init connection
+      var IFRAME_DOMAIN = 'http://www.mydomain.com';
+      var iFrame = document.getElementById('publishedMap');
+      var channel = OskariRPC.connect(
+      iFrame,
+      IFRAME_DOMAIN
+      );"></code-component>
+
+      <h3>Wait for the channel to get ready for use</h3>
+      Also checking that the iframe gives us an expected version of Oskari
+      and/or that the Oskari version recognizes our client version.
+      <code-component snippet="channel.onReady(function() {
+        //channel is now ready and listening.
+        channel.log('Map is now listening');
+        var expectedOskariVersion = '1.43.0';
+        channel.isSupported(expectedOskariVersion, function(blnSupported) {
+          if(blnSupported) {
+            channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
+          } else {
+            channel.log('Oskari-instance is not the one we expect (' + expectedOskariVersion + ') or client not supported');
+            // getInfo can be used to get the current Oskari version
+            channel.getInfo(function(oskariInfo) {
+              channel.log('Current Oskari-instance reports version as: ', oskariInfo);
+            });
+          }
+        });
+        channel.isSupported(function(blnSupported) {
+          if(!blnSupported) {
+            channel.log('Oskari reported client version (' + OskariRPC.VERSION + ') is not supported.' +
+            'The client might work, but some features are not compatible.');
+          } else {
+            channel.log('Client is supported by Oskari.');
+          }
+        });
+      });"></code-component>
+      <h3>Do your stuff. Send requests, listen to events and call functions.</h3>
+      <code-component snippet="//spinning action on the map
+      channel.postRequest('ShowProgressSpinnerRequest',[true]);
+      //listening to events and notifying user
+      channel.handleEvent('MapClickedEvent', function(data) {
+        alert('Map clicked!');
+      });
+      //calling functions and doing things with the results
+      channel.getAllLayers(function (layers) {
+        alert('Got '+layers.length+' layers!');
+      });"></code-component>
+    </div>
+
+</template>
+<script>
+export default {
+  name: 'gettingStarted',
+  data () {
+    return {
+    }
+  }
+}
+</script>
