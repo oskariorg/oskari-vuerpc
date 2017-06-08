@@ -18,7 +18,7 @@ export default {
   name: 'GetFeatureInfoRequest',
   data () {
     return {
-
+      desc: 'Get feature info'
     }
   },
   methods: {

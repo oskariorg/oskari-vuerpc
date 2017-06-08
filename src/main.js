@@ -5,10 +5,23 @@ import { store } from './store';
 import BootstrapVue from 'bootstrap-vue';
 import hljs from 'highlight.js';
 import code from './components/ui-components/codehighlight.vue';
+import VueRouter from 'vue-router';
+import screenshot from './components/functions/map.screenshot.vue';
+import api from './components/rpc-api.vue';
 
 Vue.component('app-header', Header);
 Vue.component('code-component', code);
-Vue.use(BootstrapVue);
+Vue.use(VueRouter, BootstrapVue);
+
+const routes = [
+  { path: '/', component: api },
+  { path: '/examples/screenshot', component: screenshot }
+]
+
+const router = new VueRouter({
+  routes,
+  mode: 'history'
+});
 
 Vue.directive('highlightjs', {
   deep: true,
@@ -38,6 +51,7 @@ Vue.directive('highlightjs', {
 
 new Vue({
   el: '#app',
+  router,
   store,
   render: h => h(App)
 });

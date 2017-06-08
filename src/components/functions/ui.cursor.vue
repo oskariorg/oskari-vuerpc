@@ -27,6 +27,7 @@ export default {
   name: 'setCursorStyle',
   data () {
     return {
+      desc: 'Set cursor style',
       selected: ''
     }
   },

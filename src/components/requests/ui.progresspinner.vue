@@ -14,6 +14,7 @@ export default {
   name: 'ShowProgressSpinnerRequest',
   data () {
     return {
+      desc: 'Show a progress spinner',
       progressSpinnerVisible: false
     }
   },

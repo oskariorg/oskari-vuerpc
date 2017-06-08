@@ -17,7 +17,7 @@ export const store = new Vuex.Store({
     savedZoom: null
   },
   getters: {
-    selectedExample (state) {
+    selectedComponent (state) {
       return state.rpcExample;
     },
     totalViewed (state) {

@@ -13,6 +13,7 @@ export default {
   name: 'RouteResultEvent',
   data () {
     return {
+      desc: 'RouteResultEvent',
       result: route.result
     }
   },

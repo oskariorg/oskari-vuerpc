@@ -18,6 +18,7 @@ export default {
   name: 'MapMoveRequest',
   data () {
     return {
+      desc: 'Move map',
       LOCATION_POSIO: [552935, 7332639]
     }
   },

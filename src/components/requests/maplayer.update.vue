@@ -23,6 +23,7 @@ export default {
   name: 'MapLayerUpdateRequest',
   data () {
     return {
+      desc: 'Change map layer style',
       fill: layer.fill
     }
   },

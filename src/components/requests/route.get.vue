@@ -27,6 +27,7 @@ export default {
   name: 'GetRouteRequest',
   data () {
     return {
+      desc: 'Get route'
     }
   },
   methods: {

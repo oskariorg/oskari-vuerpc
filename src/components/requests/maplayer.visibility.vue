@@ -37,7 +37,7 @@ export default {
   name: 'LayerVisibility',
   data () {
     return {
-
+      desc: 'Change map layer visibility'
     }
   },
   methods: {

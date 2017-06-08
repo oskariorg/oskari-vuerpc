@@ -29,7 +29,7 @@ export default {
   name: 'ZoomToFeatures',
   data () {
     return {
-
+      desc: 'Zoom to features'
     }
   },
   methods: {

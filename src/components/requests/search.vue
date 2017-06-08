@@ -19,7 +19,7 @@ export default {
   name: 'SearchRequest',
   data () {
     return {
-
+      desc: 'Perform a search'
     }
   },
   methods: {

@@ -12,6 +12,7 @@ export default {
   name: 'GetMapBbox',
   data () {
     return {
+      desc: 'Get map bbox'
     }
   },
   methods: {

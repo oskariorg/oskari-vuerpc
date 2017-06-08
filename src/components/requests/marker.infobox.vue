@@ -60,6 +60,7 @@ export default {
   name: 'ShowInfoBoxForMarker',
   data () {
     return {
+      desc: 'Show info box for marker'
     }
   },
   methods: {

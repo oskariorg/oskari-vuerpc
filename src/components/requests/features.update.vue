@@ -45,6 +45,7 @@ export default {
   name: 'updateFeatures',
   data () {
     return {
+      desc: 'Update vector features',
       wkt: wkt
     }
   },

@@ -20,6 +20,7 @@ export default {
   name: 'GetPixelMeasuresInScale',
   data () {
     return {
+      desc: 'Get pixel measures in scale',
       savedPlotAreaData: null,
       pixelmeasures: {},
       mixins: mixins

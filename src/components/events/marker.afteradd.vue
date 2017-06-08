@@ -8,7 +8,7 @@
     <code-component snippet="{
       'id': 'SEARCH_RESULT_MARKER'
   }"></code-component>
-  
+
   </div>
 </template>
 <script>
@@ -16,7 +16,7 @@ export default {
   name: 'AfterAddMarkerEvent',
   data () {
     return {
-
+      desc: 'AfterAddMarkerEvent'
     }
   },
   methods: {

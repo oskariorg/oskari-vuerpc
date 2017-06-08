@@ -27,6 +27,7 @@ export default {
   name: 'mapZoomFunctions',
   data () {
     return {
+      desc: 'Zoom functions'
     }
   },
   methods: {

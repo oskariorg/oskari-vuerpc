@@ -42,6 +42,7 @@ export default {
   name: 'PostFeedbackRequest',
   data () {
     return {
+      desc: 'Post users feedback data (poc)',
       one: feedback.one,
       two: feedback.two,
       three: feedback.three

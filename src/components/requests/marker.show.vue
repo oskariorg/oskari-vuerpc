@@ -45,6 +45,7 @@ export default {
   name: 'showOrHideMarkers',
   data () {
     return {
+      desc: 'Show or hide a marker',
       MARKER_ID: 'RPC_MARKER'
     }
   },

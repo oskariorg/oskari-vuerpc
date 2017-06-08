@@ -12,6 +12,7 @@ export default {
   name: 'GetSupportedRequests',
   data () {
     return {
+      desc: 'Get supported requests'
     }
   },
   methods: {

@@ -15,7 +15,7 @@ export default {
   name: 'MarkerClickEvent',
   data () {
     return {
-
+      desc: 'MarkerClickEvent'
     }
   },
   methods: {

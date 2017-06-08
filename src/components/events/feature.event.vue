@@ -15,6 +15,7 @@ export default {
   name: 'FeatureEvent',
   data () {
     return {
+      desc: 'Feature Event',
       event: features.event
     }
   },

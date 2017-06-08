@@ -31,6 +31,7 @@ export default {
   name: 'stateHandling',
   data () {
     return {
+      desc: 'Handle map state',
       savedState: ''
     }
   },

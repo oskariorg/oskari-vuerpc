@@ -26,6 +26,7 @@ export default {
   name: 'SendUIEvent',
   data () {
     return {
+      desc: 'Send UI event'
     }
   },
   methods: {

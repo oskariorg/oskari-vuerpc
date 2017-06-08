@@ -16,6 +16,7 @@ export default {
   name: 'DrawingEvent',
   data () {
     return {
+      desc: 'Drawing Event',
       event: drawing.event
     }
   },

@@ -12,7 +12,7 @@ export default {
   name: 'GetUserLocationRequest',
   data () {
     return {
-
+      desc: 'Get users location'
     }
   },
   methods: {

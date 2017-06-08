@@ -20,6 +20,7 @@ export default {
   name: 'GetScreenshot',
   data () {
     return {
+      desc: 'Get a screenshot of the map'
     }
   },
   methods: {

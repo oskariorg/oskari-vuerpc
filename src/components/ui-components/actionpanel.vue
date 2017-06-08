@@ -27,9 +27,10 @@ export default {
     return {}
   },
   methods: {
-    getSelectedInfo (event) {
-      this.$store.state.rpcExample = event.target.value;
-      this.$store.state.examplesViewed.push(event.target.value);
+    asd (event) {
+      // this.selected = event.target.value;
+      // this.$store.state.rpcExample = event.target.value;
+      // this.$store.state.examplesViewed.push(event.target.value);
     }
   }
 }

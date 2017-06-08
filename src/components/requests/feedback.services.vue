@@ -19,6 +19,7 @@ export default {
   name: 'GetFeedbackServices',
   data () {
     return {
+      desc: 'Get feedback services (poc)',
       services: feedback.services
     }
   },

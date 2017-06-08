@@ -1,30 +1,30 @@
 <template>
   <div id="action">
-    <select @change="getSelectedInfo" id="actionSelector">
-      <option :selected="selected">{{ selected }}</option>
+    <select v-model="selected" @change="getSelectedInfo" id="actionSelector">
+      <option value="gettingStarted">Getting Started</option>
       <optgroup label="Map">
-        <option v-for="item in map" :value="item.item">{{item.desc}}</option>
+        <option v-for="option in map" :value="option.value">{{option.text}}</option>
       </optgroup>
       <optgroup label="Markers">
-        <option v-for="marker in markers" :value="marker.marker">{{marker.desc}}</option>
+        <option v-for="option in markers" :value="option.value">{{option.text}}</option>
       </optgroup>
       <optgroup label="Features">
-        <option v-for="feature in features" :value="feature.feature">{{feature.desc}}</option>
+        <option v-for="option in features" :value="option.value">{{option.text}}</option>
       </optgroup>
       <optgroup label="Drawing">
-        <option v-for="draw in drawing" :value="draw.draw">{{draw.desc}}</option>
+        <option v-for="option in drawing" :value="option.value">{{option.text}}</option>
       </optgroup>
       <optgroup label="Supported">
-        <option v-for="action in supported" :value="action.action">{{action.desc}}</option>
+        <option v-for="option in supported" :value="option.value">{{option.text}}</option>
       </optgroup>
       <optgroup label="Feedback">
-        <option v-for="feedback in feedback" :value="feedback.feedback">{{feedback.desc}}</option>
+        <option v-for="option in feedback" :value="option.value">{{option.text}}</option>
       </optgroup>
       <optgroup label="Ui">
-        <option v-for="ui in ui" :value="ui.ui">{{ui.desc}}</option>
+        <option v-for="option in ui" :value="option.value">{{option.text}}</option>
       </optgroup>
       <optgroup label="Location">
-        <option v-for="item in locationbased" :value="item.item">{{item.desc}}</option>
+        <option v-for="option in locationbased" :value="option.value">{{option.text}}</option>
       </optgroup>
     </select>
   </div>
@@ -34,87 +34,90 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  computed: {
-    // mapgetters is a helper to return your getter functions from the store
-    ...mapGetters({
-      selected: 'selectedExample'
-    })
-  },
+  // props: ['selected'],
+  // computed: {
+  //   // mapgetters is a helper to return your getter functions from the store
+  //   ...mapGetters({
+  //     selected: 'selectedExample'
+  //   })
+  // },
   data () {
     return {
       map: [
-        { item: 'GetAllLayers', desc: 'Get available map layers' },
-        { item: 'GetMapPosition', desc: 'Get map position' },
-        { item: 'GetMapBbox', desc: 'Get map bbox' },
-        { item: 'mapZoomFunctions', desc: 'Zoom functions' },
-        { item: 'stateHandling', desc: 'Handle map state' },
-        { item: 'GetFeatures', desc: 'Get features' },
-        { item: 'GetScreenshot', desc: 'Get a screenshot of the map' },
-        { item: 'MapLayerUpdateRequest', desc: 'Change map layer style' },
-        { item: 'MapMoveRequest', desc: 'Move map' },
-        { item: 'rotateMap', desc: 'Rotate map' },
-        { item: 'ChangeMapLayerOpacityRequest', desc: 'Change map layer opacity' },
-        { item: 'LayerVisibility', desc: 'Change map layer visibility' },
-        { item: 'ShowInfoBox', desc: 'Show or hide info box' },
-        { item: 'GetPixelMeasuresInScale', desc: 'Get pixel measures in scale' },
-        { item: 'MapClickedEvent', desc: 'MapClickedEvent' },
-        { item: 'AfterMapMoveEvent', desc: 'AfterMapMoveEvent' }
+        { value: 'GetAllLayers', text: 'Get available map layers' },
+        { value: 'GetMapPosition', text: 'Get map position' },
+        { value: 'GetMapBbox', text: 'Get map bbox' },
+        { value: 'mapZoomFunctions', text: 'Zoom functions' },
+        { value: 'stateHandling', text: 'Handle map state' },
+        { value: 'GetScreenshot', text: 'Get a screenshot of the map' },
+        { value: 'MapLayerUpdateRequest', text: 'Change map layer style' },
+        { value: 'MapMoveRequest', text: 'Move map' },
+        { value: 'rotateMap', text: 'Rotate map' },
+        { value: 'ChangeMapLayerOpacityRequest', text: 'Change map layer opacity' },
+        { value: 'LayerVisibility', text: 'Change map layer visibility' },
+        { value: 'ShowInfoBox', text: 'Show or hide info box' },
+        { value: 'GetPixelMeasuresInScale', text: 'Get pixel measures in scale' },
+        { value: 'MapClickedEvent', text: 'MapClickedEvent' },
+        { value: 'AfterMapMoveEvent', text: 'AfterMapMoveEvent' }
       ],
       markers: [
-        { marker: 'AddMarkerRequest', desc: 'Add or remove  a marker' },
-        { marker: 'ShowInfoBoxForMarker', desc: 'Show info box for marker' },
-        { marker: 'showOrHideMarkers', desc: 'Show or hide a marker' },
-        { marker: 'AfterAddMarkerEvent', desc: 'AfterAddMarkerEvent' },
-        { marker: 'MarkerClickEvent', desc: 'MarkerClickEvent' }
+        { value: 'AddMarkerRequest', text: 'Add or remove  a marker' },
+        { value: 'ShowInfoBoxForMarker', text: 'Show info box for marker' },
+        { value: 'showOrHideMarkers', text: 'Show or hide a marker' },
+        { value: 'AfterAddMarkerEvent', text: 'AfterAddMarkerEvent' },
+        { value: 'MarkerClickEvent', text: 'MarkerClickEvent' }
       ],
       features: [
-        { feature: 'GetFeatureInfoRequest', desc: 'Get feature info' },
-        { feature: 'addOrRemoveFeatures', desc: 'Add or remove vector features' },
-        { feature: 'updateFeatures', desc: 'Update vector features' },
-        { feature: 'ZoomToFeatures', desc: 'Zoom to features' },
-        { feature: 'FeatureEvent', desc: 'FeatureEvent' }
+        { value: 'GetFeatures', text: 'Get features' },
+        { value: 'GetFeatureInfoRequest', text: 'Get feature info' },
+        { value: 'addOrRemoveFeatures', text: 'Add or remove vector features' },
+        { value: 'updateFeatures', text: 'Update vector features' },
+        { value: 'ZoomToFeatures', text: 'Zoom to features' },
+        { value: 'FeatureEvent', text: 'FeatureEvent' }
       ],
       drawing: [
-        { draw: 'DrawingEvent', desc: 'DrawingEvent' },
-        { draw: 'drawing', desc: 'Drawing requests' }
+        { value: 'DrawingEvent', text: 'Drawing Event' },
+        { value: 'drawing', text: 'Drawing requests' }
       ],
       supported: [
-        { action: 'GetSupportedEvents', desc: 'Get supported events' },
-        { action: 'GetSupportedFunctions', desc: 'Get supported functions' },
-        { action: 'GetSupportedRequests', desc: 'Get supported requests' }
+        { value: 'GetSupportedEvents', text: 'Get supported events' },
+        { value: 'GetSupportedFunctions', text: 'Get supported functions' },
+        { value: 'GetSupportedRequests', text: 'Get supported requests' }
       ],
       feedback: [
-        { feedback: 'GetFeedbackServices', desc: 'Get feedback services (poc)' },
-        { feedback: 'GetFeedbackRequest', desc: 'Get posted feedback data (poc)' },
-        { feedback: 'PostFeedbackRequest', desc: 'Post users feedback data (poc)' },
-        { feedback: 'FeedbackResultEvent', desc: 'FeedbackResultEvent' }
+        { value: 'GetFeedbackServices', text: 'Get feedback services (poc)' },
+        { value: 'GetFeedbackRequest', text: 'Get posted feedback data (poc)' },
+        { value: 'PostFeedbackRequest', text: 'Post users feedback data (poc)' },
+        { value: 'FeedbackResultEvent', text: 'FeedbackResultEvent' }
       ],
       ui: [
-        { ui: 'ShowProgressSpinnerRequest', desc: 'Show a progress spinner' },
-        { ui: 'ShowInfoBox', desc: 'Show or hide info box' },
-        { ui: 'SendUIEvent', desc: 'Send UI event' },
-        { ui: 'setCursorStyle', desc: 'Set cursor style' }
+        { value: 'ShowProgressSpinnerRequest', text: 'Show a progress spinner' },
+        { value: 'ShowInfoBox', text: 'Show or hide info box' },
+        { value: 'SendUIEvent', text: 'Send UI event' },
+        { value: 'setCursorStyle', text: 'Set cursor style' }
       ],
       locationbased: [
-        { item: 'GetRouteRequest', desc: 'Get route' },
-        { item: 'GetUserLocationRequest', desc: 'Get users location' },
-        { item: 'SearchRequest', desc: 'Perform a search' },
-        { item: 'UserLocationEvent', desc: 'UserLocationEvent' },
-        { item: 'SearchResultEvent', desc: 'SearchResultEvent' },
-        { item: 'RouteResultEvent', desc: 'RouteResultEvent' }
+        { value: 'GetRouteRequest', text: 'Get route' },
+        { value: 'GetUserLocationRequest', text: 'Get users location' },
+        { value: 'SearchRequest', text: 'Perform a search' },
+        { value: 'UserLocationEvent', text: 'UserLocationEvent' },
+        { value: 'SearchResultEvent', text: 'SearchResultEvent' },
+        { value: 'RouteResultEvent', text: 'RouteResultEvent' }
       ],
-      select: 'Getting Started'
+      select: 'Getting Started',
+      selected: 'Getting Started'
     }
   },
   methods: {
     getSelectedInfo (event) {
+      this.$parent.asd(event);
       this.$store.state.rpcExample = event.target.value;
-      // this.$store.state.rpcExample.desc = event.target.selectedOptions[0].innerText;
+      // this.$store.state.rpcExample.text = event.target.selectedOptions[0].innerText;
       this.$store.state.examplesViewed.push(event.target.value);
     }
   },
   updated () {
-    this.select = this.selected
+    // this.select = this.selected
   }
 }
 </script>

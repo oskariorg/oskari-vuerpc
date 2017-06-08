@@ -15,7 +15,7 @@ export default {
   name: 'UserLocationEvent',
   data () {
     return {
-
+      desc: 'UserLocationEvent'
     }
   },
   methods: {

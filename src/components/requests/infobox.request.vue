@@ -21,6 +21,7 @@ export default {
   name: 'ShowInfoBox',
   data () {
     return {
+      desc: 'Show or hide info box',
       req: infobox.req
     }
   },

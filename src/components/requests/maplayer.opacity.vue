@@ -24,7 +24,7 @@ export default {
   name: 'ChangeMapLayerOpacityRequest',
   data () {
     return {
-
+      desc: 'Change map layer opacity'
     }
   },
   methods: {

@@ -28,6 +28,7 @@ export default {
   name: 'drawing',
   data () {
     return {
+      desc: 'Drawing requests'
     }
   },
   methods: {

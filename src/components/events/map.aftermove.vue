@@ -20,6 +20,7 @@ export default {
   name: 'AfterMapMoveEvent',
   data () {
     return {
+      desc: 'AfterMapMoveEvent'
     }
   },
   methods: {

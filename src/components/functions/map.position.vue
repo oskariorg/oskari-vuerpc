@@ -12,6 +12,7 @@ export default {
   name: 'GetMapPosition',
   data () {
     return {
+      desc: 'Get map position'
     }
   },
   methods: {

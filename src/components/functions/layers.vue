@@ -12,6 +12,7 @@ export default {
   name: 'GetAllLayers',
   data () {
     return {
+      desc: 'Get available map layers'
     }
   },
   methods: {

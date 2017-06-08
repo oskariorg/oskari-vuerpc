@@ -44,6 +44,7 @@ export default {
   name: 'addOrRemoveFeatures',
   data () {
     return {
+      desc: 'Add or remove vector features',
       svg: features.svg,
       add: features.add
     }

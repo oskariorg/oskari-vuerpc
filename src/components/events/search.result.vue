@@ -13,6 +13,7 @@ export default {
   name: 'SearchResultEvent',
   data () {
     return {
+      desc: 'SearchResultEvent',
       result: search.result
     }
   },

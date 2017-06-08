@@ -8,7 +8,7 @@
     <code-component snippet="
     {
 
-      
+
     }"></code-component>
   </div>
 </template>
@@ -17,7 +17,7 @@ export default {
   name: 'FeedbackResultEvent',
   data () {
     return {
-
+      desc: 'FeedbackResultEvent'
     }
   },
   methods: {

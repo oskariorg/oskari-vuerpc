@@ -24,7 +24,7 @@ export default {
   name: 'rotateMap',
   data () {
     return {
-
+      desc: 'Rotate map'
     }
   },
   methods: {

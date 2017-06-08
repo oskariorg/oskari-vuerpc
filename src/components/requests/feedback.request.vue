@@ -16,6 +16,7 @@ export default {
   name: 'GetFeedbackRequest',
   data () {
     return {
+      desc: 'Get posted feedback data (poc)',
       req: feedback.req
     }
   },

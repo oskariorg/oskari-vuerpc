@@ -20,6 +20,7 @@ export default {
   name: 'MapClickedEvent',
   data () {
     return {
+      desc: 'MapClickedEvent'
     }
   },
   methods: {

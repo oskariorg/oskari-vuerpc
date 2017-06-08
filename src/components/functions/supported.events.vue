@@ -12,6 +12,7 @@ export default {
   name: 'GetSupportedFunctions',
   data () {
     return {
+      desc: 'Get supported events'
     }
   },
   methods: {

@@ -26,6 +26,7 @@ export default {
   name: 'GetFeatures',
   data () {
     return {
+      desc: 'Get features'
     }
   },
   methods: {

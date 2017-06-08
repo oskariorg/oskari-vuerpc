@@ -53,6 +53,7 @@ export default {
   name: 'AddMarkerRequest',
   data () {
     return {
+      desc: 'Add or remove  a marker',
       MARKER_ID: 'RPC_MARKER',
       markerDefault: marker.addDefault,
       markerSvg: marker.addSvg,
