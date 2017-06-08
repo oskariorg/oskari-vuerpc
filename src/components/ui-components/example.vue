@@ -6,14 +6,13 @@
     </div>
   </br>
   <transition name="fade">
-    <!-- <router-view></router-view> -->
     <component :id="selected.func" :is="currentExample" transition="fade" transition-mode="out-in"></component>
   </transition>
 </div>
 </template>
 
 <script>
-import routes from '../routes.js';
+import routes from '../../routes.js';
 import { mapGetters } from 'vuex';
 
 export default {
