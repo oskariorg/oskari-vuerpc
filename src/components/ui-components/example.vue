@@ -7,7 +7,7 @@
   </br>
   <transition name="fade">
     <!-- <router-view></router-view> -->
-    <component :id="selected.func" :is="currentView" transition="fade" transition-mode="out-in"></component>
+    <component :id="selected.func" :is="currentExample" transition="fade" transition-mode="out-in"></component>
   </transition>
 </div>
 </template>
@@ -31,7 +31,7 @@ export default {
       neighbourRight: '',
       neighbourLeftDesc: '',
       neighbourRightDesc: '',
-      currentView: ''
+      currentExample: ''
     }
   },
   methods: {
@@ -43,7 +43,7 @@ export default {
     updateView () {
       for (let i = 0; i < this.components.length; i++) {
         if (this.components[i].name === this.selected) {
-          this.currentView = this.components[i];
+          this.currentExample = this.components[i];
         }
       }
     },

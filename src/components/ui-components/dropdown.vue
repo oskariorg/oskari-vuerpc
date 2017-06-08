@@ -110,7 +110,6 @@ export default {
   },
   methods: {
     getSelectedInfo (event) {
-      this.$parent.asd(event);
       this.$store.state.rpcExample = event.target.value;
       // this.$store.state.rpcExample.text = event.target.selectedOptions[0].innerText;
       this.$store.state.examplesViewed.push(event.target.value);

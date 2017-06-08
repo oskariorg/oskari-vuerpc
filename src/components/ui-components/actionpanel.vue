@@ -6,7 +6,7 @@
         <h2>Select Action
           <dropdown></dropdown>
         </h2>
-        <selected-component></selected-component>
+        <example></example>
         </div>
     </div>
   </div>
@@ -15,23 +15,16 @@
 
 <script>
 import dropdown from './dropdown.vue';
-import selected from './components.vue';
+import example from './example.vue';
 import style from '../../style.css';
 
 export default {
   components: {
     'dropdown': dropdown,
-    'selected-component': selected
+    'example': example
   },
   data () {
     return {}
-  },
-  methods: {
-    asd (event) {
-      // this.selected = event.target.value;
-      // this.$store.state.rpcExample = event.target.value;
-      // this.$store.state.examplesViewed.push(event.target.value);
-    }
   }
 }
 </script>
