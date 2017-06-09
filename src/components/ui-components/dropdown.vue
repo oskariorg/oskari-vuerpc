@@ -103,14 +103,12 @@ export default {
         { value: 'SearchResultEvent', text: 'SearchResultEvent' },
         { value: 'RouteResultEvent', text: 'RouteResultEvent' }
       ],
-      select: 'Getting Started',
       selected: 'Getting Started'
     }
   },
   methods: {
     getSelectedInfo (event) {
       this.$store.state.rpcExample = event.target.value;
-      this.$refs.actionSelector.selectedIndex = event.target.selectedIndex + 1;
       this.$store.state.examplesViewed.push(event.target.value);
     }
   }

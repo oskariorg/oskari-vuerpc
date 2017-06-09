@@ -75,7 +75,6 @@ export default {
       }
     },
     changeComponent (e) {
-      debugger;
       this.updateDropdown = e.target.id;
       this.$store.state.rpcExample = e.target.id;
       this.updateView();

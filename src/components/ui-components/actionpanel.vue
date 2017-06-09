@@ -11,13 +11,11 @@
 </template>
 
 <script>
-import dropdown from './dropdown.vue';
 import example from './example.vue';
 import style from '../../style.css';
 
 export default {
   components: {
-    'dropdown': dropdown,
     'example': example
   },
   data () {
