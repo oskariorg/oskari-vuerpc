@@ -1,6 +1,6 @@
 <template>
   <div id="action">
-    <select v-model="selected" @change="getSelectedInfo" id="actionSelector">
+    <select v-model="selected" @change="getSelectedInfo" ref="actionSelector">
       <option value="gettingStarted">Getting Started</option>
       <optgroup label="Map">
         <option v-for="option in map" :value="option.value">{{option.text}}</option>
@@ -34,13 +34,12 @@
 import { mapGetters } from 'vuex';
 
 export default {
-  // props: ['selected'],
-  // computed: {
-  //   // mapgetters is a helper to return your getter functions from the store
-  //   ...mapGetters({
-  //     selected: 'selectedExample'
-  //   })
-  // },
+  props: ['update'],
+  watch: {
+    update: function () {
+      this.selected = this.update;
+    }
+  },
   data () {
     return {
       map: [
@@ -111,12 +110,9 @@ export default {
   methods: {
     getSelectedInfo (event) {
       this.$store.state.rpcExample = event.target.value;
-      // this.$store.state.rpcExample.text = event.target.selectedOptions[0].innerText;
+      this.$refs.actionSelector.selectedIndex = event.target.selectedIndex + 1;
       this.$store.state.examplesViewed.push(event.target.value);
     }
-  },
-  updated () {
-    // this.select = this.selected
   }
 }
 </script>

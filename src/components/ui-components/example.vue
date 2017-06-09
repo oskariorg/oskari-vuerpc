@@ -1,9 +1,14 @@
 <template>
   <div>
+    <div class="selectExamples">
+    <h2>Select Action
+      <dropdown :update="updateDropdown"></dropdown>
+    </h2>
     <div class="navigationLinkParent">
       <div class="navigationLinkLeft"><a class="navigationLink"  :id="neighbourLeft"  @click="changeComponent">Previous: {{neighbourLeftDesc}}</a></div>
       <div class="navigationLinkRight"><a class="navigationLink" :id="neighbourRight" @click="changeComponent">Next: {{neighbourRightDesc}}</a></div>
     </div>
+  </div>
   </br>
   <transition name="fade">
     <component :id="selected.func" :is="currentExample" transition="fade" transition-mode="out-in"></component>
@@ -12,10 +17,14 @@
 </template>
 
 <script>
+import dropdown from './dropdown.vue';
 import routes from '../../routes.js';
 import { mapGetters } from 'vuex';
 
 export default {
+  components: {
+    'dropdown': dropdown
+  },
   computed: {
     // mapgetters is a helper to return your getter functions from the store
     ...mapGetters({
@@ -30,7 +39,8 @@ export default {
       neighbourRight: '',
       neighbourLeftDesc: '',
       neighbourRightDesc: '',
-      currentExample: ''
+      currentExample: '',
+      updateDropdown: ''
     }
   },
   methods: {
@@ -65,6 +75,8 @@ export default {
       }
     },
     changeComponent (e) {
+      debugger;
+      this.updateDropdown = e.target.id;
       this.$store.state.rpcExample = e.target.id;
       this.updateView();
     }
@@ -81,6 +93,9 @@ export default {
 }
 </script>
 <style>
+.selectExamples {
+  background-color: #D9D9D9;
+}
 .fade-enter-active, .fade-leave-active {
   transition-property: opacity;
   transition-duration: .15s;

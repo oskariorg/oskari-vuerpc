@@ -3,9 +3,6 @@
   <div class="panel panel-default form-panel">
     <div class="panel-body">
       <div id="select-panel">
-        <h2>Select Action
-          <dropdown></dropdown>
-        </h2>
         <example></example>
         </div>
     </div>

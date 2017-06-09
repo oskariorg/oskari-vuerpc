@@ -9,7 +9,7 @@
 </template>
 <script>
 export default {
-  name: 'GetSupportedFunctions',
+  name: 'GetSupportedEvents',
   data () {
     return {
       desc: 'Get supported events'
