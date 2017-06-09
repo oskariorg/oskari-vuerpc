@@ -103,7 +103,7 @@ export default {
         { value: 'SearchResultEvent', text: 'SearchResultEvent' },
         { value: 'RouteResultEvent', text: 'RouteResultEvent' }
       ],
-      selected: 'Getting Started'
+      selected: 'gettingStarted'
     }
   },
   methods: {
@@ -111,6 +111,9 @@ export default {
       this.$store.state.rpcExample = event.target.value;
       this.$store.state.examplesViewed.push(event.target.value);
     }
+  },
+  mounted () {
+    this.$store.state.rpcExample = this.selected;
   }
 }
 </script>
