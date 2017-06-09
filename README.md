@@ -20,8 +20,8 @@ npm run build --report
 ```
 ## Integrate to oskar-docs:
 
-> npm run build
-> copy everything from /dist to oskari-docs project folder: /public/examples/rpc-api/ (delete old files from said directory)
-> In /views/guides.jade change:           
+> npm run build  
+> copy everything from /dist to oskari-docs project folder: /public/examples/rpc-api/ (delete old files from said directory)  
+> In /views/guides.jade change:         
 > Other guides:
-> * [Oskari RPC examples](/examples/rpc-api/index.html)
+> /examples/rpc-api/index.html)
