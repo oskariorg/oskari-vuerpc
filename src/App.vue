@@ -34,19 +34,19 @@ body {
 }
 
 body, p {
-    font-family: Open Sans;
+    font-family: 'Open Sans';
     font-size: 17px;
     color: #262626;
 }
 h1 {
-    font-family: Open Sans;
+    font-family: 'Open Sans';
     color: #262626;
     background-color: #D9D9D9;
     padding: 4px;
 }
 
 h2 {
-    font-family: Open Sans !important;
+    font-family: 'Open Sans' !important;
     font-size: 24px;
     color: #262626;
     background-color: #D9D9D9;
@@ -55,7 +55,7 @@ h2 {
 }
 
 h3 {
-    font-family: Open Sans;
+    font-family: 'Open Sans';
     font-size: 20px;
     background-color: #F9F9F9;
     /*padding: 4px;*/
@@ -63,7 +63,7 @@ h3 {
 }
 
 h4, h5, h6 {
-    font-family: Open Sans;
+    font-family: 'Open Sans';
     font-size: 20px;
     color: #262626;
 }
