@@ -7,7 +7,7 @@
       <div>First add feature, feature format can be an WKT or GeoJSON</div>
       <button class="btn btn-primary exampleready" @click="addWKTFeature">AddFeaturesToMapRequest</button>
       <div>
-        <a id="addFeaturesWKT" href="">To the documentation</a>
+        <a id="addFeaturesWKT" href="" @click="getLink">To the documentation</a>
       </div>
       <code-component :snippet="wkt"></code-component>
     </div>
@@ -15,7 +15,7 @@
     <div>Now update previously added feature</div>
     <button class="btn btn-primary exampleready" @click="updateWKTFeature">AddFeaturesToMapRequest</button>
     <div>
-      <a id="addFeaturesWKT2" href="">To the documentation</a>
+      <a id="addFeaturesWKT2" href="" @click="getLink">To the documentation</a>
     </div>
     <code-component snippet="
     // For example change stroke style
@@ -113,6 +113,10 @@ export default {
         'MapModulePlugin.AddFeaturesToMapRequest',
         params
       );
+    },
+    getLink (e) {
+      let documentPathEnd = 'mapping/mapmodule/request/addfeaturestomaprequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

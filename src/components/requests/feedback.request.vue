@@ -5,7 +5,7 @@
       <div>Request feedback data on current map area</div>
     </div>
     <div>
-      <a id="getFeedback" href="">To the documentation</a>
+      <a ref="getFeedback" href="" @click="getLink">To the documentation</a>
     </div>
     <code-component :snippet="req"></code-component>
   </div>
@@ -34,6 +34,10 @@ export default {
         };
         this.$root.channel.postRequest('GetFeedbackRequest', [data]);
       });
+    },
+    getLink (e) {
+      var documentPathEnd = 'mapping/feedbackService/request/getfeedbackrequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

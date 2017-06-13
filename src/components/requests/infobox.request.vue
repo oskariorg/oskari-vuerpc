@@ -2,13 +2,13 @@
   <div id="ShowInfoBox">
     <button id="btnShowInfoBoxRequest" class="btn btn-primary exampleready" @click="showInfoBoxRequest">InfoBox.ShowInfoBoxRequest</button>
     <div>
-      <a id="showInfobox" href="">To the documentation</a>
+      <a ref="showInfobox" id="show" href="" @click="getLink">To the documentation</a>
     </div>
     <code-component :snippet="req"></code-component>
 
     <button id="btnHideInfoBoxRequest" class="btn btn-primary exampleready" @click="hideInfoBoxRequest">InfoBox.HideInfoBoxRequest</button>
     <div>
-      <a id="hideInfobox" href="">To the documentation</a>
+      <a ref="hideInfobox" id="hide" href="" @click="getLink">To the documentation</a>
     </div>
     <code-component snippet="var infoboxId = 'myInfoBox';
     channel.postRequest('InfoBox.HideInfoBoxRequest', [infoboxId]);
@@ -128,6 +128,10 @@ export default {
       const infoboxId = 'myInfoBox';
       this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest', [infoboxId]);
       this.$root.channel.log('InfoBox.HideInfoBoxRequest posted with data', infoboxId);
+    },
+    getLink (e) {
+      let documentPathEnd = e.target.id === 'show' ? 'ui/infobox/request/infobox.showinfoboxrequest.md' : 'ui/infobox/request/infobox.hideinfoboxrequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

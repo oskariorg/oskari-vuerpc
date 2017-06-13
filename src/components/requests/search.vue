@@ -7,7 +7,7 @@
       </div>
     </div>
     <div>
-      <a id="search" href="">To the documentation</a>
+      <a id="search" href="" @click="getLink">To the documentation</a>
     </div>
 
     <code-component snippet="var data = 'Vantaa';
@@ -28,6 +28,10 @@ export default {
 
       this.$root.channel.postRequest('SearchRequest', [data]);
       this.$root.channel.log('SearchRequest posted with data', data);
+    },
+    getLink (e) {
+      let documentPathEnd = 'framework/search/request/SearchRequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

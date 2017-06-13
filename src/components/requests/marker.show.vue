@@ -7,7 +7,7 @@
       2. Add marker to map
       <button id="btnMarkerShowHideAddMarker" class="btn btn-primary exampleready" @click="showHideMarkerAddMarker">MapModulePlugin.AddMarkerRequest</button>
       <div>
-        <a id="linkShowHideMarkerAddMarkersToMap" href="">To the documentation</a>
+        <a id="linkShowHideMarkerAddMarkersToMap" href="" @click="getLink">To the documentation</a>
       </div>
 
       <code-component snippet="var data = {
@@ -23,7 +23,7 @@
     <div>3. Hide marker
       <button id="btnMarkerShowHideHideMarker" class="btn btn-primary exampleready" @click="showHideMarkerHideMarker">MapModulePlugin.MarkerVisibilityRequest</button>
       <div>
-        <a id="linkShowHideMarkerMarkerVisibilityRequest" href="">To the documentation</a>
+        <a id="linkShowHideMarkerMarkerVisibilityRequest" href="" @click="getLink">To the documentation</a>
       </div>
 
       <code-component snippet="// If MARKER_ID is not defined then hide all visibled markers
@@ -32,7 +32,7 @@
     <div>4. Show marker
       <button id="btnMarkerShowHideShowMarker" class="btn btn-primary exampleready" @click="showHideMarkerShowMarker">MapModulePlugin.MarkerVisibilityRequest</button>
       <div>
-        <a id="linkShowHideMarkerMarkerVisibilityRequest2" href="">To the documentation</a>
+        <a id="linkShowHideMarkerMarkerVisibilityRequest2" href="" @click="getLink">To the documentation</a>
       </div>
 
       <code-component snippet="// If MARKER_ID is not defined then show all unvisibled markers
@@ -70,6 +70,10 @@ export default {
     showHideMarkerHideMarker () {
       this.$root.channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [false, this.MARKER_ID]);
       this.$root.channel.log('MapModulePlugin.MarkerVisibilityRequest posted with data', [false, this.MARKER_ID]);
+    },
+    getLink (e) {
+      var documentPathEnd = e.target.id === 'linkShowHideMarkerAddMarkersToMap' ? 'mapping/mapmodule/request/addmarkerrequest.md' : 'mapping/mapmodule/request/markervisibilityrequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

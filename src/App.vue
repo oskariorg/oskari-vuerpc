@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header></app-header>
-    <router-view></router-view>
+    <rpc-api></rpc-api>
   </div>
 </template>
 

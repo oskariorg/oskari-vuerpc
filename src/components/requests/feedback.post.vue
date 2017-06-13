@@ -6,7 +6,7 @@
         <div>Request feedback data</div>
       </div>
       <div>
-        <a id="postFeedback" href="">To the documentation</a>
+        <a ref="postFeedback" href="" @click="getLink">To the documentation</a>
       </div>
 
       <code-component :snippet="one"></code-component>
@@ -18,7 +18,7 @@
         <div>Request feedback data</div>
       </div>
       <div>
-        <a id="postFeedback" href="">To the documentation</a>
+        <a ref="postFeedback" href="" @click="getLink">To the documentation</a>
       </div>
 
       <code-component :snippet="two"></code-component>
@@ -29,7 +29,7 @@
         <div>Request feedback data</div>
       </div>
       <div>
-        <a id="postFeedback" href="">To the documentation</a>
+        <a ref="postFeedback" href="" @click="getLink">To the documentation</a>
       </div>
 
       <code-component :snippet="three"></code-component>
@@ -105,6 +105,10 @@ export default {
           break;
         default:
       }
+    },
+    getLink (e) {
+      var documentPathEnd = 'mapping/feedbackService/request/postfeedbackrequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

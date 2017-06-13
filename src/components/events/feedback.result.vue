@@ -2,7 +2,7 @@
   <div ref="FeedbackResultEvent">
     <div>Occurs after a feedback request has been completed</div>
     <div>
-      <a id="feedbackResult" href="">To the documentation</a>
+      <a ref="feedbackResult" href="" @click="getLink">To the documentation</a>
     </div>
 
     <code-component snippet="
@@ -21,7 +21,10 @@ export default {
     }
   },
   methods: {
-
+    getLink (e) {
+      var documentPathEnd = 'mapping/feedbackService/event/feedbackresultevent.md';
+      e.target.href = this.$root.documentPathEvent + documentPathEnd;
+    }
   }
 }
 </script>

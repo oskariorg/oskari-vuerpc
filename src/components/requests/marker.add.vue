@@ -6,7 +6,7 @@
       <div>Adding markers with Oskari default icons (shape number between 0 and 6)</div>
       <button ref="btnMapModulePluginAddMarkerRequest" class="btn btn-primary" @click="addMarkerRequest1">MapModulePlugin.AddMarkerRequest</button>
       <div>
-        <a id="addMarkers" href="">To the documentation</a>
+        <a id="addMarkers" href="" @click="getLink">To the documentation</a>
       </div>
 
           <code-component :snippet="markerDefault"></code-component>
@@ -16,7 +16,7 @@
         <div>Adding markers with own svg icon (happy face icon)</div>
         <button ref="btnMapModulePluginAddMarkerRequest" class="btn btn-primary" @click="addMarkerRequest2">MapModulePlugin.AddMarkerRequest</button>
         <div>
-          <a id="addMarkers" href="">To the documentation</a>
+          <a id="addMarkers" href="" @click="getLink">To the documentation</a>
         </div>
 
           <code-component :snippet="markerSvg"></code-component>
@@ -27,7 +27,7 @@
       <div>Adding markers with own icon</div>
       <button ref="btnMapModulePluginAddMarkerRequest" class="btn btn-primary" @click="addMarkerRequest3">MapModulePlugin.AddMarkerRequest</button>
       <div>
-        <a id="addMarkers" href="">To the documentation</a>
+        <a id="addMarkers" href="" @click="getLink">To the documentation</a>
       </div>
 
         <code-component :snippet="markerOwn"></code-component>
@@ -38,7 +38,7 @@
     <div>Removing markers</div>
     <button id="btnMapModulePluginRemoveMarkersRequest" class="btn btn-primary" @click="removeMarkersRequest">MapModulePlugin.RemoveMarkersRequest</button>
     <div>
-      <a id="removeMarkers" href="">To the documentation</a>
+      <a id="removeMarkers" href="" @click="getLink">To the documentation</a>
     </div>
 
       <code-component snippet="channel.postRequest('MapModulePlugin.RemoveMarkersRequest', [MARKER_ID]);
@@ -103,6 +103,10 @@ export default {
     removeMarkersRequest () {
       this.$root.channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
       this.$root.channel.log('RemoveMarkerRequest posted with data', []);
+    },
+    getLink (e) {
+      var documentPathEnd = e.target.id === 'addMarkers' ? 'mapping/mapmodule/request/addmarkerrequest.md' : 'mapping/mapmodule/request/removemarkersrequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

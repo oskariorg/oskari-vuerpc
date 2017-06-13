@@ -2,7 +2,7 @@
   <div id="AfterMapMoveEvent">
     <div>Occurs after the map has been moved</div>
     <div>
-      <a id="afterMapMove" href="">To the documentation</a>
+      <a id="afterMapMove" href="" @click=getLink"">To the documentation</a>
     </div>
     <code-component snippet="    {
       'centerX': 411650.70779123,
@@ -33,6 +33,10 @@ export default {
         this.$store.savedZoom = data.zoom;
         helper.plotPlotArea(this.$store.savedPlotAreaData, this.$store.map);
       }
+    },
+    getLink (e) {
+      var documentPathEnd = 'mapping/mapmodule/event/AfterMapMoveEvent.md';
+      e.target.href = this.$root.documentPathEvent + documentPathEnd;
     }
   }
 }

@@ -3,7 +3,7 @@
     <div id="StartDrawingRequest">
       <button class="btn btn-primary exampleready" @click="startDrawing">DrawTools.StartDrawingRequest</button>
       <div>
-        <a id="startDrawing" href="">To the documentation</a>
+        <a id="startDrawing" href="" @click="getLink">To the documentation</a>
       </div>
       <code-component snippet="var data = ['my functionality id', 'Polygon'];
       channel.postRequest('DrawTools.StartDrawingRequest', data);"></code-component>
@@ -11,7 +11,7 @@
     <div id="StopDrawingRequest">
       <button class="btn btn-primary exampleready" @click="stopDrawing">DrawTools.StopDrawingRequest - cancel current drawing</button>
       <div>
-        <a id="stopDrawing" href="">To the documentation</a>
+        <a id="stopDrawing" href="" @click="getLink">To the documentation</a>
       </div>
       <code-component snippet="var data = ['my functionality id'];
       channel.postRequest('DrawTools.StopDrawingRequest', data);"></code-component>
@@ -46,6 +46,10 @@ export default {
       const data = ['my functionality id', true];
       this.$root.channel.postRequest('DrawTools.StopDrawingRequest', data);
       this.$root.channel.log('DrawTools.StopDrawingRequest posted with data:', data);
+    },
+    getLink (e) {
+      let documentPathEnd = e.target.id === 'startDrawing' ? 'mapping/drawtools/request/startdrawingrequest.md' : 'mapping/drawtools/request/stopdrawingrequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

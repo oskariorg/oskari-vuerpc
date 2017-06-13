@@ -2,7 +2,7 @@
   <div ref="GetUserLocationRequest">
     <button id="btnMyLocationPluginGetUserLocationRequest" class="btn btn-primary" @click="getUserLocation">MyLocationPlugin.GetUserLocationRequest</button>
     <div>
-      <a id="getUserLocation" href="">To the documentation</a>
+      <a id="getUserLocation" href="" @click="getLink">To the documentation</a>
     </div>
         <code-component snippet="channel.postRequest('MyLocationPlugin.GetUserLocationRequest', [true]);"></code-component>
     </div>
@@ -19,6 +19,10 @@ export default {
     getUserLocation () {
       this.$root.channel.postRequest('MyLocationPlugin.GetUserLocationRequest', [true]);
       this.$root.channel.log('MyLocationPlugin.GetUserLocationRequest posted with data', true);
+    },
+    getLink (e) {
+      let documentPathEnd = 'mapping/mapmodule/request/getuserlocationrequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

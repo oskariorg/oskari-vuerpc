@@ -2,7 +2,7 @@
   <div id="UserLocationEvent">
     <div>Occurs after user's location is fetched</div>
     <div>
-      <a id="userLocation" href="">To the documentation</a>
+      <a id="userLocation" href="" @click="getLink">To the documentation</a>
     </div>
     <code-component snippet="{
       'lon': 386436.3607007161,
@@ -19,7 +19,10 @@ export default {
     }
   },
   methods: {
-
+    getLink (e) {
+      var documentPathEnd = 'mapping/mapmodule/event/userlocationevent.md';
+      e.target.href = this.$root.documentPathEvent + documentPathEnd;
+    }
   }
 }
 </script>

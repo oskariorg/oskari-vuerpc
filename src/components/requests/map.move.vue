@@ -2,7 +2,7 @@
   <div ref="MapMoveRequest">
     <button ref="btnMapMoveRequest" class="btn btn-primary exampleready" @click="mapMoveRequest">MapMoveRequest</button>
     <div>
-      <a id="mapMove" href="">To the documentation</a>
+      <a id="mapMove" href="" @click="getLink">To the documentation</a>
     </div>
 
     <code-component snippet="var x = 552935,
@@ -28,6 +28,10 @@ export default {
           'MapMoveRequest', [this.LOCATION_POSIO[0], this.LOCATION_POSIO[1], 7]
       );
       this.$root.channel.log('MapModulePlugin.MapMoveRequest posted with data', [this.LOCATION_POSIO[0], this.LOCATION_POSIO[1], 7]);
+    },
+    getLink (e) {
+      let documentPathEnd = 'mapping/mapmodule/request/MapMoveRequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

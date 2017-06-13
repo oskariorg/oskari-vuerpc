@@ -8,7 +8,7 @@
         <b>Note!</b> if metadata property is false in the listing the details might not be available as it's optional in the Open311 specification.</div>
       </div>
       <div>
-        <a id="getFeedbackService" href="">To the documentation</a>
+        <a ref="getFeedbackService" href="" @click="getLink">To the documentation</a>
       </div>
           <code-component :snippet="services"></code-component>
     </div>
@@ -29,6 +29,10 @@ export default {
     },
     GetFeedbackServiceRequestWithId () {
       this.$root.channel.postRequest('GetFeedbackServiceRequest', ['180']);
+    },
+    getLink (e) {
+      var documentPathEnd = 'mapping/feedbackService/request/getfeedbackservicerequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

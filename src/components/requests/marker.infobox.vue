@@ -1,8 +1,8 @@
 <template>
   <div id="ShowInfoBoxForMarkers">
     <div>
-      <a id="AddMarkerRequest2" href="">To the documentation</a>
-      <a id="InfoBox.ShowInfoBoxRequest2" href="">To the documentation</a>
+      <a ref="AddMarkerRequest2" id="addMarker" href="" @click="getLink">To the documentation</a>
+      <a ref="ShowInfoBoxRequest2" id="showInfobox" href="" @click="getLink">To the documentation</a>
     </div>
 
     <div>
@@ -106,6 +106,10 @@ export default {
 
       this.$root.channel.postRequest('InfoBox.ShowInfoBoxRequest', infoboxData);
       this.$root.channel.log('InfoBox.ShowInfoBoxRequest posted with data', infoboxData);
+    },
+    getLink (e) {
+      let documentPathEnd = e.target.id === 'addMarker' ? 'mapping/mapmodule/request/addmarkerrequest.md' : 'ui/infobox/request/infobox.showinfoboxrequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

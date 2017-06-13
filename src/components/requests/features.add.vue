@@ -5,7 +5,7 @@
       <button id="btnRemoveFeaturesFromMapRequest" class="btn btn-primary exampleready" @click="removeFeaturesFromMapRequest">RemoveFeaturesFromMapRequest</button>
       <div>AddFeaturesToMapRequest allows adding vector features on the map.</div>
       <div>
-        <a id="addFeatures" href="">To the documentation</a>
+        <a id="addFeatures" href="" @click="getLink">To the documentation</a>
       </div>
       <code-component :snippet="add"></code-component>
     </div>
@@ -13,7 +13,7 @@
       <div>Adding features with SVG icon (Oskari SVG-shape numbers: 0 - 6) </div>
       <button id="btnAddFeaturesToMapRequest2" class="btn btn-primary exampleready" @click="addFeaturesToMapRequestUsingSVG">AddFeaturesToMapRequest (display point as SVG icon)</button>
       <div>
-        <a id="addFeatures" href="">To the documentation</a>
+        <a id="addFeatures" href="" @click="getLink">To the documentation</a>
       </div>
       <code-component :snippet="svg"></code-component>
     </div>
@@ -21,7 +21,7 @@
       <div>Remove all features across all vector layers</div>
       <button id="btnRemoveFeaturesFromMapRequest" class="btn btn-primary exampleready" @click="removeFeaturesFromMapRequest">RemoveFeaturesFromMapRequest</button>
       <div>
-        <a id="removeFeatures" href="">To the documentation</a>
+        <a id="removeFeatures" href="" @click="getLink">To the documentation</a>
       </div>
       <code-component snippet="//annihilate everything
       channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest',[]);"></code-component>
@@ -31,7 +31,7 @@
       <button id="btnAddFeaturesToMapRequest" class="btn btn-primary exampleready" @click="addFeaturesToMapRequest">AddFeaturesToMapRequest</button>
       <button id="btnRemoveFeaturesFromMapRequest2" class="btn btn-primary exampleready" @click="removeFeaturesFromMapRequest2">RemoveFeaturesFromMapRequest2</button>
       <div>
-        <a id="removeFeatures" href="">To the documentation</a>
+        <a id="removeFeatures" href="" @click="getLink">To the documentation</a>
       </div>
       <code-component snippet="// Remove all feature's whose 'test_property' === 1 from the layer with id==='VECTOR'
       channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest',['test_property', 1, 'VECTOR']);"></code-component>
@@ -50,6 +50,10 @@ export default {
     }
   },
   methods: {
+    getLink (e) {
+      let documentPathEnd = e.target.id === 'addFeatures' ? 'mapping/mapmodule/request/addfeaturestomaprequest.md' : 'mapping/mapmodule/request/removefeaturesfrommaprequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
+    },
     addFeaturesToMapRequest () {
       const x = 488704;
       const y = 6939136;

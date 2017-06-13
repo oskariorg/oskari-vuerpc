@@ -2,7 +2,7 @@
   <div ref="DrawingEvent">
     <div>Occurs when drawing is in progress</div>
     <div>
-      <a id="drawingEvent" href="">To the documentation</a>
+      <a id="drawingEvent" href="" @click="getLink">To the documentation</a>
     </div>
 
     <code-component :snippet="event"></code-component>
@@ -21,7 +21,10 @@ export default {
     }
   },
   methods: {
-
+    getLink (e) {
+      var documentPathEnd = 'mapping/drawtools/event/DrawingEvent.md';
+      e.target.href = this.$root.documentPathEvent + documentPathEnd;
+    }
   }
 }
 </script>

@@ -1,7 +1,7 @@
 <template>
   <div id="ZoomToFeatures">
     <div>
-      <a id="zoomToFeatures" href="">To the documentation</a>
+      <a id="zoomToFeatures" href="" @click="getLink">To the documentation</a>
     </div>
 
     <div>
@@ -100,6 +100,10 @@ export default {
     zoomToFeaturesRequest () {
       this.$root.channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', []);
       this.$root.channel.log('MapModulePlugin.ZoomToFeaturesRequest posted without params');
+    },
+    getLink (e) {
+      let documentPathEnd = 'mapping/mapmodule/request/zoomtofeaturesrequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

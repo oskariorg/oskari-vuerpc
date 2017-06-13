@@ -3,7 +3,7 @@
     <button id="btnShowProgressSpinnerRequest" class="btn btn-primary" @click="showProgressSpinner">ShowProgressSpinnerRequest</button>
     <div>ShowProgressSpinnerRequest allows starting and stopping a progress indicator on top of the map.</div>
     <div>
-      <a id="showProgressSpinner" href="">To the documentation</a>
+      <a id="showProgressSpinner" href="" @click="getLink">To the documentation</a>
     </div>
         <code-component snippet="var isVisible = true;
         channel.postRequest('ShowProgressSpinnerRequest',[isVisible]);"></code-component>
@@ -24,6 +24,10 @@ export default {
       this.$root.channel.postRequest('ShowProgressSpinnerRequest', [isVisible]);
       this.$root.channel.log('ShowProgressSpinnerRequest posted with data', isVisible);
       this.progressSpinnerVisible = !this.progressSpinnerVisible;
+    },
+    getLink (e) {
+      let documentPathEnd = 'mapping/mapmodule/request/ShowProgressSpinnerRequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

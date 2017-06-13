@@ -2,7 +2,7 @@
   <div ref="GetFeatureInfoRequest">
     <button id="btnMapModulePluginGetFeatureInfoRequest" class="btn btn-primary exampleready" @click="getFeatureInfoRequest">MapModulePlugin.GetFeatureInfoRequest</button>
     <div>
-      <a id="getFeatureInfo" href="">To the documentation</a>
+      <a id="getFeatureInfo" href="" @click="getLink">To the documentation</a>
     </div>
 
     <code-component snippet="//get map center and display and feature info box
@@ -28,6 +28,10 @@ export default {
         this.$root.channel.postRequest('MapModulePlugin.GetFeatureInfoRequest', lonlat);
         this.$root.channel.log('MapModulePlugin.GetFeatureInfoRequest posted with data', lonlat);
       });
+    },
+    getLink (e) {
+      let documentPathEnd = 'mapping/mapmodule/request/GetFeatureInfoRequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

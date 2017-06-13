@@ -2,7 +2,7 @@
   <div id="FeatureEvent">
     <div>Occurs after adding or removing features to or from map </div>
     <div>
-      <a id="featureEvent" href="">To the documentation</a>
+      <a id="featureEvent" href="" @click="getLink">To the documentation</a>
     </div>
 
     <code-component :snippet="event"></code-component>
@@ -20,7 +20,10 @@ export default {
     }
   },
   methods: {
-
+    getLink (e) {
+      var documentPathEnd = 'mapping/mapmodule/event/featureevent.md';
+      e.target.href = this.$root.documentPathEvent + documentPathEnd;
+    }
   }
 }
 </script>

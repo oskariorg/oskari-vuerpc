@@ -2,7 +2,7 @@
   <div ref="RouteResultEvent">
     <div>Occurs after a route search has been completed</div>
     <div>
-      <a id="routeResult" href="">To the documentation</a>
+      <a id="routeResult" href="" @click=getLink"">To the documentation</a>
     </div>
     <code-component :snippet="result"></code-component>
     </div>
@@ -18,7 +18,10 @@ export default {
     }
   },
   methods: {
-
+    getLink (e) {
+      let documentPathEnd = 'mapping/routingService/event/routeresultevent.md';
+      e.target.href = this.$root.documentPathEvent + documentPathEnd;
+    }
   }
 }
 </script>

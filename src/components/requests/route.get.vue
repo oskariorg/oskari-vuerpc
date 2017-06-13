@@ -7,7 +7,7 @@
       <div>Find route from Pasila to the center point of the map</div>
     </div>
     <div>
-      <a id="getRoute" href="">To the documentation</a>
+      <a ref="getRoute" href="" @click="getLink">To the documentation</a>
     </div>
 
     <code-component snippet="var data = {
@@ -54,6 +54,10 @@ export default {
     },
     getRouteRequestBicycle () {
       this.getRouteRequest('BICYCLE');
+    },
+    getLink () {
+      var documentPathEnd = 'mapping/routingService/request/getrouterequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

@@ -121,11 +121,16 @@ export default {
           }
         });
       });
+    },
+    initDocumentationPaths () {
+      this.$root.documentPathRequest = '/api/requests#1.42.0/';
+      this.$root.documentPathEvent = '/api/events#1.42.0/';
     }
   },
   mounted () {
     this.$root.logdiv = this.$children[1].$refs.debuglog;
     this.initConnection();
+    this.initDocumentationPaths();
     this.onReady();
     this.handleRpcEvents();
   }

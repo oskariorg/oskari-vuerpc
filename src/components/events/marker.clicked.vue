@@ -2,7 +2,7 @@
   <div id="MarkerClickEvent">
     <div>Occurs after a marker's been clicked</div>
     <div>
-      <a id="markerClick" href="">To the documentation</a>
+      <a id="markerClick" href="" @click="getLink">To the documentation</a>
     </div>
 
     <code-component snippet="{
@@ -19,7 +19,10 @@ export default {
     }
   },
   methods: {
-
+    getLink (e) {
+      let documentPathEnd = 'mapping/mapmodule/event/MarkerClickEvent.md';
+      e.target.href = this.$root.documentPathEvent + documentPathEnd;
+    }
   }
 }
 </script>
