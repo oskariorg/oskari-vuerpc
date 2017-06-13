@@ -3,7 +3,7 @@
     <div>Change map layer style</div>
     <button ref="btnMapLayerUpdateRequest" class="btn btn-primary exampleready" @click="updateMapLayer">Set map layer fill style</button>
     <div>
-      <a id="mapLayerUpdate" href="">To the documentation</a>
+      <a id="mapLayerUpdate" href="" @click="getLink">To the documentation</a>
     </div>
 
     <code-component :snippet="fill"></code-component>
@@ -63,6 +63,10 @@ export default {
 
       this.$root.channel.postRequest('MapModulePlugin.MapLayerUpdateRequest', [layerId, true, params]);
       this.$root.channel.log('MapModulePlugin.MapLayerUpdateRequest', params);
+    },
+    getLink (e) {
+      let documentPathEnd = 'mapping/mapmodule/request/changemaplayeropacityrequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

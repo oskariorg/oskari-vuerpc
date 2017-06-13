@@ -3,7 +3,7 @@
     <div>Change MAP layer visibility.</div>
     <button class="btn btn-primary exampleready" @click="mapLayerVisibilityRequest">MapModulePlugin.MapLayerVisibilityRequest</button>
     <div>
-      <a id="mapLayerVisibility" href="">To the documentation</a>
+      <a id="mapLayerVisibility" href="" @click="getLink">To the documentation</a>
     </div>
 
     <code-component snippet="//get a list of all available map layers and toggle the first one
@@ -188,6 +188,10 @@ export default {
       const setVisible = true;
       this.$root.channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', [layerId, setVisible]);
       this.$root.channel.log('MapLayerVisibilityRequest sent with parameters: ', layerId, setVisible);
+    },
+    getLink (e) {
+      let documentPathEnd = e.target.id === 'changeOpacity' ? 'mapping/mapmodule/request/changemaplayeropacityrequest.md' : 'mapping/mapmodule/request/MapModulePlugin.MapLayerVisibilityRequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

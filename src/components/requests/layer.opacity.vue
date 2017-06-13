@@ -3,7 +3,7 @@
     <div>Change layer opacity.</div>
     <button id="btnChangeMapLayerOpacityRequest" class="btn btn-primary exampleready" @click="opacityRequest">ChangeMapLayerOpacityRequest</button>
     <div>
-      <a id="changeOpacity" href="">To the documentation</a>
+      <a id="changeOpacity" href="" @click="getLink">To the documentation</a>
     </div>
 
     <code-component snippet="channel.getAllLayers(function (layers) {
@@ -43,6 +43,10 @@ export default {
         me.$root.channel.postRequest('ChangeMapLayerOpacityRequest', [layerId, newOpacity]);
         me.$root.channel.log('ChangeMapLayerOpacityRequest sent with parameters: ', layerId + ', ' + newOpacity);
       });
+    },
+    getLink (e) {
+      let documentPathEnd = 'mapping/mapmodule/request/changemaplayeropacityrequest.md';
+      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }
