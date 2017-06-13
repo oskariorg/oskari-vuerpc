@@ -12,7 +12,6 @@
 
 <script>
 import example from './example.vue';
-import style from '../../style.css';
 
 export default {
   components: {
@@ -34,6 +33,10 @@ a {
 }
 #select-panel{
   margin: 0 auto;
+}
+h3 {
+  font-family: 'Open Sans';
+  font-size: 1.25rem !important;
 }
 
 </style>

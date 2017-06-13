@@ -126,6 +126,9 @@ export default {
   max-width:100%;
   font-size: 20px;
 }
+select {
+  font-size:20px !important;
+}
 option {
   font-size:18px !important;
 }

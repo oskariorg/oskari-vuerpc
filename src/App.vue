@@ -8,6 +8,7 @@
 <script>
   import rpcApi from './components/rpc-api.vue';
   import 'bootstrap/dist/css/bootstrap.css';
+  import style from './style.css';
   export default {
     components: {
       'rpc-api': rpcApi
@@ -20,10 +21,7 @@
 </script>
 
 <style lang="scss">
-@font-face {
-    font-family: 'Open Sans';
-    src: url('./assets/OpenSans-Regular.ttf');
-}
+@import "./assets/fonts/fonts_config.scss";
 
 html {
     min-height: 100%;
@@ -31,15 +29,17 @@ html {
 
 body {
     background: #D9D9D9;
-}
-
-body, p {
+    font-size:100%;
     font-family: 'Open Sans';
-    font-size: 17px;
+    color: #262626;
+}
+ p {
+    font-size: 1rem;
     color: #262626;
 }
 h1 {
     font-family: 'Open Sans';
+    font-size: 2rem;
     color: #262626;
     background-color: #D9D9D9;
     padding: 4px;
@@ -47,7 +47,7 @@ h1 {
 
 h2 {
     font-family: 'Open Sans' !important;
-    font-size: 24px;
+    font-size: 1.5rem;
     color: #262626;
     background-color: #D9D9D9;
     /*padding: 4px;*/
@@ -56,7 +56,7 @@ h2 {
 
 h3 {
     font-family: 'Open Sans';
-    font-size: 20px;
+    font-size: 1.25rem;
     background-color: #F9F9F9;
     /*padding: 4px;*/
     padding: 10px;
@@ -64,7 +64,7 @@ h3 {
 
 h4, h5, h6 {
     font-family: 'Open Sans';
-    font-size: 20px;
+    font-size: 1.25rem;
     color: #262626;
 }
 </style>

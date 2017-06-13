@@ -12,12 +12,7 @@
 <script>
 export default {
   data () {
-    return {
-
-    }
-  },
-  methods: {
-
+    return {}
   },
   mounted () {
     this.$store.state.map = this.$refs.publishedMap;
