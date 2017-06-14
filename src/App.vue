@@ -21,7 +21,7 @@
 </script>
 
 <style lang="scss">
-@import "./assets/fonts/fonts_config.scss";
+@import "~./assets/fonts/fonts_config.scss";
 
 html {
     min-height: 100%;
