@@ -1,9 +1,9 @@
 <template>
   <div class="header">
     <div class="nav-content">
-      <!-- <div class="oskari-logo"><a href="http://www.oskari.org"><img src="../../public/images/oskari_logo_white.png"></img></a></div> -->
+      <div class="oskari-logo"><a href="http://www.oskari.org"><img src="../../assets/img/oskari_logo_white.png" style="height:65px"></img></a></div>
       <nav>
-        <ul id="header-items">
+        <ul id="nav navbar-nav" role="navigation">
           <li><a href="/guides">Guides</a></li>
           <li><a href="/documentation">Documentation</a></li>
           <li><a href="/examples">Examples</a></li>
@@ -36,7 +36,23 @@ export default {
   border-bottom: 1px solid maroon;
   -webkit-box-shadow: 0 5px 20px 0 rgba(0,0,0,.3);
   box-shadow: 0 5px 20px 0 rgba(0,0,0,.3);
-
+}
+.header nav {
+  font-size: 1.2em;
+}
+.header nav ul li {
+  display: inline-block;
+  margin-left: .5em;
+  list-style-type: none;
+  padding-bottom: 5px;
+  border-top: 15px solid transparent;
+}
+.nav-content {
+  max-width: 1200px;
+margin-right: auto;
+margin-left: auto;
+padding: 0 0 2em;
+height: 60px;
 }
 .oskari-logo{
   float:left;

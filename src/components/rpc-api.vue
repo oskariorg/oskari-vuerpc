@@ -146,6 +146,7 @@ export default {
 }
 /*override bootstrap default*/
 .container {
+    position:absolute;
     width: 100% !important;
     margin-left: 0;
     margin-right: 0;

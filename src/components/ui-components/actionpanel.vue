@@ -24,8 +24,8 @@ export default {
 </script>
 
 <style lang="scss">
-a {
-  color: #8aa5d1 !important;
+#select-panel a {
+  color: #8aa5d1;
 }
 .form-panel {
   border:0.5px solid #D9D9D9;
