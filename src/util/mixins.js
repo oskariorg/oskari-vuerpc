@@ -41,7 +41,7 @@ const mixins = {
       if (boxLeft > 0 && boxTop > 0) {
         const box =
         `<div id="id_plot_bbox" style="overflow: hidden; pointer-events:none; position:absolute;
-        top:${boxTop}px;
+        top:${boxTop - 35}px;
         left:${boxLeft}px;
         width:${data.pixelMeasures[0]}px;
         height:${data.pixelMeasures[1]}px; border:2px solid red"> </div>`;

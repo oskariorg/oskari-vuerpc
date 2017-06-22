@@ -93,7 +93,10 @@ export default {
 </script>
 <style>
 .selectExamples {
-  background-color: #D9D9D9;
+  box-shadow: 2px 2px 1px #888888;
+}
+.selectExamples h2 {
+  background-color: #E9E9E9 !important;
 }
 .fade-enter-active, .fade-leave-active {
   transition-property: opacity;

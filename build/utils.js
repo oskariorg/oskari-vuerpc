@@ -19,7 +19,9 @@ exports.cssLoaders = function (options) {
       sourceMap: options.sourceMap
     }
   }
-
+  var urlLoader = {
+    loader: 'resolve-url-loader'
+}
   // generate loader string to be used with extract text plugin
   function generateLoaders (loader, loaderOptions) {
     var loaders = [cssLoader]
@@ -53,7 +55,7 @@ exports.cssLoaders = function (options) {
     scss: generateLoaders('sass'),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
-  }
+    }
 }
 
 // Generate loaders for standalone style files (outside of .vue)
