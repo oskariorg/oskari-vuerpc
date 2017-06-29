@@ -1,5 +1,5 @@
 <template>
-<div class="col-md-6 col-sm-12 col-lg-4 full-height-panel">
+<div class="col-xs-12 col-md-12 col-sm-12 col-lg-6 col-xl-4 full-height-panel">
   <div class="panel panel-default form-panel">
     <div class="panel-body">
       <div id="select-panel">

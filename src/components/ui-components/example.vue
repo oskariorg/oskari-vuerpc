@@ -115,11 +115,11 @@ export default {
 }
 .navigationLinkLeft {
   display:inline-block;
-  left:0;
-  width:50%;
+  margin-inline-end: auto;
+  font-size: calc(0.50rem + 1.0vh);
 }
 .navigationLinkRight {
   display:inline-block;
-  right: 0;
+  font-size: calc(0.50rem + 1.0vh);
 }
 </style>

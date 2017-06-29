@@ -127,7 +127,7 @@ export default {
   font-size: 20px;
 }
 select {
-  font-size:20px !important;
+    font-size: calc(0.8rem + 1.0vh) !important;
 }
 option {
   font-size:18px !important;

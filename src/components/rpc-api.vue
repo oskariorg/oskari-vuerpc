@@ -6,14 +6,12 @@
     <oskari-log></oskari-log>
   </div>
   <div class="msg" ref="messageBox"></div>
-  <code-mirror></code-mirror>
   </div>
 </template>
 <script>
 import Iframe from './ui-components/iframe.vue';
 import ActionPanel from './ui-components/actionpanel.vue';
 import LogPanel from './ui-components/logpanel.vue';
-import CodeMirror from './ui-components/codemirror.vue';
 import { eventHandlers } from '../util/eventHandlers.js';
 import mixin from '../util/mixins.js';
 
@@ -24,8 +22,7 @@ export default {
   components: {
     'oskari-iframe': Iframe,
     'rpc-actions': ActionPanel,
-    'oskari-log': LogPanel,
-    'code-mirror': CodeMirror
+    'oskari-log': LogPanel
   },
   data () {
     return {
@@ -147,10 +144,11 @@ export default {
 /*override bootstrap default*/
 .container {
     position:absolute;
-    width: 100% !important;
+    width: 100%;
     margin-left: 0;
     margin-right: 0;
     height:100%;
+    font-size: calc(0.60rem + 1.0vh);
 }
 .row {
   height:800px !important;

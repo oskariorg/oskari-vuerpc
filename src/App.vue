@@ -8,6 +8,7 @@
 <script>
   import rpcApi from './components/rpc-api.vue';
   import 'bootstrap/dist/css/bootstrap.css';
+  import 'bootstrap-vue/dist/bootstrap-vue.css'
   import style from './style.css';
   export default {
     components: {
@@ -25,16 +26,15 @@
 
 html {
     min-height: 100%;
+    font-size: 100%;
 }
 
 body {
     background: #D9D9D9;
-    font-size:100%;
     font-family: 'Open Sans';
     color: #262626;
 }
  p {
-    font-size: 1rem;
     color: #262626;
 }
 h1 {
@@ -56,7 +56,7 @@ h2 {
 
 h3 {
     font-family: 'Open Sans';
-    font-size: 1.25rem;
+    font-size: calc(1.25rem + 1.0vh);
     background-color: #F9F9F9;
     /*padding: 4px;*/
     padding: 10px;

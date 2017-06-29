@@ -9,7 +9,6 @@
           <li><a href="/examples">Examples</a></li>
           <li><a href="/download">Download</a></li>
           <li><a href="/about">About</a></li>
-          <li><app-input></app-input></li>
         </ul>
       </nav>
     </div>
@@ -17,15 +16,10 @@
 </template>
 
 <script>
-import Input from './Input.vue';
 
 export default {
-  components: {
-    'app-input': Input
-  },
   data () {
-    return {
-    }
+    return {}
   }
 }
 </script>
@@ -38,7 +32,7 @@ export default {
   box-shadow: 0 5px 20px 0 rgba(0,0,0,.3);
 }
 .header nav {
-  font-size: 1.2em;
+    font-size: calc(0.6rem + 1.0vh);
 }
 .header nav ul li {
   display: inline-block;
