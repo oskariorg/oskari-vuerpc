@@ -38,9 +38,6 @@ export default {
 }
 </script>
 <style>
-.full-height-panel {
-  height: 98% !important
-}
 .log-panel {
   height:770px;
   border:0.5px solid #D9D9D9;
