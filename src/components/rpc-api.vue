@@ -1,11 +1,11 @@
 <template>
-  <div class="container">
-  <div class="row">
-    <oskari-iframe></oskari-iframe>
-    <rpc-actions></rpc-actions>
-    <oskari-log></oskari-log>
-  </div>
-  <div class="msg" ref="messageBox"></div>
+  <div class="wrapper">
+    <div class="row">
+      <oskari-iframe></oskari-iframe>
+      <rpc-actions></rpc-actions>
+      <oskari-log></oskari-log>
+    </div>
+    <div class="msg" ref="messageBox"></div>
   </div>
 </template>
 <script>
@@ -141,10 +141,9 @@ export default {
   background-color: rgba(255, 0, 0, 0.3);
   box-shadow: 5px 5px 5px #888888;
 }
-/*override bootstrap default*/
-.container {
-    position:absolute;
-    width: 100%;
+.wrapper {
+    position:absolute; 
+    width: 98%;
     margin-left: 0;
     margin-right: 0;
     height:100%;
