@@ -97,7 +97,16 @@ const features = {
     centerTo: true,
     cursor: 'zoom-in',
     prio: 4,
-    minScale: 1451336
+    minScale: 1451336,
+    layerInspireName: 'Inspire theme name',
+    layerOrganizationName: 'Organization name',
+    showLayer: true,
+    opacity: 80,
+    layerName: 'Layer name',
+    layerDescription: 'Description text',
+    layerPermissions: {
+        'publish': 'publication_permission_ok'
+    }
   }];
 
   channel.postRequest(
