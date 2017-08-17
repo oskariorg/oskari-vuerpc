@@ -151,6 +151,7 @@ export default {
 }
 .row {
   height:800px !important;
+  padding-left: 1em;
 }
 .full-height-panel {
   height: 98% !important;
