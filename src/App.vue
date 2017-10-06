@@ -15,8 +15,7 @@
       'rpc-api': rpcApi
     },
     data () {
-      return {
-      }
+      return { }
     }
   }
 </script>
