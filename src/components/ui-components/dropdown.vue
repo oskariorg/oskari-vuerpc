@@ -43,36 +43,35 @@ export default {
   data () {
     return {
       map: [
-        { value: 'GetAllLayers', text: 'Get available map layers' },
-        { value: 'GetMapPosition', text: 'Get map position' },
-        { value: 'GetMapBbox', text: 'Get map bbox' },
-        { value: 'mapZoomFunctions', text: 'Zoom functions' },
-        { value: 'stateHandling', text: 'Handle map state' },
-        { value: 'GetScreenshot', text: 'Get a screenshot of the map' },
+        { value: 'AfterMapMoveEvent', text: 'AfterMapMoveEvent' },
+        { value: 'ChangeMapLayerOpacityRequest', text: 'Change map layer opacity' },
         { value: 'MapLayerUpdateRequest', text: 'Change map layer style' },
+        { value: 'LayerVisibility', text: 'Change map layer visibility' },
+        { value: 'GetScreenshot', text: 'Get a screenshot of the map' },
+        { value: 'GetAllLayers', text: 'Get available map layers' },
+        { value: 'GetMapBbox', text: 'Get map bbox' },
+        { value: 'GetMapPosition', text: 'Get map position' },
+        { value: 'GetPixelMeasuresInScale', text: 'Get pixel measures in scale' },
+        { value: 'stateHandling', text: 'Handle map state' },
+        { value: 'MapClickedEvent', text: 'MapClickedEvent' },
         { value: 'MapMoveRequest', text: 'Move map' },
         { value: 'rotateMap', text: 'Rotate map' },
-        { value: 'ChangeMapLayerOpacityRequest', text: 'Change map layer opacity' },
-        { value: 'LayerVisibility', text: 'Change map layer visibility' },
-        { value: 'ShowInfoBox', text: 'Show or hide info box' },
-        { value: 'GetPixelMeasuresInScale', text: 'Get pixel measures in scale' },
-        { value: 'MapClickedEvent', text: 'MapClickedEvent' },
-        { value: 'AfterMapMoveEvent', text: 'AfterMapMoveEvent' }
+        { value: 'mapZoomFunctions', text: 'Zoom functions' }
       ],
       markers: [
         { value: 'AddMarkerRequest', text: 'Add or remove  a marker' },
-        { value: 'ShowInfoBoxForMarker', text: 'Show info box for marker' },
-        { value: 'showOrHideMarkers', text: 'Show or hide a marker' },
         { value: 'AfterAddMarkerEvent', text: 'AfterAddMarkerEvent' },
-        { value: 'MarkerClickEvent', text: 'MarkerClickEvent' }
+        { value: 'MarkerClickEvent', text: 'MarkerClickEvent' },
+        { value: 'ShowInfoBoxForMarker', text: 'Show info box for marker' },
+        { value: 'showOrHideMarkers', text: 'Show or hide a marker' }
       ],
       features: [
+        { value: 'addOrRemoveFeatures', text: 'Add or remove vector features' },
+        { value: 'FeatureEvent', text: 'FeatureEvent' },
         { value: 'GetFeatures', text: 'Get features' },
         { value: 'GetFeatureInfoRequest', text: 'Get feature info' },
-        { value: 'addOrRemoveFeatures', text: 'Add or remove vector features' },
         { value: 'updateFeatures', text: 'Update vector features' },
-        { value: 'ZoomToFeatures', text: 'Zoom to features' },
-        { value: 'FeatureEvent', text: 'FeatureEvent' }
+        { value: 'ZoomToFeatures', text: 'Zoom to features' }
       ],
       drawing: [
         { value: 'DrawingEvent', text: 'Drawing Event' },
@@ -90,18 +89,18 @@ export default {
         { value: 'FeedbackResultEvent', text: 'FeedbackResultEvent' }
       ],
       ui: [
-        { value: 'ShowProgressSpinnerRequest', text: 'Show a progress spinner' },
-        { value: 'ShowInfoBox', text: 'Show or hide info box' },
         { value: 'SendUIEvent', text: 'Send UI event' },
-        { value: 'setCursorStyle', text: 'Set cursor style' }
+        { value: 'setCursorStyle', text: 'Set cursor style' },
+        { value: 'ShowProgressSpinnerRequest', text: 'Show a progress spinner' },
+        { value: 'ShowInfoBox', text: 'Show or hide info box' }
       ],
       locationbased: [
         { value: 'GetRouteRequest', text: 'Get route' },
         { value: 'GetUserLocationRequest', text: 'Get users location' },
         { value: 'SearchRequest', text: 'Perform a search' },
-        { value: 'UserLocationEvent', text: 'UserLocationEvent' },
         { value: 'SearchResultEvent', text: 'SearchResultEvent' },
-        { value: 'RouteResultEvent', text: 'RouteResultEvent' }
+        { value: 'RouteResultEvent', text: 'RouteResultEvent' },
+        { value: 'UserLocationEvent', text: 'UserLocationEvent' }
       ],
       selected: 'gettingStarted'
     }
