@@ -1,9 +1,9 @@
 <template>
-  <div id = "GetSupportedEvents">
-    <button id="btnGetSupportedEvents" class="btn btn-primary" @click="getSupportedEvents">Get supported events</button>
-    <div>Gets a list of events the map supports</div>
-    <code-component snippet="channel.getSupportedEvents(function(data){
-      channel.log('GetSupportedEvents: ', data);
+  <div id = "GetSupportedFunctions">
+    <button id="btnGetSupportedFunctions" class="btn btn-primary" @click="getSupportedFunctions">Get supported functions</button>
+    <div>Gets a list of functions the map supports</div>
+    <code-component snippet="channel.getSupportedFunctions(function(data){
+      channel.log('GetSupportedFunctions: ', data);
     });"></code-component>
   </div>
 </template>
@@ -16,9 +16,9 @@ export default {
     }
   },
   methods: {
-    getSupportedEvents () {
-      this.$root.channel.getSupportedEvents((data) => {
-        this.$root.channel.log('GetSupportedEvents: ', data);
+    getSupportedFunctions () {
+      this.$root.channel.getSupportedFunctions((data) => {
+        this.$root.channel.log('GetSupportedFunctions: ', data);
       });
     }
   }

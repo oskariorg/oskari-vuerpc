@@ -5,8 +5,8 @@
       <dropdown :update="updateDropdown"></dropdown>
     </h2>
     <div class="navigationLinkParent">
-      <div class="navigationLinkLeft"><a class="navigationLink"  :id="neighbourLeft"  @click="changeComponent">Previous: {{neighbourLeftDesc}}</a></div>
-      <div class="navigationLinkRight"><a class="navigationLink" :id="neighbourRight" @click="changeComponent">Next: {{neighbourRightDesc}}</a></div>
+      <span class="navigationLinkLeft"><a class="navigationLink"  :id="neighbourLeft"  @click="changeComponent">Previous: {{neighbourLeftDesc}}</a></span>
+      <span class="navigationLinkRight"><a class="navigationLink" :id="neighbourRight" @click="changeComponent">Next: {{neighbourRightDesc}}</a></span>
     </div>
   </div>
   </br>
@@ -20,6 +20,8 @@
 import dropdown from './dropdown.vue';
 import routes from '../../routes.js';
 import { mapGetters } from 'vuex';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 
 export default {
   components: {
@@ -111,15 +113,21 @@ export default {
   opacity: 0
 }
 .navigationLink {
+  word-break:normal;
   white-space:nowrap;
+  font-size: calc(0.34rem + 1.0vh);
+}
+.navigationLinkParent {
+  height:1.5em;
+  max-width:33.75em;
 }
 .navigationLinkLeft {
-  display:inline-block;
+  float:left;
+  display:block;
   margin-inline-end: auto;
-  font-size: calc(0.50rem + 1.0vh);
 }
 .navigationLinkRight {
-  display:inline-block;
-  font-size: calc(0.50rem + 1.0vh);
+  float: right;
+  display:block;
 }
 </style>
