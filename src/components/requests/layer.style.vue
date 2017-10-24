@@ -65,7 +65,7 @@ export default {
       this.$root.channel.log('MapModulePlugin.MapLayerUpdateRequest', params);
     },
     getLink (e) {
-      let documentPathEnd = 'mapping/mapmodule/request/changemaplayeropacityrequest.md';
+      let documentPathEnd = 'mapping/mapmodule/request/changemaplayerstylerequest.md';
       e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
