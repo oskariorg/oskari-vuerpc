@@ -28,7 +28,7 @@ export default {
     return {
       mixins: mixin,
       channel: '',
-      IFRAME_DOMAIN: 'http://demo.paikkatietoikkuna.fi',
+      IFRAME_DOMAIN: 'https://kartta.paikkatietoikkuna.fi',
       rpcEvents: [
         'map.rotated',
         'AfterAddMarkerEvent',
