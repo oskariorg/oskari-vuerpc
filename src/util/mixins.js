@@ -22,9 +22,7 @@ const mixins = {
     const escaped = el.innerText;
     el.innerHtml = escaped.replace(/\n/g, '<br />');
     el.style = 'display: block';
-    // jQuery('.messageBox').fadeIn();
     setTimeout(() => {
-      // jQuery('.messageBox').fadeOut();
       el.style = 'display: none';
     }, timeOut * 1000);
   },

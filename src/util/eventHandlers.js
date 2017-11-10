@@ -3,8 +3,8 @@ export const eventHandlers = {
     const USER_MARKER_ID = 'REPORT_MARKER';
     const el = ctx.$refs.messageBox;
     if (data.success && data.result.totalCount > 0) {
-      let search1 = data.result.locations[0],
-        zoom = {};
+      let search1 = data.result.locations[0];
+      let zoom = {};
       zoom.scale = search1.zoomScale;
       ctx.mixins.moveMap(search1.lon, search1.lat, zoom);
       // add a marker to 1st search item

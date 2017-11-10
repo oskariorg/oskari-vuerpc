@@ -356,8 +356,10 @@ const feedback = {
     channel.postRequest('GetFeedbackRequest', [data]);
   });`,
   // GET FEEDBACK SERVICES feedback.services.vue
-  services: `channel.postRequest('GetFeedbackServiceRequest', []);
-  channel.postRequest('GetFeedbackServiceRequest', ["180"]);`
+  services: {
+    list: `channel.postRequest('GetFeedbackServiceRequest', []);`,
+    id: `channel.postRequest('GetFeedbackServiceRequest', ["180"]);`
+  }
 }
 const infobox = {
   req: `  //get map center and then show an infobox at that location
