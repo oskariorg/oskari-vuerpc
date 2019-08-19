@@ -66,11 +66,10 @@ export default {
         { value: 'showOrHideMarkers', text: 'Show or hide a marker' }
       ],
       features: [
-        { value: 'addOrRemoveFeatures', text: 'Add or remove vector features' },
+        { value: 'addOrRemoveFeatures', text: 'Add, update or remove vector features' },
         { value: 'FeatureEvent', text: 'FeatureEvent' },
         { value: 'GetFeatures', text: 'Get features' },
         { value: 'GetFeatureInfoRequest', text: 'Get feature info' },
-        { value: 'updateFeatures', text: 'Update vector features' },
         { value: 'ZoomToFeatures', text: 'Zoom to features' }
       ],
       drawing: [

@@ -8,6 +8,9 @@
         <a id="addFeatures" href="" @click="getLink">To the documentation</a>
       </div>
       <code-component :snippet="add"></code-component>
+      <div>You can update feature style for example when you want to higlight feature from the map. </div>
+      <button class="btn btn-primary exampleready" @click="updateFeatures">AddFeaturesToMapRequest (update feature)</button>
+      <code-component :snippet="update"></code-component>
     </div>
     <div id="AddFeaturesToMapUsingSVG">
       <div>Adding features with SVG icon (Oskari SVG-shape numbers: 0 - 6) </div>
@@ -46,7 +49,8 @@ export default {
     return {
       desc: 'Add or remove vector features',
       svg: features.svg,
-      add: features.add
+      add: features.add,
+      update: features.update
     }
   },
   methods: {
@@ -105,6 +109,7 @@ export default {
         layerOrganizationName: 'Organization name',
         showLayer: true,
         opacity: 80,
+        layerId: 'MY_VECTOR_LAYER',
         layerName: 'Layer name',
         layerDescription: 'Description text',
         layerPermissions: {
@@ -188,6 +193,25 @@ export default {
         params2
       );
       this.$root.channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params2);
+    },
+    updateFeatures () {
+      var featureStyle = {
+        stroke: {
+          color: '#00FF00',
+          width: 5
+        }
+      };
+      // Define the feature to be updated
+      var updateFeature = {'test_property': 1};
+
+      var params = [updateFeature, {
+        featureStyle: featureStyle,
+        layerId: 'MY_VECTOR_LAYER'
+      }];
+      this.$root.channel.postRequest(
+      'MapModulePlugin.AddFeaturesToMapRequest',
+      params
+      );
     },
     removeFeaturesFromMapRequest () {
       this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
