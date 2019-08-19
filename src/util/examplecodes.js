@@ -102,6 +102,7 @@ const features = {
     layerOrganizationName: 'Organization name',
     showLayer: true,
     opacity: 80,
+    layerId: 'MY_VECTOR_LAYER',
     layerName: 'Layer name',
     layerDescription: 'Description text',
     layerPermissions: {
@@ -186,6 +187,27 @@ const features = {
     params2
   );
   channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params2);`,
+  // UPDATE features.add.vue
+  update: `// For example change stroke style
+  var featureStyle = {
+    stroke: {
+      color: '#00FF00',
+      width: 5
+    }
+  };
+  // Define the feature to be updated
+  var updateFeature = {'test_property':1};
+
+  var params = [updateFeatures, {
+    featureStyle: featureStyle,
+    layerId: 'MY_VECTOR_LAYER'
+  }];
+
+  channel.postRequest(
+  'MapModulePlugin.AddFeaturesToMapRequest',
+  params
+  );
+  `,
   // EVENT feature.event.vue
   event: `{
     "operation": "add",
