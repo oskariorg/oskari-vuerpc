@@ -5,7 +5,8 @@
     <div>
       <a id="changeOpacity" href="" @click="getLink">To the documentation</a>
     </div>
-
+    
+    <div>Example code changes opacity of the background map.</div>
     <code-component snippet="channel.getAllLayers(function (layers) {
       var layer_id = layers[0].id;
       var opacity = layers[0].opacity;
