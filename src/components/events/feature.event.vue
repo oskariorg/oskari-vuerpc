@@ -1,6 +1,6 @@
 <template>
   <div id="FeatureEvent">
-    <div>Occurs after adding or removing features to or from map </div>
+    <div>Occurs after adding or removing features to or from map and after clicking a feature </div>
     <div>
       <a id="featureEvent" href="" @click="getLink">To the documentation</a>
     </div>
