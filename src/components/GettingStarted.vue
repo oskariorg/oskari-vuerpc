@@ -4,7 +4,7 @@
     <div>Including RPC javascript in html available from:<br />
       <a href="https://github.com/oskariorg/rpc-client/tree/master/dist" target="_blank">https://github.com/oskariorg/rpc-client/tree/master/dist</a></div>
 
-      <code-component>&lt;script src='js/rpc-client.js'&gt;&lt;/script&gt;</code-component>
+      <code-component>&lt;script src='https://oskari.org/js/rpc/rpc-client.min.js'&gt;&lt;/script&gt;</code-component>
 
       <h3>Embedding a published map on your page</h3>
 
