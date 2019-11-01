@@ -55,6 +55,7 @@ export default {
         { value: 'stateHandling', text: 'Handle map state' },
         { value: 'MapClickedEvent', text: 'MapClickedEvent' },
         { value: 'MapMoveRequest', text: 'Move map' },
+        { value: 'MapTourRequest', text: 'Move map along route' },
         { value: 'rotateMap', text: 'Rotate map' },
         { value: 'mapZoomFunctions', text: 'Zoom functions' }
       ],
