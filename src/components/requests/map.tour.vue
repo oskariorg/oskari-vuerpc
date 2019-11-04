@@ -30,8 +30,8 @@
           zoom: 8,
           animation: 'fly',
           duration: 3000,
-          cancelled: () => console.log('keskeytetty'),
-          completed: () => console.log('valmis'),
+          cancelled: () => console.log('cancelled'),
+          completed: () => console.log('completed'),
           srsName: 'EPSG:3067'
         }
       ];
@@ -75,8 +75,8 @@ export default {
           zoom: 8,
           animation: 'fly',
           duration: 3000,
-          cancelled: () => console.log('keskeytetty'),
-          completed: () => console.log('valmis'),
+          cancelled: () => console.log('cancelled'),
+          completed: () => console.log('completed'),
           srsName: 'EPSG:3067'
         }
       ];
