@@ -262,7 +262,11 @@ export default {
 
       var params = [updateFeature, {
         layerId: 'MY_VECTOR_LAYER',
-        featureStyle: featureStyle,
+        featureStyle: {
+          fill: {
+            color: '#00FF00'
+          }
+        },
         animationDuration: 500
       }];
       this.$root.channel.postRequest(
