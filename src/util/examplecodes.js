@@ -1,7 +1,7 @@
 /*
 *             IN THIS FILE YOU CAN FIND THE EXAMPLES USED IN HIGHLIGHTJS. THE EXAMPLES IN THIS FILE ARE TOO BIG TO BE USED IN TEMPLATE SO THEY ARE IMPORTED FROM HERE INSTEAD
 */
-const features = {
+var features = {
   // SVG features.add.vue
   svg: `var geojsonObject = {
     'type': 'FeatureCollection',
@@ -16,10 +16,11 @@ const features = {
         'type': 'Feature',
         'geometry': {
           'type': 'Point',
-          'coordinates': [488704, 6939136]
+          'coordinates': [500000, 6939136]
         },
         'properties': {
-          'label': 'I am a point feature!'
+          'label': 'I am a point feature!',
+          'test_property': 'SVG'
         }
       }
     ]
@@ -29,20 +30,24 @@ const features = {
     centerTo: true,
     cursor: 'zoom-in',
     featureStyle: {
-      image : {
+      image: {
         shape: 2,
         size: 1,
-        color: '#ff3300',
-        stroke: '#000000'
-      },
-      text : {
-        scale : 1.3,
-        fill : {
-          color : 'rgba(0,0,0,1)'
+        fill: {
+          color: '#ff3300'
         },
-        stroke : {
-          color : 'rgba(255,255,255,1)',
-          width : 2
+        stroke: {
+          color: '#000000'
+        }
+      },
+      text: {
+        scale: 1.3,
+        fill: {
+          color: 'rgba(0,0,0,1)'
+        },
+        stroke: {
+          color: 'rgba(255,255,255,1)',
+          width: 2
         },
         labelProperty: 'label',
         offsetX: 65,
@@ -52,7 +57,44 @@ const features = {
   }];
   channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);`,
   // ADD features.add.vue
-  add: `var x = 488704;
+  add: `var layerOptions = {
+    layerId: 'MY_VECTOR_LAYER',
+    layerInspireName: 'Inspire theme name',
+    layerOrganizationName: 'Organization name',
+    showLayer: true,
+    opacity: 100,
+    layerName: 'Layer name',
+    layerDescription: 'Description text',
+    layerPermissions: {
+      'publish': 'publication_permission_ok'
+    },
+    maxScale: 1,
+    minScale: 1451336,
+    hover: {
+      featureStyle: {
+        fill: {
+          color: '#ff00ff'
+        },
+        stroke: {
+          color: '#000000'
+        },
+        image: {
+          fill: {
+            color: '#ff0000'
+          },
+          radius: 10
+        }
+      },
+      content: [
+          { 'key': 'Layer: MY_VECTOR_LAYER' },
+          { 'key': 'Test property', 'valueProperty': 'test_property' }
+      ]
+    }
+  };
+  channel.postRequest('VectorLayerRequest', [layerOptions]);
+  channel.log('VectorLayerRequest posted with data', [layerOptions]);
+
+  var x = 488704;
   var y = 6939136;
   var geojsonObject = {
     'type': 'FeatureCollection',
@@ -66,8 +108,8 @@ const features = {
       {
         'type': 'Feature',
         'geometry': {
-          'type': 'LineString',
-          'coordinates': [[x, y], [x+100000, y+100000]]
+          'type': 'Polygon',
+          'coordinates': [[[x, y], [x + 100000, y + 100000], [x + 25000, y + 50000]]]
         },
         'properties': {
           'test_property': 1
@@ -77,7 +119,7 @@ const features = {
         'type': 'Feature',
         'geometry': {
           'type': 'Point',
-          'coordinates': [x, y]
+          'coordinates': [x + 40000, y + 30000]
         },
         'properties': {
           'test_property': 2
@@ -86,35 +128,59 @@ const features = {
 
     ]
   };
-
-  var testOptions = {
-    'minResolution': 0,
-    'maxResolution': 1000
-  };
   var params = [geojsonObject, {
+    layerId: 'MY_VECTOR_LAYER',
     clearPrevious: true,
-    layerOptions: testOptions,
     centerTo: true,
     cursor: 'zoom-in',
     prio: 4,
-    minScale: 1451336,
-    layerInspireName: 'Inspire theme name',
-    layerOrganizationName: 'Organization name',
-    showLayer: true,
-    opacity: 80,
-    layerId: 'MY_VECTOR_LAYER',
-    layerName: 'Layer name',
-    layerDescription: 'Description text',
-    layerPermissions: {
-        'publish': 'publication_permission_ok'
-    }
+    featureStyle: {
+      text: {
+        scale: 1.3,
+        fill: {
+          color: 'rgba(0,0,0,1)'
+        },
+        stroke: {
+          color: 'rgba(255,255,255,1)',
+          width: 2
+        },
+        labelProperty: 'test_property'
+      }
+    },
+    optionalStyles: [{
+      property: { key: 'test_property', value: 2 },
+      stroke: {
+        color: '#FFFF00'
+      },
+      image: {
+        fill: {
+          color: 'rgba(0,0,0,1)'
+        },
+        radius: 4
+      }
+    }]
   }];
-
   channel.postRequest(
     'MapModulePlugin.AddFeaturesToMapRequest',
     params
   );
   channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params);
+
+  // Next add features on default vector layer
+  var defaultVectorLayerOptions = {
+    hover: {
+      featureStyle: {
+        'inherit': true,
+        'effect': 'auto major'
+      },
+      content: [
+          { 'key': 'Layer: default' },
+          { 'key': 'Test property', 'valueProperty': 'test_property' }
+      ]
+    }
+  };
+  channel.postRequest('VectorLayerRequest', [defaultVectorLayerOptions]);
+  channel.log('VectorLayerRequest posted with data', [defaultVectorLayerOptions]);
 
   var geojsonObject2 = {
     'type': 'FeatureCollection',
@@ -129,7 +195,7 @@ const features = {
         'type': 'Feature',
         'geometry': {
           'type': 'LineString',
-          'coordinates': [[x+30000, y], [x+130000, y+100000]]
+          'coordinates': [[x + 30000, y], [x + 130000, y + 100000]]
         },
         'properties': {
           'test_property': 'Line'
@@ -139,40 +205,35 @@ const features = {
         'type': 'Feature',
         'geometry': {
           'type': 'Point',
-          'coordinates': [x+30000, y]
+          'coordinates': [x + 30000, y]
         },
         'properties': {
-          'test_property': 'empty'
+          'test_property': null
         }
       }
 
     ]
   };
 
-  var testOptions2 = {
-    'minResolution': 0,
-    'maxResolution': 1000
-  };
   var params2 = [geojsonObject2, {
     clearPrevious: false,
-    layerOptions: testOptions2,
     centerTo: true,
     featureStyle: {
       fill: {
         color: '#ff0000'
       },
-      stroke : {
+      stroke: {
         color: '#ff0000',
         width: 5
       },
-      text : {
-        scale : 1.3,
-        fill : {
-          color : 'rgba(0,0,0,1)'
+      text: {
+        scale: 1.3,
+        fill: {
+          color: 'rgba(0,0,0,1)'
         },
-        stroke : {
-          color : 'rgba(255,255,255,1)',
-          width : 2
+        stroke: {
+          color: 'rgba(255,255,255,1)',
+          width: 2
         },
         labelProperty: 'test_property'
       }
@@ -181,26 +242,25 @@ const features = {
     prio: 1
   }];
 
-
   channel.postRequest(
     'MapModulePlugin.AddFeaturesToMapRequest',
     params2
   );
-  channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params2);`,
+  channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params2);
+  `,
   // UPDATE features.add.vue
-  update: `// For example change stroke style
-  var featureStyle = {
-    stroke: {
-      color: '#00FF00',
-      width: 5
-    }
-  };
+  update: `
   // Define the feature to be updated
-  var updateFeature = {'test_property':1};
+  var updateFeature = {'test_property': 1};
 
-  var params = [updateFeatures, {
-    featureStyle: featureStyle,
-    layerId: 'MY_VECTOR_LAYER'
+  var params = [updateFeature, {
+    layerId: 'MY_VECTOR_LAYER',
+    featureStyle: {
+      fill: {
+        color: '#00FF00'
+      }
+    },
+    animationDuration: 500
   }];
 
   channel.postRequest(
@@ -268,7 +328,7 @@ const features = {
     ]
   }`
 }
-const wkt = `// Define a WKT geometry
+var wkt = `// Define a WKT geometry
 var WKT = 'POLYGON ((358911.7134508261 6639617.669712467, 358911.7134508261 6694516.612323322, 382536.4910289571 6694516.612323322, 382536.4910289571 6639617.669712467, 358911.7134508261 6639617.669712467))';
 
 // Some attributes for the feature
@@ -307,7 +367,7 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [WKT, {
   featureStyle: featureStyle,
   attributes: attributes
 }]);`;
-const feedback = {
+var feedback = {
   'one': `  var postdata = {
     "service_code": "180",
     "description": "Kampin bussipysäkillä on roskakori täynnä",
@@ -383,7 +443,7 @@ const feedback = {
     id: `channel.postRequest('GetFeedbackServiceRequest', ["180"]);`
   }
 }
-const infobox = {
+var infobox = {
   req: `  //get map center and then show an infobox at that location
   channel.getMapPosition(function(data) {
     var content = [
@@ -483,7 +543,7 @@ const infobox = {
     channel.log('InfoBox.ShowInfoBoxRequest posted with data', data);
   });`
 }
-const marker = {
+var marker = {
   addDefault: `var data = {
     x: 386020,
     y: 6670057,
@@ -512,7 +572,7 @@ const marker = {
   };
   channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, MARKER_ID]);`
 }
-const route = {
+var route = {
   result: `  {
     "success": true,
     "plan": {
@@ -826,7 +886,7 @@ const route = {
     }
   }`
 };
-const search = {
+var search = {
   result: `  {
     "success": true,
     "result": {
@@ -882,7 +942,7 @@ const search = {
     "requestParameters": "Vantaa"
   }`
 }
-const layer = {
+var layer = {
   fill: `var layerId = 1387;
   var params = {
     SLD_BODY:
@@ -908,7 +968,7 @@ const layer = {
 
   channel.postRequest('MapModulePlugin.MapLayerUpdateRequest', [layerId, true, params]);`
 }
-const drawing = {
+var drawing = {
   event: `{
     "name": "DrawingEvent",
     "id": "my functionality id",
