@@ -257,7 +257,7 @@ var features = {
     layerId: 'MY_VECTOR_LAYER',
     featureStyle: {
       fill: {
-        color: '#00FF00'
+        color: '#FF0000'
       }
     },
     animationDuration: 500
