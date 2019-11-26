@@ -13,11 +13,14 @@
           {
             lon: x,
             lat: y,
-            duration: 5000
+            duration: 2000,
+            zoom: 3,
+            animation: 'zoomPan'
           },
           {
             lon: x - 150000,
-            lat: y - 150000
+            lat: y - 150000,
+            delay: 2500
           },
           {
             lon: x + 75000,
@@ -30,8 +33,6 @@
           zoom: 8,
           animation: 'fly',
           duration: 3000,
-          cancelled: () => console.log('cancelled'),
-          completed: () => console.log('completed'),
           srsName: 'EPSG:3067'
         }
       ];
@@ -58,11 +59,14 @@ export default {
           {
             lon: x,
             lat: y,
-            duration: 5000
+            duration: 2000,
+            zoom: 3,
+            animation: 'zoomPan'
           },
           {
             lon: x - 150000,
-            lat: y - 150000
+            lat: y - 150000,
+            delay: 2500
           },
           {
             lon: x + 75000,
@@ -75,8 +79,6 @@ export default {
           zoom: 8,
           animation: 'fly',
           duration: 3000,
-          cancelled: () => console.log('cancelled'),
-          completed: () => console.log('completed'),
           srsName: 'EPSG:3067'
         }
       ];
