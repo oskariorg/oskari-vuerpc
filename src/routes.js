@@ -5,6 +5,7 @@ import mapAftermove from './components/events/map.aftermove.vue';
 import mapClicked from './components/events/map.clicked.vue';
 import mapPosition from './components/functions/map.position.vue';
 import mapMove from './components/requests/map.move.vue';
+import mapTour from './components/requests/map.tour.vue';
 import mapZoom from './components/functions/map.zoom.vue';
 import mapPixelmeasures from './components/functions/map.pixelmeasures.vue';
 import mapBbox from './components/functions/map.bbox.vue';
@@ -74,6 +75,7 @@ const routes = [
 { path: '', component: mapState },
 { path: '', component: mapClicked },
 { path: '', component: mapMove },
+{ path: '', component: mapTour },
 { path: '', component: mapRotate },
 { path: '', component: mapZoom },
 { path: '', component: markerAdd },
