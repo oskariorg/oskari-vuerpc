@@ -97,7 +97,7 @@ export default {
       this.$root.channel.onReady(() => {
         this.$root.channel.log('Map is now listening');
 
-        const expectedOskariVersion = '1.43.0';
+        const expectedOskariVersion = '1.54.0';
         this.$root.channel.isSupported(expectedOskariVersion, (blnSupported) => {
           if (blnSupported) {
             this.$root.channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
@@ -120,8 +120,8 @@ export default {
       });
     },
     initDocumentationPaths () {
-      this.$root.documentPathRequest = '/api/requests#1.42.0/';
-      this.$root.documentPathEvent = '/api/events#1.42.0/';
+      this.$root.documentPathRequest = '/api/requests#unreleased/';
+      this.$root.documentPathEvent = '/api/events#unreleased/';
     }
   },
   mounted () {
