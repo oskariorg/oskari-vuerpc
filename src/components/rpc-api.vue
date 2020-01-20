@@ -120,8 +120,8 @@ export default {
       });
     },
     initDocumentationPaths () {
-      this.$root.documentPathRequest = '/api/requests#unreleased/';
-      this.$root.documentPathEvent = '/api/events#unreleased/';
+      this.$root.documentPathRequest = '/api/requests#latest/';
+      this.$root.documentPathEvent = '/api/events#latest/';
     }
   },
   mounted () {
