@@ -6,7 +6,7 @@
         <ul id="nav navbar-nav" role="navigation">
           <li><a href="/guides">Guides</a></li>
           <li><a href="/documentation">Documentation</a></li>
-          <li><a href="/examples">Examples</a></li>
+          <li><a href="/gallery">Gallery</a></li>
           <li><a href="/download">Download</a></li>
           <li><a href="/about">About</a></li>
         </ul>
