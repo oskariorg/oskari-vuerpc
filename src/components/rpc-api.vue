@@ -97,7 +97,7 @@ export default {
       this.$root.channel.onReady(() => {
         this.$root.channel.log('Map is now listening');
 
-        const expectedOskariVersion = '1.54.0';
+        const expectedOskariVersion = '1.55.2';
         this.$root.channel.isSupported(expectedOskariVersion, (blnSupported) => {
           if (blnSupported) {
             this.$root.channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
