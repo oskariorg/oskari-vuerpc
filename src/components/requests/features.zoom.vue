@@ -17,9 +17,9 @@
     <div>
       Zoom to features, where featureType=='parcel' and
       layerId=='testLayer'
-      <button id="btnZoomToFeaturesRequest2" class="btn btn-primary exampleready">MapModulePlugin.ZoomToFeaturesRequest</button>
+      <button id="btnZoomToFeaturesRequest2" class="btn btn-primary exampleready" @click="ZoomToFeaturesRequestWithParams">MapModulePlugin.ZoomToFeaturesRequest</button>
     </div>
-    <code-component snippet="var layers = {layer: ['testLayer']};
+    <code-component snippet="var layers = {'layer': ['testLayer']};
     var features = {'species': ['parcel']};
     channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[layers, features]);"></code-component>
   </div>
@@ -99,6 +99,12 @@ export default {
     },
     zoomToFeaturesRequest () {
       this.$root.channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', []);
+      this.$root.channel.log('MapModulePlugin.ZoomToFeaturesRequest posted without params');
+    },
+    ZoomToFeaturesRequestWithParams () {
+      const layers = {'layer': ['testLayer']};
+      const features = {'species': ['parcel']};
+      this.$root.channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [layers, features]);
       this.$root.channel.log('MapModulePlugin.ZoomToFeaturesRequest posted without params');
     },
     getLink (e) {
