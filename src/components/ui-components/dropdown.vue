@@ -45,7 +45,7 @@ export default {
       map: [
         { value: 'AfterMapMoveEvent', text: 'AfterMapMoveEvent' },
         { value: 'ChangeMapLayerOpacityRequest', text: 'Change map layer opacity' },
-        { value: 'MapLayerUpdateRequest', text: 'Change map layer style' },
+        /*'{ value: 'MapLayerUpdateRequest', text: 'Change map layer style' },*/
         { value: 'LayerVisibility', text: 'Change map layer visibility' },
         { value: 'GetScreenshot', text: 'Get a screenshot of the map' },
         { value: 'GetAllLayers', text: 'Get available map layers' },
