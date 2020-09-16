@@ -565,10 +565,10 @@ var marker = {
   channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, MARKER_ID]);`,
   addOwn: `var data = {
     x: 386020,
-    y: 6670057,
-    shape: 'http://demo.paikkatietoikkuna.fi/Oskari/resources/framework/bundle/mapmodule-plugin/images/marker.png',
-    offsetX: 16, // center point x position from left to right
-    offsetY: 0 // center point y position from bottom to up
+    y: 6670027,
+    shape: 'https://www.oskari.org/images/oskari_logo_white.png',
+    offsetX: 80, // center point x position from left to right
+    offsetY: -50 // center point y position from bottom to up
   };
   channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, MARKER_ID]);`
 }

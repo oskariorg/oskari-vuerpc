@@ -91,10 +91,10 @@ export default {
     addMarkerRequest3 () {
       const data = {
         x: 386020,
-        y: 6670057,
-        shape: 'http://demo.paikkatietoikkuna.fi/Oskari/resources/framework/bundle/mapmodule-plugin/images/marker.png',
-        offsetX: 16,
-        offsetY: 0
+        y: 6670027,
+        shape: 'https://www.oskari.org/images/oskari_logo_white.png',
+        offsetX: 80,
+        offsetY: -50
       };
       this.$root.channel.postRequest('MapMoveRequest', [data.x, data.y, 7]);
       this.$root.channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, this.MARKER_ID]);
