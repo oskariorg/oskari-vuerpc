@@ -92,7 +92,7 @@ export default {
       const data = {
         x: 386020,
         y: 6670057,
-        shape: 'http://demo.paikkatietoikkuna.fi/Oskari/resources/framework/bundle/mapmodule-plugin/images/marker.png',
+        shape: 'https://www.oskari.org/images/oskari_logo_white.png',
         offsetX: 16,
         offsetY: 0
       };
