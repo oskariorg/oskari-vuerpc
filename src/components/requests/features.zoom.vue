@@ -14,14 +14,26 @@
       <button id="btnZoomToFeaturesRequest" class="btn btn-primary exampleready" @click="zoomToFeaturesRequest">MapModulePlugin.ZoomToFeaturesRequest</button>
     </div>
     <code-component snippet="channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[]);"></code-component>
+
     <div>
       Zoom to features, where featureType=='parcel' and
       layerId=='testLayer'
       <button id="btnZoomToFeaturesRequest2" class="btn btn-primary exampleready" @click="ZoomToFeaturesRequestWithParams">MapModulePlugin.ZoomToFeaturesRequest</button>
     </div>
     <code-component snippet="var layers = {'layer': ['testLayer']};
-    var features = {'species': ['parcel']};
-    channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[layers, features]);"></code-component>
+  var features = {'species': ['parcel']};
+  channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[layers, features]);"></code-component>
+
+    <div>
+      Zoom with maxZoomLevel set
+      <button id="btnZoomToFeaturesRequest3" class="btn btn-primary exampleready" @click="zoomToFeaturesRequestMaxZoomLevel">MapModulePlugin.ZoomToFeaturesRequest</button>
+    </div>
+    <code-component snippet="var maxZoomParams = {
+      'maxZoomLevel': 4
+  };
+  channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[maxZoomParams]);">
+    </code-component>
+
   </div>
 </template>
 <script>
@@ -106,6 +118,13 @@ export default {
       const features = {'species': ['parcel']};
       this.$root.channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [layers, features]);
       this.$root.channel.log('MapModulePlugin.ZoomToFeaturesRequest posted without params');
+    },
+    zoomToFeaturesRequestMaxZoomLevel () {
+      var maxZoomParams = {
+        maxZoomLevel: 4
+      };
+      this.$root.channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [maxZoomParams]);
+      this.$root.channel.log('MapModulePlugin.ZoomToFeaturesRequest posted with  data', maxZoomParams);
     },
     getLink (e) {
       let documentPathEnd = 'mapping/mapmodule/request/zoomtofeaturesrequest.md';
