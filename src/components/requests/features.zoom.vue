@@ -28,10 +28,11 @@
       Zoom with maxZoomLevel set
       <button id="btnZoomToFeaturesRequest3" class="btn btn-primary exampleready" @click="zoomToFeaturesRequestMaxZoomLevel">MapModulePlugin.ZoomToFeaturesRequest</button>
     </div>
-    <code-component snippet="var maxZoomParams = {
+    <code-component>
+  var maxZoomParams = {
       'maxZoomLevel': 4
   };
-  channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[maxZoomParams]);">
+  channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[maxZoomParams]);
     </code-component>
 
   </div>
