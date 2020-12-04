@@ -1,10 +1,10 @@
 export const eventHandlers = {
-  'SearchResultEvent': (ctx, data) => {
+  SearchResultEvent: (ctx, data) => {
     const USER_MARKER_ID = 'REPORT_MARKER';
     const el = ctx.$refs.messageBox;
     if (data.success && data.result.totalCount > 0) {
-      let search1 = data.result.locations[0];
-      let zoom = {};
+      const search1 = data.result.locations[0];
+      const zoom = {};
       zoom.scale = search1.zoomScale;
       ctx.mixins.moveMap(search1.lon, search1.lat, zoom);
       // add a marker to 1st search item
@@ -29,14 +29,14 @@ export const eventHandlers = {
       ctx.mixins.displayMessage(el, 'Search error: ' + data.result.responseText, 5);
     }
   },
-  'MapClickedEvent': (ctx, data) => {
+  MapClickedEvent: (ctx, data) => {
     // add a marker to clicked spot -
     const marker = ctx.mixins.getMarkerTemplate();
     marker.x = data.lon;
     marker.y = data.lat;
     //  addMarker(marker, USER_MARKER_ID); -> Use Marker requests
   },
-  'AfterMapMoveEvent': (ctx, data) => {
+  AfterMapMoveEvent: (ctx, data) => {
     // Replot Plot area if zoom is changed
     if (ctx.$store.savedZoom && ctx.$store.savedZoom !== data.zoom && ctx.$store.state.savedPlotAreaData) {
       ctx.$store.savedZoom = data.zoom;
@@ -46,7 +46,7 @@ export const eventHandlers = {
       ctx.mixins.plotPlotArea(ctx.$store.state.savedPlotAreaData, ctx.$store.state.map);
     }
   },
-  'RouteResultEvent': (ctx, data) => {
+  RouteResultEvent: (ctx, data) => {
     if (!data || !data.success) {
       ctx.mixins.displayMessage('Getting routes failed ! - zoom map center around 1 km to nearest public trafic stop', 5);
     } else {
@@ -166,13 +166,13 @@ export const eventHandlers = {
           // Draw start points
           const leg = legs[i];
           let feature = {
-            'type': 'Feature',
-            'geometry': {
-              'type': 'Point',
-              'coordinates': [leg.from.lon, leg.from.lat]
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [leg.from.lon, leg.from.lat]
             },
-            'properties': {
-              'mode': leg.mode
+            properties: {
+              mode: leg.mode
             }
           };
           features.push(feature);
@@ -182,13 +182,13 @@ export const eventHandlers = {
             const istop = leg.intermediateStops[j];
 
             feature = {
-              'type': 'Feature',
-              'geometry': {
-                'type': 'Point',
-                'coordinates': [istop.lon, istop.lat]
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: [istop.lon, istop.lat]
               },
-              'properties': {
-                'mode': 'stop_' + leg.mode
+              properties: {
+                mode: 'stop_' + leg.mode
               }
             };
             features.push(feature);
@@ -198,26 +198,26 @@ export const eventHandlers = {
         // Get end point
         const endPoint = legs[legs.length - 1];
         const endPointFeature = {
-          'type': 'Feature',
-          'geometry': {
-            'type': 'Point',
-            'coordinates': [endPoint.to.lon, endPoint.to.lat]
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [endPoint.to.lon, endPoint.to.lat]
           },
-          'properties': {
-            'mode': 'routeEndPoint'
+          properties: {
+            mode: 'routeEndPoint'
           }
         };
         features.push(endPointFeature);
 
         geoJSON = {
-          'type': 'FeatureCollection',
-          'crs': {
-            'type': 'name',
-            'properties': {
-              'name': 'EPSG:3067'
+          type: 'FeatureCollection',
+          crs: {
+            type: 'name',
+            properties: {
+              name: 'EPSG:3067'
             }
           },
-          'features': features
+          features: features
         };
 
         if (geoJSON) {
@@ -405,7 +405,7 @@ export const eventHandlers = {
       }
     }
   },
-  'FeedbackResultEvent': (ctx, data) => {
+  FeedbackResultEvent: (ctx, data) => {
     if (!data || !data.success) {
       ctx.mixins.displayMessage('Getting feedback response failed ! ', 5);
     } else {

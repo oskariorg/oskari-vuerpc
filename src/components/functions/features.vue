@@ -9,16 +9,20 @@
       2. Get features grouped by layers
       <button id="btnGetFeaturesFunction" class="btn btn-primary exampleready" @click="getFeatures(true)" >getFeatures(true)</button>
     </div>
-    <code-component snippet="channel.getFeatures([true], function(data) {
+    <code-component>
+    channel.getFeatures([true], function(data) {
       channel.log('GetFeatures: ', data);
-    });"></code-component>
+    });
+    </code-component>
     <div>
       Get only layerIds without features
       <button id="btnGetFeaturesFunction" class="btn btn-primary exampleready" @click="getFeatures">getFeatures()</button>
     </div>
-    <code-component snippet="channel.getFeatures([], function(data) {
-      channel.log('GetFeatures: ', data);
-    });"></code-component>
+    <code-component>
+      channel.getFeatures([], function(data) {
+        channel.log('GetFeatures: ', data);
+      });
+    </code-component>
   </div>
 </template>
 <script>

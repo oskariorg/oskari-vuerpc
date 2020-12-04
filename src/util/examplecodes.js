@@ -368,7 +368,7 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [WKT, {
   attributes: attributes
 }]);`;
 var feedback = {
-  'one': `  var postdata = {
+  one: `  var postdata = {
     "service_code": "180",
     "description": "Kampin bussipysäkillä on roskakori täynnä",
     "first_name": "Oskari",
@@ -381,7 +381,7 @@ var feedback = {
     "payload": postdata
   };
   channel.postRequest('PostFeedbackRequest', [data]);`,
-  'two': `var postdata = {
+  two: `var postdata = {
     "service_code": "180",
     "description": "Vartiosaari kaipaa suojelua",
     "first_name": "Line",
@@ -401,7 +401,7 @@ var feedback = {
     "payload": postdata
   };
   channel.postRequest('PostFeedbackRequest', [data]);`,
-  'three': `var postdata = {
+  three: `var postdata = {
     "service_code": "180",
     "description": "Kampin bussipysäkillä on roskakori täynnä",
     "first_name": "Oskari",
@@ -439,8 +439,8 @@ var feedback = {
   });`,
   // GET FEEDBACK SERVICES feedback.services.vue
   services: {
-    list: `channel.postRequest('GetFeedbackServiceRequest', []);`,
-    id: `channel.postRequest('GetFeedbackServiceRequest', ["180"]);`
+    list: 'channel.postRequest(\'GetFeedbackServiceRequest\', []);',
+    id: 'channel.postRequest(\'GetFeedbackServiceRequest\', ["180"]);'
   }
 }
 var infobox = {

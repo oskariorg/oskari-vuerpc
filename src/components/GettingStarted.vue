@@ -3,14 +3,18 @@
     <h3>Including the necessary stuff to get RPC up and running</h3>
     <div>Including RPC javascript in html available from:<br />
       <a href="https://github.com/oskariorg/rpc-client/tree/master/dist" target="_blank">https://github.com/oskariorg/rpc-client/tree/master/dist</a></div>
-
-      <code-component>&lt;script src='https://oskari.org/js/rpc/rpc-client.min.js'&gt;&lt;/script&gt;</code-component>
+      <!-- For some reason script tag needs to be escaped manually but the iframe below works ok without escaping.
+      Might change after a vue update etc
+       -->
+      <code-component lang="xml">
+        &lt;script src='https://oskari.org/js/rpc/rpc-client.min.js'&gt;&lt;/script&gt;
+      </code-component>
 
       <h3>Embedding a published map on your page</h3>
 
-      <code-component>
-&lt;iframe id='publishedMap' src='http://www.mydomain.com/idofpublishedmap'
-style='border: none; width: 100%; height: 100%;'&gt;&lt;/iframe&gt;
+      <code-component lang="xml">
+        <iframe id='publishedMap' src='http://www.mydomain.com/idofpublishedmap'
+        style='border: none; width: 100%; height: 100%;'></iframe>
       </code-component>
 
       <h3>Initialising connection</h3>

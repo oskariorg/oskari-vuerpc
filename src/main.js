@@ -3,12 +3,19 @@ import App from './App.vue';
 import Header from './components/ui-components/Header.vue';
 import { store } from './store';
 import BootstrapVue from 'bootstrap-vue';
-import hljs from 'highlight.js';
+// import hljs from 'highlight.js';
+import hljs from 'highlight.js/lib/core';
+import javascript from 'highlight.js/lib/languages/javascript';
+import xml from 'highlight.js/lib/languages/xml';
+import 'highlight.js/styles/github.css';
+
 import code from './components/ui-components/codehighlight.vue';
 import VueRouter from 'vue-router';
 import screenshot from './components/functions/map.screenshot.vue';
 import api from './components/rpc-api.vue';
 
+hljs.registerLanguage('javascript', javascript);
+hljs.registerLanguage('xml', xml);
 Vue.component('app-header', Header);
 Vue.component('code-component', code);
 Vue.use(VueRouter, BootstrapVue);

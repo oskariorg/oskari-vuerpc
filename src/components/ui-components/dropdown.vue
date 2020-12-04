@@ -68,6 +68,7 @@ export default {
       ],
       features: [
         { value: 'addOrRemoveFeatures', text: 'Add, update or remove vector features' },
+        { value: 'layerForFeatures', text: 'Configure layer for vector features' },
         { value: 'FeatureEvent', text: 'FeatureEvent' },
         { value: 'GetFeatures', text: 'Get features' },
         { value: 'GetFeatureInfoRequest', text: 'Get feature info' },

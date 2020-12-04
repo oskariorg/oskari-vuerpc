@@ -15,7 +15,7 @@ const mixins = {
   },
   displayMessage: (el, message, tout) => {
     let timeOut = 5;
-    let text = el.innerText = message;
+    const text = el.innerText = message;
     if (tout) {
       timeOut = tout;
     }
