@@ -3,8 +3,8 @@
     <h3>Including the necessary stuff to get RPC up and running</h3>
     <div>Including RPC javascript in html available from:<br />
       <a href="https://github.com/oskariorg/rpc-client/tree/master/dist" target="_blank">https://github.com/oskariorg/rpc-client/tree/master/dist</a></div>
-      <!-- For some reason script tag needs to be escaped manually but the iframe below works ok without escaping.
-      Might change after a vue update etc
+      <!-- For some reason script tag needs to be escaped manually but the iframe below works
+       ok without escaping. Might change if we ever update Vue version...
        -->
       <code-component lang="xml">
         &lt;script src='https://oskari.org/js/rpc/rpc-client.min.js'&gt;&lt;/script&gt;

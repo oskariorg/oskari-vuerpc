@@ -9,7 +9,7 @@
       <span class="navigationLinkRight"><a class="navigationLink" :id="neighbourRight" @click="changeComponent">Next: {{neighbourRightDesc}}</a></span>
     </div>
   </div>
-  </br>
+  <br />
   <transition name="fade">
     <component :id="selected.func" :is="currentExample" transition="fade" transition-mode="out-in"></component>
   </transition>
