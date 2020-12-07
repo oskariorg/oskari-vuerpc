@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import App from './App.vue';
-import Header from './components/ui-components/Header.vue';
 import { store } from './store';
 import BootstrapVue from 'bootstrap-vue';
 // import hljs from 'highlight.js';
@@ -12,11 +11,12 @@ import 'highlight.js/styles/github.css';
 import code from './components/ui-components/codehighlight.vue';
 import VueRouter from 'vue-router';
 import screenshot from './components/functions/map.screenshot.vue';
-import api from './components/rpc-api.vue';
+import api from './components/main-layout.vue';
 
+// register support for code highlighting. JS and HTML is all we need.
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('xml', xml);
-Vue.component('app-header', Header);
+
 Vue.component('code-component', code);
 Vue.use(VueRouter, BootstrapVue);
 
@@ -43,7 +43,8 @@ Vue.directive('highlightjs', {
       }
       hljs.highlightBlock(target)
     })
-  },
+  }
+  /*,
   componentUpdated: function (el, binding) {
     // after an update, re-fill the content and then highlight
     const targets = el.querySelectorAll('code')
@@ -53,7 +54,7 @@ Vue.directive('highlightjs', {
         hljs.highlightBlock(target)
       }
     })
-  }
+  }*/
 });
 
 new Vue({

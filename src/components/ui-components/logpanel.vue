@@ -1,15 +1,15 @@
 <template>
-<div class="col-xs-12 col-md-12 col-sm-12 col-lg-6 col-xl-3 hidden-md-down full-height-panel">
-<div class="panel panel-default log-panel">
-  <div class="panel-body">
-    <a href="#" v-on:click="clearLog">Clear log</a>
-    <div ref="debuglog">
-      <div ref="logmsg" v-for="log in logs">{{log.header}}
-        <pre v-if="log.json">{{log.json}}</pre>
+  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-6 col-xl-3 hidden-md-down full-height-panel">
+    <div class="panel panel-default log-panel">
+      <div class="panel-body">
+        <a href="#" v-on:click="clearLog">Clear log</a>
+        <div ref="debuglog">
+          <div ref="logmsg" v-for="log in logs" :key="log.header">{{log.header}}
+            <pre v-if="log.json">{{log.json}}</pre>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  </div>
   </div>
 </template>
 <script>
@@ -28,6 +28,9 @@ export default {
     }
   },
   methods: {
+    getLogElement () {
+      return this.$refs.debuglog;
+    },
     clearLog () {
       this.$refs.logmsg.forEach((logmsg) => {
         logmsg.remove();

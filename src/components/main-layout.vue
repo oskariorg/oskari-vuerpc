@@ -1,24 +1,19 @@
 <template>
   <div class="wrapper">
     <div class="row">
-      <oskari-iframe></oskari-iframe>
-      <rpc-actions></rpc-actions>
-      <oskari-log></oskari-log>
     </div>
     <div class="msg" ref="messageBox"></div>
   </div>
 </template>
 <script>
-import Iframe from './ui-components/iframe.vue';
+import Iframe from './ui-components/embedded-map.vue';
 import ActionPanel from './ui-components/actionpanel.vue';
 import LogPanel from './ui-components/logpanel.vue';
 import { eventHandlers } from '../util/eventHandlers.js';
-import mixin from '../util/mixins.js';
 
 import OskariRPC from 'oskari-rpc';
 
 export default {
-  // mixins:[mixin],
   components: {
     'oskari-iframe': Iframe,
     'rpc-actions': ActionPanel,
@@ -26,7 +21,6 @@ export default {
   },
   data () {
     return {
-      mixins: mixin,
       channel: '',
       IFRAME_DOMAIN: 'https://kartta.paikkatietoikkuna.fi',
       rpcEvents: [
