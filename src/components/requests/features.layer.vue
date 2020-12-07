@@ -1,136 +1,86 @@
 <template>
   <div id="layerForFeatures">
-    <div>
-      <button class="btn btn-primary exampleready" @click="removeFeaturesFromMapRequest">Clean up features from map</button>
-      <div>
+      <p>
         VectorLayerRequest allows more control for showing vector features on the map.
         You can initializing a layer with styles, scale limits and other toggles that are used for features on that layer.
         This simplifies adding features to that layer since you don't need to send those toggles (some you even can't= on each AddFeaturesToMapRequest.
-        For very simple applications or examples it might be easier to use the AddFeaturesToMap since it can be used to initialize a simple layer as well.</div>
-      <div>
-        <a href="" @click="getLink">To the documentation</a>
-      </div>
+        For very simple applications or examples it might be easier to use the AddFeaturesToMap since it can be used to initialize a simple layer as well.
+      </p>
       <p>
         Initializing a layer can be done by sending the request:
-      <code-component>
-        channel.postRequest('VectorLayerRequest', [{{ JSON.stringify(LAYER_OPTS.simple, null, 2) }}]);
-      </code-component>
-      After sending it you can add features to it by referencing the layer by `layerId` in the AddFeaturesToMapRequest.
-      
-      <button class="btn btn-primary exampleready" @click="addFeaturesToMapRequest">Add layer and features</button>
+        <code-component>
+        channel.postRequest('VectorLayerRequest', [{{ JSON.stringify("LAYER_OPTS.simple", null, 2) }}]);
+        </code-component>
+
+        After sending it you can add features to it by referencing the layer by `layerId` in the AddFeaturesToMapRequest.
       </p>
-      <div>You can remove the layer from the map with the same request. </div>
       
-      <code-component>
-        channel.postRequest('VectorLayerRequest', [{
-          layerId: {{ LAYER_OPTS.simple.layerId }},
-          remove: true
-        }]);
-      </code-component>
-      <button class="btn btn-primary exampleready" @click="removeSimpleLayer">Remove layer</button>
-    </div>
-    <div id="AddFeaturesToMapUsingSVG">
-      <div>Adding features with SVG icon (Oskari SVG-shape numbers: 0 - 6) </div>
-      <button id="btnAddFeaturesToMapRequest2" class="btn btn-primary exampleready" @click="addFeaturesToMapRequestUsingSVG">AddFeaturesToMapRequest (display point as SVG icon)</button>
-      <div>
-        <a id="addFeatures" href="" @click="getLink">To the documentation</a>
-      </div>
-      <code-component :snippet="svg"></code-component>
-    </div>
-    <div id="RemoveFeaturesFromMapRequest">
-      <div>Remove all features across all vector layers</div>
-      <button id="btnRemoveFeaturesFromMapRequest" class="btn btn-primary exampleready" @click="removeFeaturesFromMapRequest">RemoveFeaturesFromMapRequest</button>
-      <div>
-        <a id="removeFeatures" href="" @click="getLink">To the documentation</a>
-      </div>
-      <code-component snippet="//annihilate everything
-      channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest',[]);"></code-component>
-    </div>
-    <div id="RemoveFeaturesFromMapRequest2">
-      <div>Remove specific vector features from specific layer</div>
-      <button id="btnAddFeaturesToMapRequest" class="btn btn-primary exampleready" @click="addFeaturesToMapRequest">AddFeaturesToMapRequest</button>
-      <button id="btnRemoveFeaturesFromMapRequest2" class="btn btn-primary exampleready" @click="removeFeaturesFromMapRequest2">RemoveFeaturesFromMapRequest2</button>
-      <div>
-        <a id="removeFeatures" href="" @click="getLink">To the documentation</a>
-      </div>
-      <code-component snippet="// Remove all feature's whose 'test_property' === 1 from the layer with id==='MY_VECTOR_LAYER'
-      channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest',['test_property', 1, 'MY_VECTOR_LAYER']);"></code-component>
-    </div>
+      <p>
+        You can try different combinations below. 
+        <ol>
+          <li>
+            Click <button class="btn btn-primary exampleready" @click="addFeaturesToMapRequest">Add feature</button>
+            to add a feature added to the map. However if you hover the feature on the map with mouse nothing happens.
+          </li>
+          <li>
+            Click <button class="btn btn-primary exampleready" @click="removeFeaturesFromMapRequest">Remove feature</button>
+            to clean up the map for testing VectorLayerRequest.
+          </li>
+          <li>
+            Click <button class="btn btn-primary exampleready" @click="addSimpleVectorLayer">Add layer</button>
+            to initialize a layer for vector features with hover styling. You won't see anything happen on the map when you do this.
+            Now click the "Add feature" button on the first step to add a feature to the layer. 
+          </li>
+          <li>This time the feature has a nice highlighting style when you move the mouse cursor on top of it on the map.
+            The hover style was defined in the VectorLayerRequest so you don't need to worry about it when
+             pushing more features on the map.
+          </li>
+          <li>
+            You can use VectorLayerRequest to remove the layer (also removes features on the layer).
+            After this if you click the "Add features" button the features have lost the hover
+             highlighting and you need to initialize the layer again to get it back.<br/>
+            <button class="btn btn-primary exampleready" @click="removeSimpleLayer">Remove layer</button>
+          </li>
+          <li>
+            To keep the initialized layer but remove any features on it you can use the "Remove feature" from the second step.
+          </li>
+        </ol>
+      <p>You can define more than just the hover styles with the VectorLayerRequest:
+        <ul>
+          <li><a :href="requestLink" target="_blank">VectorLayerRequest documentation</a></li>
+          <li><a href="/documentation/examples/oskari-style">documentation about styling</a></li>
+          </ul>
+        </p>
+      <p>
+        You can remove the layer from the map with the same request.
+      
+        <code-component>
+channel.postRequest('VectorLayerRequest', [{
+  layerId: {{ "LAYER_OPTS.simple.layerId" }},
+  remove: true
+}]);
+        </code-component>
+      </p>
   </div>
 </template>
 <script>
-import { features } from '../../util/examplecodes.js';
-
-const LAYER_OPTS = {
-    simple: {
-      layerId: 'MY_VECTOR_LAYER',
-      opacity: 75,
-      hover: {
-        featureStyle: {
-          fill: {
-            color: '#ff00ff'
-          },
-          stroke: {
-            color: '#000000'
-          }
-        },
-        content: [
-            { 'key': 'Layer: MY_VECTOR_LAYER' },
-            { 'key': 'Name', 'valueProperty': 'name' }
-        ]
-      }
-    },
-    
-    listing: {
-      layerId: 'MY_LISTED_VECTOR_LAYER',
-      layerInspireName: 'My layer group',
-      layerOrganizationName: 'Organization name',
-      showLayer: true,
-      opacity: 100,
-      layerName: 'Layer name',
-      layerDescription: 'Description text',
-      minZoomLevel: 6
-    }
-};
-const generator = {
-  getPolygon: (x, y, attributes) => {
-    return {
-      'type': 'Feature',
-      'geometry': {
-        'type': 'Polygon',
-        'coordinates': [[[x, y], [x + 100000, y + 100000], [x + 25000, y + 50000]]]
-      },
-      'properties': { ...attributes }
-    };
-  },
-  getPoint: (x, y, attributes) => {
-    return {
-      'type': 'Feature',
-      'geometry': {
-        'type': 'Point',
-        'coordinates': [x, y]
-      },
-      'properties': { ...attributes }
-    };
-  }
-}
+import { LAYER_OPTS, generator } from '../../util/vectorlayer_helpers';
 
 export default {
   name: 'layerForFeatures',
   data () {
+    const requestLink = this.$root.documentPathRequest + 'mapping/mapmodule/request/vectorlayerrequest.md'
+
     return {
       desc: 'Add or remove vector features',
-      svg: features.svg,
-      add: features.add,
-      update: features.update,
+      requestLink,
       LAYER_OPTS
     }
   },
   beforeDestroy: () => {
-    // Clean up
-    console.log('vector layer cleanup start');
-    //const channel = this.$root.channel;
+    // Clean up when leaving the example
     // NOTE! We don't have this.$root here so relying on global channel variable
+    // const channel = this.$root.channel;
     channel.postRequest('VectorLayerRequest', [{
       layerId: 'MY_VECTOR_LAYER',
       remove: true
@@ -140,17 +90,22 @@ export default {
       remove: true
     }]);
     channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
-    console.log('vector layer cleanup end');
   },
   methods: {
-    getLink (e) {
-      e.target.href = this.$root.documentPathRequest + 'mapping/mapmodule/request/vectorlayerrequest.md';
-    },
-    addFeaturesToMapRequest () {
+    addSimpleVectorLayer () {
       const layerOptions = { ...LAYER_OPTS.simple };
       this.$root.channel.postRequest('VectorLayerRequest', [layerOptions]);
       this.$root.channel.log('VectorLayerRequest posted with data', [layerOptions]);
-
+    },
+    removeSimpleLayer () {
+      const layerOptions ={
+          layerId: LAYER_OPTS.simple.layerId,
+          remove: true
+      };
+      this.$root.channel.postRequest('VectorLayerRequest', [layerOptions]);
+      this.$root.channel.log('VectorLayerRequest posted with data', [layerOptions]);
+    },
+    addFeaturesToMapRequest () {
       const x = 488704;
       const y = 6939136;
       const geojsonObject = {
@@ -170,7 +125,6 @@ export default {
         layerId: LAYER_OPTS.simple.layerId,
         clearPrevious: true,
         centerTo: true,
-        cursor: 'zoom-in',
         prio: 4
       }];
       this.$root.channel.postRequest(
@@ -180,78 +134,16 @@ export default {
       this.$root.channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params);
 
     },
-    removeSimpleLayer () {
-      
-      this.$root.channel.postRequest('VectorLayerRequest', [{
-          layerId: LAYER_OPTS.simple.layerId,
-          remove: true
-      }]);
-    },
     removeFeaturesFromMapRequest () {
       this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
       this.$root.channel.log('MapModulePlugin.RemoveFeaturesFromMapRequest posted without params');
-    },
-    removeFeaturesFromMapRequest2 () {
-      const params = ['test_property', 1, 'MY_VECTOR_LAYER'];
-      this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', params);
-      this.$root.channel.log('MapModulePlugin.RemoveFeaturesFromMapRequest posted with params', params);
-    },
-    addFeaturesToMapRequestUsingSVG () {
-      const geojsonObject = {
-        'type': 'FeatureCollection',
-        'crs': {
-          'type': 'name',
-          'properties': {
-            'name': 'EPSG:3067'
-          }
-        },
-        'features': [
-          {
-            'type': 'Feature',
-            'geometry': {
-              'type': 'Point',
-              'coordinates': [500000, 6939136]
-            },
-            'properties': {
-              'label': 'I am a point feature!',
-              'test_property': 'SVG'
-            }
-          }
-        ]
-      };
-      const params = [geojsonObject, {
-        clearPrevious: false,
-        centerTo: true,
-        cursor: 'zoom-in',
-        featureStyle: {
-          image: {
-            shape: 2,
-            size: 1,
-            fill: {
-              color: '#ff3300'
-            },
-            stroke: {
-              color: '#000000'
-            }
-          },
-          text: {
-            scale: 1.3,
-            fill: {
-              color: 'rgba(0,0,0,1)'
-            },
-            stroke: {
-              color: 'rgba(255,255,255,1)',
-              width: 2
-            },
-            labelProperty: 'label',
-            offsetX: 65,
-            offsetY: 8
-          }
-        }
-      }];
-      this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
-      this.$root.channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params);
     }
   }
 }
 </script>
+<style scoped>
+ol li {
+    display: list-item;
+    list-style-type: decimal;
+}
+</style>
