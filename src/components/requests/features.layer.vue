@@ -1,5 +1,5 @@
 <template>
-  <div id="layerForFeatures">
+  <div ref="layerForFeatures">
       <p>
         VectorLayerRequest allows more control for showing vector features on the map.
         You can initializing a layer with styles, scale limits and other toggles that are used for features on that layer.
@@ -9,14 +9,14 @@
       <p>
         Initializing a layer can be done by sending the request:
         <code-component>
-        channel.postRequest('VectorLayerRequest', [{{ JSON.stringify("LAYER_OPTS.simple", null, 2) }}]);
+        channel.postRequest('VectorLayerRequest', [{{ JSON.stringify(LAYER_OPTS.simple, null, 2) }}]);
         </code-component>
 
         After sending it you can add features to it by referencing the layer by `layerId` in the AddFeaturesToMapRequest.
       </p>
       
       <p>
-        You can try different combinations below. 
+        You can try different combinations below:
         <ol>
           <li>
             Click <button class="btn btn-primary exampleready" @click="addFeaturesToMapRequest">Add feature</button>
@@ -45,18 +45,17 @@
             To keep the initialized layer but remove any features on it you can use the "Remove feature" from the second step.
           </li>
         </ol>
-      <p>You can define more than just the hover styles with the VectorLayerRequest:
-        <ul>
-          <li><a :href="requestLink" target="_blank">VectorLayerRequest documentation</a></li>
-          <li><a href="/documentation/examples/oskari-style">documentation about styling</a></li>
-          </ul>
+      <p>You can define more than just the hover styles with the VectorLayerRequest.
+        Documentation links:<br/>
+        <a :href="requestLink" class="btn btn-primary exampleready" target="_blank">VectorLayerRequest</a>
+        <a :href="styleDocLink" class="btn btn-primary exampleready" target="_blank">Styling</a>
         </p>
       <p>
-        You can remove the layer from the map with the same request.
+        Example for removing the layer. Reference with layerId and include a remove-flag:
       
         <code-component>
 channel.postRequest('VectorLayerRequest', [{
-  layerId: {{ "LAYER_OPTS.simple.layerId" }},
+  layerId: {{ LAYER_OPTS.simple.layerId }},
   remove: true
 }]);
         </code-component>
@@ -72,8 +71,9 @@ export default {
     const requestLink = this.$root.documentPathRequest + 'mapping/mapmodule/request/vectorlayerrequest.md'
 
     return {
-      desc: 'Add or remove vector features',
+      desc: 'Configure vector layers',
       requestLink,
+      styleDocLink: '/documentation/examples/oskari-style',
       LAYER_OPTS
     }
   },
@@ -125,7 +125,7 @@ export default {
         layerId: LAYER_OPTS.simple.layerId,
         clearPrevious: true,
         centerTo: true,
-        prio: 4
+        cursor: 'zoom-in'
       }];
       this.$root.channel.postRequest(
         'MapModulePlugin.AddFeaturesToMapRequest',
@@ -142,8 +142,13 @@ export default {
 }
 </script>
 <style scoped>
+/* Need to overwrite styles that are not defined specific enough........ */
 ol li {
     display: list-item;
     list-style-type: decimal;
+}
+a.btn.btn-primary.exampleready {
+  /* Need to overwrite the "#select-panel a" color */
+  color: white !important;
 }
 </style>

@@ -2,7 +2,6 @@ const LAYER_OPTS = {
     simple: {
       layerId: 'MY_VECTOR_LAYER',
       opacity: 75,
-      cursor: 'zoom-in',
       hover: {
         featureStyle: {
           fill: {
