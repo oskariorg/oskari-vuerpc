@@ -16,16 +16,32 @@
   import OskariRPC from 'oskari-rpc';
 
   import Header from './components/ui-components/Header.vue';
-  import contentLayout from './components/main-layout.vue';
 
   import EmbeddedMap from './components/ui-components/embedded-map.vue';
   import ActionPanel from './components/ui-components/actionpanel.vue';
   import LogPanel from './components/ui-components/logpanel.vue';
   import { createLogger, createOnReady } from './util/channelLogger';
+  import { eventHandlers } from './util/eventHandlers.js';
 
   import 'bootstrap/dist/css/bootstrap.css';
   import 'bootstrap-vue/dist/bootstrap-vue.css'
   import style from './style.css';
+  
+  const RPC_EVENTS = [
+      'map.rotated',
+      'AfterAddMarkerEvent',
+      'MarkerClickEvent',
+      'RouteResultEvent',
+      'FeedbackResultEvent',
+      'MapClickedEvent',
+      'AfterMapMoveEvent',
+      'UserLocationEvent',
+      'SearchResultEvent',
+      'FeatureEvent',
+      'DrawingEvent',
+      'InfoboxActionEvent',
+      'InfoBox.InfoBoxEvent'
+  ];
 
   export default {
     components: {
@@ -57,12 +73,30 @@
       exposeDocumentationPaths () {
         this.$root.documentPathRequest = '/api/requests#latest/';
         this.$root.documentPathEvent = '/api/events#latest/';
+      },
+      registerListenersForRPCEvents () {
+        const channel = this.$root.channel;
+        // TODO: maybe get all events from channel instead of hardcoded list?
+        RPC_EVENTS.forEach(eventName => {
+          // register listening to events
+          channel.handleEvent(eventName, (data) => {
+              // log them for user to see on the page
+              channel.log(eventName, data);
+              // if imported file has a handler, pass it to handler
+              if (eventHandlers[eventName]) {
+                // TODO: check that "this" makes sense.
+                // Some of the eventHandlers are pretty wild on using it...
+                eventHandlers[eventName](this, data);
+              }
+            });
+        });
       }
     },
     mounted () {
       //this.$root.logdiv = this.$refs.logElement.getLogElement();
       this.initConnection();
       this.exposeDocumentationPaths();
+      this.registerListenersForRPCEvents();
     } 
   }
 </script>

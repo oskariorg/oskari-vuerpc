@@ -11,7 +11,6 @@ import 'highlight.js/styles/github.css';
 import code from './components/ui-components/codehighlight.vue';
 import VueRouter from 'vue-router';
 import screenshot from './components/functions/map.screenshot.vue';
-import api from './components/main-layout.vue';
 
 // register support for code highlighting. JS and HTML is all we need.
 hljs.registerLanguage('javascript', javascript);
@@ -21,7 +20,7 @@ Vue.component('code-component', code);
 Vue.use(VueRouter, BootstrapVue);
 
 const routes = [
-  { path: '/', component: api },
+  { path: '/', component: App },
   { path: '/examples/screenshot', component: screenshot }
 ]
 
