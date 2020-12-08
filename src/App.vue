@@ -27,8 +27,6 @@
   import 'bootstrap-vue/dist/bootstrap-vue.css'
   import style from './style.css';
 
-const domain = 'https://kartta.paikkatietoikkuna.fi';
-
   export default {
     components: {
       'documentation-site-top-bar': Header,
@@ -38,7 +36,7 @@ const domain = 'https://kartta.paikkatietoikkuna.fi';
     },
     data () {
       return {
-        domain,
+        domain: 'https://kartta.paikkatietoikkuna.fi',
         uuid: '053027f4-91d9-4351-aec4-c6a31dd68c56'
        }
     },
@@ -46,10 +44,10 @@ const domain = 'https://kartta.paikkatietoikkuna.fi';
       initConnection () {
         const channel = OskariRPC.connect(
           this.$refs.mapElement.getIframeElement(),
-          domain
+          this.domain
         );
         // expose channel as global variable so it can be accessed from dev-console
-        channel.log = createLogger(me.$store.state.channelLogs);
+        channel.log = createLogger(this.$store.state.channelLogs);
         createOnReady(channel, '2.0.0');
         // Note: this != this.$root
         this.$root.channel = channel;
