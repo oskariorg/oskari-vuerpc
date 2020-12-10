@@ -1,11 +1,11 @@
 <template>
   <div>
-    <documentation-site-top-bar />
+    <Documentation-site-top-bar />
     <div class="wrapper">
       <div class="row">
-        <embedded-map ref="mapElement" :domain="domain" :uuid="uuid" />
-        <rpc-actions />
-        <oskari-log ref="logElement" />
+        <EmbeddedMap ref="mapElement" :domain="domain" :uuid="uuid" />
+        <ActionPanel />
+        <LogPanel ref="logElement" />
       </div>
       <div class="msg" ref="messageBox"></div>
     </div>
@@ -45,10 +45,10 @@
 
   export default {
     components: {
-      'documentation-site-top-bar': Header,
-      'embedded-map': EmbeddedMap,
-      'rpc-actions': ActionPanel,
-      'oskari-log': LogPanel
+      'Documentation-site-top-bar': Header,
+      'EmbeddedMap': EmbeddedMap,
+      'ActionPanel': ActionPanel,
+      'LogPanel': LogPanel
     },
     data () {
       return {
