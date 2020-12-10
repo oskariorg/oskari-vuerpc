@@ -1,10 +1,12 @@
 
 const createLogger = (logStore) => {
+    let id = 0;
     return (data, args) => {
         const now = new Date().toLocaleTimeString() + ': ';
+        id++;
 
         if (!args) {
-            logStore.unshift({ header: now + data });
+            logStore.unshift({ id, header: now + data });
             return;
         }
         if (args instanceof Array) {
@@ -18,7 +20,7 @@ const createLogger = (logStore) => {
                 }
             }
         }
-        logStore.unshift({ header: now + data, json: args });
+        logStore.unshift({ id, header: now + data, json: args });
     };
 };
 
