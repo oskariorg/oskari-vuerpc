@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import App from './App.vue';
+import routesHelper from './util/routesHelper';
 import { store } from './store';
 import BootstrapVue from 'bootstrap-vue';
-// import hljs from 'highlight.js';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import xml from 'highlight.js/lib/languages/xml';
@@ -10,25 +10,20 @@ import 'highlight.js/styles/github.css';
 
 import code from './components/ui-components/codehighlight.vue';
 import VueRouter from 'vue-router';
-import screenshot from './components/functions/map.screenshot.vue';
 
-// register support for code highlighting. JS and HTML is all we need.
+// register support for code highlighting. JS and HTML(xml) is all we need.
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('xml', xml);
 
 Vue.component('code-component', code);
 Vue.use(VueRouter, BootstrapVue);
 
-const routes = [
-  { path: '/', component: App },
-  { path: '/examples/screenshot', component: screenshot }
-]
-
 const router = new VueRouter({
-  routes,
+  routes: routesHelper.getRoutes(),
   mode: 'history'
 });
 
+// TODO: can this be moved to codehighlight.vue?
 Vue.directive('highlightjs', {
   deep: true,
   bind: function (el, binding) {

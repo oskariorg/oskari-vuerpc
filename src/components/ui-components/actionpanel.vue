@@ -1,21 +1,32 @@
 <template>
-<div class="col-xs-12 col-md-12 col-sm-12 col-lg-6 col-xl-4 full-height-panel">
-  <div class="panel panel-default form-panel">
-    <div class="panel-body">
-      <div id="select-panel">
-        <example></example>
+  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-6 col-xl-4 full-height-panel">
+    <div class="panel panel-default form-panel">
+      <div class="panel-body">
+        <div id="select-panel">
+          <PageNavigation :currentPage="currentPage" />
+          <br />
+          <transition name="fade">
+            <!-- 
+              Router-view shows the pages based on route (== url).
+              See pages/index.js for adding/modifying order etc
+              -->
+            <router-view />
+          </transition>
         </div>
+      </div>
     </div>
   </div>
-</div>
 </template>
 
 <script>
-import example from './example.vue';
+import PageNavigation from './page_navigation.vue';
 
 export default {
   components: {
-    'example': example
+    PageNavigation
+  },
+  props: {
+    'currentPage': Object
   },
   data () {
     return {}

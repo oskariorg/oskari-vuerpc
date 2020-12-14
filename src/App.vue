@@ -4,7 +4,7 @@
     <div class="wrapper">
       <div class="row">
         <EmbeddedMap ref="mapElement" :domain="oskariDomain" :uuid="embeddedMapUUID" />
-        <ActionPanel />
+        <ActionPanel :currentPage="currentPage" />
         <LogPanel ref="logElement" />
       </div>
       <div class="msg" ref="messageBox"></div>
@@ -39,8 +39,15 @@
       return {
         oskariDomain: 'https://kartta.paikkatietoikkuna.fi',
         embeddedMapUUID: '053027f4-91d9-4351-aec4-c6a31dd68c56',
-        expectedOskariVersion: '2.1.0'
+        expectedOskariVersion: '2.1.0',
+        currentPage: this.$route
        }
+    },
+    watch:{
+      $route (to, from) {
+        // required: listen to route change so we can update current page -> update navigation outside <router-view />
+        this.currentPage = to;
+      }
     },
     methods: {
       initConnection () {
@@ -54,7 +61,6 @@
         // Note: this != this.$root
         this.$root.channel = channel;
         window.channel = channel;
-        //this.initLogging();
         EVENTBUS.initChannelListeners(channel);
       },
       exposeDocumentationPaths () {
@@ -99,10 +105,8 @@
       }
     },
     mounted () {
-      //this.$root.logdiv = this.$refs.logElement.getLogElement();
       this.initConnection();
       this.exposeDocumentationPaths();
-      // this.registerListenersForRPCEvents();
     } 
   }
 </script>
