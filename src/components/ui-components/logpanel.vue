@@ -4,7 +4,7 @@
       <div class="panel-body">
         <a href="#" v-on:click="clearLog">Clear log</a>
         <div ref="debuglog">
-          <div ref="logmsg" v-for="log in logs" :key="log.id">{{log.header}}
+          <div ref="logmsg" v-for="log in logs.slice().reverse()" :key="log.id">{{log.header}}
             <pre v-if="log.json">{{log.json}}</pre>
           </div>
         </div>
