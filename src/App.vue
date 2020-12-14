@@ -58,8 +58,8 @@
         EVENTBUS.initChannelListeners(channel);
       },
       exposeDocumentationPaths () {
-        this.$root.documentPathRequest = '/api/requests#latest/';
-        this.$root.documentPathEvent = '/api/events#latest/';
+        this.$root.documentPathRequest = 'https://oskari.org/api/requests#latest/';
+        this.$root.documentPathEvent = 'https://oskari.org/api/events#latest/';
       },
       registerListenersForRPCEvents () {
         // TODO: maybe get all events from channel instead of hardcoded list?
