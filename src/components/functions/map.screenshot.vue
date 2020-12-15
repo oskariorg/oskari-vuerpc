@@ -18,6 +18,7 @@
 <script>
 export default {
   name: 'GetScreenshot',
+  label: 'Get a screenshot of the map',
   data () {
     return {
       desc: 'Get a screenshot of the map'

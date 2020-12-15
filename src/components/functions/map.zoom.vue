@@ -25,6 +25,7 @@
 <script>
 export default {
   name: 'mapZoomFunctions',
+  label: 'Zoom functions',
   data () {
     return {
       desc: 'Zoom functions'

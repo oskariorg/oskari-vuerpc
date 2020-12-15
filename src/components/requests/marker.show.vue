@@ -43,6 +43,7 @@
 <script>
 export default {
   name: 'showOrHideMarkers',
+  label: 'Show or hide a marker',
   data () {
     return {
       desc: 'Show or hide a marker',

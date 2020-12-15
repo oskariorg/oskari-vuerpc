@@ -16,6 +16,7 @@
 <script>
 export default {
   name: 'MapMoveRequest',
+  label: 'Move map',
   data () {
     return {
       desc: 'Move map',

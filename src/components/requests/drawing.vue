@@ -26,6 +26,7 @@
 <script>
 export default {
   name: 'drawing',
+  label: 'Drawing requests',
   data () {
     return {
       desc: 'Drawing requests'

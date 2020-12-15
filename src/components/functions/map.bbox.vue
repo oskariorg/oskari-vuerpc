@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'GetMapBbox',
+  label: 'Get map bbox',
   data () {
     return {
       desc: 'Get map bbox'

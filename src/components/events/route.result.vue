@@ -11,6 +11,7 @@
 import { route } from '../../util/examplecodes.js';
 export default {
   name: 'RouteResultEvent',
+  label: 'RouteResultEvent',
   data () {
     return {
       desc: 'RouteResultEvent',

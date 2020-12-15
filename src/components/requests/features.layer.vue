@@ -67,6 +67,7 @@ import { LAYER_OPTS, generator } from '../../util/vectorlayer_helpers';
 
 export default {
   name: 'layerForFeatures',
+  label: 'Configure layer for vector features',
   data () {
     const requestLink = this.$root.documentPathRequest + 'mapping/mapmodule/request/vectorlayerrequest.md'
 

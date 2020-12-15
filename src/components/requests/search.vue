@@ -17,6 +17,7 @@
 <script>
 export default {
   name: 'SearchRequest',
+  label: 'Perform a search',
   data () {
     return {
       desc: 'Perform a search'

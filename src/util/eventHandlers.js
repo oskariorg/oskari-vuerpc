@@ -1,42 +1,46 @@
+import helperFactory from './mixins';
+
 export const eventHandlers = {
-  SearchResultEvent: (ctx, data) => {
+  SearchResultEvent: (channel, data) => {
+    const mixins = helperFactory(channel);
     const USER_MARKER_ID = 'REPORT_MARKER';
-    const el = ctx.$refs.messageBox;
+    const el = messageBox;
     if (data.success && data.result.totalCount > 0) {
       const search1 = data.result.locations[0];
       const zoom = {};
       zoom.scale = search1.zoomScale;
-      ctx.mixins.moveMap(search1.lon, search1.lat, zoom);
+      mixins.moveMap(search1.lon, search1.lat, zoom);
       // add a marker to 1st search item
-      const marker = ctx.mixins.getMarkerTemplate();
+      const marker = mixins.getMarkerTemplate();
       marker.x = search1.lon;
       marker.y = search1.lat;
       marker.msg = search1.name + '_' + search1.type + '_' + search1.village;
-      ctx.mixins.addMarker(marker, USER_MARKER_ID);
+      mixins.addMarker(marker, USER_MARKER_ID);
       if (data.result.totalCount === 1) {
-        ctx.mixins.displayMessage(el, 'Zoomed to ' + search1.name, 5);
+        mixins.displayMessage(el, 'Zoomed to ' + search1.name, 5);
       } else if (data.result.totalCount > 1) {
         let items = '';
         data.result.locations.forEach(
           function addItem (s) { items = items + s.name + ' / ' + s.type + ' / ' + s.village + '\n'; }
         );
 
-        ctx.mixins.displayMessage(el, 'Zoomed to 1st one -  \n ' + items, 5);
+        mixins.displayMessage(el, 'Zoomed to 1st one -  \n ' + items, 5);
       }
     } else if (data.success && data.result.totalCount === 0) {
-      ctx.mixins.displayMessage(el, 'No items found - search key: ' + data.requestParameters.searchKey, 5);
+      mixins.displayMessage(el, 'No items found - search key: ' + data.requestParameters.searchKey, 5);
     } else {
-      ctx.mixins.displayMessage(el, 'Search error: ' + data.result.responseText, 5);
+      mixins.displayMessage(el, 'Search error: ' + data.result.responseText, 5);
     }
   },
-  MapClickedEvent: (ctx, data) => {
+  MapClickedEvent: (channel, data) => {
+    const mixins = helperFactory(channel);
     // add a marker to clicked spot -
-    const marker = ctx.mixins.getMarkerTemplate();
+    const marker = mixins.getMarkerTemplate();
     marker.x = data.lon;
     marker.y = data.lat;
     //  addMarker(marker, USER_MARKER_ID); -> Use Marker requests
   },
-  AfterMapMoveEvent: (ctx, data) => {
+  AfterMapMoveEvent: (channel, data, ctx) => {
     // Replot Plot area if zoom is changed
     if (ctx.$store.savedZoom && ctx.$store.savedZoom !== data.zoom && ctx.$store.state.savedPlotAreaData) {
       ctx.$store.savedZoom = data.zoom;
@@ -46,9 +50,10 @@ export const eventHandlers = {
       ctx.mixins.plotPlotArea(ctx.$store.state.savedPlotAreaData, ctx.$store.state.map);
     }
   },
-  RouteResultEvent: (ctx, data) => {
+  RouteResultEvent: (channel, data) => {
+    const mixins = helperFactory(channel);
     if (!data || !data.success) {
-      ctx.mixins.displayMessage('Getting routes failed ! - zoom map center around 1 km to nearest public trafic stop', 5);
+      mixins.displayMessage('Getting routes failed ! - zoom map center around 1 km to nearest public trafic stop', 5);
     } else {
       let geoJSON = data && data.plan && data.plan.itineraries && data.plan.itineraries.length ? data.plan.itineraries[0].geoJSON : undefined;
       // Plot routes
@@ -405,11 +410,12 @@ export const eventHandlers = {
       }
     }
   },
-  FeedbackResultEvent: (ctx, data) => {
+  FeedbackResultEvent: (channel, data) => {
+    const mixins = helperFactory(channel);
     if (!data || !data.success) {
-      ctx.mixins.displayMessage('Getting feedback response failed ! ', 5);
+      mixins.displayMessage('Getting feedback response failed ! ', 5);
     } else {
-      ctx.mixins.displayMessage('Getting feedback response success ! ', 5);
+      mixins.displayMessage('Getting feedback response success ! ', 5);
       const geoJSON = data && data.data && data.data.getFeedback ? data.data.getFeedback : undefined;
       // Plot routes
       if (geoJSON) {

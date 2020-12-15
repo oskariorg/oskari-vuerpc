@@ -25,7 +25,7 @@ export default {
   },
   methods: {
     mapClickedEvent (data) {
-      const marker = helper.getMarkerTemplate();
+      const marker = helper(channel).getMarkerTemplate();
       marker.x = data.lon;
       marker.y = data.lat;
     },

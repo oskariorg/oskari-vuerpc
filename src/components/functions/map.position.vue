@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'GetMapPosition',
+  label: 'Get map position',
   data () {
     return {
       desc: 'Get map position'

@@ -45,6 +45,7 @@
 import { features } from '../../util/examplecodes.js';
 export default {
   name: 'addOrRemoveFeatures',
+  label: 'Add, update or remove vector features',
   data () {
     return {
       desc: 'Add or remove vector features',

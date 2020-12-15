@@ -35,6 +35,7 @@
 <script>
 export default {
   name: 'LayerVisibility',
+  label: 'Change map layer visibility',
   data () {
     return {
       desc: 'Change map layer visibility'

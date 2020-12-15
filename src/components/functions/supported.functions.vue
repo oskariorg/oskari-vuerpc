@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'GetSupportedFunctions',
+  label: 'Get supported functions',
   data () {
     return {
       desc: 'Get supported functions'

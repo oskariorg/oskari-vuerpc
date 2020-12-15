@@ -13,6 +13,7 @@
 import { features } from '../../util/examplecodes.js';
 export default {
   name: 'FeatureEvent',
+  label: 'FeatureEvent',
   data () {
     return {
       desc: 'Feature Event',

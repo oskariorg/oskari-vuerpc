@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'GetSupportedEvents',
+  label: 'Get supported events',
   data () {
     return {
       desc: 'Get supported events'

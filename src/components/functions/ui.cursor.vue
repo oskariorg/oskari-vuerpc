@@ -25,6 +25,7 @@
 <script>
 export default {
   name: 'setCursorStyle',
+  label: 'Set cursor style',
   data () {
     return {
       desc: 'Set cursor style',

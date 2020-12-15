@@ -29,6 +29,7 @@
 <script>
 export default {
   name: 'stateHandling',
+  label: 'Handle map state',
   data () {
     return {
       desc: 'Handle map state',

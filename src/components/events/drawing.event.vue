@@ -14,6 +14,7 @@
 import { drawing } from '../../util/examplecodes.js';
 export default {
   name: 'DrawingEvent',
+  labe: 'Drawing Event',
   data () {
     return {
       desc: 'Drawing Event',

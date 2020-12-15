@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'GetAllLayers',
+  label: 'Get available map layers',
   data () {
     return {
       desc: 'Get available map layers'

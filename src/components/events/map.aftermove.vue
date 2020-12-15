@@ -18,6 +18,7 @@
 import helper from '../../util/mixins.js';
 export default {
   name: 'AfterMapMoveEvent',
+  label: 'AfterMapMoveEvent',
   data () {
     return {
       desc: 'AfterMapMoveEvent'
@@ -28,10 +29,10 @@ export default {
       // Replot Plot area if zoom is changed
       if (this.$store.savedZoom && this.$store.savedZoom !== data.zoom && this.$store.savedPlotAreaData) {
         this.$store.savedZoom = data.zoom;
-        helper.plotPlotArea(this.$store.savedPlotAreaData);
+        helper(channel).plotPlotArea(this.$store.savedPlotAreaData);
       } else if (!this.$store.savedZoom && this.$store.savedPlotAreaData) {
         this.$store.savedZoom = data.zoom;
-        helper.plotPlotArea(this.$store.savedPlotAreaData, this.$store.map);
+        helper(channel).plotPlotArea(this.$store.savedPlotAreaData, this.$store.map);
       }
     },
     getLink (e) {

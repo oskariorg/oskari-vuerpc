@@ -44,6 +44,7 @@
 <script>
 export default {
   name: 'MapTourRequest',
+  label: 'Move map along route',
   data () {
     return {
       desc: 'Move map along route',

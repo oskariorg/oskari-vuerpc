@@ -81,6 +81,7 @@ channel.getAllLayers(function (layers) {
 <script>
 export default {
   name: 'gettingStarted',
+  label: 'Getting started',
   data () {
     return {
     }

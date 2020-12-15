@@ -18,12 +18,13 @@
 import mixins from '../../util/mixins.js';
 export default {
   name: 'GetPixelMeasuresInScale',
+  label: 'Get pixel measures in scale',
   data () {
     return {
       desc: 'Get pixel measures in scale',
       savedPlotAreaData: null,
       pixelmeasures: {},
-      mixins: mixins
+      mixins: mixins(channel)
     }
   },
   methods: {
@@ -43,7 +44,7 @@ export default {
         this.$store.state.savedPlotAreaData = [[210, 297], scale];
       }
 
-      this.mixins.plotPlotArea([[210, 297], scale], this.$store.state.map);
+      this.mixins(channel).plotPlotArea([[210, 297], scale], this.$store.state.map);
     }
   }
 }

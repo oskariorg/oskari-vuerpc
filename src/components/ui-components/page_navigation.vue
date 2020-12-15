@@ -1,12 +1,10 @@
 <template>
   <div>
     <div class="selectExamples">
-    <h2>Select Action <NavigationDropdown :current="currentPageName" /></h2>
+    <h2>Select Action <NavigationDropdown :current="currentPage.name" /></h2>
     <div class="navigationLinkParent">
       <span class="navigationLinkLeft"><router-link :to="navLinks.prev.path">Previous:  {{ navLinks.prev.name }}</router-link></span>
       <span class="navigationLinkLeft"><router-link :to="navLinks.next.path">Next: {{ navLinks.next.name }}</router-link></span>
-
-      <br />Current: {{ currentPage.name }}<hr/>
     </div>
   </div>
 </div>
@@ -14,10 +12,7 @@
 
 <script>
 import NavigationDropdown from './page_navigation_dropdown.vue';
-import routes from '../../routes.js';
 import routesHelper from '../../util/routesHelper';
-import { mapGetters } from 'vuex';
-import pages from '../../pages';
 
 export default {
   components: {
@@ -26,16 +21,9 @@ export default {
   props: {
     'currentPage': Object
   },
-  data () {
-    console.log('current', this.currentPage);
-    const navLinks = routesHelper.getNextAndPrev(this.currentPage);
-    let currentPage;
-    if (this.currentPage) {
-      currentPage = this.currentPage.name;
-    }
-    return {
-      currentPageName: currentPage,
-      navLinks
+  computed: {
+    navLinks () {
+      return routesHelper.getNextAndPrev(this.currentPage);
     }
   }
 }

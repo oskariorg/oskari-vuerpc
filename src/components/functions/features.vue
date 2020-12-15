@@ -28,6 +28,7 @@
 <script>
 export default {
   name: 'GetFeatures',
+  label: 'Get features',
   data () {
     return {
       desc: 'Get features'

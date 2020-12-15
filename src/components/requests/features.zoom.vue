@@ -40,6 +40,7 @@
 <script>
 export default {
   name: 'ZoomToFeatures',
+  label: 'Zoom to features',
   data () {
     return {
       desc: 'Zoom to features'

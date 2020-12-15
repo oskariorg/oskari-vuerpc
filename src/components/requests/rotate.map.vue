@@ -22,6 +22,7 @@
 <script>
 export default {
   name: 'rotateMap',
+  label: 'Rotate map',
   data () {
     return {
       desc: 'Rotate map'

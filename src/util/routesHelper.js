@@ -1,5 +1,3 @@
-
-
 import pages from '../pages';
 
 const getNextAndPrev = (current) => {
@@ -25,7 +23,7 @@ const getNextAndPrev = (current) => {
 const getRoutes = () => {
     const routes = [{
         path: '/',
-        name: 'main',
+        name: pages.main.name,
         component: pages.main
     }];
     pages.sections.forEach(section => {
@@ -37,7 +35,6 @@ const getRoutes = () => {
             })
         });
     });
-    console.log(routes);
     return routes;
 };
 

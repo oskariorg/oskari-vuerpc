@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'GetUserLocationRequest',
+  label: 'Get users location',
   data () {
     return {
       desc: 'Get users location'

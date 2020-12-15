@@ -23,6 +23,7 @@
 <script>
 export default {
   name: 'ChangeMapLayerOpacityRequest',
+  label: 'Change map layer opacity',
   data () {
     return {
       desc: 'Change map layer opacity'
