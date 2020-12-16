@@ -62,42 +62,6 @@
         this.$root.channel = channel;
         window.channel = channel;
         EVENTBUS.initChannelListeners(channel);
-      },
-      registerListenersForRPCEvents () {
-        // TODO: maybe get all events from channel instead of hardcoded list?
-        // -> see EVENTBUS.initChannelListeners()
-        /*
-        const channel = this.$root.channel;
-  const RPC_EVENTS = [
-      'map.rotated',
-      'AfterAddMarkerEvent',
-      'MarkerClickEvent',
-      'RouteResultEvent',
-      'FeedbackResultEvent',
-      'MapClickedEvent',
-      'AfterMapMoveEvent',
-      'UserLocationEvent',
-      'SearchResultEvent',
-      'FeatureEvent',
-      'DrawingEvent',
-      'InfoboxActionEvent',
-      'InfoBox.InfoBoxEvent'
-  ];
-        RPC_EVENTS.forEach(eventName => {
-          // register listening to events
-          channel.handleEvent(eventName, (data) => {
-              // log them for user to see on the page
-              channel.log(eventName, data);
-              // if imported file has a handler, pass it to handler
-              if (eventHandlers[eventName]) {
-                // TODO: check that "this" makes sense.
-                // Some of the eventHandlers are pretty wild on using it...
-                // eventHandlers[eventName](this, data);
-                eventHandlers[eventName](channel, data, this);
-              }
-            });
-        });
-        */
       }
     },
     created () {

@@ -10,6 +10,7 @@ import 'highlight.js/styles/github.css';
 
 import code from './components/ui-components/codehighlight.vue';
 import DocumentationLink from './components/ui-components/documentation_link.vue';
+import RunExampleButton from './components/ui-components/run_example_button.vue';
 import VueRouter from 'vue-router';
 
 // register support for code highlighting. JS and HTML(xml) is all we need.
@@ -22,6 +23,7 @@ hljs.registerLanguage('xml', xml);
 Vue.component('code-component', code);
 // TODO: use CodeSnippet instead of code-component on pages
 Vue.component('CodeSnippet', code);
+Vue.component('RunExampleButton', RunExampleButton);
 Vue.component('DocumentationLink', DocumentationLink);
 
 Vue.use(VueRouter, BootstrapVue);

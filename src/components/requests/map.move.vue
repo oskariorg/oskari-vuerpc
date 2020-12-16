@@ -1,38 +1,43 @@
 <template>
-  <div ref="MapMoveRequest">
-    <button ref="btnMapMoveRequest" class="btn btn-primary exampleready" @click="mapMoveRequest">MapMoveRequest</button>
-    <div>
-      <a id="mapMove" href="" @click="getLink">To the documentation</a>
-    </div>
+  <div>
+    <h2>{{ title }}</h2>
+    <p>This request can be used to move the map programmatically.</p>
+    <DocumentationLink type="request" :apiDoc="apiDocPage">Documentation for {{title}}</DocumentationLink>
+    <CodeSnippet>
+var x = {{ LOCATION_POSIO[0] }};
+var y =  {{ LOCATION_POSIO[1] }};;
+var zoomLevel = {{ zoomLevel }};
+channel.postRequest('MapMoveRequest', [x, y, zoomLevel]);
+    </CodeSnippet>
 
-    <code-component snippet="var x = 552935,
-    y = 7332639,
-    zoomLevel = 7;
-    channel.postRequest(
-    'MapMoveRequest', [x, y, zoomLevel]
-    );"></code-component>
+    <p>
+      Click the button to run the code above
+       (you should also see a move event in the log after the map has moved):
+    <RunExampleButton @click="moveMap">Move map to Posio</RunExampleButton>
+    </p>
   </div>
 </template>
+
 <script>
+const apiDocPage = 'mapping/mapmodule/request/MapMoveRequest.md';
+const title = 'MapMoveRequest';
+
 export default {
   name: 'MapMoveRequest',
   label: 'Move map',
   data () {
     return {
-      desc: 'Move map',
-      LOCATION_POSIO: [552935, 7332639]
+      title,
+      apiDocPage,
+      LOCATION_POSIO: [552935, 7332639],
+      zoomLevel: 7
     }
   },
   methods: {
-    mapMoveRequest () {
-      this.$root.channel.postRequest(
-          'MapMoveRequest', [this.LOCATION_POSIO[0], this.LOCATION_POSIO[1], 7]
-      );
+    moveMap () {
+      this.$root.channel.postRequest('MapMoveRequest',
+        [this.LOCATION_POSIO[0], this.LOCATION_POSIO[1], this.zoomLevel]);
       this.$root.channel.log('MapModulePlugin.MapMoveRequest posted with data', [this.LOCATION_POSIO[0], this.LOCATION_POSIO[1], 7]);
-    },
-    getLink (e) {
-      let documentPathEnd = 'mapping/mapmodule/request/MapMoveRequest.md';
-      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   }
 }

@@ -13,7 +13,7 @@ channel.getMapPosition(function(data) {
     </CodeSnippet>
     <p>
       Click the button to get the result shown on the log:
-    <button id="btnGetMapPosition" class="btn btn-primary" @click="getMapPosition">Get map position</button>
+      <RunExampleButton @click="logMapPosition">Get map position</RunExampleButton>
     </p>
   </div>
 </template>
@@ -32,7 +32,7 @@ export default {
     }
   },
   methods: {
-    getMapPosition () {
+    logMapPosition () {
       this.$root.channel.getMapPosition((data) => {
         this.$root.channel.log('GetMapPosition: ', data);
       });

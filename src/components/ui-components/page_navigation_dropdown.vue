@@ -34,7 +34,11 @@ export default {
   methods: {
     pageSelected (event) {
       // change current page by pushing new route
-      this.$router.push(event.target.value);
+      let target = event.target.value;
+      if (target === initialPage.value) {
+        target = '/';
+      }
+      this.$router.push(target);
     },
     getOptGroups() {
       return pages.sections.map(section => section.name);
