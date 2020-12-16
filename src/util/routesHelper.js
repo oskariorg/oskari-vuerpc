@@ -33,7 +33,7 @@ const getRoutes = () => {
             routes.push({
                 path: '/' + page.name,
                 name: page.name,
-                // for navigation links, not related to router
+                // label is for navigation links, not related to router
                 label: page.label || page.name,
                 component: page
             })
