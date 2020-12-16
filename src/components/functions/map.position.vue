@@ -1,19 +1,34 @@
 <template>
-  <div id = "GetMapPosition">
+  <div>
+    <h2>{{ title }}</h2>
+    <p>getMapPosition() function on the RPC API client can be
+       used to get the center coordinates and zoom level for
+       the current map viewport.
+    </p>
+    <DocumentationLink type="bundle" :apiDoc="apiDocPage">Documentation for RPC functions</DocumentationLink>
+    <CodeSnippet>
+channel.getMapPosition(function(data) {
+  channel.log('GetMapPosition:', data);
+});
+    </CodeSnippet>
+    <p>
+      Click the button to get the result shown on the log:
     <button id="btnGetMapPosition" class="btn btn-primary" @click="getMapPosition">Get map position</button>
-    <div>Gets current map position</div>
-    <code-component snippet="channel.getMapPosition(function(data){
-      channel.log('GetMapPosition: ', data);
-    });"></code-component>
+    </p>
   </div>
 </template>
+
 <script>
+const apiDocPage = 'framework/rpc';
+const title = 'Get map position';
+
 export default {
   name: 'GetMapPosition',
-  label: 'Get map position',
+  label: title,
   data () {
     return {
-      desc: 'Get map position'
+      title,
+      apiDocPage
     }
   },
   methods: {

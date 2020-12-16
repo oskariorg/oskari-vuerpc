@@ -1,6 +1,7 @@
 <template>
     <a :href="documentationLink" target="_blank">
-        <slot>Link to documentation</slot>
+        <slot v:if="apiDoc">Link to documentation</slot>
+        <span></span>
     </a>
 </template>
 
@@ -11,11 +12,27 @@
 // https://oskari.org/apidoc/2.1.0/mapping/mapmodule/event/AfterMapMoveEvent.md
 export default {
     props: {
-        apiDoc: String
+        apiDoc: String,
+        type: String
+    },
+    data: {
+        genericMsg: 'Link to documentation'
     },
     computed: {
         documentationLink() {
-            return this.$root.documentPathEvent + this.apiDoc;
+            const linkConfig = this.$root.documentationLinks;
+            let baseUrl = linkConfig.base;
+            if (!this.type || !this.apiDoc) {
+                // fallback to api doc root
+                return baseUrl;
+            }
+            const typePath = linkConfig[this.type];
+            if (typePath) {
+                // link to events/requests/bundles
+                return baseUrl + typePath + this.apiDoc
+            }
+            // fallback to api doc root
+            return baseUrl;
         }
     }
 }

@@ -2,7 +2,7 @@
   <div>
     <h2>{{ title }}</h2>
     <p>Occurs after the map has been moved</p>
-    <DocumentationLink :apiDoc="apiDocPage">Documentation for {{title}}</DocumentationLink>
+    <DocumentationLink type="event" :apiDoc="apiDocPage">Documentation for {{title}}</DocumentationLink>
     <CodeSnippet>
 {
   'centerX': 411650.70779123,
@@ -13,6 +13,7 @@
     </CodeSnippet>
   </div>
 </template>
+
 <script>
 const apiDocPage = 'mapping/mapmodule/event/AfterMapMoveEvent.md';
 const title = 'AfterMapMoveEvent';

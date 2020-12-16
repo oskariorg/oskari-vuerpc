@@ -105,6 +105,12 @@
       // components when accessed through non-root router path
       this.$root.documentPathRequest = 'https://oskari.org/api/requests#' + this.expectedOskariVersion + '/';
       this.$root.documentPathEvent = 'https://oskari.org/api/events#' + this.expectedOskariVersion + '/';
+      this.$root.documentationLinks = {
+        base: 'https://oskari.org/api',
+        event: '/events#' + this.expectedOskariVersion + '/',
+        request: '/requests#' + this.expectedOskariVersion + '/',
+        bundle: '/bundles#' + this.expectedOskariVersion + '/'
+      }
     },
     mounted () {
       this.initConnection();
