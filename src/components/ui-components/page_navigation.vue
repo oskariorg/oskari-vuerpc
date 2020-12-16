@@ -3,8 +3,8 @@
     <div class="selectExamples">
     <h2>Select Action <NavigationDropdown :current="currentPage.name" /></h2>
     <div class="navigationLinkParent">
-      <span class="navigationLinkLeft"><router-link :to="navLinks.prev.path">Previous:  {{ navLinks.prev.name }}</router-link></span>
-      <span class="navigationLinkLeft"><router-link :to="navLinks.next.path">Next: {{ navLinks.next.name }}</router-link></span>
+      <span v-if="navLinks.prev" class="navigationLinkLeft"><router-link :to="navLinks.prev.path">Previous:  {{ navLinks.prev.label }}</router-link></span><br/>
+      <span v-if="navLinks.next" class="navigationLinkLeft"><router-link :to="navLinks.next.path">Next: {{ navLinks.next.label }}</router-link></span>
     </div>
   </div>
 </div>
@@ -53,7 +53,7 @@ export default {
   font-size: calc(0.34rem + 1.0vh);
 }
 .navigationLinkParent {
-  height:1.5em;
+  height:3em;
   max-width:33.75em;
 }
 .navigationLinkLeft {

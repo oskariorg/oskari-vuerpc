@@ -6,17 +6,18 @@ const getNextAndPrev = (current) => {
     if (currentIndex === -1) {
         currentIndex = 0;
     }
-    let prev = currentIndex - 1;
-    if (prev === -1) {
-        prev = routes.length - 1;
+    let prev = null;
+    if (currentIndex !== 0) {
+        prev = routes[currentIndex - 1];
     }
-    let next = currentIndex + 1;
-    if (next === routes.length) {
-        next = 0;
+    let next;
+    let nextIndex = currentIndex + 1;
+    if (nextIndex !== routes.length) {
+        next = routes[nextIndex];
     }
     return {
-        next: routes[next],
-        prev: routes[prev]
+        next,
+        prev
     }
 };
 
@@ -24,6 +25,7 @@ const getRoutes = () => {
     const routes = [{
         path: '/',
         name: pages.main.name,
+        label: pages.main.label,
         component: pages.main
     }];
     pages.sections.forEach(section => {
@@ -31,6 +33,8 @@ const getRoutes = () => {
             routes.push({
                 path: '/' + page.name,
                 name: page.name,
+                // for navigation links, not related to router
+                label: page.label || page.name,
                 component: page
             })
         });
