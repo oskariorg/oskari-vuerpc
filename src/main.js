@@ -9,13 +9,21 @@ import xml from 'highlight.js/lib/languages/xml';
 import 'highlight.js/styles/github.css';
 
 import code from './components/ui-components/codehighlight.vue';
+import DocumentationLink from './components/ui-components/documentation_link.vue';
 import VueRouter from 'vue-router';
 
 // register support for code highlighting. JS and HTML(xml) is all we need.
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('xml', xml);
 
+// Declare these as common components so pages don't need to declare these repeatedly
+// as they are used in all pages
+// TODO: remove code-component when its not used anymore
 Vue.component('code-component', code);
+// TODO: use CodeSnippet instead of code-component on pages
+Vue.component('CodeSnippet', code);
+Vue.component('DocumentationLink', DocumentationLink);
+
 Vue.use(VueRouter, BootstrapVue);
 
 const router = new VueRouter({

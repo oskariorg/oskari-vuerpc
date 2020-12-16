@@ -1,5 +1,6 @@
 <template>
-  <div id="gettingStarted">
+  <div>
+    <h2>{{ title }}</h2>
     <h3>Including the necessary stuff to get RPC up and running</h3>
     <div>Including RPC javascript in html available from:<br />
       <a href="https://github.com/oskariorg/rpc-client/tree/master/dist" target="_blank">https://github.com/oskariorg/rpc-client/tree/master/dist</a></div>
@@ -79,11 +80,13 @@ channel.getAllLayers(function (layers) {
 
 </template>
 <script>
+const title = 'Getting started';
 export default {
   name: 'gettingStarted',
-  label: 'Getting started',
+  label: title,
   data () {
     return {
+      title
     }
   }
 }

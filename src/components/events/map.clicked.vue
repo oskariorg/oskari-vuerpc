@@ -1,37 +1,37 @@
 <template>
-  <div id="MapClickedEvent" >
-    <div>Occurs after the map has been clicked</div>
+  <div>
+    <h2>{{ title }}</h2>
+    <p>
+      Occurs after the map has been clicked. Click the map to see the event in the log.
+    </p>
     <div>
       <a id="mapClicked" href="" @click="getLink">To the documentation</a>
     </div>
-    <code-component snippet="    {
-      'lon': 423424,
-      'lat': 6821888,
-      'x': 312,
-      'y': 236,
-      'ctrlKeyDown': false
-    }">
-  </code-component>
-</div>
+    <code-component>
+{
+  'lon': 423424,
+  'lat': 6821888,
+  'x': 312,
+  'y': 236,
+  'ctrlKeyDown': false
+}
+    </code-component>
+  </div>
 </template>
 <script>
-import helper from '../../util/mixins.js';
+const apiDocPage = 'mapping/mapmodule/event/MapClickedEvent.md';
+const title = 'MapClickedEvent';
 export default {
   name: 'MapClickedEvent',
+  label: title,
   data () {
     return {
-      desc: 'MapClickedEvent'
+      title
     }
   },
-  methods: {
-    mapClickedEvent (data) {
-      const marker = helper(channel).getMarkerTemplate();
-      marker.x = data.lon;
-      marker.y = data.lat;
-    },
-    getLink (e) {
-      var documentPathEnd = 'mapping/mapmodule/event/MapClickedEvent.md';
-      e.target.href = this.$root.documentPathEvent + documentPathEnd;
+  computed: {
+    documentationLink() {
+      return this.$root.documentPathEvent + apiDocPage;
     }
   }
 }

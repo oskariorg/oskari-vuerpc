@@ -63,10 +63,6 @@
         window.channel = channel;
         EVENTBUS.initChannelListeners(channel);
       },
-      exposeDocumentationPaths () {
-        this.$root.documentPathRequest = 'https://oskari.org/api/requests#latest/';
-        this.$root.documentPathEvent = 'https://oskari.org/api/events#latest/';
-      },
       registerListenersForRPCEvents () {
         // TODO: maybe get all events from channel instead of hardcoded list?
         // -> see EVENTBUS.initChannelListeners()
@@ -104,9 +100,14 @@
         */
       }
     },
+    created () {
+      // Set these up when created so they are available for
+      // components when accessed through non-root router path
+      this.$root.documentPathRequest = 'https://oskari.org/api/requests#' + this.expectedOskariVersion + '/';
+      this.$root.documentPathEvent = 'https://oskari.org/api/events#' + this.expectedOskariVersion + '/';
+    },
     mounted () {
       this.initConnection();
-      this.exposeDocumentationPaths();
     } 
   }
 </script>
