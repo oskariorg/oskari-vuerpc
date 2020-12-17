@@ -13,7 +13,7 @@ const apiDocPage = 'mapping/routingService/event/routeresultevent.md';
 const title = 'RouteResultEvent';
 
 export default {
-  name: 'RouteResultEvent',
+  name: title,
   label: title,
   data () {
     return {

@@ -1,95 +1,81 @@
 <template>
-  <div ref="MapTourRequest">
-    <div>Move the map along route for visualization purposes</div>
-    <button ref="btnMapTourRequest" class="btn btn-primary exampleready" @click="mapTourRequest">MapTourRequest</button>
-    <div>
-      <a id="mapTour" href="" @click="getLink">To the documentation</a>
-    </div>
-    <code-component snippet="
-      const x = 488704;
-      const y = 6939136;
-      const params = [
-        [
-          {
-            lon: x,
-            lat: y,
-            duration: 2000,
-            zoom: 3,
-            animation: 'zoomPan'
-          },
-          {
-            lon: x - 150000,
-            lat: y - 150000,
-            delay: 2500
-          },
-          {
-            lon: x + 75000,
-            lat: y,
-            animation: 'zoomPan',
-            zoom: 6
-          }
-        ],
-        {
-          zoom: 8,
-          animation: 'fly',
-          duration: 3000,
-          srsName: 'EPSG:3067'
-        }
-      ];
-      channel.postRequest('MapTourRequest', params);
-      channel.log('MapTourRequest posted with data', params);
-    "></code-component>
+  <div>
+    <h2>{{ title }}</h2>
+    <p>This request can be used to move the map programmatically
+       in an animated way along route points for visualization purposes.</p>
+    <DocumentationLink type="request" :apiDoc="apiDocPage">Documentation for {{requestName}}</DocumentationLink>
+   
+    <CodeSnippet>
+var routeSteps = {{ JSON.stringify(routeSteps, null, 2) }};
+var stepDefaults = {{ JSON.stringify(stepDefaults, null, 2) }};
+channel.postRequest('{{ requestName }}', [routeSteps, stepDefaults]);
+    </CodeSnippet>
+     <p>
+      You can send run the code above by clicking the button:
+    <RunExampleButton @click="mapTourRequest">{{requestName}}</RunExampleButton>
+    </p>
+     <p>
+    Note! That both AfterMapMoveEvents and MapTourEvents are triggered by the request.
+    The tour events can be used the progress of the tour and move events are triggered
+     normally since the map moves when it's going through the tour.
+    </p>
   </div>
 </template>
+
 <script>
+const apiDocPage = 'mapping/mapmodule/request/MapMoveRequest.md';
+const title = 'Move map along route';
+const requestName = 'MapTourRequest';
+
 export default {
-  name: 'MapTourRequest',
-  label: 'Move map along route',
+  name: requestName,
+  label: title,
   data () {
     return {
-      desc: 'Move map along route',
-      LOCATION_POSIO: [552935, 7332639]
+      title,
+      apiDocPage,
+      requestName,
+      routeSteps,
+      stepDefaults
     }
   },
   methods: {
     mapTourRequest () {
-      const x = 488704;
-      const y = 6939136;
-      const params = [
-        [
-          {
-            lon: x,
-            lat: y,
-            duration: 2000,
-            zoom: 3,
-            animation: 'zoomPan'
-          },
-          {
-            lon: x - 150000,
-            lat: y - 150000,
-            delay: 2500
-          },
-          {
-            lon: x + 75000,
-            lat: y,
-            animation: 'zoomPan',
-            zoom: 6
-          }
-        ],
-        {
-          zoom: 8,
-          animation: 'fly',
-          duration: 3000,
-          srsName: 'EPSG:3067'
-        }
-      ];
-      this.$root.channel.postRequest('MapTourRequest', params);
-      this.$root.channel.log('MapTourRequest posted with data', params);
-    },
-    getLink (e) {
-      let documentPathEnd = 'mapping/mapmodule/request/MapTourRequest.md';
-      e.target.href = this.$root.documentPathRequest + documentPathEnd;
+      const params = [routeSteps, stepDefaults];
+      this.$root.channel.postRequest(requestName, params);
+      this.$root.channel.log(requestName + ' posted with data', params);
     }
   }
-}
+};
+
+const x = 488704;
+const y = 6939136;
+
+const routeSteps = [
+  {
+    lon: x,
+    lat: y,
+    duration: 2000,
+    zoom: 3,
+    animation: 'zoomPan'
+  },
+  {
+    lon: x - 150000,
+    lat: y - 150000,
+    delay: 2500
+  },
+  {
+    lon: x + 75000,
+    lat: y,
+    animation: 'zoomPan',
+    zoom: 6
+  }
+];
+
+const stepDefaults = {
+  zoom: 8,
+  animation: 'fly',
+  duration: 3000,
+  srsName: 'EPSG:3067'
+};
 </script>
