@@ -1,5 +1,5 @@
 <template>
-  <div id="action">
+  <div>
     <select :value="currentPage" @change="pageSelected" id="actionSelector">
       <option :value="initialPage.value">{{ initialPage.text }}</option>
       <optgroup v-for="section in getOptGroups()" :key="section" :label="section">
@@ -60,9 +60,6 @@ export default {
 </script>
 
 <style>
-#action {
-  display: inline-block;
-}
 #actionSelector {
   max-width:100%;
   font-size: 20px;
