@@ -47,8 +47,7 @@ Vue.directive('highlightjs', {
       }
       hljs.highlightBlock(target)
     })
-  }
-  /*,
+  },
   componentUpdated: function (el, binding) {
     // after an update, re-fill the content and then highlight
     const targets = el.querySelectorAll('code')
@@ -58,7 +57,7 @@ Vue.directive('highlightjs', {
         hljs.highlightBlock(target)
       }
     })
-  }*/
+  }
 });
 
 new Vue({

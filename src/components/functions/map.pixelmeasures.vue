@@ -1,51 +1,118 @@
 <template>
-  <div id = "GetPixelMeasuresInScale">
-    <div class="measure-group">
-      <div class="col-measure">
-        <input class="plot-scale-control" name="plot-scale" ref="inputPlotScale" placeholder="Plot scale for A4 plot area">
-        <button id="btnGetPixelMeasuresInScale" class="btn btn-primary exampleready" @click="getPixelMeasuresInScale">Get A4 plot area on a map</button>
-        <div>Get pixel measures for A4 size plot area in the requested scale. Paper size scale is optimized, if scale is not inserted  / 0-value-scale -> remove plot area box  </div>
-      </div>
-    </div>
-    <code-component snippet="var A4_210mm = 210;
-    var A4_297mm = 297;
-    channel.getPixelMeasuresInScale([[A4_210mm, A4_297mm], scale], function(data){
-      channel.log('GetPixelMeasuresInScale: ', data);
-    });"></code-component>
+  <div>
+    <h2>{{ title }}</h2>
+    
+    <p>getPixelMeasuresInScale() function on the RPC API client can be
+       used to get the pixel measures for given real life object like
+       an A4 size paper sheet. This is useful for showing the end user
+       what part of the map fits in the paper sheet when using a given scale.
+    </p>
+
+    <DocumentationLink type="bundle" :apiDoc="apiDocPage">Documentation for RPC functions</DocumentationLink>
+    <p>
+      <input v-model="scale" class="plot-scale-control" placeholder="Plot scale for A4 plot area">
+      <RunExampleButton @click="getPixelMeasuresInScale">Show A4 plot area on a map</RunExampleButton>
+      
+      Get pixel measures for A4 size plot area in the requested scale. 
+      Remove box by setting value to 0.
+    </p>
+    <CodeSnippet>
+var A4_size_mm = {{ JSON.stringify(A4_size_mm) }};
+channel.getPixelMeasuresInScale([A4_size_mm, {{ scale }}], function (data) {
+  channel.log('GetPixelMeasuresInScale: ', data);
+});
+    </CodeSnippet>
   </div>
 </template>
+
 <script>
+const apiDocPage = 'framework/rpc';
+const title = 'Get pixel measures in scale';
+const A4_size_mm = [210, 297];
+const BOX_ID = 'id_plot_bbox';
+const MAP_ID = 'publishedMap';
+
 import mixins from '../../util/mixins.js';
 export default {
   name: 'GetPixelMeasuresInScale',
-  label: 'Get pixel measures in scale',
+  label: title,
   data () {
     return {
-      desc: 'Get pixel measures in scale',
-      savedPlotAreaData: null,
-      pixelmeasures: {},
-      mixins: mixins(channel)
+      title,
+      apiDocPage,
+      A4_size_mm,
+      scale: 500000
+    }
+  },
+  watch: {
+    scale (value) {
+      this.scale = value;
     }
   },
   methods: {
     getPixelMeasuresInScale () {
-      const scale = this.$refs.inputPlotScale.value;
-      if (scale && Number(scale) < 1) {
-        this.$store.state.map;
-        this.$root.channel.log('GetPixelMeasuresInScale: ', ' old plot area removed, if any exists');
-        this.$store.state.savedPlotAreaData = null;
+      const channel = this.$root.channel;
+      const userInput = Number(this.scale);
+      if (userInput < 1) {
+        if (removeBox()) {
+          channel.log('Removed plot area');
+        }
         return;
       }
-      if (!scale || scale === '') {
-        this.$root.channel.getPixelMeasuresInScale([[210, 297]], (data) => {
-          this.$store.state.savedPlotAreaData = [[210, 297], data.scale];
-        });
-      } else {
-        this.$store.state.savedPlotAreaData = [[210, 297], scale];
-      }
-
-      this.mixins(channel).plotPlotArea([[210, 297], scale], this.$store.state.map);
+      // TODO: clean up after map move?
+      
+      channel.getPixelMeasuresInScale([A4_size_mm, userInput], (data) => {
+        channel.log('GetPixelMeasuresInScale: ', data);
+        const success = drawBoxOnMap(data.pixelMeasures[0], data.pixelMeasures[1]);
+        if (!success) {
+          channel.log('Map is smaller than printable area, area not shown');
+        }
+      });
     }
+  },
+  beforeDestroy: () => {
+    // Clean up when user leaves the example
+    removeBox();
   }
 }
+
+const removeBox = () => {
+  const boxEl = document.getElementById(BOX_ID);
+  if (boxEl) {
+      boxEl.remove();
+  }
+  return !!boxEl;
+}
+
+const drawBoxOnMap = (width, height) => {
+  // clean up previous one
+  removeBox();
+  const mapEl = document.getElementById(MAP_ID);
+  const bounds = mapEl.getBoundingClientRect();
+  const boxTop = bounds.top + (mapEl.offsetHeight - height) / 2.0;
+  const boxLeft = bounds.left + (mapEl.offsetWidth - width) / 2.0;
+  if (mapEl.clientWidth < width ||
+    mapEl.clientHeight < height) {
+      // sanity check if the box is larger than the map element
+      // -> don't draw it
+    return false;
+  }
+  if (boxLeft <= 0 || boxTop <= 0) {
+    // nothing to draw
+    return false;
+  }
+  const box = document.createElement('div');
+  box.id = BOX_ID;
+  box.style = `overflow: hidden;
+          pointer-events:none;
+          position:absolute;
+          top:${boxTop - 35}px;
+          left:${boxLeft}px;
+          width:${width}px;
+          height:${height}px; 
+          border:2px solid red`;
+  mapEl.parentElement.appendChild(box);
+  return true;
+};
+
 </script>

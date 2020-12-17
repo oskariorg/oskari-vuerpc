@@ -79,7 +79,7 @@ export default {
     }
   },
   beforeDestroy: () => {
-    // Clean up when leaving the example
+    // Clean up when user leaves the example
     // NOTE! We don't have this.$root here so relying on global channel variable
     // const channel = this.$root.channel;
     channel.postRequest('VectorLayerRequest', [{
@@ -99,7 +99,7 @@ export default {
       this.$root.channel.log('VectorLayerRequest posted with data', [layerOptions]);
     },
     removeSimpleLayer () {
-      const layerOptions ={
+      const layerOptions = {
           layerId: LAYER_OPTS.simple.layerId,
           remove: true
       };

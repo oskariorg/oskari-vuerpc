@@ -27,31 +27,6 @@ const mixins = (channel) => {
         el.style = 'display: none';
       }, timeOut * 1000);
     },
-    plotPlotArea: (plotAreaData, mapEl) => {
-      channel.getPixelMeasuresInScale(plotAreaData, (data) => {
-        channel.log('GetPixelMeasuresInScale: ', data);
-        const cx = mapEl;
-        const bounds = cx.getBoundingClientRect();
-        const boxTop = bounds.top + (cx.offsetHeight - data.pixelMeasures[1]) / 2.0;
-        const boxLeft = bounds.left + (cx.offsetWidth - data.pixelMeasures[0]) / 2.0;
-        if (cx.parentElement.querySelector('#id_plot_bbox')) {
-          cx.parentElement.querySelector('#id_plot_bbox').remove();
-        }
-        if (boxLeft > 0 && boxTop > 0) {
-          const box =
-          `<div id="id_plot_bbox" style="overflow: hidden; pointer-events:none; position:absolute;
-          top:${boxTop - 35}px;
-          left:${boxLeft}px;
-          width:${data.pixelMeasures[0]}px;
-          height:${data.pixelMeasures[1]}px; border:2px solid red"> </div>`;
-
-          const parser = new DOMParser();
-          const el = parser.parseFromString(box, 'text/html');
-          const element = el.getElementById('id_plot_bbox');
-          cx.parentElement.appendChild(element);
-        }
-      });
-    },
     getMarkerTemplate: (type) => {
       const template = {
         size: 4,
