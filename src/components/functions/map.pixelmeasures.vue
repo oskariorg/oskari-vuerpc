@@ -33,7 +33,10 @@ const title = 'Get pixel measures in scale';
 const A4_size_mm = [210, 297];
 const BOX_ID = 'id_plot_bbox';
 const MAP_ID = 'publishedMap';
+// listeners is references to event listeners registered
+// by this example so we can remove them when the user leaves the page
 const listeners = [];
+// current scale is used to cleanup existing box if user zooms
 let currentScale;
 
 export default {
@@ -99,10 +102,12 @@ export default {
 
 const removeBox = () => {
   const boxEl = document.getElementById(BOX_ID);
-  if (boxEl) {
-      boxEl.remove();
+  if (!boxEl) {
+    // return false to notify caller there wasn't a box to be removed
+    return false;
   }
-  return !!boxEl;
+  boxEl.remove();
+  return true;
 }
 
 const drawBoxOnMap = (width, height) => {
@@ -115,7 +120,7 @@ const drawBoxOnMap = (width, height) => {
   if (mapEl.clientWidth < width ||
     mapEl.clientHeight < height) {
       // sanity check if the box is larger than the map element
-      // -> don't draw it
+      // -> don't draw it and return false to notify caller that box wasn't added
     return false;
   }
   if (boxLeft <= 0 || boxTop <= 0) {
