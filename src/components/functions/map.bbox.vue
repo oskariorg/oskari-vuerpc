@@ -12,7 +12,7 @@
 channel.getMapBbox(function (data) {
   channel.log('GetMapBbox:', data);
 });
-    </CodeSnippet>    
+    </CodeSnippet>
     <p>
       Click the button to get the result shown on the log:
       <RunExampleButton @click="getMapBbox">Get map bbox</RunExampleButton>
