@@ -12,7 +12,7 @@
     </CodeSnippet>
     <p>
       Click the button to run the code above:
-    <RunExampleButton @click="rotateMap(rotateDegrees)">{{ requestName }}</RunExampleButton>
+    <RunExampleButton @click="rotateMap(rotateDegrees)">Rotate map to {{ rotateDegrees }} degrees</RunExampleButton>
     </p>
     
     <p>
