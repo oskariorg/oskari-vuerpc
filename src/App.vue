@@ -49,21 +49,6 @@
         this.currentPage = to;
       }
     },
-    methods: {
-      initConnection () {
-        const channel = OskariRPC.connect(
-          this.$refs.mapElement.getIframeElement(),
-          this.oskariDomain
-        );
-        // expose channel as global variable so it can be accessed from dev-console
-        channel.log = createLogger(this.$store.state.channelLogs);
-        createOnReady(channel, this.expectedOskariVersion);
-        // Note: this != this.$root
-        this.$root.channel = channel;
-        window.channel = channel;
-        EVENTBUS.initChannelListeners(channel);
-      }
-    },
     created () {
       // Set these up when created so they are available for
       // components when accessed through non-root router path
@@ -77,7 +62,17 @@
       }
     },
     mounted () {
-      this.initConnection();
+        const channel = OskariRPC.connect(
+          this.$refs.mapElement.getIframeElement(),
+          this.oskariDomain
+        );
+        // expose channel as global variable so it can be accessed from dev-console
+        channel.log = createLogger(this.$store.state.channelLogs);
+        createOnReady(channel, this.expectedOskariVersion);
+        // Note: this != this.$root
+        this.$root.channel = channel;
+        window.channel = channel;
+        EVENTBUS.initChannelListeners(channel);
     } 
   }
 </script>

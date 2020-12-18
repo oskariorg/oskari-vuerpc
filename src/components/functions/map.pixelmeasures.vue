@@ -14,7 +14,7 @@
       <RunExampleButton @click="getPixelMeasuresInScale">Show A4 plot area on a map</RunExampleButton>
       
       Get pixel measures for A4 size plot area in the requested scale. 
-      Remove box by setting value to 0.
+      Remove box by setting value to 0 or zooming in/out.
     </p>
     <CodeSnippet>
 var A4_size_mm = {{ JSON.stringify(A4_size_mm) }};
@@ -26,13 +26,16 @@ channel.getPixelMeasuresInScale([A4_size_mm, {{ scale }}], function (data) {
 </template>
 
 <script>
+import EVENTBUS from '../../util/eventbus';
+
 const apiDocPage = 'framework/rpc';
 const title = 'Get pixel measures in scale';
 const A4_size_mm = [210, 297];
 const BOX_ID = 'id_plot_bbox';
 const MAP_ID = 'publishedMap';
+const listeners = [];
+let currentScale;
 
-import mixins from '../../util/mixins.js';
 export default {
   name: 'GetPixelMeasuresInScale',
   label: title,
@@ -70,9 +73,27 @@ export default {
       });
     }
   },
+  mounted () {
+    const channel = this.$root.channel;
+    channel.getMapPosition((data) => {
+        // initialize current scale when mounted
+        currentScale = data.scale;
+    });
+    listeners.push(EVENTBUS.on('AfterMapMoveEvent', (data) => {
+      if (currentScale !== data.scale) {
+        // wipe box if scale changes as the box should be redrawn
+        // TODO: current scale is not initialized if the user haven't moved the map
+        currentScale = data.scale;
+        removeBox();
+      }
+    }));
+  },
   beforeDestroy: () => {
     // Clean up when user leaves the example
     removeBox();
+    while (listeners.length) {
+      EVENTBUS.off('AfterMapMoveEvent', listeners.pop());
+    }
   }
 }
 

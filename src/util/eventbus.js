@@ -10,13 +10,13 @@ const getListeners = (eventName) => {
     return handlers;
 };
 
-const addListener = (eventName, callback) => {
+const on = (eventName, callback) => {
     const handlers = getListeners(eventName);
     handlers.push(callback);
     return callback;
 };
 
-const removeListener = (eventName, handler) => {
+const off = (eventName, handler) => {
     const handlers = getListeners(eventName);
     const indexToRemove = handlers.findIndex(handler);
     handlers.splice(indexToRemove, 1);
@@ -27,7 +27,7 @@ const notifyListeners = (eventName, data, channel) => {
     channel.log(eventName, data);
     // notify listeners in app
     getListeners(eventName)
-        .forEach(handler => handler(eventName, data));
+        .forEach(handler => handler(data));
 };
 
 const initChannelListeners = (channel) => {
@@ -47,8 +47,8 @@ const initChannelListeners = (channel) => {
 const getEventNames = () => Object.keys(listeners);
 
 export default {
-    addListener,
-    removeListener,
+    on,
+    off,
     getEventNames,
     initChannelListeners
 };
