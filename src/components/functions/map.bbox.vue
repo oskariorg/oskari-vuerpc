@@ -1,19 +1,36 @@
 <template>
-  <div id = "GetMapBbox">
-    <button id="btnGetMapBbox" class="btn btn-primary" @click="getMapBbox">Get map bbox</button>
-    <div>Gets the map's current extent</div>
-    <code-component snippet="channel.getMapBbox(function(data){
-      channel.log('GetMapBbox: ', data);
-    });"></code-component>
+  <div>
+    <h2>{{ title }}</h2>
+    
+    <p>
+      getMapBbox() function on the RPC API client can be
+      used to get the bbox coordinates for the current map viewport.
+    </p>
+    <DocumentationLink type="bundle" :apiDoc="apiDocPage">Documentation for RPC functions</DocumentationLink>
+
+    <CodeSnippet>
+channel.getMapBbox(function (data) {
+  channel.log('GetMapBbox:', data);
+});
+    </CodeSnippet>    
+    <p>
+      Click the button to get the result shown on the log:
+      <RunExampleButton @click="getMapBbox">Get map bbox</RunExampleButton>
+    </p>
   </div>
 </template>
+
 <script>
+const apiDocPage = 'framework/rpc';
+const title = 'Get map bbox';
+
 export default {
   name: 'GetMapBbox',
-  label: 'Get map bbox',
+  label: title,
   data () {
     return {
-      desc: 'Get map bbox'
+      title,
+      apiDocPage
     }
   },
   methods: {

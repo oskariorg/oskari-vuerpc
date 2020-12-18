@@ -7,7 +7,7 @@
     </p>
     <DocumentationLink type="bundle" :apiDoc="apiDocPage">Documentation for RPC functions</DocumentationLink>
     <CodeSnippet>
-channel.getMapPosition(function(data) {
+channel.getMapPosition(function (data) {
   channel.log('GetMapPosition:', data);
 });
     </CodeSnippet>
