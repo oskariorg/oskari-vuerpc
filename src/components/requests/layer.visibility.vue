@@ -1,7 +1,6 @@
 <template>
   <div>
-
-    <div>Change VECTOR layer visibility.</div>
+    <h2>{{ title }}</h2>
     
     <RunExampleButton @click="addFeaturesToMapRequest">AddFeaturesToMapRequest</RunExampleButton>
     <RunExampleButton @click="mapLayerVisibilityRequestHide">Hide vector layer</RunExampleButton>
@@ -11,22 +10,24 @@
 
     <p>Example: hide layer with id 'VECTOR'</p>
     <CodeSnippet>
-channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', ['VECTOR', false]);
+      channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', ['VECTOR', false]);
     </CodeSnippet>
     
     <p>Example: show layer with id 'VECTOR'</p>
     <CodeSnippet>
-channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', ['VECTOR', true]);
+      channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', ['VECTOR', true]);
     </CodeSnippet>
   </div>
 </template>
+
 <script>
+const title = 'Change map layer visibility';
 export default {
   name: 'LayerVisibility',
-  label: 'Change map layer visibility',
+  label: title,
   data () {
     return {
-      desc: 'Change map layer visibility'
+      title
     }
   },
   methods: {

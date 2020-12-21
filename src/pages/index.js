@@ -1,4 +1,4 @@
-import gettingStarted from '../components/GettingStarted.vue';
+import gettingStarted from './GettingStarted.vue';
 import map from './map';
 import marker from './marker';
 import features from './features';
