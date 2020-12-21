@@ -21,8 +21,9 @@ Vue.component('DocumentationLink', DocumentationLink);
 Vue.use(VueRouter, BootstrapVue);
 
 const router = new VueRouter({
-  routes: routesHelper.getRoutes(),
-  mode: 'history'
+  routes: routesHelper.getRoutes()
+  // history mode doesn't use hash in url and doesn't work when this is built and used as part of oskari.org
+  //, mode: 'history'
 });
 
 new Vue({
