@@ -1,18 +1,15 @@
 import mapLocation from './location.vue';
 import mapZoom from './zoom.vue';
-
 import layers from './layers.vue';
 
 import mapState from './state.vue';
-import mapClicked from '../../components/events/map.clicked.vue';
-
-import mapPixelmeasures from '../../components/functions/map.pixelmeasures.vue';
-import mapScreenshot from '../../components/functions/map.screenshot.vue';
-import mapRotate from '../../components/requests/rotate.map.vue';
-
-import layerStyle from '../../components/requests/layer.style.vue';
-
-import mapTour from '../../components/requests/map.tour.vue';
+import mapClicked from './map.clicked.vue';
+import mapRotate from './rotate.vue';
+import mapTour from './tour.vue';
+// The more funky ones at the bottom
+import mapScreenshot from './screenshot.vue';
+import mapPixelmeasures from './pixelmeasures.vue';
+import layerStyle from './layer.style.vue';
 
 export default {
     name: 'Map',
@@ -21,11 +18,11 @@ export default {
         mapZoom,
         layers,
         mapState,
-        mapTour,
         mapClicked,
-        mapPixelmeasures,
-        mapScreenshot,
         mapRotate,
+        mapTour,
+        mapScreenshot,
+        mapPixelmeasures,
         layerStyle
     ]
 };

@@ -1,11 +1,10 @@
 <template>
   <div>
     <h2>{{ title }}</h2>
-    <p>This request can be used to move the map programmatically.</p>
+    <h3>{{ requestName }} request</h3>
+    <p>The {{ requestName }} request can be used to rotate the map programmatically.</p>
 
     <DocumentationLink type="request" :apiDoc="apiDocPageRequest">Documentation for request: {{ requestName }}</DocumentationLink>
-    <br/>
-    <DocumentationLink type="event" :apiDoc="apiDocPageEvent">Documentation for event: {{ eventName }}</DocumentationLink>
     
     <CodeSnippet>
       channel.postRequest('{{ requestName }}', [{{ rotateDegrees }}]);
@@ -15,15 +14,19 @@
     <RunExampleButton @click="rotateMap(rotateDegrees)">Rotate map to {{ rotateDegrees }} degrees</RunExampleButton>
     </p>
     
+    <h3>{{ eventName }} event</h3>
     <p>
       The user can rotate the map by dragging it with "shift- and alt-keys" down while dragging.
-      You should also see a '{{ eventName }}' in the log after the map has rotated this way.
+      You should see a number of '{{ eventName }}' events in the log after the map has been rotated this way.
     </p>
+    <DocumentationLink type="event" :apiDoc="apiDocPageEvent">Documentation for event: {{ eventName }}</DocumentationLink>
     <p>
-      The programmatically rotated map does NOT trigger the event at the time of writing
+      Note! The programmatically rotated map does NOT trigger the event at the time of writing
       this example. This might change in the future.
     </p>
 
+    
+    <h3>Resetting rotation</h3>
     <p>To reset rotation you can use the same request without parameters:</p>  
     <CodeSnippet>
       channel.postRequest('{{ requestName }}', []);

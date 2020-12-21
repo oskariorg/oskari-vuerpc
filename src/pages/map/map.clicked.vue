@@ -2,9 +2,9 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      Occurs after the map has been clicked. Click the map to see the events in the log and below.
+      The {{ eventName }} occurs after the map has been clicked. Click the map to see the events in the log and below.
     </p>
-    <DocumentationLink type="event" :apiDoc="apiDocPage">Documentation for {{title}}</DocumentationLink>
+    <DocumentationLink type="event" :apiDoc="apiDocPage">Documentation for {{eventName}}</DocumentationLink>
     <CodeSnippet v-if="clickEvent" :snippet="clickEventSnippet" />
   </div>
 </template>
@@ -13,7 +13,8 @@
 import EVENTBUS from '../../util/eventbus';
 
 const apiDocPage = 'mapping/mapmodule/event/MapClickedEvent.md';
-const title = 'MapClickedEvent';
+const title = 'Reacting to map clicks';
+const eventName = 'MapClickedEvent';
 
 // listeners is references to event listeners registered
 // by this example so we can remove them when the user leaves the page
@@ -25,6 +26,7 @@ export default {
   data () {
     return {
       title,
+      eventName,
       apiDocPage,
       clickEvent: null
     }

@@ -664,32 +664,6 @@ var search = {
     "requestParameters": "Vantaa"
   }`
 }
-var layer = {
-  fill: `var layerId = 1387;
-  var params = {
-    SLD_BODY:
-    '&lt;StyledLayerDescriptor xmlns=\"http://www.opengis.net/sld\" xmlns:ogc=\"http://www.opengis.net/ogc\" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0.0" xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd"&gt;'+
-    '    &lt;NamedLayer&gt;'+
-    '    &lt;Name&gt;oskari:kunnat2013&lt;/Name&gt;'+
-    '    &lt;UserStyle&gt;'+
-    '    &lt;Title&gt;SLD Cook Book: Simple polygon&lt;/Title&gt;'+
-    '    &lt;FeatureTypeStyle&gt;'+
-    '    &lt;Rule&gt;'+
-    '    &lt;PolygonSymbolizer&gt;'+
-    '    &lt;Fill&gt;'+
-    '    &lt;CssParameter name="fill"&gt;#000080&lt;/CssParameter&gt;'+
-    '    &lt;CssParameter name="fill-opacity"&gt;#000080&lt;/CssParameter&gt;'+
-    '    &lt;/Fill&gt;'+
-    '    &lt;/PolygonSymbolizer&gt;'+
-    '    &lt;/Rule&gt;'+
-    '    &lt;/FeatureTypeStyle&gt;'+
-    '    &lt;/UserStyle&gt;'+
-    '    &lt;/NamedLayer&gt;'+
-    '    &lt;/StyledLayerDescriptor&gt;'
-  };
-
-  channel.postRequest('MapModulePlugin.MapLayerUpdateRequest', [layerId, true, params]);`
-}
 var drawing = {
   event: `{
     "name": "DrawingEvent",
@@ -703,4 +677,4 @@ var drawing = {
     "isFinished": true
   }`
 }
-export { features, wkt, feedback, infobox, marker, search, layer, drawing };
+export { features, wkt, feedback, infobox, marker, search, drawing };
