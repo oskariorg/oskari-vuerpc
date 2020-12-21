@@ -65,13 +65,12 @@ export default {
         }
         return;
       }
-      // TODO: clean up after map move?
       
       channel.getPixelMeasuresInScale([A4_size_mm, userInput], (data) => {
         channel.log('GetPixelMeasuresInScale: ', data);
         const success = drawBoxOnMap(data.pixelMeasures[0], data.pixelMeasures[1]);
         if (!success) {
-          channel.log('Map is smaller than printable area, area not shown');
+          channel.log('Map is smaller than printable area. Area not shown. Zoom out and try again.');
         }
       });
     }
