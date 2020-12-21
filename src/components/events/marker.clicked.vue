@@ -13,7 +13,7 @@
 <script>
 export default {
   name: 'MarkerClickEvent',
-  label: 'MapClickedEvent',
+  label: 'MarkerClickEvent',
   data () {
     return {
       desc: 'MarkerClickEvent'
