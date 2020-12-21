@@ -6,6 +6,8 @@ import featuresAdd from '../../components/requests/features.add.vue';
 import featuresLayer from '../../components/requests/features.layer.vue';
 import featuresZoom from '../../components/requests/features.zoom.vue';
 
+import layerVisibility from '../../components/requests/layer.visibility.vue';
+
 export default {
     name: 'Features',
     pages: [
@@ -15,6 +17,7 @@ export default {
         featuresUpdate,
         featuresAdd,
         featuresLayer,
-        featuresZoom
+        featuresZoom,
+        layerVisibility
     ]
 };

@@ -1,35 +1,23 @@
 <template>
-  <div ref="LayerVisibility">
-    <div>Change MAP layer visibility.</div>
-    <button class="btn btn-primary exampleready" @click="mapLayerVisibilityRequest">MapModulePlugin.MapLayerVisibilityRequest</button>
-    <div>
-      <a id="mapLayerVisibility" href="" @click="getLink">To the documentation</a>
-    </div>
-
-    <code-component snippet="//get a list of all available map layers and toggle the first one
-    channel.getAllLayers(function (layers) {
-      var layer = layers[0];
-      channel.postRequest(
-      'MapModulePlugin.MapLayerVisibilityRequest',
-      [layer.id, !layer.visible]
-      );
-      channel.log('MapModulePlugin.MapLayerVisibilityRequest sent with '+
-      'parameters: ', layer.id + ', ' + !layer.visible);
-    });"></code-component>
+  <div>
 
     <div>Change VECTOR layer visibility.</div>
-    <button id="btnAddFeaturesToMapRequest" class="btn btn-primary exampleready" @click="addFeaturesToMapRequest">AddFeaturesToMapRequest</button>
-    <button id="btnChangeMapLayerOpacityRequestHide" class="btn btn-primary exampleready" @click="mapLayerVisibilityRequestHide">Hide vector layer</button>
-    <button id="btnChangeMapLayerOpacityRequestShow" class="btn btn-primary exampleready" @click="mapLayerVisibilityRequestShow">Show vector layer</button>
-    <div>
-      <a id="changeOpacity" href="">To the documentation</a>
-    </div>
+    
+    <RunExampleButton @click="addFeaturesToMapRequest">AddFeaturesToMapRequest</RunExampleButton>
+    <RunExampleButton @click="mapLayerVisibilityRequestHide">Hide vector layer</RunExampleButton>
+    <RunExampleButton @click="mapLayerVisibilityRequestShow">Show vector layer</RunExampleButton>
+    
+    <DocumentationLink type="request" apiDoc="mapping/mapmodule/request/MapModulePlugin.MapLayerVisibilityRequest.md">Documentation for MapModulePlugin.MapLayerVisibilityRequest</DocumentationLink>
 
-    <code-component snippet="//hide layer with id==='VECTOR'
-    var layer_id = 'VECTOR';
-    channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', [layer_id, false]);
-    //show layer with id==='VECTOR'
-    channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', [layer_id, true]);"></code-component>
+    <p>Example: hide layer with id 'VECTOR'</p>
+    <CodeSnippet>
+channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', ['VECTOR', false]);
+    </CodeSnippet>
+    
+    <p>Example: show layer with id 'VECTOR'</p>
+    <CodeSnippet>
+channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', ['VECTOR', true]);
+    </CodeSnippet>
   </div>
 </template>
 <script>

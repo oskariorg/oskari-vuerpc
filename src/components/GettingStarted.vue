@@ -82,7 +82,7 @@ channel.getAllLayers(function (layers) {
 <script>
 const title = 'Getting started';
 export default {
-  name: 'gettingStarted',
+  name: 'GettingStarted',
   label: title,
   data () {
     return {
