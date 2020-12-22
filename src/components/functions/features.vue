@@ -2,36 +2,42 @@
   <div id="GetFeatures">
     <div>
       1. Add features to map
-      <button id="btnAddFeaturesToMapRequest" class="btn btn-primary exampleready" @click="addFeatures" >AddFeaturesToMapRequest</button>
+      <RunExampleButton @click="addFeatures">AddFeaturesToMapRequest</RunExampleButton>
     </div>
 
     <div>
       2. Get features grouped by layers
-      <button id="btnGetFeaturesFunction" class="btn btn-primary exampleready" @click="getFeatures(true)" >getFeatures(true)</button>
+      <RunExampleButton @click="getFeatures(true)">getFeatures(true)</RunExampleButton>
     </div>
-    <code-component>
-    channel.getFeatures([true], function(data) {
-      channel.log('GetFeatures: ', data);
-    });
-    </code-component>
+    <CodeSnippet>
+channel.getFeatures([true], function (data) {
+  channel.log('GetFeatures:', data);
+});
+    </CodeSnippet>
+    <DocumentationLink type="bundle" :apiDoc="apiDocBundle">Documentation for RPC functions</DocumentationLink>
     <div>
       Get only layerIds without features
-      <button id="btnGetFeaturesFunction" class="btn btn-primary exampleready" @click="getFeatures">getFeatures()</button>
+      <RunExampleButton @click="getFeatures">getFeatures()</RunExampleButton>
     </div>
-    <code-component>
-      channel.getFeatures([], function(data) {
-        channel.log('GetFeatures: ', data);
-      });
-    </code-component>
+    <CodeSnippet>
+channel.getFeatures([], function (data) {
+  channel.log('GetFeatures:', data);
+});
+    </CodeSnippet>
   </div>
 </template>
+
 <script>
+const title = 'Get features';
+const apiDocBundle = 'framework/rpc';
+
 export default {
   name: 'GetFeatures',
-  label: 'Get features',
+  label: title,
   data () {
     return {
-      desc: 'Get features'
+      title,
+      apiDocBundle
     }
   },
   methods: {
