@@ -27,6 +27,7 @@
   import 'bootstrap/dist/css/bootstrap.css';
   import 'bootstrap-vue/dist/bootstrap-vue.css'
   import style from './style.css';
+  const listeners = [];
 
   export default {
     components: {
@@ -61,6 +62,19 @@
         bundle: '/bundles#' + this.expectedOskariVersion + '/'
       }
     },
+    methods: {
+      rpcAppShowMessage (message, secondsToShow = 5) {
+        const messageBoxEl = this.$refs.messageBox;
+        messageBoxEl.innerText = message;
+        // replace linebreaks
+        messageBoxEl.innerHtml = messageBoxEl.innerText.replace(/\n/g, '<br />');
+        messageBoxEl.style = 'display: block';
+
+        setTimeout(() => {
+          messageBoxEl.style = 'display: none';
+        }, secondsToShow * 1000);
+      }
+    },
     mounted () {
         const channel = OskariRPC.connect(
           this.$refs.mapElement.getIframeElement(),
@@ -73,7 +87,16 @@
         this.$root.channel = channel;
         window.channel = channel;
         EVENTBUS.initChannelListeners(channel);
-    } 
+        listeners.push(EVENTBUS.on('rpcAppDisplayMessage', (event) => {
+          this.rpcAppShowMessage(event.msg, event.seconds);
+        }));
+    },
+    beforeDestroy: () => {
+      // Clean up when user leaves the example
+      while (listeners.length) {
+        EVENTBUS.off('rpcAppDisplayMessage', listeners.pop());
+      }
+    }
   }
 </script>
 

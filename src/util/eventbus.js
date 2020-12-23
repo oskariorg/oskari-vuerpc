@@ -24,7 +24,9 @@ const off = (eventName, handler) => {
 
 const notifyListeners = (eventName, data, channel) => {
     // log them for user to see on the page
-    channel.log(eventName, data);
+    if (channel) {
+        channel.log(eventName, data);
+    }
     // notify listeners in app
     getListeners(eventName)
         .forEach(handler => handler(data));
@@ -50,5 +52,6 @@ export default {
     on,
     off,
     getEventNames,
+    notify: (name, data) => notifyListeners(name, data),
     initChannelListeners
 };
