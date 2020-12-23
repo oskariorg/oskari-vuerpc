@@ -17,13 +17,50 @@
 </template>
 
 <script>
+import EVENTBUS from '../../util/eventbus';
+import { getMarkerTemplate } from '../../util/markers_helpers';
 const title = 'Perform a search';
 
 const requestName = 'SearchRequest';
 const apiDocPageRequest = 'framework/search/request/SearchRequest.md';
+const listeners = [];
+
+const showPopup = (msg, seconds = 5) => {
+  EVENTBUS.notify('rpcAppDisplayMessage', { msg, seconds });
+};
+
+const SEARCH_RESULT_MARKER_ID = 'REPORT_MARKER';
+const handleSearchResult = (data, channel) => {
+    if (!data.success) {
+      showPopup('Search error: ' + data.result.responseText);
+      return;
+    }
+    if (data.result.totalCount === 0) {
+      showPopup('No items found - search key: ' + data.requestParameters);
+      return;
+    }
+    const firstResult = data.result.locations[0];
+
+    // move map to show first result
+    channel.postRequest('MapMoveRequest', [firstResult.lon, firstResult.lat, {
+      scale: firstResult.zoomScale
+    }]);
+
+    // add a marker for first result
+    const marker = getMarkerTemplate(firstResult.lon, firstResult.lat,
+      firstResult.name + '_' + firstResult.type + '_' + firstResult.region);
+    channel.postRequest('MapModulePlugin.AddMarkerRequest', [marker, SEARCH_RESULT_MARKER_ID]);
+
+    if (data.result.totalCount === 1) {
+      showPopup('Zoomed to ' + firstResult.name)
+      return;
+    }
+    const list = data.result.locations.map(loc => loc.name + ' / ' + loc.type + ' / ' + loc.region);
+    showPopup('Zoomed to 1st one -  \n ' + list.join('\n'));
+}
 
 export default {
-  name: 'SearchRequest',
+  name: requestName,
   label: title,
   data () {
     return {
@@ -43,7 +80,16 @@ export default {
   methods: {
     searchRequest () {
       this.$root.channel.postRequest(requestName, [this.query]);
-      this.$root.channel.log(SearchRequest + ' posted with data', data);
+      this.$root.channel.log(requestName + ' posted with data', this.query);
+    }
+  },
+  mounted () {
+    listeners.push(EVENTBUS.on('SearchResultEvent', (data) => handleSearchResult(data, this.$root.channel)));
+  },
+  beforeDestroy: () => {
+    // Clean up when user leaves the example
+    while (listeners.length) {
+      EVENTBUS.off('SearchResultEvent', listeners.pop());
     }
   }
 }
