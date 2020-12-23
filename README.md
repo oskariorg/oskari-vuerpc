@@ -77,11 +77,20 @@ There's a global `<DocumentationLink>` tag for linking documentation from oskari
 
 ### Code examples
 
-There's a global `<CodeSnippet>` tag for show-casing example code. Use the code as body content for `CodeSnippet` whenever you can to improve readability. If you need the show-cased code to change during runtime you can use this approach:
+There's a global `<CodeSnippet>` tag for show-casing example code and `<RunExampleButton>` so we can easily change the visuals for that button. Use the code as body content for `CodeSnippet` whenever you can to improve readability. You should always try to render the code that is actually used for the example as code-snippet instead of hardcoding the parameters in the text and defining them again for the actual "runExample"
+
+If you need the show-cased code to change during runtime you can use this approach (clickEventSnippet):
 
 ```
 <template>
+  <div>
+    <CodeSnippet>
+    var params = {{ JSON.stringify(exampleParams, null, 2) }};
+    doStuff(params);
+    </CodeSnippet>
     <CodeSnippet v-if="clickEvent" :snippet="clickEventSnippet" />
+    <RunExampleButton @click="runExample">Run the example code</RunExampleButton>
+  </div>
 </template>
 
 <script>
@@ -90,7 +99,10 @@ export default {
   data () {
     return {
       ...,
-      clickEvent: null
+      clickEvent: null,
+      exampleParams: {
+        some: 'thing'
+      }
     }
   },
   computed: {
@@ -98,6 +110,13 @@ export default {
       // Changing slot content won't update the code highlight at runtime
       // If we pass the whole snippet as prop it will be updated as expected
       return JSON.stringify(this.clickEvent, null, 2);
+    }
+  },
+  methods: {
+    runExample () {
+        // do stuff with this.exampleParams so we show the same snippet as an example
+        // AND use the same data as param for running the code
+        doStuff(this.exampleParams);
     }
   },
   mounted () {
@@ -114,3 +133,14 @@ export default {
 }
 </script>
 ```
+
+### Documentation links
+
+There's a global `<DocumentationLink>` tag for linking documentation from oskari.org/api. The type is one of `event`, `request` or `bundle` depending what you want to link:
+
+```
+    <DocumentationLink type="event" apiDoc="mapping/mapmodule/event/MapClickedEvent.md" />
+```
+
+
+    <RunExampleButton @click="rotateMap">Reset Rotation</RunExampleButton>
