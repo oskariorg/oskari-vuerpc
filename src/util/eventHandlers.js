@@ -1,59 +1,13 @@
-import helperFactory from './mixins';
+import EVENTBUS from './eventbus';
+
+const showPopup = (msg, seconds = 5) => {
+  EVENTBUS.notify('rpcAppDisplayMessage', { msg, seconds });
+};
 
 export const eventHandlers = {
-  SearchResultEvent: (channel, data) => {
-    const mixins = helperFactory(channel);
-    const USER_MARKER_ID = 'REPORT_MARKER';
-    const el = messageBox;
-    if (data.success && data.result.totalCount > 0) {
-      const search1 = data.result.locations[0];
-      const zoom = {};
-      zoom.scale = search1.zoomScale;
-      mixins.moveMap(search1.lon, search1.lat, zoom);
-      // add a marker to 1st search item
-      const marker = mixins.getMarkerTemplate();
-      marker.x = search1.lon;
-      marker.y = search1.lat;
-      marker.msg = search1.name + '_' + search1.type + '_' + search1.village;
-      mixins.addMarker(marker, USER_MARKER_ID);
-      if (data.result.totalCount === 1) {
-        mixins.displayMessage(el, 'Zoomed to ' + search1.name, 5);
-      } else if (data.result.totalCount > 1) {
-        let items = '';
-        data.result.locations.forEach(
-          function addItem (s) { items = items + s.name + ' / ' + s.type + ' / ' + s.village + '\n'; }
-        );
-
-        mixins.displayMessage(el, 'Zoomed to 1st one -  \n ' + items, 5);
-      }
-    } else if (data.success && data.result.totalCount === 0) {
-      mixins.displayMessage(el, 'No items found - search key: ' + data.requestParameters.searchKey, 5);
-    } else {
-      mixins.displayMessage(el, 'Search error: ' + data.result.responseText, 5);
-    }
-  },
-  MapClickedEvent: (channel, data) => {
-    const mixins = helperFactory(channel);
-    // add a marker to clicked spot -
-    const marker = mixins.getMarkerTemplate();
-    marker.x = data.lon;
-    marker.y = data.lat;
-    //  addMarker(marker, USER_MARKER_ID); -> Use Marker requests
-  },
-  AfterMapMoveEvent: (channel, data, ctx) => {
-    // Replot Plot area if zoom is changed
-    if (ctx.$store.savedZoom && ctx.$store.savedZoom !== data.zoom && ctx.$store.state.savedPlotAreaData) {
-      ctx.$store.savedZoom = data.zoom;
-      ctx.mixins.plotPlotArea(ctx.$store.state.savedPlotAreaData, ctx.$store.state.map);
-    } else if (!ctx.$store.savedZoom && ctx.$store.state.savedPlotAreaData) {
-      ctx.$store.savedZoom = data.zoom;
-      ctx.mixins.plotPlotArea(ctx.$store.state.savedPlotAreaData, ctx.$store.state.map);
-    }
-  },
   RouteResultEvent: (channel, data) => {
-    const mixins = helperFactory(channel);
     if (!data || !data.success) {
-      mixins.displayMessage('Getting routes failed ! - zoom map center around 1 km to nearest public trafic stop', 5);
+      showPopup('Getting routes failed ! - zoom map center around 1 km to nearest public trafic stop');
     } else {
       let geoJSON = data && data.plan && data.plan.itineraries && data.plan.itineraries.length ? data.plan.itineraries[0].geoJSON : undefined;
       // Plot routes
@@ -411,11 +365,10 @@ export const eventHandlers = {
     }
   },
   FeedbackResultEvent: (channel, data) => {
-    const mixins = helperFactory(channel);
     if (!data || !data.success) {
-      mixins.displayMessage('Getting feedback response failed ! ', 5);
+      showPopup('Getting feedback response failed ! ');
     } else {
-      mixins.displayMessage('Getting feedback response success ! ', 5);
+      showPopup('Getting feedback response success ! ');
       const geoJSON = data && data.data && data.data.getFeedback ? data.data.getFeedback : undefined;
       // Plot routes
       if (geoJSON) {
