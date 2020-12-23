@@ -1,6 +1,6 @@
 # Oskari Rpc-examples
 
-> Examples demonstraiting the RPC functionality of Oskari
+> Examples demonstrating the RPC functionality of Oskari
 
 ## Build Setup
 
@@ -65,4 +65,52 @@ import EVENTBUS from '../../util/eventbus';
 const showPopup = (msg, seconds = 5) => {
   EVENTBUS.notify('rpcAppDisplayMessage', { msg, seconds });
 };
+```
+
+### Documentation links
+
+There's a global `<DocumentationLink>` tag for linking documentation from oskari.org/api. The type is one of `event`, `request` or `bundle` depending what you want to link:
+
+```
+    <DocumentationLink type="event" apiDoc="mapping/mapmodule/event/MapClickedEvent.md" />
+```
+
+### Code examples
+
+There's a global `<CodeSnippet>` tag for show-casing example code. Use the code as body content for `CodeSnippet` whenever you can to improve readability. If you need the show-cased code to change during runtime you can use this approach:
+
+```
+<template>
+    <CodeSnippet v-if="clickEvent" :snippet="clickEventSnippet" />
+</template>
+
+<script>
+export default {
+  ...
+  data () {
+    return {
+      ...,
+      clickEvent: null
+    }
+  },
+  computed: {
+    clickEventSnippet () {
+      // Changing slot content won't update the code highlight at runtime
+      // If we pass the whole snippet as prop it will be updated as expected
+      return JSON.stringify(this.clickEvent, null, 2);
+    }
+  },
+  mounted () {
+    listeners.push(EVENTBUS.on('MapClickedEvent', (data) => {
+      this.clickEvent = data;
+    }));
+  },
+  beforeDestroy: () => {
+    // Clean up when user leaves the example
+    while (listeners.length) {
+      EVENTBUS.off('MapClickedEvent', listeners.pop());
+    }
+  }
+}
+</script>
 ```
