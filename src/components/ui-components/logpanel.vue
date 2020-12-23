@@ -4,7 +4,7 @@
       <div class="panel-body">
         <a href="#" v-on:click="clearLog">Clear log</a>
         <div ref="debuglog">
-          <div ref="logmsg" v-for="log in logs.slice().reverse()" :key="log.id">{{log.header}}
+          <div ref="logmsg" v-for="log in logItems" :key="log.id">{{log.header}}
             <pre v-if="log.json">{{log.json}}</pre>
           </div>
         </div>
@@ -12,30 +12,20 @@
     </div>
   </div>
 </template>
-<script>
-import { mapGetters } from 'vuex';
 
+<script>
 export default {
-  computed: {
-    // mapgetters is a helper to return your getter functions from the store
-    ...mapGetters({
-      logs: 'getLogs',
-      logmsg: 'getLogMsg'
-    })
+  props: {
+    logEvents: Array
   },
-  data () {
-    return {
+  computed: {
+    logItems () {
+      return this.logEvents.slice().reverse()
     }
   },
   methods: {
-    getLogElement () {
-      return this.$refs.debuglog;
-    },
     clearLog () {
-      this.$refs.logmsg.forEach((logmsg) => {
-        logmsg.remove();
-      });
-      this.$store.state.channelLogs = [];
+      this.$emit('clear');
     }
   }
 }

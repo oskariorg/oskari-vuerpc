@@ -5,7 +5,7 @@
       <div class="row">
         <EmbeddedMap ref="mapElement" :domain="oskariDomain" :uuid="embeddedMapUUID" />
         <ActionPanel :currentPage="currentPage" />
-        <LogPanel ref="logElement" />
+        <LogPanel :logEvents="logEventsStore" v-on:clear="clearLog" />
       </div>
       <div class="msg" ref="messageBox"></div>
     </div>
@@ -41,7 +41,8 @@
         oskariDomain: 'https://kartta.paikkatietoikkuna.fi',
         embeddedMapUUID: '053027f4-91d9-4351-aec4-c6a31dd68c56',
         expectedOskariVersion: '2.1.0',
-        currentPage: this.$route
+        currentPage: this.$route,
+        logEventsStore: []
        }
     },
     watch:{
@@ -73,6 +74,15 @@
         setTimeout(() => {
           messageBoxEl.style = 'display: none';
         }, secondsToShow * 1000);
+      },
+      clearLog () {
+        // If we re-assign the variable the log will stop working as 
+        //  the original reference was passed to createLogger()
+        // We need to keep the same variable and only empty it for the log
+        //  to work properly AFTER the clear
+        while (this.logEventsStore.length) {
+          this.logEventsStore.pop();
+        }
       }
     },
     mounted () {
@@ -80,11 +90,11 @@
           this.$refs.mapElement.getIframeElement(),
           this.oskariDomain
         );
-        // expose channel as global variable so it can be accessed from dev-console
-        channel.log = createLogger(this.$store.state.channelLogs);
+        channel.log = createLogger(this.logEventsStore);
         createOnReady(channel, this.expectedOskariVersion);
         // Note: this != this.$root
         this.$root.channel = channel;
+        // expose channel as global variable so it can be accessed from dev-console
         window.channel = channel;
         EVENTBUS.initChannelListeners(channel);
         listeners.push(EVENTBUS.on('rpcAppDisplayMessage', (event) => {
