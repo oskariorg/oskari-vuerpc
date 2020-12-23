@@ -31,6 +31,9 @@ const showPopup = (msg, seconds = 5) => {
 
 const SEARCH_RESULT_MARKER_ID = 'REPORT_MARKER';
 const handleSearchResult = (data, channel) => {
+    if (!data || !data.result || !channel) {
+      return;
+    }
     if (!data.success) {
       showPopup('Search error: ' + data.result.responseText);
       return;
