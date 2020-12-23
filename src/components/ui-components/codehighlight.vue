@@ -13,7 +13,7 @@ import javascript from 'highlight.js/lib/languages/javascript';
 import xml from 'highlight.js/lib/languages/xml';
 import 'highlight.js/styles/github.css';
 import '../../assets/monokai-sublime.css';
-import { getRawTextFromVueSlot } from '../../util/vue_slot_content_helper';
+import { getRawTextFromVueSlot } from './codehighlight_helper';
 
 // register support for code highlighting. JS and HTML(xml) is all we need.
 hljs.registerLanguage('javascript', javascript);
