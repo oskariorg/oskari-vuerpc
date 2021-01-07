@@ -58,6 +58,7 @@
 <script>
 export default {
   name: 'ShowInfoBoxForMarker',
+  label: 'Show info box for marker',
   data () {
     return {
       desc: 'Show info box for marker'

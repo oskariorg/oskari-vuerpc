@@ -51,6 +51,7 @@
 import { marker } from '../../util/examplecodes.js';
 export default {
   name: 'AddMarkerRequest',
+  label: 'Add or remove a marker',
   data () {
     return {
       desc: 'Add or remove  a marker',

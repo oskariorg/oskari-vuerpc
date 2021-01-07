@@ -7,9 +7,6 @@
       <div>
         <a id="addFeatures" href="" @click="getLink">To the documentation</a>
       </div>
-      <div>
-        <a href="" @click="getLayerRequestLink">To VectorLayerRequest documentation</a>
-      </div>
       <code-component :snippet="add"></code-component>
       <div>You can update feature style for example when you want to higlight feature from the map. </div>
       <button class="btn btn-primary exampleready" @click="updateFeatures">AddFeaturesToMapRequest (update feature)</button>
@@ -48,6 +45,7 @@
 import { features } from '../../util/examplecodes.js';
 export default {
   name: 'addOrRemoveFeatures',
+  label: 'Add, update or remove vector features',
   data () {
     return {
       desc: 'Add or remove vector features',

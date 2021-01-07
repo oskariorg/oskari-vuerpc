@@ -1,7 +1,7 @@
 <template>
   <div class="header">
     <div class="nav-content">
-      <div class="oskari-logo"><a href="http://www.oskari.org"><img src="../../assets/img/oskari_logo_white.png" style="height:65px"></img></a></div>
+      <div class="oskari-logo"><a href="http://www.oskari.org"><img src="../../assets/img/oskari_logo_white.png" style="height:65px" /></a></div>
       <nav>
         <ul id="nav navbar-nav" role="navigation">
           <li><a href="/guides">Guides</a></li>

@@ -24,6 +24,7 @@
 <script>
 export default {
   name: 'SendUIEvent',
+  label: 'Send UI event',
   data () {
     return {
       desc: 'Send UI event'

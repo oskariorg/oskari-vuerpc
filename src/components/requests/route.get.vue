@@ -25,6 +25,7 @@
 <script>
 export default {
   name: 'GetRouteRequest',
+  label: 'Get route',
   data () {
     return {
       desc: 'Get route'

@@ -40,6 +40,7 @@
 import { feedback } from '../../util/examplecodes.js';
 export default {
   name: 'PostFeedbackRequest',
+  label: 'Post users feedback data (poc)',
   data () {
     return {
       desc: 'Post users feedback data (poc)',

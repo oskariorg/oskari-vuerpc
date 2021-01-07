@@ -19,6 +19,7 @@
 import { infobox } from '../../util/examplecodes.js';
 export default {
   name: 'ShowInfoBox',
+  label: 'Show or hide info box',
   data () {
     return {
       desc: 'Show or hide info box',

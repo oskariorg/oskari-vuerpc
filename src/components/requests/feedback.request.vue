@@ -14,6 +14,7 @@
 import { feedback } from '../../util/examplecodes.js';
 export default {
   name: 'GetFeedbackRequest',
+  label: 'Get posted feedback data (poc)',
   data () {
     return {
       desc: 'Get posted feedback data (poc)',

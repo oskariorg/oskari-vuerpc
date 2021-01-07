@@ -1,54 +1,13 @@
-export const eventHandlers = {
-  'SearchResultEvent': (ctx, data) => {
-    const USER_MARKER_ID = 'REPORT_MARKER';
-    const el = ctx.$refs.messageBox;
-    if (data.success && data.result.totalCount > 0) {
-      let search1 = data.result.locations[0];
-      let zoom = {};
-      zoom.scale = search1.zoomScale;
-      ctx.mixins.moveMap(search1.lon, search1.lat, zoom);
-      // add a marker to 1st search item
-      const marker = ctx.mixins.getMarkerTemplate();
-      marker.x = search1.lon;
-      marker.y = search1.lat;
-      marker.msg = search1.name + '_' + search1.type + '_' + search1.village;
-      ctx.mixins.addMarker(marker, USER_MARKER_ID);
-      if (data.result.totalCount === 1) {
-        ctx.mixins.displayMessage(el, 'Zoomed to ' + search1.name, 5);
-      } else if (data.result.totalCount > 1) {
-        let items = '';
-        data.result.locations.forEach(
-          function addItem (s) { items = items + s.name + ' / ' + s.type + ' / ' + s.village + '\n'; }
-        );
+import EVENTBUS from './eventbus';
 
-        ctx.mixins.displayMessage(el, 'Zoomed to 1st one -  \n ' + items, 5);
-      }
-    } else if (data.success && data.result.totalCount === 0) {
-      ctx.mixins.displayMessage(el, 'No items found - search key: ' + data.requestParameters.searchKey, 5);
-    } else {
-      ctx.mixins.displayMessage(el, 'Search error: ' + data.result.responseText, 5);
-    }
-  },
-  'MapClickedEvent': (ctx, data) => {
-    // add a marker to clicked spot -
-    const marker = ctx.mixins.getMarkerTemplate();
-    marker.x = data.lon;
-    marker.y = data.lat;
-    //  addMarker(marker, USER_MARKER_ID); -> Use Marker requests
-  },
-  'AfterMapMoveEvent': (ctx, data) => {
-    // Replot Plot area if zoom is changed
-    if (ctx.$store.savedZoom && ctx.$store.savedZoom !== data.zoom && ctx.$store.state.savedPlotAreaData) {
-      ctx.$store.savedZoom = data.zoom;
-      ctx.mixins.plotPlotArea(ctx.$store.state.savedPlotAreaData, ctx.$store.state.map);
-    } else if (!ctx.$store.savedZoom && ctx.$store.state.savedPlotAreaData) {
-      ctx.$store.savedZoom = data.zoom;
-      ctx.mixins.plotPlotArea(ctx.$store.state.savedPlotAreaData, ctx.$store.state.map);
-    }
-  },
-  'RouteResultEvent': (ctx, data) => {
+const showPopup = (msg, seconds = 5) => {
+  EVENTBUS.notify('rpcAppDisplayMessage', { msg, seconds });
+};
+
+export const eventHandlers = {
+  RouteResultEvent: (channel, data) => {
     if (!data || !data.success) {
-      ctx.mixins.displayMessage('Getting routes failed ! - zoom map center around 1 km to nearest public trafic stop', 5);
+      showPopup('Getting routes failed ! - zoom map center around 1 km to nearest public trafic stop');
     } else {
       let geoJSON = data && data.plan && data.plan.itineraries && data.plan.itineraries.length ? data.plan.itineraries[0].geoJSON : undefined;
       // Plot routes
@@ -166,13 +125,13 @@ export const eventHandlers = {
           // Draw start points
           const leg = legs[i];
           let feature = {
-            'type': 'Feature',
-            'geometry': {
-              'type': 'Point',
-              'coordinates': [leg.from.lon, leg.from.lat]
+            type: 'Feature',
+            geometry: {
+              type: 'Point',
+              coordinates: [leg.from.lon, leg.from.lat]
             },
-            'properties': {
-              'mode': leg.mode
+            properties: {
+              mode: leg.mode
             }
           };
           features.push(feature);
@@ -182,13 +141,13 @@ export const eventHandlers = {
             const istop = leg.intermediateStops[j];
 
             feature = {
-              'type': 'Feature',
-              'geometry': {
-                'type': 'Point',
-                'coordinates': [istop.lon, istop.lat]
+              type: 'Feature',
+              geometry: {
+                type: 'Point',
+                coordinates: [istop.lon, istop.lat]
               },
-              'properties': {
-                'mode': 'stop_' + leg.mode
+              properties: {
+                mode: 'stop_' + leg.mode
               }
             };
             features.push(feature);
@@ -198,26 +157,26 @@ export const eventHandlers = {
         // Get end point
         const endPoint = legs[legs.length - 1];
         const endPointFeature = {
-          'type': 'Feature',
-          'geometry': {
-            'type': 'Point',
-            'coordinates': [endPoint.to.lon, endPoint.to.lat]
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [endPoint.to.lon, endPoint.to.lat]
           },
-          'properties': {
-            'mode': 'routeEndPoint'
+          properties: {
+            mode: 'routeEndPoint'
           }
         };
         features.push(endPointFeature);
 
         geoJSON = {
-          'type': 'FeatureCollection',
-          'crs': {
-            'type': 'name',
-            'properties': {
-              'name': 'EPSG:3067'
+          type: 'FeatureCollection',
+          crs: {
+            type: 'name',
+            properties: {
+              name: 'EPSG:3067'
             }
           },
-          'features': features
+          features: features
         };
 
         if (geoJSON) {
@@ -405,11 +364,11 @@ export const eventHandlers = {
       }
     }
   },
-  'FeedbackResultEvent': (ctx, data) => {
+  FeedbackResultEvent: (channel, data) => {
     if (!data || !data.success) {
-      ctx.mixins.displayMessage('Getting feedback response failed ! ', 5);
+      showPopup('Getting feedback response failed ! ');
     } else {
-      ctx.mixins.displayMessage('Getting feedback response success ! ', 5);
+      showPopup('Getting feedback response success ! ');
       const geoJSON = data && data.data && data.data.getFeedback ? data.data.getFeedback : undefined;
       // Plot routes
       if (geoJSON) {

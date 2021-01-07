@@ -10,6 +10,7 @@
 <script>
 export default {
   name: 'GetSupportedRequests',
+  label: 'Get supported requests',
   data () {
     return {
       desc: 'Get supported requests'

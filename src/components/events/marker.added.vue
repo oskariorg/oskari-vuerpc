@@ -14,6 +14,7 @@
 <script>
 export default {
   name: 'AfterAddMarkerEvent',
+  label: 'AfterAddMarkerEvent',
   data () {
     return {
       desc: 'AfterAddMarkerEvent'

@@ -12,6 +12,7 @@
 <script>
 export default {
   name: 'ShowProgressSpinnerRequest',
+  label: 'Show a progress spinner',
   data () {
     return {
       desc: 'Show a progress spinner',

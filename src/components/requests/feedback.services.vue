@@ -22,6 +22,7 @@
 import { feedback } from '../../util/examplecodes.js';
 export default {
   name: 'GetFeedbackServices',
+  label: 'Get feedback services (poc)',
   data () {
     return {
       desc: 'Get feedback services (poc)',

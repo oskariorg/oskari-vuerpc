@@ -13,6 +13,7 @@
 <script>
 export default {
   name: 'UserLocationEvent',
+  label: 'UserLocationEvent',
   data () {
     return {
       desc: 'UserLocationEvent'

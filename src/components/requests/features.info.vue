@@ -16,6 +16,7 @@
 <script>
 export default {
   name: 'GetFeatureInfoRequest',
+  label: 'Get feature info',
   data () {
     return {
       desc: 'Get feature info'

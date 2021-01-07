@@ -11,6 +11,7 @@
 import { search } from '../../util/examplecodes.js';
 export default {
   name: 'SearchResultEvent',
+  label: 'SearchResultEvent',
   data () {
     return {
       desc: 'SearchResultEvent',

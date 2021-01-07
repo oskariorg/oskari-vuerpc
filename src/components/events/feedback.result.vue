@@ -15,6 +15,7 @@
 <script>
 export default {
   name: 'FeedbackResultEvent',
+  label: 'FeedbackResultEvent',
   data () {
     return {
       desc: 'FeedbackResultEvent'
