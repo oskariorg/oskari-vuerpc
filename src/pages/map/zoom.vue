@@ -74,7 +74,7 @@ const apiDocPage = 'framework/rpc';
 const title = 'Zoom functions';
 
 export default {
-  name: 'mapZoomFunctions',
+  name: 'MapZoomFunctions',
   label: title,
   data () {
     return {

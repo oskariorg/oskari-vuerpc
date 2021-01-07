@@ -43,7 +43,7 @@ const requestName = 'rotate.map';
 const eventName = 'map.rotated';
 
 export default {
-  name: 'rotateMap',
+  name: 'MapRotate',
   label: title,
   data () {
     return {
