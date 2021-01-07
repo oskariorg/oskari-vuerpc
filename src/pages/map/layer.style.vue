@@ -1,7 +1,11 @@
 <template>
   <div>
     <h2>{{ title }}</h2>
-    <p>Change map layer style by sending an external SLD (requires WMS-layer and the service accepting external SLD).</p>
+    <p>Change map layer style by sending an external SLD.
+      This requires a WMS-layer from a service that supports/accepts external SLD.
+      The example map doesn't have a layer that could be used to demonstrate this
+       so there's no visual example of this.
+    </p>
     <DocumentationLink type="request" :apiDoc="apiDocPageRequest">Documentation for {{requestName}}</DocumentationLink>
 
       <CodeSnippet>
@@ -9,10 +13,11 @@ var layerId = {{ layerId }};
 var params = {{ JSON.stringify(params, null, 2) }};
 channel.postRequest('{{requestName}}', [layerId, true, params]);
       </CodeSnippet>
-    <p>
+      <!-- The example layer has been removed so the example doesn't work, hence commented out -->
+    <!-- p>
       Click the button to run the code above:
       <RunExampleButton @click="updateMapLayer">Change map layer style</RunExampleButton>
-    </p>
+    </p -->
 
     <h3>Reset external SLD</h3>
     <p>
@@ -23,7 +28,7 @@ var layerId = {{ layerId }};
 var params = {{ JSON.stringify(resetParams, null, 2) }};
 channel.postRequest('{{requestName}}', [layerId, true, params]);
     </CodeSnippet>
-    <RunExampleButton @click="resetMapLayer">Reset map layer style</RunExampleButton>
+    <!-- RunExampleButton @click="resetMapLayer">Reset map layer style</RunExampleButton -->
   </div>
 </template>
 
@@ -36,24 +41,24 @@ const apiDocPageRequest = 'mapping/mapmodule/request/changemaplayerstylerequest.
 const layerId = 1387;
 const params = {
   SLD_BODY:
-          '<StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0.0" xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd">' +
-          '    <NamedLayer>' +
-          '    <Name>oskari:kunnat2013</Name>' +
-          '    <UserStyle>' +
-          '    <Title>SLD Cook Book: Simple polygon</Title>' +
-          '    <FeatureTypeStyle>' +
-          '    <Rule>' +
-          '    <PolygonSymbolizer>' +
-          '    <Fill>' +
-          '    <CssParameter name="fill">#000080</CssParameter>' +
-          '    <CssParameter name="fill-opacity">0.5</CssParameter>' +
-          '    </Fill>' +
-          '    </PolygonSymbolizer>' +
-          '    </Rule>' +
-          '    </FeatureTypeStyle>' +
-          '    </UserStyle>' +
-          '    </NamedLayer>' +
-          '    </StyledLayerDescriptor>'
+    `<StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0.0" xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd">
+      <NamedLayer>
+        <Name>oskari:kunnat2013</Name>
+        <UserStyle>
+          <Title>SLD Cook Book: Simple polygon</Title>
+          <FeatureTypeStyle>
+            <Rule>
+              <PolygonSymbolizer>
+                <Fill>
+                  <CssParameter name="fill">#000080</CssParameter>
+                  <CssParameter name="fill-opacity">0.5</CssParameter>
+                </Fill>
+              </PolygonSymbolizer>
+            </Rule>
+          </FeatureTypeStyle>
+        </UserStyle>
+      </NamedLayer>
+    </StyledLayerDescriptor>`
 };
 
 const resetParams = {
