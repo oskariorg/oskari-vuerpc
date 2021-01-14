@@ -1,67 +1,73 @@
 <template>
-  <div id="addOrRemoveFeatures">
-    <div id="AddFeaturesToMapRequest">
-      <button id="btnAddFeaturesToMapRequest" class="btn btn-primary exampleready" @click="addFeaturesToMapRequest">AddFeaturesToMapRequest</button>
-      <button id="btnRemoveFeaturesFromMapRequest" class="btn btn-primary exampleready" @click="removeFeaturesFromMapRequest">RemoveFeaturesFromMapRequest</button>
-      <div>AddFeaturesToMapRequest allows adding vector features on the map.</div>
-      <div>
-        <a id="addFeatures" href="" @click="getLink">To the documentation</a>
-      </div>
-      <code-component :snippet="add"></code-component>
-      <div>You can update feature style for example when you want to higlight feature from the map. </div>
-      <button class="btn btn-primary exampleready" @click="updateFeatures">AddFeaturesToMapRequest (update feature)</button>
-      <code-component :snippet="update"></code-component>
-    </div>
-    <div id="AddFeaturesToMapUsingSVG">
-      <div>Adding features with SVG icon (Oskari SVG-shape numbers: 0 - 6) </div>
-      <button id="btnAddFeaturesToMapRequest2" class="btn btn-primary exampleready" @click="addFeaturesToMapRequestUsingSVG">AddFeaturesToMapRequest (display point as SVG icon)</button>
-      <div>
-        <a id="addFeatures" href="" @click="getLink">To the documentation</a>
-      </div>
-      <code-component :snippet="svg"></code-component>
-    </div>
-    <div id="RemoveFeaturesFromMapRequest">
-      <div>Remove all features across all vector layers</div>
-      <button id="btnRemoveFeaturesFromMapRequest" class="btn btn-primary exampleready" @click="removeFeaturesFromMapRequest">RemoveFeaturesFromMapRequest</button>
-      <div>
-        <a id="removeFeatures" href="" @click="getLink">To the documentation</a>
-      </div>
-      <code-component snippet="//annihilate everything
-      channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest',[]);"></code-component>
-    </div>
-    <div id="RemoveFeaturesFromMapRequest2">
-      <div>Remove specific vector features from specific layer</div>
-      <button id="btnAddFeaturesToMapRequest" class="btn btn-primary exampleready" @click="addFeaturesToMapRequest">AddFeaturesToMapRequest</button>
-      <button id="btnRemoveFeaturesFromMapRequest2" class="btn btn-primary exampleready" @click="removeFeaturesFromMapRequest2">RemoveFeaturesFromMapRequest2</button>
-      <div>
-        <a id="removeFeatures" href="" @click="getLink">To the documentation</a>
-      </div>
-      <code-component snippet="// Remove all feature's whose 'test_property' === 1 from the layer with id==='MY_VECTOR_LAYER'
-      channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest',['test_property', 1, 'MY_VECTOR_LAYER']);"></code-component>
-    </div>
+  <div>
+    <h2>{{ title }}</h2>
+    <p>AddFeaturesToMapRequest allows adding vector features on the map.</p>
+    <DocumentationLink type="request" :apiDoc="apiDocPageRequestAdd">Documentation for {{ requestNameAdd }}</DocumentationLink>
+
+    <CodeSnippet :snippet="add" />
+      
+    <RunExampleButton @click="addFeaturesToMapRequest">{{ requestNameAdd }}</RunExampleButton>
+    <RunExampleButton @click="removeFeaturesFromMapRequest">{{requestNameRemove}}</RunExampleButton>
+
+    <h3>Update style</h3>
+    <p>You can update feature style for example when you want to higlight feature from the map. </p>
+    <RunExampleButton @click="updateFeatures">AddFeaturesToMapRequest (update feature)</RunExampleButton>
+    <CodeSnippet :snippet="update" />
+
+    <h3>Using SVG for visualization for points</h3>
+    <p>Adding features with SVG icon (Oskari SVG-shape numbers: 0 - 6) </p>
+    <RunExampleButton @click="addFeaturesToMapRequestUsingSVG">{{ requestNameAdd }} (display point as SVG icon)</RunExampleButton>
+    <CodeSnippet :snippet="svg" />
+
+    <h3>Removing features</h3>
+    <p>Remove all features across all vector layers</p>
+    <DocumentationLink type="request" :apiDoc="apiDocPageRequestRemove">Documentation for {{requestNameRemove}}</DocumentationLink>
+    <CodeSnippet>
+      channel.postRequest('{{ requestNameRemove }}', []);
+    </CodeSnippet>
+    <RunExampleButton @click="removeFeaturesFromMapRequest">{{ requestNameRemove }}</RunExampleButton>
+
+    <p>
+      Remove specific vector features from specific layer. 
+      In this example we are remove features from layer with id: {{ vectorLayerName }} that 
+      have an attribute named 'test_property' with value of 1.
+    </p>
+    <CodeSnippet>
+// Remove all feature's whose 'test_property' === 1 from the layer with id==='MY_VECTOR_LAYER'
+channel.postRequest('{{ requestNameRemove }}',['test_property', 1, '{{ vectorLayerName }}']);
+    </CodeSnippet>
+    <RunExampleButton @click="addFeaturesToMapRequest">{{ requestNameAdd }}</RunExampleButton>
+    <RunExampleButton @click="removeFeaturesFromMapRequest2">{{ requestNameRemove }}</RunExampleButton>
   </div>
 </template>
+
 <script>
 import { features } from '../../util/examplecodes.js';
+
+const title = 'Add/remove vector features';
+const requestNameAdd = 'MapModulePlugin.AddFeaturesToMapRequest';
+const requestNameRemove = 'MapModulePlugin.RemoveFeaturesFromMapRequest';
+const apiDocPageRequestAdd = 'mapping/mapmodule/request/addfeaturestomaprequest.md';
+const apiDocPageRequestRemove = 'mapping/mapmodule/request/removefeaturesfrommaprequest.md';
+const vectorLayerName = 'MY_VECTOR_LAYER';
+
 export default {
-  name: 'addOrRemoveFeatures',
-  label: 'Add, update or remove vector features',
+  name: 'AddFeatures',
+  label: title,
   data () {
     return {
-      desc: 'Add or remove vector features',
+      title,
       svg: features.svg,
       add: features.add,
-      update: features.update
+      update: features.update,
+      requestNameAdd,
+      requestNameRemove,
+      apiDocPageRequestAdd,
+      apiDocPageRequestRemove,
+      vectorLayerName
     }
   },
   methods: {
-    getLink (e) {
-      let documentPathEnd = e.target.id === 'addFeatures' ? 'mapping/mapmodule/request/addfeaturestomaprequest.md' : 'mapping/mapmodule/request/removefeaturesfrommaprequest.md';
-      e.target.href = this.$root.documentPathRequest + documentPathEnd;
-    },
-    getLayerRequestLink (e) {
-      e.target.href = this.$root.documentPathRequest + 'mapping/mapmodule/request/vectorlayerrequest.md';
-    },
     addFeaturesToMapRequest () {
       const layerOptions = {
         layerId: 'MY_VECTOR_LAYER',
