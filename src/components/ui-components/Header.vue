@@ -32,7 +32,7 @@ export default {
   box-shadow: 0 5px 20px 0 rgba(0,0,0,.3);
 }
 .header nav {
-    font-size: calc(0.6rem + 1.0vh);
+  font-size: calc(0.6rem + 1.0vh);
 }
 .header nav ul li {
   display: inline-block;
@@ -43,24 +43,25 @@ export default {
 }
 .nav-content {
   max-width: 1200px;
-margin-right: auto;
-margin-left: auto;
-padding: 0 0 2em;
-height: 60px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0 0 2em;
+  height: 60px;
 }
-.oskari-logo{
+.oskari-logo {
   float:left;
 }
-#header-items{
+
+#header-items {
   margin: auto;
   font-size:  1.2em;
   display: inline-block;
 }
-li {
+.header li {
   margin-left: .5em;
   display: inline-block;
 }
-a {
+.header a {
   color:#e8ecef;
   padding-left: .7em;
   padding-right: .7em;

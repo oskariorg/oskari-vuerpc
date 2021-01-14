@@ -3,8 +3,8 @@
     <div class="selectExamples">
     <h2>Select Action <NavigationDropdown :current="currentPage.name" /></h2>
     <div class="navigationLinkParent">
-      <span v-if="navLinks.prev" class="navigationLinkLeft"><router-link :to="navLinks.prev.path">Previous:  {{ navLinks.prev.label }}</router-link></span><br/>
-      <span v-if="navLinks.next" class="navigationLinkLeft"><router-link :to="navLinks.next.path">Next: {{ navLinks.next.label }}</router-link></span>
+      <div v-if="navLinks.prev"><router-link :to="navLinks.prev.path">Previous:  {{ navLinks.prev.label }}</router-link></div>
+      <div v-if="navLinks.next"><router-link :to="navLinks.next.path">Next: {{ navLinks.next.label }}</router-link></div>
     </div>
   </div>
 </div>
@@ -47,22 +47,9 @@ export default {
 .fade-enter, .fade-leave-active {
   opacity: 0
 }
-.navigationLink {
-  word-break:normal;
-  white-space:nowrap;
-  font-size: calc(0.34rem + 1.0vh);
-}
+
 .navigationLinkParent {
-  height:3em;
-  max-width:33.75em;
-}
-.navigationLinkLeft {
-  float:left;
-  display:block;
-  margin-inline-end: auto;
-}
-.navigationLinkRight {
-  float: right;
-  display:block;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
 }
 </style>
