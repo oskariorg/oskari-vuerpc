@@ -13,6 +13,7 @@
 export default {
     props: {
         apiDoc: String,
+        href: String,
         type: String
     },
     data () {
@@ -22,6 +23,9 @@ export default {
     },
     computed: {
         documentationLink() {
+            if (this.href) {
+                return this.href;
+            }
             const linkConfig = this.$root.documentationLinks;
             let baseUrl = linkConfig.base;
             if (!this.type || !this.apiDoc) {
