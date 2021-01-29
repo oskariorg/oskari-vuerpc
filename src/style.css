@@ -77,7 +77,7 @@ a.go-to-site {
   width: 45%;
   float: right;
 }
-
+/*
 .panel-default li a {
   background-color: #6281c1;
   color: #ffffff;
@@ -87,6 +87,7 @@ a.go-to-site {
   width: auto;
   display: block;
 }
+*/
 .form-panel {
   overflow: auto;
 }
