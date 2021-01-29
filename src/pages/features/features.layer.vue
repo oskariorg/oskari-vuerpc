@@ -1,33 +1,33 @@
 <template>
-  <div ref="layerForFeatures">
-      <p>
-        VectorLayerRequest allows more control for showing vector features on the map.
-        You can initializing a layer with styles, scale limits and other toggles that are used for features on that layer.
-        This simplifies adding features to that layer since you don't need to send those toggles (some you even can't= on each AddFeaturesToMapRequest.
-        For very simple applications or examples it might be easier to use the AddFeaturesToMap since it can be used to initialize a simple layer as well.
-      </p>
-      <p>
-        Initializing a layer can be done by sending the request:
-        <code-component>
+  <div>
+    <h2>{{ title }}</h2>
+    <p>
+      VectorLayerRequest allows more control for showing vector features on the map.
+      You can initializing a layer with styles, scale limits and other toggles that are used for features on that layer.
+      This simplifies adding features to that layer since you don't need to send those toggles (some you even can't) on each AddFeaturesToMapRequest.
+      For very simple applications or examples it might be easier to use the AddFeaturesToMap since it can be used to initialize a simple layer as well.
+    </p>
+    <p>
+      Initializing a layer can be done by sending the request:
+      <CodeSnippet>
         channel.postRequest('VectorLayerRequest', [{{ JSON.stringify(LAYER_OPTS.simple, null, 2) }}]);
-        </code-component>
+      </CodeSnippet>
 
-        After sending it you can add features to it by referencing the layer by `layerId` in the AddFeaturesToMapRequest.
-      </p>
+      After sending it you can add features to it by referencing the layer by `layerId` in the AddFeaturesToMapRequest.
+    </p>
       
-      <p>
-        You can try different combinations below:
+      <p>You can try different combinations below:
         <ol>
           <li>
-            Click <button class="btn btn-primary exampleready" @click="addFeaturesToMapRequest">Add feature</button>
+            Click <RunExampleButton @click="addFeaturesToMapRequest">Add feature</RunExampleButton>
             to add a feature added to the map. However if you hover the feature on the map with mouse nothing happens.
           </li>
           <li>
-            Click <button class="btn btn-primary exampleready" @click="removeFeaturesFromMapRequest">Remove feature</button>
+            Click <RunExampleButton @click="removeFeaturesFromMapRequest">Remove feature</RunExampleButton>
             to clean up the map for testing VectorLayerRequest.
           </li>
           <li>
-            Click <button class="btn btn-primary exampleready" @click="addSimpleVectorLayer">Add layer</button>
+            Click <RunExampleButton @click="addSimpleVectorLayer">Add layer</RunExampleButton>
             to initialize a layer for vector features with hover styling. You won't see anything happen on the map when you do this.
             Now click the "Add feature" button on the first step to add a feature to the layer. 
           </li>
@@ -39,42 +39,47 @@
             You can use VectorLayerRequest to remove the layer (also removes features on the layer).
             After this if you click the "Add features" button the features have lost the hover
              highlighting and you need to initialize the layer again to get it back.<br/>
-            <button class="btn btn-primary exampleready" @click="removeSimpleLayer">Remove layer</button>
+            <RunExampleButton @click="removeSimpleLayer">Remove layer</RunExampleButton>
           </li>
           <li>
             To keep the initialized layer but remove any features on it you can use the "Remove feature" from the second step.
           </li>
         </ol>
+      </p>
       <p>You can define more than just the hover styles with the VectorLayerRequest.
-        Documentation links:<br/>
-        <a :href="requestLink" class="btn btn-primary exampleready" target="_blank">VectorLayerRequest</a>
-        <a :href="styleDocLink" class="btn btn-primary exampleready" target="_blank">Styling</a>
-        </p>
+        Documentation links:
+        <ul>
+        <li><DocumentationLink type="request" :apiDoc="apiDocPageRequest">Documentation for {{requestName}}</DocumentationLink></li>
+        <li><DocumentationLink :href="styleDocLink">Styling</DocumentationLink></li>
+        </ul>
+      </p>
       <p>
         Example for removing the layer. Reference with layerId and include a remove-flag:
       
-        <code-component>
+       <CodeSnippet>
 channel.postRequest('VectorLayerRequest', [{
   layerId: {{ LAYER_OPTS.simple.layerId }},
   remove: true
 }]);
-        </code-component>
+       </CodeSnippet>
       </p>
   </div>
 </template>
 <script>
 import { LAYER_OPTS, generator } from '../../util/vectorlayer_helpers';
 
+const title = 'Configure layer for vector features';
+const requestName = 'VectorLayerRequest';
 export default {
-  name: 'layerForFeatures',
-  label: 'Configure layer for vector features',
+  name: 'FeatureLayer',
+  label: title,
   data () {
-    const requestLink = this.$root.documentPathRequest + 'mapping/mapmodule/request/vectorlayerrequest.md'
 
     return {
-      desc: 'Configure vector layers',
-      requestLink,
-      styleDocLink: '/documentation/examples/oskari-style',
+      title,
+      requestName,
+      apiDocPageRequest: 'mapping/mapmodule/request/vectorlayerrequest.md',
+      styleDocLink: 'https://oskari.org/documentation/examples/oskari-style',
       LAYER_OPTS
     }
   },
