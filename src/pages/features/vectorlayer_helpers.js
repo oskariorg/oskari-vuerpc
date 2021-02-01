@@ -31,6 +31,19 @@ const LAYER_OPTS = {
 };
 
 const generator = {
+  getCollectionOf: (features) => {
+    const geojsonObject = {
+      'type': 'FeatureCollection',
+      'crs': {
+        'type': 'name',
+        'properties': {
+          'name': 'EPSG:3067'
+        }
+      },
+      'features': features.slice(0)
+    }
+    return geojsonObject;
+  },
   getPolygon: (x, y, attributes) => {
     return {
       'type': 'Feature',
