@@ -1,7 +1,6 @@
 <template>
     <a :href="documentationLink" target="_blank">
-        <slot v-if="apiDoc">Link to documentation</slot>
-        <span v-else>{{ genericMsg }}</span>
+        <slot>Link to documentation</slot>
     </a>
 </template>
 
@@ -15,11 +14,6 @@ export default {
         apiDoc: String,
         href: String,
         type: String
-    },
-    data () {
-        return {
-            genericMsg: 'Link to documentation'
-        }
     },
     computed: {
         documentationLink() {
