@@ -5,7 +5,7 @@
       {{ requestName }} allows more control for showing vector features on the map.
     </p>
     <p>
-      You can initializing a layer with styles, scale limits and other toggles that are used for features on that layer.
+      You can initializing a layer with styles, scale limits and other toggles that are used for vector features on that layer.
       This simplifies adding features to that layer since you don't need to send those toggles (some you even can't) on each AddFeaturesToMapRequest.
       For very simple applications or examples it might be easier to use the AddFeaturesToMap since it can be used to initialize a simple layer as well.
     </p>
@@ -22,16 +22,35 @@
       <ol>
         <li>
           Click <RunExampleButton @click="addFeaturesToMapRequest">Add feature</RunExampleButton>
-          to add a feature added to the map. However if you hover the feature on the map with mouse nothing happens.
+          to add a feature added to the map.
+<CodeSnippet>
+const params = [geojson, {
+  layerId: '{{ LAYER_OPTS.simple.layerId }}',
+  clearPrevious: true,
+  centerTo: true,
+  cursor: 'zoom-in'
+}];
+channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
+</CodeSnippet>
+        However if you hover the feature on the map with mouse nothing happens (the cursor changes based on the request parameter "cursor" with value supported in CSS).
         </li>
         <li>
-          Click <RunExampleButton @click="removeFeaturesFromMapRequest">Remove feature</RunExampleButton>
+          Click <RunExampleButton @click="removeFeaturesFromMapRequest">Remove features</RunExampleButton>
           to clean up the map for testing VectorLayerRequest.
+      <CodeSnippet>
+        channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
+      </CodeSnippet>
         </li>
         <li>
           Click <RunExampleButton @click="addSimpleVectorLayer">Add layer</RunExampleButton>
-          to initialize a layer for vector features with hover styling. You won't see anything happen on the map when you do this.
-          Now click the "Add feature" button on the first step to add a feature to the layer. 
+          to initialize a layer for vector features with hover styling.
+          <CodeSnippet>
+            channel.postRequest('{{ requestName }}', [{{ JSON.stringify(LAYER_OPTS.simple, null, 2) }}]);
+          </CodeSnippet>
+          <b>Note!</b> You won't see anything happen on the map when you do this.
+          Now click the "Add feature" button below or on the first step to add a feature to the layer.<br />
+          <RunExampleButton @click="addFeaturesToMapRequest">Add feature</RunExampleButton><br />
+          The important part is that the layerId on both requests match.
         </li>
         <li>This time the feature has a nice highlighting style when you move the mouse cursor on top of it on the map.
           The hover style was defined in the VectorLayerRequest so you don't need to worry about it when
@@ -41,6 +60,12 @@
           You can use VectorLayerRequest to remove the layer (also removes features on the layer).
           After this if you click the "Add features" button the features have lost the hover
             highlighting and you need to initialize the layer again to get it back.<br/>
+      <CodeSnippet>
+channel.postRequest('VectorLayerRequest', [{
+  layerId: '{{ LAYER_OPTS.simple.layerId }}',
+  remove: true
+}]);
+      </CodeSnippet>
           <RunExampleButton @click="removeSimpleLayer">Remove layer</RunExampleButton>
         </li>
         <li>
@@ -60,7 +85,7 @@
     
       <CodeSnippet>
 channel.postRequest('VectorLayerRequest', [{
-layerId: {{ LAYER_OPTS.simple.layerId }},
+layerId: '{{ LAYER_OPTS.simple.layerId }}',
 remove: true
 }]);
       </CodeSnippet>
@@ -72,6 +97,14 @@ import { LAYER_OPTS, generator } from './vectorlayer_helpers';
 
 const title = 'Configure layer for vector features';
 const requestName = 'VectorLayerRequest';
+
+const x = 488704;
+const y = 6939136;
+const geojsonObject = generator.getCollectionOf([
+    generator.getPolygon(x, y, { 'name': `I'm a polygon` }) /*,
+    generator.getPoint(x + 40000, y + 30000, { 'name': `I'm a point` }) */
+]);
+
 export default {
   name: 'FeatureLayer',
   label: title,
@@ -82,7 +115,8 @@ export default {
       requestName,
       apiDocPageRequest: 'mapping/mapmodule/request/vectorlayerrequest.md',
       styleDocLink: 'https://oskari.org/documentation/examples/oskari-style',
-      LAYER_OPTS
+      LAYER_OPTS,
+      geojsonObject
     }
   },
   beforeDestroy: () => {
@@ -114,22 +148,13 @@ export default {
       this.$root.channel.log('VectorLayerRequest posted with data', [layerOptions]);
     },
     addFeaturesToMapRequest () {
-      const x = 488704;
-      const y = 6939136;
-      const geojsonObject = generator.getCollectionOf([
-          generator.getPolygon(x, y, { 'name': `I'm a polygon` }) /*,
-          generator.getPoint(x + 40000, y + 30000, { 'name': `I'm a point` }) */
-      ]);
       const params = [geojsonObject, {
         layerId: LAYER_OPTS.simple.layerId,
         clearPrevious: true,
         centerTo: true,
         cursor: 'zoom-in'
       }];
-      this.$root.channel.postRequest(
-        'MapModulePlugin.AddFeaturesToMapRequest',
-        params
-      );
+      this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
       this.$root.channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params);
 
     },

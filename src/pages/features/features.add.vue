@@ -16,7 +16,7 @@ channel.postRequest('{{ requestNameAdd }}', [geojson]);
       When you run the above code the vector feature is added to the map. 
       However the map isn't moved to show the features by default.
     </p>
-    <RunExampleButton @click="moveMapToPoint">Center map to show the point</RunExampleButton>
+    <RunExampleButton @click="moveMapToPoint">Center map to show the point with MapMoveRequest</RunExampleButton>
 
     <h3>Add point to map and show it</h3>
     <p>
