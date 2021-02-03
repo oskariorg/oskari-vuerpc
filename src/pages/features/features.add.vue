@@ -65,7 +65,7 @@ channel.postRequest('{{ requestNameAdd }}',
 
     <h3>Note!</h3>
     <p>
-      Using the "{{ requestNameAdd }}" without referencing a layer in extra parameters a default layer is generated and used instead.
+      Using the "{{ requestNameAdd }}" without referencing a layer in extra parameters a default layer with id 'VECTOR' is generated.
       On later examples you can see how to use different layers for features can be used for more complex interaction and styling of features.
       You can also see a layerId referenced on the FeatureEvent.
     </p>
@@ -83,12 +83,7 @@ const apiDocPageRequestAdd = 'mapping/mapmodule/request/addfeaturestomaprequest.
 const apiDocPageRequestRemove = 'mapping/mapmodule/request/removefeaturesfrommaprequest.md';
 const apiDocPageEvent = 'mapping/mapmodule/event/featureevent.md';
 
-const x = 488704;
-const y = 6939136;
-//const geomPolygon = generator.getPolygon(x, y, { 'name': `I'm a polygon` });
-const geomPoint = generator.getPoint(x + 40000, y + 30000, { 'name': `I'm a point` });
-//const geojsonObject = generator.getCollectionOf([geomPolygon, geomPoint]);
-const pointGeoJSON = generator.getCollectionOf([geomPoint]);
+const pointGeoJSON = generator.getDefaultPointCollection();
 const centerToGeomOpts = { centerTo: true };
 
 export default {
@@ -132,8 +127,7 @@ export default {
     },
 
     moveMapToPoint () {
-      // point is offset from x/y
-      const params = [x + 40000, y + 30000];
+      const params = pointGeoJSON.features[0].geometry.coordinates;
       this.$root.channel.postRequest('MapMoveRequest', params);
       this.$root.channel.log('MapMoveRequest posted with data', params);
     },
