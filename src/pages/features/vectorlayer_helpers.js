@@ -36,6 +36,10 @@ const LAYER_OPTS = {
     }
 };
 
+// defaults for generator
+const x = 488704;
+const y = 6939136;
+
 const generator = {
   getCollectionOf: (features) => {
     const geojsonObject = {
@@ -69,6 +73,16 @@ const generator = {
       },
       'properties': { ...attributes }
     };
+  },
+  getDefaultPolygonCollection: () => {
+    return generator.getCollectionOf([
+      generator.getPolygon(x, y, { 'name': `I'm a polygon` })
+    ]);
+  },
+  getDefaultPointCollection: () => {
+    return generator.getCollectionOf([
+      generator.getPoint(x + 40000, y + 30000, { 'name': `I'm a point` })
+    ]);
   }
 };
 
