@@ -124,11 +124,11 @@ export default {
     // NOTE! We don't have this.$root here so relying on global channel variable
     // const channel = this.$root.channel;
     channel.postRequest('VectorLayerRequest', [{
-      layerId: 'MY_VECTOR_LAYER',
+      layerId: LAYER_OPTS.simple.layerId,
       remove: true
     }]);
     channel.postRequest('VectorLayerRequest', [{
-      layerId: 'MY_LISTED_VECTOR_LAYER',
+      layerId: LAYER_OPTS.listing.layerId,
       remove: true
     }]);
     channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
