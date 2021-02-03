@@ -2,11 +2,17 @@ const LAYER_OPTS = {
     simple: {
       layerId: 'MY_VECTOR_LAYER',
       opacity: 75,
+      // TODO: layer style can't be configured. Only hover style is supported
       hover: {
         featureStyle: {
+          // FIXME: inherit and effect don't work if features don't have styles specified in AddFeaturesToMap
+          //   inherit: true,
+          //   effect: 'darken'
+          // FIXME: stroke without fill makes the feature blink while hovering
           fill: {
             color: '#ff00ff'
           },
+          // FIXME: fill without stroke makes the feature blink while hovering
           stroke: {
             color: '#000000'
           }
