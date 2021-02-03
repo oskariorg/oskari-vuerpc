@@ -41,7 +41,7 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
 import { generator } from './vectorlayer_helpers';
 import EVENTBUS from '../../util/eventbus.js';
 
-const title = 'Configure scale limits for vector features';
+const title = 'Configure zoom limits for vector features';
 const requestName = 'VectorLayerRequest';
 
 const polygonCollection = generator.getDefaultPolygonCollection();
@@ -58,7 +58,7 @@ const pointLayer = {
 };
 
 export default {
-  name: 'FeatureLayerScale',
+  name: 'FeatureLayerZoom',
   label: title,
   data () {
 
