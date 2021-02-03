@@ -1,5 +1,6 @@
 import featuresAdd from './features.add.vue';
 import featuresLayer from './features.layer.vue';
+import featuresLayerScale from './features.layer.scale.vue';
 import features from '../../components/functions/features.vue';
 import featureEvent from '../../components/events/feature.event.vue';
 import featuresInfo from '../../components/requests/features.info.vue';
@@ -13,6 +14,7 @@ export default {
     pages: [
         featuresAdd,
         featuresLayer,
+        featuresLayerScale,
         features,
         featureEvent,
         featuresInfo,
