@@ -27,12 +27,13 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
   }]);
       </CodeSnippet>
     
-    There should a polygon and a point initialized on the map when this example is loaded.
-    They are both visible at zoom level 7.
-    If you zoom in the polygon isn't shown.
-    If you zoom out the point isn't shown.
-    If you get lost click the button below:<br />
-    <RunExampleButton @click="moveMapToPoint">Locate point</RunExampleButton>
+      There should a polygon and a point initialized on the map when this example is loaded.
+      They are both visible at zoom level 7.
+      If you zoom in the polygon isn't shown.
+      If you zoom out the point isn't shown.
+      If you get lost click the button below:<br />
+      <RunExampleButton @click="moveMapToPoint">Locate point</RunExampleButton>
+      <DocumentationLink type="request" :apiDoc="apiDocPageRequest">Documentation for {{requestName}}</DocumentationLink>
     </p>
   </div>
 </template>
@@ -90,10 +91,10 @@ export default {
       this.addVectorLayers();
       this.addFeaturesToMap();
     };
-    // this is required since channel might not be available when loaded but App.vue will trigger an event when the channel is ready
+    // this is required since channel might not be available (when opening this example with direct url) when loaded
+    //  but App.vue will trigger an event when the channel is ready
     if (typeof channel !== 'object') {
       EVENTBUS.once('channel.available', init);
-      window.jee = EVENTBUS;
     } else {
       init();
     }
@@ -105,7 +106,7 @@ export default {
       this.$root.channel.log('MapMoveRequest posted with data', params);
     },
     addVectorLayers () {
-      const bus = channel; // this.$root.channel
+      const bus = this.$root.channel
       bus.postRequest('VectorLayerRequest', [polygonLayer]);
       bus.postRequest('VectorLayerRequest', [pointLayer]);
       bus.log('VectorLayerRequest posted with data', [polygonLayer]);
@@ -124,9 +125,6 @@ export default {
       }];
       this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', polygonParams);
       this.$root.channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', polygonParams);
-    },
-    showPoint () {
-
     }
   }
 }
