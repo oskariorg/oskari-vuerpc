@@ -16,10 +16,18 @@ const on = (eventName, callback) => {
     return callback;
 };
 
-const off = (eventName, handler) => {
+const off = (eventName, handlerToRemove) => {
     const handlers = getListeners(eventName);
-    const indexToRemove = handlers.findIndex(handler);
+    const indexToRemove = handlers.findIndex((savedHandler) => savedHandler === handlerToRemove);
     handlers.splice(indexToRemove, 1);
+};
+
+const once = (eventName, callback) => {
+    const removeAfterUse = (...args) => {
+        off(eventName, removeAfterUse);
+        callback(...args);
+    };
+    return on(eventName, removeAfterUse);
 };
 
 const notifyListeners = (eventName, data, channel) => {
@@ -50,6 +58,7 @@ const getEventNames = () => Object.keys(listeners);
 
 export default {
     on,
+    once,
     off,
     getEventNames,
     notify: (name, data) => notifyListeners(name, data),

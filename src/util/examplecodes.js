@@ -57,41 +57,6 @@ var features = {
   }];
   channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);`,
 
-  // LAYER features.layer.vue
-  layer: {
-    simple: `var layerOptions = {
-      layerId: 'MY_VECTOR_LAYER',
-      opacity: 75,
-      hover: {
-        featureStyle: {
-          fill: {
-            color: '#ff00ff'
-          },
-          stroke: {
-            color: '#000000'
-          }
-        },
-        content: [
-            { 'key': 'Layer: MY_VECTOR_LAYER' },
-            { 'key': 'Name', 'valueProperty': 'name' }
-        ]
-      }
-    };
-    channel.postRequest('VectorLayerRequest', [layerOptions]);`,
-    
-    listing: `var layerOptions = {
-      layerId: 'MY_LISTED_VECTOR_LAYER',
-      layerInspireName: 'My layer group',
-      layerOrganizationName: 'Organization name',
-      showLayer: true,
-      opacity: 100,
-      layerName: 'Layer name',
-      layerDescription: 'Description text',
-      minZoomLevel: 6
-    };
-    channel.postRequest('VectorLayerRequest', [layerOptions]);`
-  },
-
   // ADD features.add.vue
   add: `var layerOptions = {
     layerId: 'MY_VECTOR_LAYER',
