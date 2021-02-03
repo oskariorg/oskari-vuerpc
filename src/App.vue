@@ -97,6 +97,9 @@
         // expose channel as global variable so it can be accessed from dev-console
         window.channel = channel;
         EVENTBUS.initChannelListeners(channel);
+        // notify examples that channel is usable (required when referencing channel on mounted())
+        channel.onReady(() => EVENTBUS.notify('channel.available'));
+
         listeners.push(EVENTBUS.on('rpcAppDisplayMessage', (event) => {
           this.rpcAppShowMessage(event.msg, event.seconds);
         }));
