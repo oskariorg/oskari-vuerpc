@@ -1,5 +1,5 @@
 import feedbackServices from '../../components/requests/feedback.services.vue';
-import feedbackRequest from '../../components/requests/feedback.request.vue';
+import feedbackRequest from './feedback.request.vue';
 import feedbackPost from '../../components/requests/feedback.post.vue';
 import feedbackResult from '../../components/events/feedback.result.vue';
 

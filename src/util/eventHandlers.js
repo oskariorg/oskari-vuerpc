@@ -363,43 +363,5 @@ export const eventHandlers = {
         }
       }
     }
-  },
-  FeedbackResultEvent: (channel, data) => {
-    if (!data || !data.success) {
-      showPopup('Getting feedback response failed ! ');
-    } else {
-      showPopup('Getting feedback response success ! ');
-      const geoJSON = data && data.data && data.data.getFeedback ? data.data.getFeedback : undefined;
-      // Plot routes
-      if (geoJSON) {
-        channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [
-          geoJSON, {
-            clearPrevious: true,
-            centerTo: true,
-            cursor: 'zoom-in',
-            prio: 4,
-            featureStyle: {
-              fill: {
-                color: '#ff0000'
-              },
-              stroke: {
-                color: '#ff0000',
-                width: 5
-              },
-              text: {
-                scale: 1.3,
-                fill: {
-                  color: 'rgba(0,0,0,1)'
-                },
-                stroke: {
-                  color: 'rgba(255,255,255,1)',
-                  width: 2
-                }
-              }
-            }
-          }
-        ]);
-      }
-    }
   }
 };

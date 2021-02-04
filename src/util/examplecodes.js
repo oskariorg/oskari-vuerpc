@@ -425,19 +425,6 @@ var feedback = {
     "payload": postdata
   };
   channel.postRequest('PostFeedbackRequest', [data]);`,
-  // GET FEEDBACK REQ feedback.request.vue
-  req: `channel.getMapBbox(function(data) {
-    var filterdata = {
-      "start_date": "2016-09-01T00:00:00Z",
-      "bbox": data.left + ',' + data.bottom + ',' + data.right + ',' + data.top,
-      "status": "open,closed"
-    };
-    var data = {
-      "srs": "EPSG:3067",
-      "payload": filterdata
-    };
-    channel.postRequest('GetFeedbackRequest', [data]);
-  });`,
   // GET FEEDBACK SERVICES feedback.services.vue
   services: {
     list: 'channel.postRequest(\'GetFeedbackServiceRequest\', []);',
