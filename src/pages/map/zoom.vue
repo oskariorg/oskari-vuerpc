@@ -60,7 +60,7 @@ channel.zoomTo([{{ zoomLevel }}], function (data) {
 });
     </CodeSnippet>
     <p>
-      zoomTo() takes can be used to zoom a specific zoom level and it returns the current zoom level afterwards.
+      zoomTo() can be used to zoom a specific zoom level and it returns the current zoom level as the callback parameter.
       Note if the map cannot be zoomed any further the zoom level won't change and you can catch that
        by comparing the parameter in the callback function.
       Click the button to get the result shown on the log:

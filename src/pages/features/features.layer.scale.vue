@@ -14,6 +14,7 @@
 channel.postRequest('{{ requestName }}', [{{ JSON.stringify(polygonLayer, null, 2) }}]);
 channel.postRequest('{{ requestName }}', [{{ JSON.stringify(pointLayer, null, 2) }}]);
       </CodeSnippet>
+      
       Then features are pushed to the map on corresponding layers with:
       <CodeSnippet>
 channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [geojsonPoints, {
@@ -34,6 +35,17 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
       If you get lost click the button below:<br />
       <RunExampleButton @click="moveMapToPoint">Locate point</RunExampleButton>
       <DocumentationLink type="request" :apiDoc="apiDocPageRequest">Documentation for {{requestName}}</DocumentationLink>
+
+    </p>
+    <h3>Notes</h3>
+    <p>Vector layer zoom limits added to Oskari in version 2.2.0.</p>
+    
+    <p>You can also use minScale, maxScale, minResolution, maxResolution instead of minZoomLevel and maxZoomLevel.
+      The zoom level make the most sense for RPC and it's the simplest to use. 
+      However if zoom levels are added to or removed from the embedded map for whatever reason by the admin of the
+      Oskari-based service the zoom level numbers may change. This shouldn't be a common thing to happen but it's worth knowing about.
+      The scale/resolution limits are not affected if this happens, but they are not that easy to determine on an RPC-app.
+      You have a reference for scale/zoom level on "AfterMapMoveEvent"s while resolutions are only used internally by the map implementation.
     </p>
   </div>
 </template>
