@@ -21,7 +21,6 @@
   import ActionPanel from './components/ui-components/actionpanel.vue';
   import LogPanel from './components/ui-components/logpanel.vue';
   import { createLogger, createOnReady } from './util/channelLogger';
-  import { eventHandlers } from './util/eventHandlers.js';
   import EVENTBUS from './util/eventbus.js';
 
   import 'bootstrap/dist/css/bootstrap.css';
@@ -128,7 +127,7 @@
     margin-left: 0;
     margin-right: 0;
     height:100%;
-    font-size: calc(0.60rem + 1.0vh);
+    //font-size: calc(0.60rem + 1.0vh);
 }
 .row {
   height:800px !important;
