@@ -30,7 +30,8 @@ channel.postRequest('{{ requestNameAdd }}',
     <RunExampleButton @click="addPointToMap(true)">Add point and move map</RunExampleButton>
     <p>
       However this introduces another problem where especially with point features the map can be zoomed "too close". 
-      This can be prevented by using ZoomToFeaturesRequest instead:
+      On version 2.2.0 a flag was added for maxZoomLevel to restrict zooming.
+      However you can also use ZoomToFeaturesRequest that has even more versatile usage for moving the map to show features:
     </p>
     <CodeSnippet>
 channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', 
@@ -84,7 +85,10 @@ const apiDocPageRequestRemove = 'mapping/mapmodule/request/removefeaturesfrommap
 const apiDocPageEvent = 'mapping/mapmodule/event/featureevent.md';
 
 const pointGeoJSON = generator.getDefaultPointCollection();
-const centerToGeomOpts = { centerTo: true };
+const centerToGeomOpts = {
+  centerTo: true,
+  maxZoomLevel: 4
+};
 
 export default {
   name: 'AddFeatures',
