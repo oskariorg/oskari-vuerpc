@@ -93,7 +93,6 @@ export default {
       }]);
     },
     updateWKTFeature () {
-      console.log('testing');
       // Now update previously added feature
       // For example change stroke style
       const featureStyle = {
