@@ -4,13 +4,11 @@ export {default as ThingB} from './ThingB'
 export {default as ThingC} from './ThingC'
 */
 import drawing from '../../components/requests/drawing.vue';
-import drawingEvent from '../../components/events/drawing.event.vue';
 
 export default {
     name: 'Drawing',
     pages: [
-        drawing,
-        drawingEvent
+        drawing
     ]
 };
 
