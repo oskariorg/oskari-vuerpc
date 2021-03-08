@@ -103,7 +103,9 @@ export default {
       };
 
       // Define wanted feature attributes
-      const updatedFeatureAttributes = { 'test_property': 1 };
+      const updatedFeatureAttributes = {
+        testProperty: 1
+      };
       const params = [updatedFeatureAttributes, {
         featureStyle: featureStyle,
         layerId: 'MY_VECTOR_LAYER'
