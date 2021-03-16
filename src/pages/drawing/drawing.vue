@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h2>{{ title }}</h2>
     <div>
       To start drawing send <code>StartDrawingRequest</code>.
       <RunExampleButton class="btn btn-primary exampleready" @click="startDrawing">DrawTools.StartDrawingRequest</RunExampleButton>
@@ -59,6 +60,7 @@
 const drawingEventRequest = 'DrawingEvent';
 const startDrawingRequest = 'DrawTools.StartDrawingRequest';
 const stopDrawingRequest = 'DrawTools.StopDrawingRequest';
+const title = 'Drawing requests'
 
 export default {
   name: 'drawing',
@@ -68,6 +70,7 @@ export default {
       drawingEventRequest,
       startDrawingRequest,
       stopDrawingRequest,
+      title,
       desc: 'Drawing requests'
     }
   },
