@@ -25,7 +25,7 @@
 
     <p>
       To clear drawing from the map send <code>StopDrawingRequest</code> with second member of data parameter given to StopDrawingRequest set as true.
-      <RunExampleButton class="btn btn-primary exampleready" @click="stopDrawingClear">DrawTools.StopDrawingRequest - clear drawings</RunExampleButton>
+      <RunExampleButton @click="stopDrawingClear">DrawTools.StopDrawingRequest - clear drawings</RunExampleButton>
       <CodeSnippet>
         var data = ['my functionality id', true];
       channel.postRequest('DrawTools.StopDrawingRequest', data);
