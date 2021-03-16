@@ -21,7 +21,7 @@ channel.postRequest('{{ requestNameAdd }}', [geojson]);
     <h3>Add point to map and show it</h3>
     <p>
       A common use case is that you want to show the added feature(s) immediately and you can do it by
-      giving another parameter for the request:
+      giving another parameter called "centerTo" for the request:
     </p>
     <CodeSnippet>
 channel.postRequest('{{ requestNameAdd }}', 
@@ -30,7 +30,7 @@ channel.postRequest('{{ requestNameAdd }}',
     <RunExampleButton @click="addPointToMap(true)">Add point and move map</RunExampleButton>
     <p>
       However this introduces another problem where especially with point features the map can be zoomed "too close". 
-      On version 2.2.0 a flag was added for maxZoomLevel to restrict zooming.
+      On version 2.2.0 a flag was added for maxZoomLevel to restrict zooming (on previous versions also minScale works to limit zooming).
       However you can also use ZoomToFeaturesRequest that has even more versatile usage for moving the map to show features:
     </p>
     <CodeSnippet>
