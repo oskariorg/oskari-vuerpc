@@ -14,7 +14,7 @@
 
     <p>
       To stop current drawing progress send <InlineCode>StopDrawingRequest</InlineCode>.
-      <RunExampleButton class="btn btn-primary exampleready" @click="stopDrawing">DrawTools.StopDrawingRequest</RunExampleButton>
+      <RunExampleButton @click="stopDrawing">DrawTools.StopDrawingRequest</RunExampleButton>
       <br>
       <DocumentationLink type="request" apiDoc="mapping/drawtools/request/stopdrawingrequest.md">Documentation for {{ stopDrawingRequest }}</DocumentationLink>
       <CodeSnippet>
@@ -25,7 +25,7 @@
 
     <p>
       To clear drawing from the map send <InlineCode>StopDrawingRequest</InlineCode> with second member of data parameter given to StopDrawingRequest set as true.
-      <RunExampleButton class="btn btn-primary exampleready" @click="stopDrawingClear">DrawTools.StopDrawingRequest - clear drawings</RunExampleButton>
+      <RunExampleButton @click="stopDrawingClear">DrawTools.StopDrawingRequest - clear drawings</RunExampleButton>
       <CodeSnippet>
         var data = ['my functionality id', true];
       channel.postRequest('DrawTools.StopDrawingRequest', data);
