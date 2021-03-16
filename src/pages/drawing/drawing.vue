@@ -2,7 +2,7 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      To start drawing send <code>StartDrawingRequest</code>.
+      To start drawing send <InlineCode>StartDrawingRequest</InlineCode>.
       <RunExampleButton class="btn btn-primary exampleready" @click="startDrawing">DrawTools.StartDrawingRequest</RunExampleButton>
       <br>
       <DocumentationLink type="request" apiDoc="mapping/drawtools/request/startdrawingrequest.md">Documentation for {{ startDrawingRequest }}</DocumentationLink>
@@ -13,7 +13,7 @@
     </p>
 
     <p>
-      To stop current drawing progress send <code>StopDrawingRequest</code>.
+      To stop current drawing progress send <InlineCode>StopDrawingRequest</InlineCode>.
       <RunExampleButton class="btn btn-primary exampleready" @click="stopDrawing">DrawTools.StopDrawingRequest</RunExampleButton>
       <br>
       <DocumentationLink type="request" apiDoc="mapping/drawtools/request/stopdrawingrequest.md">Documentation for {{ stopDrawingRequest }}</DocumentationLink>
@@ -24,7 +24,7 @@
     </p>
 
     <p>
-      To clear drawing from the map send <code>StopDrawingRequest</code> with second member of data parameter given to StopDrawingRequest set as true.
+      To clear drawing from the map send <InlineCode>StopDrawingRequest</InlineCode> with second member of data parameter given to StopDrawingRequest set as true.
       <RunExampleButton class="btn btn-primary exampleready" @click="stopDrawingClear">DrawTools.StopDrawingRequest - clear drawings</RunExampleButton>
       <CodeSnippet>
         var data = ['my functionality id', true];
@@ -61,14 +61,14 @@ const title = 'Drawing requests'
 
 export default {
   name: 'drawing',
-  label: 'Drawing requests',
+  label: title,
   data () {
     return {
       drawingEventRequest,
       startDrawingRequest,
       stopDrawingRequest,
       title,
-      desc: 'Drawing requests'
+      desc: title
     }
   },
   methods: {
@@ -90,8 +90,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-  code {
-    font-size: 100%;
-  }
-</style>

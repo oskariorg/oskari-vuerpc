@@ -6,6 +6,7 @@ import BootstrapVue from 'bootstrap-vue';
 import code from './components/ui-components/codehighlight.vue';
 import DocumentationLink from './components/ui-components/documentation_link.vue';
 import RunExampleButton from './components/ui-components/run_example_button.vue';
+import InlineCodeSnippet from './components/ui-components/inline_code_snippet.vue';
 import VueRouter from 'vue-router';
 
 
@@ -17,6 +18,7 @@ Vue.component('code-component', code);
 Vue.component('CodeSnippet', code);
 Vue.component('RunExampleButton', RunExampleButton);
 Vue.component('DocumentationLink', DocumentationLink);
+Vue.component('InlineCode', InlineCodeSnippet);
 
 Vue.use(VueRouter, BootstrapVue);
 
