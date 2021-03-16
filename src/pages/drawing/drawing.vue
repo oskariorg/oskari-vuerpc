@@ -14,7 +14,7 @@
 
     <p>
       To stop current drawing progress send <code>StopDrawingRequest</code>.
-      <RunExampleButton class="btn btn-primary exampleready" @click="stopDrawing">DrawTools.StopDrawingRequest</RunExampleButton>
+      <RunExampleButton @click="stopDrawing">DrawTools.StopDrawingRequest</RunExampleButton>
       <br>
       <DocumentationLink type="request" apiDoc="mapping/drawtools/request/stopdrawingrequest.md">Documentation for {{ stopDrawingRequest }}</DocumentationLink>
       <CodeSnippet>
