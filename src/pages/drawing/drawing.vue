@@ -35,26 +35,65 @@
     <p>
       Everytime mouse is moved on the map DrawingEvent occurs while drawing is in progress and contains all the information regarding current drawing. To ensure that logging isn't clogged check if <code>DrawingEvent.finished</code> is set to <code>true</code> and only log when drawing is finished.
       <br>
-      <DocumentationLink type="event" apiDoc="mapping/drawtools/event/DrawingEvent.md">Documentation for {{ drawingEventRequest }}</DocumentationLink>
+      <DocumentationLink type="event" apiDoc="mapping/drawtools/event/DrawingEvent.md">Documentation for {{ drawingEvent }}</DocumentationLink>
       <CodeSnippet>
         {
-            "name": "DrawingEvent",
-            "id": "my functionality id",
-            "geojson": "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[356352,6776320],[428032,6776064]]]},\"properties\":{\"area\":\"0 m2\"}}]}",
-            "data": {
-              "area": "0 m2",
-              "bufferedGeoJson": "{\"type\":\"FeatureCollection\",\"features\":[]}",
-              "shape": "Polygon"
+          "name": "DrawingEvent",
+          "id": "my functionality id",
+          "geojson": {
+            "type": "FeatureCollection",
+            "features": [
+              {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Polygon",
+                  "coordinates": [
+                    [
+                      [
+                        429245.623,
+                        7349501.146
+                      ],
+                      [
+                        158909.62300000002,
+                        7081213.146
+                      ],
+                      [
+                        597181.623,
+                        6853885.146
+                      ],
+                      [
+                        429245.623,
+                        7349501.146
+                      ]
+                    ]
+                  ]
+                },
+                "properties": {
+                  "area": 87187682917.60973
+                },
+                "id": "drawFeature0"
+              }
+            ],
+            "crs": "EPSG:3067"
+          },
+          "data": {
+            "buffer": 0,
+            "bufferedGeoJson": {
+              "type": "FeatureCollection",
+              "features": []
             },
-            "isFinished": true
-          }
+            "shape": "Polygon",
+            "area": 87187682917.60973
+          },
+          "isFinished": true
+        }
       </CodeSnippet>
     </p>
   
   </div>
 </template>
 <script>
-const drawingEventRequest = 'DrawingEvent';
+const drawingEvent = 'DrawingEvent';
 const startDrawingRequest = 'DrawTools.StartDrawingRequest';
 const stopDrawingRequest = 'DrawTools.StopDrawingRequest';
 const title = 'Drawing requests'
@@ -64,7 +103,7 @@ export default {
   label: title,
   data () {
     return {
-      drawingEventRequest,
+      drawingEvent,
       startDrawingRequest,
       stopDrawingRequest,
       title
