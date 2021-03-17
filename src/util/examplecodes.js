@@ -616,17 +616,5 @@ var search = {
     "requestParameters": "Vantaa"
   }`
 }
-var drawing = {
-  event: `{
-    "name": "DrawingEvent",
-    "id": "my functionality id",
-    "geojson": "{\"type\":\"FeatureCollection\",\"features\":[{\"type\":\"Feature\",\"geometry\":{\"type\":\"Polygon\",\"coordinates\":[[[356352,6776320],[428032,6776064]]]},\"properties\":{\"area\":\"0 m2\"}}]}",
-    "data": {
-      "area": "0 m2",
-      "bufferedGeoJson": "{\"type\":\"FeatureCollection\",\"features\":[]}",
-      "shape": "Polygon"
-    },
-    "isFinished": true
-  }`
-}
-export { features, wkt, feedback, infobox, marker, search, drawing };
+
+export { features, wkt, feedback, infobox, marker, search };
