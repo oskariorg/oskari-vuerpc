@@ -4,7 +4,7 @@
     <p>
       With drawing features of Oskari RPC API you can give end-user possibility to make their own markings to the map.
       <br><br>
-      In order to save user made markings they should be saved as features of the map. These features can then be programmatically listened for events and used to trigger different functions of application for example.
+      The drawn features trigger events that can be programmatically listened to and used to trigger different functions in the application that is using an Oskari-based embedded map.
       <br><br>
       To start drawing send <InlineCode>StartDrawingRequest</InlineCode> and draw polygon by clicking several locations on the map.<br>
       <RunExampleButton @click="startDrawing">Activate drawing mode</RunExampleButton>
