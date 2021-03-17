@@ -3,7 +3,7 @@
     <h2>{{ title }}</h2>
     <p>
       To start drawing send <InlineCode>StartDrawingRequest</InlineCode>.
-      <RunExampleButton class="btn btn-primary exampleready" @click="startDrawing">DrawTools.StartDrawingRequest</RunExampleButton>
+      <RunExampleButton @click="startDrawing">DrawTools.StartDrawingRequest</RunExampleButton>
       <br>
       <DocumentationLink type="request" apiDoc="mapping/drawtools/request/startdrawingrequest.md">Documentation for {{ startDrawingRequest }}</DocumentationLink>
       <CodeSnippet>
@@ -67,8 +67,7 @@ export default {
       drawingEventRequest,
       startDrawingRequest,
       stopDrawingRequest,
-      title,
-      desc: title
+      title
     }
   },
   methods: {
