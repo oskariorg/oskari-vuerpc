@@ -4,7 +4,7 @@
     <p>
       With drawing features of Oskari RPC API you can give end-user possibility to make their own markings to the map.
       <br><br>
-      In order to save user made markings they should be saved as features of the map. These features can then be programmatically listened for events and used to trigger different functions of application for example.
+      The drawn features trigger events that can be programmatically listened to and used to trigger different functions in the application that is using an Oskari-based embedded map.
       <br><br>
       To start drawing send <InlineCode>StartDrawingRequest</InlineCode> and draw polygon by clicking several locations on the map.<br>
       <RunExampleButton @click="startDrawing">Activate drawing mode</RunExampleButton>
@@ -37,7 +37,7 @@
     </p>
 
     <p>
-      Everytime mouse is moved on the map DrawingEvent occurs while drawing is in progress and contains all the information regarding current drawing. To ensure that logging or event listener isn't clogged check if <code>DrawingEvent.finished</code> is set to <code>true</code> and only log when drawing is finished.
+      Everytime mouse is moved on the map DrawingEvent occurs while drawing is in progress and contains all the information regarding current drawing. This enables things like using the draw functionality as a measurement tool. To ensure that logging or event listener isn't clogged check if <code>DrawingEvent.finished</code> is set to <code>true</code> and only log when drawing is finished. 
       <br>
       <DocumentationLink type="event" apiDoc="mapping/drawtools/event/DrawingEvent.md">Documentation for DrawingEvent</DocumentationLink>
       <CodeSnippet>
