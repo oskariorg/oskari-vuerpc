@@ -2,7 +2,11 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      To start drawing send <InlineCode>StartDrawingRequest</InlineCode>.<br>
+      With drawing features of Oskari RPC API you can give end-user possibility to make their own markings to the map.
+      <br><br>
+      In order to save user made markings they should be saved as features of the map. These features can then be programmatically listened for events and used to trigger different functions of application for example.
+      <br><br>
+      To start drawing send <InlineCode>StartDrawingRequest</InlineCode> and draw polygon by clicking several locations on the map.<br>
       <RunExampleButton @click="startDrawing">Activate drawing mode</RunExampleButton>
       <br>
       <DocumentationLink type="request" apiDoc="mapping/drawtools/request/startdrawingrequest.md">Documentation for DrawTools.StartDrawingRequest</DocumentationLink>
