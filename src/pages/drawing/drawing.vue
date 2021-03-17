@@ -37,7 +37,7 @@
     </p>
 
     <p>
-      Everytime mouse is moved on the map DrawingEvent occurs while drawing is in progress and contains all the information regarding current drawing. To ensure that logging or event listener isn't clogged check if <code>DrawingEvent.finished</code> is set to <code>true</code> and only log when drawing is finished.
+      Everytime mouse is moved on the map DrawingEvent occurs while drawing is in progress and contains all the information regarding current drawing. This enables things like using the draw functionality as a measurement tool. To ensure that logging or event listener isn't clogged check if <code>DrawingEvent.finished</code> is set to <code>true</code> and only log when drawing is finished. 
       <br>
       <DocumentationLink type="event" apiDoc="mapping/drawtools/event/DrawingEvent.md">Documentation for DrawingEvent</DocumentationLink>
       <CodeSnippet>
