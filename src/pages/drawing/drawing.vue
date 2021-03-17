@@ -60,7 +60,7 @@ const stopDrawingRequest = 'DrawTools.StopDrawingRequest';
 const title = 'Drawing requests'
 
 export default {
-  name: 'drawing',
+  name: 'Drawing',
   label: title,
   data () {
     return {
