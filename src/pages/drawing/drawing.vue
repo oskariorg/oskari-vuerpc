@@ -93,6 +93,13 @@
         }
       </CodeSnippet>
     </p>
+    <h3>Saving markings</h3>
+    <p>
+      If you want to store the markings/drawings the user made on the map after they have been drawn it's best to add them as features to the map with AddFeaturesToMapRequest based on the GeoJSON from DrawingEvent. Otherwise stopping the draw mode or starting a new drawing can accidentally erase the previous markings from the map.
+      <br><br>
+      It's ok to try and keep the markings on the drawing layer depending on your app, but most real world applications probably want more control over the markings. Adding them as features allow styling, click events and other benefits. 
+      <br><br>
+    </p>
   
   </div>
 </template>
