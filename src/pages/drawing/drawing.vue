@@ -2,10 +2,10 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      To start drawing send <InlineCode>StartDrawingRequest</InlineCode>.
-      <RunExampleButton @click="startDrawing">DrawTools.StartDrawingRequest</RunExampleButton>
+      To start drawing send <InlineCode>StartDrawingRequest</InlineCode>.<br>
+      <RunExampleButton @click="startDrawing">Activate drawing mode</RunExampleButton>
       <br>
-      <DocumentationLink type="request" apiDoc="mapping/drawtools/request/startdrawingrequest.md">Documentation for {{ startDrawingRequest }}</DocumentationLink>
+      <DocumentationLink type="request" apiDoc="mapping/drawtools/request/startdrawingrequest.md">Documentation for DrawTools.StartDrawingRequest</DocumentationLink>
       <CodeSnippet>
         var data = ['my functionality id', 'Polygon'];
         channel.postRequest('DrawTools.StartDrawingRequest', data);
@@ -14,9 +14,9 @@
 
     <p>
       To stop current drawing progress send <InlineCode>StopDrawingRequest</InlineCode>.
-      <RunExampleButton @click="stopDrawing">DrawTools.StopDrawingRequest</RunExampleButton>
+      <RunExampleButton @click="stopDrawing">Disable drawing mode</RunExampleButton>
       <br>
-      <DocumentationLink type="request" apiDoc="mapping/drawtools/request/stopdrawingrequest.md">Documentation for {{ stopDrawingRequest }}</DocumentationLink>
+      <DocumentationLink type="request" apiDoc="mapping/drawtools/request/stopdrawingrequest.md">Documentation for DrawTools.StopDrawingRequest</DocumentationLink>
       <CodeSnippet>
         var data = ['my functionality id'];
         channel.postRequest('DrawTools.StopDrawingRequest', data);
@@ -25,7 +25,7 @@
 
     <p>
       To clear drawing from the map send <InlineCode>StopDrawingRequest</InlineCode> with second member of data parameter given to StopDrawingRequest set as true.
-      <RunExampleButton @click="stopDrawingClear">DrawTools.StopDrawingRequest - clear drawings</RunExampleButton>
+      <RunExampleButton @click="stopDrawingClear">Clear drawings</RunExampleButton>
       <CodeSnippet>
         var data = ['my functionality id', true];
       channel.postRequest('DrawTools.StopDrawingRequest', data);
@@ -35,7 +35,7 @@
     <p>
       Everytime mouse is moved on the map DrawingEvent occurs while drawing is in progress and contains all the information regarding current drawing. To ensure that logging isn't clogged check if <code>DrawingEvent.finished</code> is set to <code>true</code> and only log when drawing is finished.
       <br>
-      <DocumentationLink type="event" apiDoc="mapping/drawtools/event/DrawingEvent.md">Documentation for {{ drawingEvent }}</DocumentationLink>
+      <DocumentationLink type="event" apiDoc="mapping/drawtools/event/DrawingEvent.md">Documentation for DrawingEvent</DocumentationLink>
       <CodeSnippet>
         {
           "name": "DrawingEvent",
@@ -93,9 +93,6 @@
   </div>
 </template>
 <script>
-const drawingEvent = 'DrawingEvent';
-const startDrawingRequest = 'DrawTools.StartDrawingRequest';
-const stopDrawingRequest = 'DrawTools.StopDrawingRequest';
 const title = 'Drawing requests'
 
 export default {
@@ -103,9 +100,6 @@ export default {
   label: title,
   data () {
     return {
-      drawingEvent,
-      startDrawingRequest,
-      stopDrawingRequest,
       title
     }
   },
