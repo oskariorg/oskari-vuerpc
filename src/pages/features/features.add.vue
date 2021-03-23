@@ -28,6 +28,9 @@ channel.postRequest('{{ requestNameAdd }}',
   [geojson, {{ JSON.stringify(centerToGeomOpts)}}]);
     </CodeSnippet>
     <RunExampleButton @click="addPointToMap(true)">Add point and move map</RunExampleButton>
+    <p>Note! If you added the point to the map with previous button you should remove it before clicking this. There's a remove button below.
+      Also test moving the map so the point to be added isn't in the viewport to see the full effect.
+    </p>
     <p>
       However this introduces another problem where especially with point features the map can be zoomed "too close". 
       On version 2.2.0 a flag was added for maxZoomLevel to restrict zooming (on previous versions also minScale works to limit zooming).
@@ -38,6 +41,7 @@ channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',
   [{ maxZoomLevel: 4 }]);
     </CodeSnippet>
     <RunExampleButton @click="zoomToPoint">Zoom to point (limited by zoom level)</RunExampleButton>
+    <p>Note! This does nothing if the point is not on map</p>
 
     <h3>Removing features</h3>
     <p>Remove all features across all vector layers</p>
