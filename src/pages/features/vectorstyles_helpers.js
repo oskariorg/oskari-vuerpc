@@ -62,4 +62,16 @@ const polygonStyles = [{
   }
 }];
 
-export { pointStyles, polygonStyles };
+const createStyleCycler = (styles = polygonStyles) => {
+  let currentStyle = 0;
+  const getNextStyle = () => {
+    currentStyle++;
+    if (currentStyle >= styles.length) {
+      currentStyle = 0;
+    }
+    return styles[currentStyle];
+  };
+  return getNextStyle;
+};
+
+export { pointStyles, polygonStyles, createStyleCycler };

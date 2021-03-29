@@ -27,7 +27,7 @@ channel.postRequest('{{ requestNameAdd }}', [geojson, {{ JSON.stringify(centerTo
 
 <script>
 import { generator } from './vectorlayer_helpers';
-import { pointStyles, polygonStyles } from './vectorstyles_helpers';
+import { pointStyles, polygonStyles, createStyleCycler } from './vectorstyles_helpers';
 
 import EVENTBUS from '../../util/eventbus.js';
 
@@ -46,22 +46,8 @@ const centerToGeomOpts = {
   layerId: vectorLayerName
 };
 
-let currentPointStyle = 0;
-const getNextPointStyle = () => {
-  currentPointStyle++;
-  if (currentPointStyle >= pointStyles.length) {
-    currentPointStyle = 0;
-  }
-  return pointStyles[currentPointStyle];
-};
-let currentPolygonStyle = 0;
-const getNextPolygonStyle = () => {
-  currentPolygonStyle++;
-  if (currentPolygonStyle >= polygonStyles.length) {
-    currentPolygonStyle = 0;
-  }
-  return polygonStyles[currentPolygonStyle];
-};
+const getNextPointStyle = createStyleCycler(pointStyles);
+const getNextPolygonStyle = createStyleCycler(polygonStyles);
 
 
 export default {
