@@ -54,6 +54,16 @@ const generator = {
     }
     return geojsonObject;
   },
+  getRectangle: (x, y, attributes, width = 200, height = 100) => {
+    return {
+      'type': 'Feature',
+      'geometry': {
+        'type': 'Polygon',
+        'coordinates': [[[x, y], [x + width, y], [x + width, y + height], [x, y + height], [x, y]]]
+      },
+      'properties': { ...attributes }
+    };
+  },
   getPolygon: (x, y, attributes) => {
     return {
       'type': 'Feature',
