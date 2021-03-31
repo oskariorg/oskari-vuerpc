@@ -55,10 +55,26 @@ const pointStyles = [{
 const polygonStyles = [{
   fill: {
     color: '#FF0000'
+  },
+  stroke: {
+    color: '#000000',
+    width: 1
   }
 }, {
   fill: {
     color: '#00FFFF'
+  },
+  stroke: {
+    color: '#000000',
+    width: 1
+  }
+}, {
+  fill: {
+    color: null
+  },
+  stroke: {
+    color: '#000000',
+    width: 10
   }
 }];
 
