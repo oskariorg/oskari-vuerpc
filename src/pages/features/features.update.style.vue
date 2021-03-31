@@ -22,6 +22,7 @@ channel.postRequest('{{ requestNameAdd }}', [geojson, {{ JSON.stringify(centerTo
       The example uses a random animationDuration option when updating the polygon style.
     </p>
 
+    <DocumentationLink href="https://oskari.org/documentation/examples/oskari-style">Documentation for styles</DocumentationLink>
   </div>
 </template>
 
