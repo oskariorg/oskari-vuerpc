@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="selectExamples">
-    <h2>Select Action <NavigationDropdown :current="currentPage.name" /></h2>
+    <h2 v-if="!hideSelect">Select Action <NavigationDropdown :current="currentPage.name" /></h2>
     <div class="navigationLinkParent">
       <div v-if="navLinks.prev"><router-link :to="navLinks.prev.path">Previous:  {{ navLinks.prev.label }}</router-link></div>
       <div v-if="navLinks.next"><router-link :to="navLinks.next.path">Next: {{ navLinks.next.label }}</router-link></div>
@@ -19,7 +19,8 @@ export default {
     NavigationDropdown
   },
   props: {
-    'currentPage': Object
+    'currentPage': Object,
+    'hideSelect': Boolean
   },
   computed: {
     navLinks () {

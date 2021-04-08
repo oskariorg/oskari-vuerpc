@@ -12,6 +12,7 @@
               -->
             <router-view />
           </transition>
+          <PageNavigation :currentPage="currentPage" v-bind:hideSelect="true" class="bottomnavi" />
         </div>
       </div>
     </div>
@@ -50,4 +51,8 @@ h3 {
   font-size: 1.25rem !important;
 }
 
+.bottomnavi {
+    padding-bottom: 10px;
+    padding-top: 10px;
+}
 </style>
