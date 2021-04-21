@@ -88,6 +88,9 @@ channel.useState([savedState], function () {
       this.$root.channel.useState([this.savedState], () => {
         this.$root.channel.log('UseState: ', this.savedState);
       });
+      if (Object.keys(this.savedState).length === 0) {
+        this.$root.channel.log('UseState() without params or with an empty object as param doesn\'t do anything. Click "Save state", move the map and then click "Load state" to see the effect.');
+      }
     }
   },
   beforeDestroy: () => {
