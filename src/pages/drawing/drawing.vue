@@ -113,6 +113,11 @@ export default {
       title
     }
   },
+  beforeDestroy () {
+      const data = ['my functionality id', true];
+      this.$root.channel.postRequest('DrawTools.StopDrawingRequest', data);
+      this.$root.channel.log('DrawTools.StopDrawingRequest posted with data:', data);
+  },
   methods: {
     startDrawing (showMeasurement = false) {
       const data = [
