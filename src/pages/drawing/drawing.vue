@@ -22,8 +22,8 @@
     </p>
 
     <p>
-      To stop current drawing progress send <InlineCode>StopDrawingRequest</InlineCode>. StopDrawingRequests should be set up to be initiated for example by
-      a button positioned next to map to ensure application working flawlessly.<br>
+      To stop current drawing progress send <InlineCode>StopDrawingRequest</InlineCode> with id of the feature to stop drawing for as a parameter. For accessability reasons it isn't recommended that <InlineCode>StopDrawingRequest</InlineCode> is initiated by
+      double clicking map area but rather by placing dedicated button in the UI of application being developed.<br>
       <RunExampleButton @click="stopDrawing">Disable drawing mode</RunExampleButton>
       <br>
       <DocumentationLink type="request" apiDoc="mapping/drawtools/request/stopdrawingrequest.md">Documentation for DrawTools.StopDrawingRequest</DocumentationLink>
@@ -103,7 +103,8 @@
   </div>
 </template>
 <script>
-const title = 'Drawing requests'
+const title = 'Drawing requests';
+const featureId = 'my functionality id';
 
 export default {
   name: 'Drawing',
@@ -114,14 +115,14 @@ export default {
     }
   },
   beforeDestroy () {
-      const data = ['my functionality id', true];
+      const data = [featureId, true];
       this.$root.channel.postRequest('DrawTools.StopDrawingRequest', data);
       this.$root.channel.log('DrawTools.StopDrawingRequest posted with data:', data);
   },
   methods: {
     startDrawing (showMeasurement = false) {
       const data = [
-        'my functionality id',
+        featureId,
         'Polygon',
         {
           showMeasureOnMap: showMeasurement
@@ -131,12 +132,12 @@ export default {
       this.$root.channel.log('DrawTools.StartDrawingRequest posted with data:', data);
     },
     stopDrawing () {
-      const data = ['my functionality id'];
+      const data = [featureId];
       this.$root.channel.postRequest('DrawTools.StopDrawingRequest', data);
       this.$root.channel.log('DrawTools.StopDrawingRequest posted with data:', data);
     },
     stopDrawingClear () {
-      const data = ['my functionality id', true];
+      const data = [featureId, true];
       this.$root.channel.postRequest('DrawTools.StopDrawingRequest', data);
       this.$root.channel.log('DrawTools.StopDrawingRequest posted with data:', data);
     }
