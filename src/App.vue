@@ -133,8 +133,11 @@
   height: 98% !important;
 }
 .panel {
-  height: 750px;
-
+  height: 800px;
+  
+  @media screen and (max-height: 899px) {
+    height: 750px;
+  }
   @media screen and (max-height: 850px) {
     height: 700px;
   }
