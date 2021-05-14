@@ -41,7 +41,6 @@ export default {
 }
 .form-panel {
   border:0.5px solid #D9D9D9;
-  // height:770px;
 }
 #select-panel{
   margin: 0 auto;

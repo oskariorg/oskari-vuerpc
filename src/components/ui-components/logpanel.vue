@@ -32,7 +32,6 @@ export default {
 </script>
 <style lang="scss">
 .log-panel {
-  // height:770px;
   border:0.5px solid #D9D9D9;
   overflow-y: auto;
 }
