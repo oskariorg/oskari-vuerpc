@@ -123,18 +123,29 @@
 }
 .wrapper {
     position:absolute; 
-    width: 98%;
+    width: 100%;
     margin-left: 0;
     margin-right: 0;
-    height:100%;
+    //height:100%;
+    min-height: 750px;
     //font-size: calc(0.60rem + 1.0vh);
+    padding: 0 1em;
 }
 .row {
-  height:800px !important;
-  padding-left: 1em;
+  // height:800px !important;
 }
 .full-height-panel {
   height: 98% !important;
+}
+.panel {
+  height: 750px;
+
+  @media screen and (max-height: 850px) {
+    height: 700px;
+  }
+  @media screen and (max-height: 700px) {
+    height: 600px;
+  }
 }
 .panel-body {
   padding: 1em !important;
