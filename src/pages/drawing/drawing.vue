@@ -2,22 +2,28 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      With drawing features of Oskari RPC API you can give end-user possibility to make their own markings to the map.
-      <br><br>
-      The drawn features trigger events that can be programmatically listened to and used to trigger different functions in the application that is using an Oskari-based embedded map.
-      <br><br>
-      To start drawing send <InlineCode>StartDrawingRequest</InlineCode> and draw polygon by clicking several locations on the map.<br>
-      <RunExampleButton @click="startDrawing">Activate drawing mode</RunExampleButton>
+      Drawing requests can be used to mark down and measure different locations on the map. With different settings you can set the behaviour of the request
+      from drawing different plain pre-defined shapes to drawing custom styled measurement of the marked area. These pre-defined shapes consist of shapes like polygon, 
+      circle, point, box, square or line. <br><br>
+      To start drawing send <InlineCode>StartDrawingRequest</InlineCode>.<br>
+      <RunExampleButton @click="startDrawing()">Activate drawing mode</RunExampleButton><br>
+      <RunExampleButton @click="startDrawing(true)">Activate drawing mode with measurement</RunExampleButton>
       <br>
       <DocumentationLink type="request" apiDoc="mapping/drawtools/request/startdrawingrequest.md">Documentation for DrawTools.StartDrawingRequest</DocumentationLink>
       <CodeSnippet>
         var data = ['my functionality id', 'Polygon'];
         channel.postRequest('DrawTools.StartDrawingRequest', data);
       </CodeSnippet>
+      To start drawing with measurement turned on, send drawing request with options parameter as object containing <InlineCode>showMeasureOnMap</InlineCode> as true. 
+      <CodeSnippet>
+        var data = ['my functionality id', 'Polygon', { showMeasureOnMap: true }];
+        channel.postRequest('DrawTools.StartDrawingRequest', data);
+      </CodeSnippet>
     </p>
 
     <p>
-      To stop current drawing progress send <InlineCode>StopDrawingRequest</InlineCode>.
+      To stop current drawing progress send <InlineCode>StopDrawingRequest</InlineCode> with id of the feature to stop drawing for as a parameter. For accessability reasons it isn't recommended that <InlineCode>StopDrawingRequest</InlineCode> is initiated by
+      double clicking map area but rather by placing dedicated button in the UI of application being developed.<br>
       <RunExampleButton @click="stopDrawing">Disable drawing mode</RunExampleButton>
       <br>
       <DocumentationLink type="request" apiDoc="mapping/drawtools/request/stopdrawingrequest.md">Documentation for DrawTools.StopDrawingRequest</DocumentationLink>
@@ -37,7 +43,7 @@
     </p>
 
     <p>
-      Everytime mouse is moved on the map DrawingEvent occurs while drawing is in progress and contains all the information regarding current drawing. This enables things like using the draw functionality as a measurement tool. To ensure that logging or event listener isn't clogged check if <code>DrawingEvent.finished</code> is set to <code>true</code> and only log when drawing is finished. 
+      Everytime mouse is moved on the map DrawingEvent occurs while drawing is in progress and contains all the information regarding current drawing. To ensure that logging isn't clogged check if <code>DrawingEvent.finished</code> is set to <code>true</code> and only log when drawing is finished.
       <br>
       <DocumentationLink type="event" apiDoc="mapping/drawtools/event/DrawingEvent.md">Documentation for DrawingEvent</DocumentationLink>
       <CodeSnippet>
@@ -93,18 +99,12 @@
         }
       </CodeSnippet>
     </p>
-    <h3>Saving markings</h3>
-    <p>
-      If you want to store the markings/drawings the user made on the map after they have been drawn it's best to add them as features to the map with AddFeaturesToMapRequest based on the GeoJSON from DrawingEvent. Otherwise stopping the draw mode or starting a new drawing can accidentally erase the previous markings from the map.
-      <br><br>
-      It's ok to try and keep the markings on the drawing layer depending on your app, but most real world applications probably want more control over the markings. Adding them as features allow styling, click events and other benefits. 
-      <br><br>
-    </p>
   
   </div>
 </template>
 <script>
-const title = 'Drawing requests'
+const title = 'Drawing requests';
+const featureId = 'my functionality id';
 
 export default {
   name: 'Drawing',
@@ -115,23 +115,29 @@ export default {
     }
   },
   beforeDestroy () {
-      const data = ['my functionality id', true];
+      const data = [featureId, true];
       this.$root.channel.postRequest('DrawTools.StopDrawingRequest', data);
       this.$root.channel.log('DrawTools.StopDrawingRequest posted with data:', data);
   },
   methods: {
-    startDrawing () {
-      const data = ['my functionality id', 'Polygon'];
+    startDrawing (showMeasurement = false) {
+      const data = [
+        featureId,
+        'Polygon',
+        {
+          showMeasureOnMap: showMeasurement
+        }
+      ];
       this.$root.channel.postRequest('DrawTools.StartDrawingRequest', data);
       this.$root.channel.log('DrawTools.StartDrawingRequest posted with data:', data);
     },
     stopDrawing () {
-      const data = ['my functionality id'];
+      const data = [featureId];
       this.$root.channel.postRequest('DrawTools.StopDrawingRequest', data);
       this.$root.channel.log('DrawTools.StopDrawingRequest posted with data:', data);
     },
     stopDrawingClear () {
-      const data = ['my functionality id', true];
+      const data = [featureId, true];
       this.$root.channel.postRequest('DrawTools.StopDrawingRequest', data);
       this.$root.channel.log('DrawTools.StopDrawingRequest posted with data:', data);
     }
