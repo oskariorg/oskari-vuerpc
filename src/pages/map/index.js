@@ -12,17 +12,17 @@ import mapPixelmeasures from './pixelmeasures.vue';
 import layerStyle from './layer.style.vue';
 
 export default {
-    name: 'Map',
-    pages: [
-        mapLocation,
-        mapZoom,
-        layers,
-        mapState,
-        mapClicked,
-        mapRotate,
-        mapTour,
-        mapScreenshot,
-        mapPixelmeasures,
-        layerStyle
-    ]
+  name: 'Map',
+  pages: [
+    mapLocation,
+    mapZoom,
+    layers,
+    mapState,
+    mapClicked,
+    mapRotate,
+    mapTour,
+    mapScreenshot,
+    mapPixelmeasures,
+    layerStyle
+  ]
 };
