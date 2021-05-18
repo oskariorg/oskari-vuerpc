@@ -9,7 +9,7 @@
     <code-component>
 channel.onReady(function() {
   channel.log('Map is now listening'); //channel is now ready and listening. 
-  var expectedOskariVersion = '1.43.0';
+  var expectedOskariVersion = '2.3.1';
 
   channel.isSupported(expectedOskariVersion, function(blnSupported) {
     if(blnSupported) {
@@ -58,7 +58,7 @@ export default {
     checkClientSupport () {
       this.$root.channel.onReady(function() {
           channel.log('Map is now listening'); //channel is now ready and listening. 
-          var expectedOskariVersion = '1.43.0';
+          var expectedOskariVersion = '2.3.1';
           channel.isSupported(expectedOskariVersion, function(blnSupported) {
           if(blnSupported) {
               channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
