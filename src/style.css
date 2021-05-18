@@ -77,17 +77,7 @@ a.go-to-site {
   width: 45%;
   float: right;
 }
-/*
-.panel-default li a {
-  background-color: #6281c1;
-  color: #ffffff;
-  padding: 6px 6px 6px 18px;
-  border-radius: 5px;
-  border: 1px solid #5c7cba;
-  width: auto;
-  display: block;
-}
-*/
+
 .form-panel {
   overflow: auto;
 }
@@ -164,10 +154,6 @@ a.go-to-site {
 }
 
 /* MAP PAGE --> */
-
-.map-panel {
-  height: 600px;
-}
 
 #rpcControls {
     text-align: center;
@@ -251,10 +237,6 @@ html, body {
         background-color: #2B9100;
     }
 
-
-    .full-height-panel, .map-panel {
-        height: 98% !important;
-    }
     .panel-body {
         height: 100%
     }
