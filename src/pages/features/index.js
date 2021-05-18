@@ -8,8 +8,6 @@ import featureEvent from '../../components/events/feature.event.vue';
 import featuresInfo from './features.info.vue';
 import featuresZoom from '../../components/requests/features.zoom.vue';
 
-import layerVisibility from '../../components/requests/layer.visibility.vue';
-
 export default {
   name: 'Features',
   pages: [
@@ -21,7 +19,6 @@ export default {
     features,
     featureEvent,
     featuresInfo,
-    featuresZoom,
-    layerVisibility
+    featuresZoom
   ]
 };
