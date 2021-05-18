@@ -4,11 +4,11 @@ import feedbackPost from '../../components/requests/feedback.post.vue';
 import feedbackResult from '../../components/events/feedback.result.vue';
 
 export default {
-    name: 'Feedback',
-    pages: [
-        feedbackServices,
-        feedbackRequest,
-        feedbackPost,
-        feedbackResult
-    ]
+  name: 'Feedback',
+  pages: [
+    feedbackServices,
+    feedbackRequest,
+    feedbackPost,
+    feedbackResult
+  ]
 };

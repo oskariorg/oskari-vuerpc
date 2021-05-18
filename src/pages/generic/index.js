@@ -3,10 +3,10 @@ import supportedFunctions from '../../components/functions/supported.functions.v
 import supportedRequests from '../../components/functions/supported.requests.vue';
 
 export default {
-    name: 'Supported',
-    pages: [
-        supportedEvents,
-        supportedFunctions,
-        supportedRequests
-    ]
+  name: 'Supported',
+  pages: [
+    supportedEvents,
+    supportedFunctions,
+    supportedRequests
+  ]
 };

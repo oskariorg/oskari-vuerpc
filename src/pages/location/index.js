@@ -7,13 +7,13 @@ import userLocationEvent from '../../components/events/user.location.event.vue';
 import search from './search.vue';
 
 export default {
-    name: 'Location',
-    pages: [
-        routeResult,
-        seachResult,
-        routeGet,
-        userLocation,
-        userLocationEvent,
-        search
-    ]
+  name: 'Location',
+  pages: [
+    routeResult,
+    seachResult,
+    routeGet,
+    userLocation,
+    userLocationEvent,
+    search
+  ]
 };
