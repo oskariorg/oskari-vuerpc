@@ -98,7 +98,7 @@
   </div>
 </template>
 <script>
-import { getExceptedOskariVersion } from '../../util/commonUtil';
+import { EXPECTED_OSKARI_VERSION } from '../../constants';
 
 const title = 'Supported functionality';
 
@@ -129,7 +129,7 @@ export default {
     checkClientSupport () {
       this.$root.channel.onReady(function() {
           channel.log('Map is now listening'); //channel is now ready and listening. 
-          const expectedOskariVersion = getExceptedOskariVersion();
+          const expectedOskariVersion = EXPECTED_OSKARI_VERSION;
           channel.isSupported(expectedOskariVersion, function(blnSupported) {
           if(blnSupported) {
               channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
