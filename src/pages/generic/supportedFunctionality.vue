@@ -10,8 +10,9 @@
         <RunExampleButton @click="getSupportedEvents">Get supported events</RunExampleButton>
         <br><br>
         <CodeSnippet snippet="channel.getSupportedEvents(function(data){
-          channel.log('GetSupportedEvents: ', data);
-        });"></CodeSnippet>
+  channel.log('GetSupportedEvents: ', data);
+});">
+        </CodeSnippet>
       </p>
     </div>
     <br>
@@ -23,8 +24,9 @@
         <RunExampleButton @click="getSupportedFunctions">Get supported functions</RunExampleButton>
         <br><br>
         <CodeSnippet snippet="channel.getSupportedFunctions(function(data){
-          channel.log('GetSupportedFunctions: ', data);
-        });"></CodeSnippet>
+  channel.log('GetSupportedFunctions: ', data);
+});">
+        </CodeSnippet>
       </p>
     </div>
     <br>
@@ -36,8 +38,8 @@
         <RunExampleButton @click="getSupportedRequests">Get supported requests</RunExampleButton>
         <br><br>
         <CodeSnippet snippet="channel.getSupportedRequests(function(data){
-          channel.log('GetSupportedRequests: ', data);
-        });"></CodeSnippet>
+  channel.log('GetSupportedRequests: ', data);
+});"></CodeSnippet>
       </p>
     </div>
     <br>
@@ -52,22 +54,20 @@
         <br>
         <br>
         <CodeSnippet>
-    channel.onReady(function() {
       channel.log('Map is now listening'); //channel is now ready and listening. 
-      var expectedOskariVersion = '2.3.1';
+  var expectedOskariVersion = '{{ EXPECTED_OSKARI_VERSION }}';
 
-      channel.isSupported(expectedOskariVersion, function(blnSupported) {
-        if(blnSupported) {
-          channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
-        } else {
-          channel.log('Oskari-instance is not the one we expect (' + expectedOskariVersion + ') or client not supported');
-          // getInfo can be used to get the current Oskari version
-          channel.getInfo(function(oskariInfo) {
-            channel.log('Current Oskari-instance reports version as: ', oskariInfo);
-          });
-        }
+  channel.isSupported(expectedOskariVersion, function(blnSupported) {
+    if(blnSupported) {
+      channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
+    } else {
+      channel.log('Oskari-instance is not the one we expect (' + expectedOskariVersion + ') or client not supported');
+      // getInfo can be used to get the current Oskari version
+      channel.getInfo(function(oskariInfo) {
+        channel.log('Current Oskari-instance reports version as: ', oskariInfo);
       });
-    });
+    }
+  });
         </CodeSnippet>
       </p>
     </div>
@@ -82,15 +82,13 @@
       <br>
       <br>
       <CodeSnippet>
-  channel.onReady(function() {
-    channel.isSupported(function(blnSupported) {
-      if(!blnSupported) {
-        channel.log('Oskari reported client version (' + OskariRPC.VERSION + ') is not supported.' +
-        'The client might work, but some features are not compatible.');
-      } else {
-        channel.log('Client is supported by Oskari.');
-      }
-    });
+  channel.isSupported(function(blnSupported) {
+    if(!blnSupported) {
+      channel.log('Oskari reported client version (' + OskariRPC.VERSION + ') is not supported.' +
+      'The client might work, but some features are not compatible.');
+    } else {
+      channel.log('Client is supported by Oskari.');
+    }
   });
       </CodeSnippet>
       </p>
@@ -107,7 +105,8 @@ export default {
   label: title,
   data () {
     return {
-      title
+      title,
+      EXPECTED_OSKARI_VERSION
     }
   },
   methods: {
@@ -127,40 +126,36 @@ export default {
       });
     },
     checkClientSupport () {
-      this.$root.channel.onReady(function() {
-          channel.log('Map is now listening'); //channel is now ready and listening. 
-          const expectedOskariVersion = EXPECTED_OSKARI_VERSION;
-          channel.isSupported(expectedOskariVersion, function(blnSupported) {
-          if(blnSupported) {
-              channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
-          } else {
-              channel.log('Oskari-instance is not the one we expect (' + expectedOskariVersion + ') or client not supported');
-              // getInfo can be used to get the current Oskari version
-              channel.getInfo(function(oskariInfo) {
-              channel.log('Current Oskari-instance reports version as: ', oskariInfo);
-              });
-          }
+      channel.log('Map is now listening'); //channel is now ready and listening. 
+      const expectedOskariVersion = EXPECTED_OSKARI_VERSION;
+      channel.isSupported(expectedOskariVersion, function(blnSupported) {
+      if(blnSupported) {
+          channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
+      } else {
+          channel.log('Oskari-instance is not the one we expect (' + expectedOskariVersion + ') or client not supported');
+          // getInfo can be used to get the current Oskari version
+          channel.getInfo(function(oskariInfo) {
+          channel.log('Current Oskari-instance reports version as: ', oskariInfo);
           });
-          channel.isSupported(function(blnSupported) {
-          if(!blnSupported) {
-              channel.log('Oskari reported client version (' + OskariRPC.VERSION + ') is not supported.' +
-              'The client might work, but some features are not compatible.');
-          } else {
-              channel.log('Client is supported by Oskari.');
-          }
-          });
+      }
+      });
+      channel.isSupported(function(blnSupported) {
+      if(!blnSupported) {
+          channel.log('Oskari reported client version (' + OskariRPC.VERSION + ') is not supported.' +
+          'The client might work, but some features are not compatible.');
+      } else {
+          channel.log('Client is supported by Oskari.');
+      }
       });
     },
     checkServerSupport () {
-      this.$root.channel.onReady(function() {
-          channel.isSupported(function(blnSupported) {
-          if(!blnSupported) {
-              channel.log('Oskari reported client version (' + OskariRPC.VERSION + ') is not supported.' +
-              'The client might work, but some features are not compatible.');
-          } else {
-              channel.log('Client is supported by Oskari.');
-          }
-          });
+      channel.isSupported(function(blnSupported) {
+      if(!blnSupported) {
+          channel.log('Oskari reported client version (' + OskariRPC.VERSION + ') is not supported.' +
+          'The client might work, but some features are not compatible.');
+      } else {
+          channel.log('Client is supported by Oskari.');
+      }
       });
     },
   }
