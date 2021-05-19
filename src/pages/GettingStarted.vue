@@ -34,6 +34,15 @@ var channel = OskariRPC.connect(
 );
       </code-component>
 
+      <h3>Wait for the channel to get ready for use</h3>
+      Also checking that the iframe gives us an expected version of Oskari
+      and/or that the Oskari version recognizes our client version.
+      <code-component>
+channel.onReady(function() {
+    //channel is now ready and listening.
+    channel.log('Map is now listening');
+});
+      </code-component>
       <h3>Do your stuff. Send requests, listen to events and call functions.</h3>
       <code-component>
 //spinning action on the map
