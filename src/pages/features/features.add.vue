@@ -59,6 +59,11 @@ channel.postRequest('{{ requestNameAdd }}',
   [geojson, { "clearPrevious": true }]);
     </CodeSnippet>
 
+    <h3>Changing layer visibility</h3>
+    <p>
+      Note that you can also hide layer with MapLayerVisibilityRequest without removing it. For example and info about it see <DocumentationLink type="request" :apiDoc="apiDocLayerVisiblity">documentation.</DocumentationLink>
+    </p>
+    
     <h3>Events to react to</h3>
     <p>
       When clicking the example buttons on this page you get "FeatureEvent" lines in the log-panel.
@@ -87,6 +92,7 @@ const requestNameRemove = 'MapModulePlugin.RemoveFeaturesFromMapRequest';
 const apiDocPageRequestAdd = 'mapping/mapmodule/request/addfeaturestomaprequest.md';
 const apiDocPageRequestRemove = 'mapping/mapmodule/request/removefeaturesfrommaprequest.md';
 const apiDocPageEvent = 'mapping/mapmodule/event/featureevent.md';
+const apiDocLayerVisiblity = 'mapping/mapmodule/request/MapModulePlugin.MapLayerVisibilityRequest.md';
 
 const pointGeoJSON = generator.getDefaultPointCollection();
 const centerToGeomOpts = {
@@ -106,7 +112,8 @@ export default {
       requestNameRemove,
       apiDocPageRequestAdd,
       apiDocPageRequestRemove,
-      apiDocPageEvent
+      apiDocPageEvent,
+      apiDocLayerVisiblity
     }
   },
   beforeDestroy: () => {
@@ -151,6 +158,7 @@ export default {
       this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
       this.$root.channel.log('MapModulePlugin.RemoveFeaturesFromMapRequest posted without params');
     }
+
   }
 }
 </script>

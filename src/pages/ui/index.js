@@ -4,12 +4,11 @@ import progresspinner from '../../components/requests/ui.progresspinner.vue';
 import infoboxRequest from '../../components/requests/infobox.request.vue';
 
 export default {
-    name: 'UI',
-    pages: [
-        uiSendEvent,
-        uiCursor,
-        progresspinner,
-        infoboxRequest
-    ]
+  name: 'UI',
+  pages: [
+    uiSendEvent,
+    uiCursor,
+    progresspinner,
+    infoboxRequest
+  ]
 };
-
