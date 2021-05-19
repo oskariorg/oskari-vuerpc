@@ -22,6 +22,7 @@
   import LogPanel from './components/ui-components/logpanel.vue';
   import { createLogger, createOnReady } from './util/channelLogger';
   import EVENTBUS from './util/eventbus.js';
+  import { getExceptedOskariVersion } from './util/commonUtil';
 
   import 'bootstrap/dist/css/bootstrap.css';
   import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -39,7 +40,7 @@
       return {
         oskariDomain: 'https://kartta.paikkatietoikkuna.fi',
         embeddedMapUUID: '053027f4-91d9-4351-aec4-c6a31dd68c56',
-        expectedOskariVersion: '2.1.0',
+        expectedOskariVersion: getExceptedOskariVersion(),
         currentPage: this.$route,
         logEventsStore: []
        }

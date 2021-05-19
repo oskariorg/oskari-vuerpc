@@ -1,14 +1,8 @@
-import supportedEvents from '../../components/functions/supported.events.vue';
-import supportedFunctions from '../../components/functions/supported.functions.vue';
-import supportedRequests from '../../components/functions/supported.requests.vue';
-import rpcMetadata from '../../components/functions/supported.metadata.vue';
+import supportedFunctionality from './supportedFunctionality.vue';
 
 export default {
   name: 'Supported',
   pages: [
-    supportedEvents,
-    supportedFunctions,
-    supportedRequests,
-    rpcMetadata
+    supportedFunctionality
   ]
 };
