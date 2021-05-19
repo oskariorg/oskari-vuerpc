@@ -33,9 +33,6 @@ export default {
 }
 </script>
 <style lang="scss">
-.full-height-panel {
-  height: 98% !important
-}
 .map-panel{
   border:0.5px solid #D9D9D9;
 }

@@ -9,17 +9,17 @@ import ui from './ui';
 import location from './location';
 
 const pageMap = {
-    main: gettingStarted,
-    sections: [
-        map,
-        marker,
-        features,
-        drawing,
-        generic,
-        feedback,
-        ui,
-        location
-    ]
+  main: gettingStarted,
+  sections: [
+    map,
+    marker,
+    features,
+    drawing,
+    generic,
+    feedback,
+    ui,
+    location
+  ]
 };
 
 export default pageMap;

@@ -5,12 +5,12 @@ import markerAfterAdd from '../../components/events/marker.added.vue';
 import markerClicked from '../../components/events/marker.clicked.vue';
 
 export default {
-    name: 'Markers',
-    pages: [
-        markerAdd,
-        markerShow,
-        markerInfobox,
-        markerAfterAdd,
-        markerClicked
-    ]
+  name: 'Markers',
+  pages: [
+    markerAdd,
+    markerShow,
+    markerInfobox,
+    markerAfterAdd,
+    markerClicked
+  ]
 };
