@@ -22,7 +22,7 @@
       </code-component>
 
       <h3>Initialising connection</h3>
-      IFRAME_DOMAIN must match to the source domain in the iframe.
+      <InlineCode>IFRAME_DOMAIN</InlineCode> must match to the source domain in the iframe.
 
       <code-component>
 // init connection
@@ -34,33 +34,12 @@ var channel = OskariRPC.connect(
 );
       </code-component>
 
-      <h3>Wait for the channel to get ready for use</h3>
-      Also checking that the iframe gives us an expected version of Oskari
-      and/or that the Oskari version recognizes our client version.
+      <h3>Wait channel to get ready</h3>
+      Wait for the channel to get ready for use by using <InlineCode>onReady</InlineCode> function and callback.
       <code-component>
 channel.onReady(function() {
     //channel is now ready and listening.
     channel.log('Map is now listening');
-    var expectedOskariVersion = '1.43.0';
-    channel.isSupported(expectedOskariVersion, function(blnSupported) {
-      if(blnSupported) {
-        channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
-      } else {
-        channel.log('Oskari-instance is not the one we expect (' + expectedOskariVersion + ') or client not supported');
-        // getInfo can be used to get the current Oskari version
-        channel.getInfo(function(oskariInfo) {
-          channel.log('Current Oskari-instance reports version as: ', oskariInfo);
-        });
-      }
-    });
-    channel.isSupported(function(blnSupported) {
-      if(!blnSupported) {
-        channel.log('Oskari reported client version (' + OskariRPC.VERSION + ') is not supported.' +
-        'The client might work, but some features are not compatible.');
-      } else {
-        channel.log('Client is supported by Oskari.');
-      }
-    });
 });
       </code-component>
       <h3>Do your stuff. Send requests, listen to events and call functions.</h3>
