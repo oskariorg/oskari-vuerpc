@@ -12,7 +12,57 @@
         <button id="btnSearchRequest" class="btn btn-primary exampleready" @click="searchRequest">SearchRequest</button>
     </div>
 
-    <CodeSnippet :snippet="codeSnippet" />
+    <CodeSnippet :snippet="codeSnippet.request" />
+    <br>
+    <h3>Search event</h3>
+    <p>
+      Search event occurs after every search request. Event response is results of request.<br><br>
+      <DocumentationLink type="event" :apiDoc="apiDocPageEvent">Documentation for {{eventName}}</DocumentationLink>
+      <CodeSnippet>
+{
+  "success": true,
+  "result": {
+    "methods": [
+      {
+        "REGISTER_OF_NOMENCLATURE_CHANNEL": true
+      },
+      {
+        "MAASTO_ADDRESS_CHANNEL": true
+      },
+      {
+        "KTJ_KII_CHANNEL": true
+      }
+    ],
+    "locations": [
+      {
+        "zoomScale": 11300,
+        "name": "Oulunkylä",
+        "rank": 30,
+        "lon": 387200.803,
+        "id": 0,
+        "type": "Kylä, kaupunginosa tai kulmakunta",
+        "region": "Helsinki",
+        "lat": 6678670.159,
+        "channelId": "REGISTER_OF_NOMENCLATURE_CHANNEL"
+      },
+      {
+        "zoomScale": 5650,
+        "name": "Oulunkylä",
+        "rank": 40,
+        "lon": 387322.093,
+        "id": 1,
+        "type": "Rautatieliikennepaikka",
+        "region": "Helsinki",
+        "lat": 6678529.481,
+        "channelId": "REGISTER_OF_NOMENCLATURE_CHANNEL"
+      }
+    ],
+    "totalCount": 2
+  },
+  "requestParameters": "Oulunkylä"
+}
+      </CodeSnippet>
+    </p>
   </div>
 </template>
 
@@ -22,7 +72,9 @@ import { getMarkerTemplate } from '../../util/markers_helpers';
 const title = 'Perform a search';
 
 const requestName = 'SearchRequest';
+const eventName = 'SearchResultEvent';
 const apiDocPageRequest = 'framework/search/request/SearchRequest.md';
+const apiDocPageEvent = 'framework/search/event/SearchResultEvent.md';
 const listeners = [];
 
 const showPopup = (msg, seconds = 5) => {
@@ -69,15 +121,20 @@ export default {
     return {
       title,
       requestName,
+      eventName,
       apiDocPageRequest,
-      query: 'Vantaa'
+      apiDocPageEvent,
+      query: 'Oulunkylä'
     }
   },
   computed: {
     codeSnippet () {
       // Changing slot content won't update the code highlight at runtime
       // If we pass the whole snippet as prop it will be updated as expected
-      return `channel.postRequest('${requestName}', ['${this.query}']);`;
+      return {
+        request: `channel.postRequest('${requestName}', ['${this.query}']);`,
+        result: ``
+      };
     }
   },
   methods: {
