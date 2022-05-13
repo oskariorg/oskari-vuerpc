@@ -9,7 +9,7 @@
     <CodeSnippet>
 var markerData = {{ JSON.stringify(markerIcon, null, 2) }};
 channel.postRequest('MapMoveRequest', [markerData.x, markerData.y,  {{zoomLevel}}]);
-channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, {{MARKER_ID}}]);
+channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, '{{MARKER_ID}}']);
     </CodeSnippet>
     <RunExampleButton @click="addMarkerDefaultIcon()">Add marker with built-in symbol</RunExampleButton><br>
 
@@ -18,7 +18,7 @@ channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, {{MARKER_ID
     <CodeSnippet>
 var markerData = {{ JSON.stringify(markerSVG, null, 2) }};
 channel.postRequest('MapMoveRequest', [markerData.x, markerData.y,  {{zoomLevel}}]);
-channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, {{MARKER_ID}}]);
+channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, '{{MARKER_ID}}']);
     </CodeSnippet>
     <RunExampleButton @click="addMarkerSVGIcon()">Add marker with custom SVG</RunExampleButton><br>
 
@@ -27,7 +27,7 @@ channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, {{MARKER_ID
     <CodeSnippet>
 var markerData = {{ JSON.stringify(markerPNG, null, 2) }};
 channel.postRequest('MapMoveRequest', [markerData.x, markerData.y,  {{zoomLevel}}]);
-channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, {{MARKER_ID}}]);
+channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, '{{MARKER_ID}}']);
     </CodeSnippet>
     <RunExampleButton @click="addMarkerPNGIcon()">Add marker with custom PNG</RunExampleButton><br>
 
@@ -54,7 +54,7 @@ channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, {{MARKER_ID
     <RunExampleButton @click="removeMarkersRequest()">MapModulePlugin.RemoveMarkersRequest</RunExampleButton><br>
     <DocumentationLink type="request" apiDoc="mapping/mapmodule/request/removemarkersrequest.md">Documentation for MapModulePlugin.RemoveMarkersRequest</DocumentationLink>
     <CodeSnippet>
-channel.postRequest('MapModulePlugin.RemoveMarkersRequest', [{{MARKER_ID}}]);
+channel.postRequest('MapModulePlugin.RemoveMarkersRequest', ['{{MARKER_ID}}']);
 // Or all markers
 channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
     </CodeSnippet>
