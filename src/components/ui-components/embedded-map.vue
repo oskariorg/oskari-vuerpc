@@ -28,11 +28,11 @@ export default {
     }
   },
   mounted () {
-    this.$store.state.map = this.$refs.mapIFrame;
+    // this.$store.state.map = this.$refs.mapIFrame;
   }
 }
 </script>
-<style lang="scss">
+<style>
 .map-panel{
   border:0.5px solid #D9D9D9;
 }

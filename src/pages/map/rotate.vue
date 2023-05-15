@@ -65,7 +65,7 @@ export default {
       this.$root.channel.log('rotate.map posted with data', params);
     }
   },
-  beforeDestroy: () => {
+  beforeUnmount: () => {
     // Clean up when user leaves the example
     channel.postRequest('rotate.map', []);
   }

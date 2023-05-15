@@ -24,9 +24,6 @@
   import EVENTBUS from './util/eventbus.js';
   import { EXPECTED_OSKARI_VERSION, OSKARI_DOMAIN, OSKARI_EMBEDDED_MAP_UUID } from './constants';
 
-  import 'bootstrap/dist/css/bootstrap.css';
-  import 'bootstrap-vue/dist/bootstrap-vue.css'
-  import style from './style.css';
   const listeners = [];
 
   export default {
@@ -104,7 +101,7 @@
           this.rpcAppShowMessage(event.msg, event.seconds);
         }));
     },
-    beforeDestroy: () => {
+    beforeUnmount: () => {
       // Clean up when user leaves the example
       while (listeners.length) {
         EVENTBUS.off('rpcAppDisplayMessage', listeners.pop());
@@ -113,8 +110,7 @@
   }
 </script>
 
-<style lang="scss">
-@import "~./assets/main.scss";
+<style>
 .msg {
   top: 50%;
   left: 38%;

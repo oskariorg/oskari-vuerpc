@@ -35,7 +35,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style>
 #select-panel a {
   color: #8aa5d1;
 }

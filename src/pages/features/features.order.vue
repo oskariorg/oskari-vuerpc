@@ -126,7 +126,7 @@ export default {
       vectorLayerName
     }
   },
-  beforeDestroy: () => {
+  beforeUnmount: () => {
     // Clean up when user leaves the example
     // NOTE! We don't have this.$root here so relying on global channel variable
     // const channel = this.$root.channel;

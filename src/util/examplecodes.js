@@ -264,4 +264,4 @@ var infobox = {
     channel.log('InfoBox.ShowInfoBoxRequest posted with data', data);
   });`
 }
-export { features, wkt, feedback, infobox, search };
+export { features, wkt, feedback, infobox };

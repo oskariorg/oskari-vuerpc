@@ -67,7 +67,7 @@ export default {
         this.mapLayerVisibilityRequest(true);
     }));
   },
-  beforeDestroy () {
+  beforeUnmount () {
     this.mapLayerVisibilityRequest(false);
     while (listeners.length) {
       EVENTBUS.off('channel.available', listeners.pop());

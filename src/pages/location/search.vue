@@ -146,7 +146,7 @@ export default {
   mounted () {
     listeners.push(EVENTBUS.on('SearchResultEvent', (data) => handleSearchResult(data, this.$root.channel)));
   },
-  beforeDestroy: () => {
+  beforeUnmount: () => {
     // Clean up when user leaves the example
     while (listeners.length) {
       EVENTBUS.off('SearchResultEvent', listeners.pop());
