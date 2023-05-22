@@ -14,9 +14,9 @@
       <button id="btnZoomToFeaturesRequest" class="btn btn-primary exampleready" @click="zoomToFeaturesRequest">MapModulePlugin.ZoomToFeaturesRequest</button>
     </div>
     <code-component>
-channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[]);">
+channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[]);
     </code-component>
-
+    
     <div>
       Zoom to features, where featureType=='parcel' and
       layerId=='testLayer'
