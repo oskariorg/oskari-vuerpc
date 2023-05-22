@@ -5,11 +5,12 @@
       <a ref="feedbackResult" href="" @click="getLink">To the documentation</a>
     </div>
 
-    <code-component snippet="
-    {
+    <code-component>
+{
 
 
-    }"></code-component>
+}
+    </code-component>
   </div>
 </template>
 <script>
