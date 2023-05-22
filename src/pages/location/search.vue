@@ -12,7 +12,7 @@
         <button id="btnSearchRequest" class="btn btn-primary exampleready" @click="searchRequest">SearchRequest</button>
     </div>
 
-    <CodeSnippet :snippet="codeSnippet.request" />
+    <CodeSnippet>{{codeSnippet.request}}</CodeSnippet>
     <br>
     <h3>Search event</h3>
     <p>

@@ -4,7 +4,7 @@
     <div>
       <a id="getUserLocation" href="" @click="getLink">To the documentation</a>
     </div>
-        <code-component snippet="channel.postRequest('MyLocationPlugin.GetUserLocationRequest', [true]);"></code-component>
+        <code-component>channel.postRequest('MyLocationPlugin.GetUserLocationRequest', [true]);</code-component>
     </div>
 </template>
 <script>

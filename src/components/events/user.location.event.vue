@@ -4,10 +4,12 @@
     <div>
       <a id="userLocation" href="" @click="getLink">To the documentation</a>
     </div>
-    <code-component snippet="{
-      'lon': 386436.3607007161,
-      'lat': 6672447.439965934
-  }"></code-component>
+    <code-component>
+{
+  'lon': 386436.3607007161,
+  'lat': 6672447.439965934
+}
+    </code-component>
   </div>
 </template>
 <script>
