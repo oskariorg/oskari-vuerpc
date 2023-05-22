@@ -10,15 +10,17 @@
         <a id="linkShowHideMarkerAddMarkersToMap" href="" @click="getLink">To the documentation</a>
       </div>
 
-      <code-component snippet="var data = {
-        x: 386020,
-        y: 6670057,
-        color: 'ff0000',
-        msg : '',
-        shape: 3, // icon number (0-6)
-        size: 3
-      };
-      channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, MARKER_ID]);"></code-component>
+      <code-component>
+var data = {
+  x: 386020,
+  y: 6670057,
+  color: 'ff0000',
+  msg : '',
+  shape: 3, // icon number (0-6)
+  size: 3
+};
+channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, MARKER_ID]);
+    </code-component>
     </div>
     <div>3. Hide marker
       <button id="btnMarkerShowHideHideMarker" class="btn btn-primary exampleready" @click="showHideMarkerHideMarker">MapModulePlugin.MarkerVisibilityRequest</button>
@@ -26,8 +28,10 @@
         <a id="linkShowHideMarkerMarkerVisibilityRequest" href="" @click="getLink">To the documentation</a>
       </div>
 
-      <code-component snippet="// If MARKER_ID is not defined then hide all visibled markers
-      channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [false, MARKER_ID]);"></code-component>
+      <code-component>
+// If MARKER_ID is not defined then hide all visibled markers
+channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [false, MARKER_ID]);
+      </code-component>
     </div>
     <div>4. Show marker
       <button id="btnMarkerShowHideShowMarker" class="btn btn-primary exampleready" @click="showHideMarkerShowMarker">MapModulePlugin.MarkerVisibilityRequest</button>
@@ -35,8 +39,10 @@
         <a id="linkShowHideMarkerMarkerVisibilityRequest2" href="" @click="getLink">To the documentation</a>
       </div>
 
-      <code-component snippet="// If MARKER_ID is not defined then show all unvisibled markers
-      channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [true, MARKER_ID]);"></code-component>
+      <code-component>
+// If MARKER_ID is not defined then show all unvisibled markers
+channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [true, MARKER_ID]);
+      </code-component>
     </div>
   </div>
 </template>

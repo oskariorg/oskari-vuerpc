@@ -5,7 +5,7 @@
       The {{ eventName }} occurs after the map has been clicked. Click the map to see the events in the log and below.
     </p>
     <DocumentationLink type="event" :apiDoc="apiDocPage">Documentation for {{eventName}}</DocumentationLink>
-    <CodeSnippet v-if="clickEvent" :snippet="clickEventSnippet" />
+    <CodeSnippet v-if="clickEvent"> {{ clickEventSnippet }} </CodeSnippet>
   </div>
 </template>
 
