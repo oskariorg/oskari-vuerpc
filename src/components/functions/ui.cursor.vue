@@ -15,12 +15,12 @@
       <button id="btnSetCursorStyle"
       class="btn btn-primary exampleready" @click="setCursorStyle">Set cursor style</button>
     </div>
-    <code-component>
+    <CodeSnippet>
 var cursorStyle = jQuery('#setCursorStyleSelect').val();
 channel.setCursorStyle([cursorStyle], function(data) {
   channel.log('setCursorStyle: ', data);
 });
-    </code-component>
+    </CodeSnippet>
 
   </div>
 </template>
