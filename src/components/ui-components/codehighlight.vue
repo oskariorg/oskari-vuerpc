@@ -1,10 +1,14 @@
 <template>
-    <span>
-      <pre v-if="codeSnippet"><code class="hljs" v-html="codeSnippet" /></pre>
-      <span v-if="!codeSnippet"><slot>
-          Never shown - just used to capture optional body content for this tag
-      </slot></span>
+  <span>
+    <pre v-if="codeSnippet">
+          <code class="hljs" v-html="codeSnippet"/>
+        </pre>
+    <span v-if="!codeSnippet">
+      <slot>
+        Never shown - just used to capture optional body content for this tag
+      </slot>
     </span>
+  </span>
 </template>
 
 <script>
@@ -31,22 +35,27 @@ export default {
     'snippet': String,
     'lang': String
   },
-  setup(props) {
-    const slots = useSlots();
-    let codeSnippet = errorMsg;
-    try {
-      const slotEl = slots.default()[0];
-      codeSnippet = slotEl.text.trim();
-      //codeSnippet = codeSnippet.split('&lt;').join('<');
-      //codeSnippet = codeSnippet.split('&gt;').join('>');
-      codeSnippet = doHighLight(codeSnippet, props.lang);
-    } catch (err) {
-      debugger;
-      /* ignored */
+  computed: {
+    codeSnippet() {
+      const slots = useSlots();
+      let snippet = this.snippet;
+      if (!snippet) {
+        try {
+          const slotEl = slots.default()[0];
+          snippet = slotEl.text.trim();
+          //codeSnippet = codeSnippet.split('&lt;').join('<');
+          //codeSnippet = codeSnippet.split('&gt;').join('>');
+        } catch (err) { }
       }
-    // expose to template and other options API hooks
-    return {
-      codeSnippet
+      try {
+        snippet = doHighLight(snippet, this.lang);
+      } catch (err) {
+        snippet = errorMsg;
+        debugger;
+        /* ignored */
+      }
+      // expose to template and other options API hooks
+      return snippet
     }
   }
 }
