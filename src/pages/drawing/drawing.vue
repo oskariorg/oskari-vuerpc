@@ -11,13 +11,13 @@
       <br>
       <DocumentationLink type="request" apiDoc="mapping/drawtools/request/startdrawingrequest.md">Documentation for DrawTools.StartDrawingRequest</DocumentationLink>
       <CodeSnippet>
-        var data = ['my functionality id', 'Polygon'];
-        channel.postRequest('DrawTools.StartDrawingRequest', data);
+var data = ['my functionality id', 'Polygon'];
+channel.postRequest('DrawTools.StartDrawingRequest', data);
       </CodeSnippet>
       To start drawing with measurement turned on, send drawing request with options parameter as object containing <InlineCode>showMeasureOnMap</InlineCode> as true. 
       <CodeSnippet>
-        var data = ['my functionality id', 'Polygon', { showMeasureOnMap: true }];
-        channel.postRequest('DrawTools.StartDrawingRequest', data);
+var data = ['my functionality id', 'Polygon', { showMeasureOnMap: true }];
+channel.postRequest('DrawTools.StartDrawingRequest', data);
       </CodeSnippet>
     </p>
 
@@ -28,8 +28,8 @@
       <br>
       <DocumentationLink type="request" apiDoc="mapping/drawtools/request/stopdrawingrequest.md">Documentation for DrawTools.StopDrawingRequest</DocumentationLink>
       <CodeSnippet>
-        var data = ['my functionality id'];
-        channel.postRequest('DrawTools.StopDrawingRequest', data);
+var data = ['my functionality id'];
+channel.postRequest('DrawTools.StopDrawingRequest', data);
       </CodeSnippet>
     </p>
 
@@ -37,8 +37,8 @@
       To clear drawing from the map send <InlineCode>StopDrawingRequest</InlineCode> with second member of data parameter given to StopDrawingRequest set as true.
       <RunExampleButton @click="stopDrawingClear">Clear drawings</RunExampleButton>
       <CodeSnippet>
-        var data = ['my functionality id', true];
-      channel.postRequest('DrawTools.StopDrawingRequest', data);
+var data = ['my functionality id', true];
+channel.postRequest('DrawTools.StopDrawingRequest', data);
       </CodeSnippet>
     </p>
 
@@ -47,56 +47,56 @@
       <br>
       <DocumentationLink type="event" apiDoc="mapping/drawtools/event/DrawingEvent.md">Documentation for DrawingEvent</DocumentationLink>
       <CodeSnippet>
-        {
-          "name": "DrawingEvent",
-          "id": "my functionality id",
-          "geojson": {
-            "type": "FeatureCollection",
-            "features": [
-              {
-                "type": "Feature",
-                "geometry": {
-                  "type": "Polygon",
-                  "coordinates": [
-                    [
-                      [
-                        429245.623,
-                        7349501.146
-                      ],
-                      [
-                        158909.62300000002,
-                        7081213.146
-                      ],
-                      [
-                        597181.623,
-                        6853885.146
-                      ],
-                      [
-                        429245.623,
-                        7349501.146
-                      ]
-                    ]
-                  ]
-                },
-                "properties": {
-                  "area": 87187682917.60973
-                },
-                "id": "drawFeature0"
-              }
-            ],
-            "crs": "EPSG:3067"
-          },
-          "data": {
-            "buffer": 0,
-            "bufferedGeoJson": {
-              "type": "FeatureCollection",
-              "features": []
-            },
-            "shape": "Polygon",
-            "area": 87187682917.60973
-          },
-          "isFinished": true
-        }
+{
+  "name": "DrawingEvent",
+  "id": "my functionality id",
+  "geojson": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                429245.623,
+                7349501.146
+              ],
+              [
+                158909.62300000002,
+                7081213.146
+              ],
+              [
+                597181.623,
+                6853885.146
+              ],
+              [
+                429245.623,
+                7349501.146
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "area": 87187682917.60973
+        },
+        "id": "drawFeature0"
+      }
+    ],
+    "crs": "EPSG:3067"
+  },
+  "data": {
+    "buffer": 0,
+    "bufferedGeoJson": {
+      "type": "FeatureCollection",
+      "features": []
+    },
+    "shape": "Polygon",
+    "area": 87187682917.60973
+  },
+  "isFinished": true
+}
       </CodeSnippet>
     </p>
   

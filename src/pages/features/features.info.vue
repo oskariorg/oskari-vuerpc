@@ -10,17 +10,19 @@
       <li>You can programmatically change the visibility of a layer.
       In this example visibility for the GFI supporting layer is is set to true when accessing the example so when you send the GFI request you can see the result.
       Note that if you toggle the layer visibility from the map UI so it's not shown the GFI request does nothing.
-      <CodeSnippet>channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', [{{ gfiLayerId }}, true]);</CodeSnippet>
+      <CodeSnippet>
+        channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', [{{ gfiLayerId }}, true]);
+      </CodeSnippet>
       </li>
 
       <li> Show feature info box
 
-    <CodeSnippet>
+        <CodeSnippet>
 // get map center and display feature info box for the center coordinates
 channel.getMapPosition(function (data) {
   channel.postRequest('MapModulePlugin.GetFeatureInfoRequest', [data.centerX, data.centerY]);
 });
-    </CodeSnippet>
+        </CodeSnippet>
       </li>
     </ol>
     <RunExampleButton @click="getFeatureInfoRequest">Send {{ requestName }} with map center coordinates</RunExampleButton>
