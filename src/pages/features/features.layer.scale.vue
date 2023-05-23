@@ -25,7 +25,7 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
   [geojsonPolygons, {
     layerId: '{{ polygonLayer.layerId }}'
     centerTo: true
-  }]);
+}]);
       </CodeSnippet>
     
       There should a polygon and a point initialized on the map when this example is loaded.

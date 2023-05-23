@@ -10,7 +10,7 @@
     </div>
     2. Add marker to center of map
     <button id="btnAddMarkerCenterOfMapForInfobox" class="btn btn-primary exampleready" @click="addMarkerRequestCenterOfMapForInfobox">AddMarkerRequest</button>
-          <code-component>
+    <CodeSnippet>
 var MARKER_ID = 'MARKER_WITH_POPUP';
 channel.getMapPosition(function(data) {
   // Add marker to center map
@@ -25,12 +25,12 @@ channel.getMapPosition(function(data) {
   channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, MARKER_ID]);
   channel.log('MapModulePlugin.AddMarkerRequest posted with data', markerData);
 });
-        </code-component>
-      <div>
-        3. Open popup for added marker
-        <button id="btnShowInfoBoxRequestForMarker" class="btn btn-primary exampleready" @click="showInfoBoxRequestForMarker">InfoBox.ShowInfoBoxRequest</button>
-        </div>
-            <code-component>
+    </CodeSnippet>
+    <div>
+      3. Open popup for added marker
+      <button id="btnShowInfoBoxRequestForMarker" class="btn btn-primary exampleready" @click="showInfoBoxRequestForMarker">InfoBox.ShowInfoBoxRequest</button>
+    </div>
+    <CodeSnippet>
 // Open popup for marker
 var MARKER_ID = 'MARKER_WITH_POPUP';
 var content = [
@@ -48,14 +48,14 @@ var infoboxData = [
     mobileBreakpoints: {
       width: 0,
       height: 0
-  },
-  hidePrevious: true
+    },
+    hidePrevious: true
   }];
 
-  channel.postRequest('InfoBox.ShowInfoBoxRequest', infoboxData);
-  channel.log('InfoBox.ShowInfoBoxRequest posted with data', infoboxData);">
-            </code-component>
-        </div>
+channel.postRequest('InfoBox.ShowInfoBoxRequest', infoboxData);
+channel.log('InfoBox.ShowInfoBoxRequest posted with data', infoboxData);">
+    </CodeSnippet>
+  </div>
 </template>
 <script>
 export default {

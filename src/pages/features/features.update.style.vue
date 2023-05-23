@@ -10,7 +10,7 @@ var geojson = {
   "type": "FeatureCollection",
   "features": [... shortened ...]
 };
-channel.postRequest('{{ requestNameAdd }}', [geojson, {{ JSON.stringify(centerToGeomOpts, null, 2) }} ]);
+channel.postRequest('{{ requestNameAdd }}', [geojson, {{ JSON.stringify(centerToGeomOpts, null, 2) }}]);
     </CodeSnippet>
 
     <h3>Updating feature style</h3>
