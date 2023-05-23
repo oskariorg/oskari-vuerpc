@@ -9,9 +9,10 @@
         With <InlineCode>getSupportedEvents</InlineCode> you get a list of events the map supports<br>
         <RunExampleButton @click="getSupportedEvents">Get supported events</RunExampleButton>
         <br><br>
-        <CodeSnippet snippet="channel.getSupportedEvents(function(data){
+        <CodeSnippet>
+channel.getSupportedEvents(function(data) {
   channel.log('GetSupportedEvents: ', data);
-});">
+});
         </CodeSnippet>
       </p>
     </div>
@@ -23,9 +24,10 @@
         With <InlineCode>getSupportedFunctions</InlineCode> you get a list of functions the map supports.<br>
         <RunExampleButton @click="getSupportedFunctions">Get supported functions</RunExampleButton>
         <br><br>
-        <CodeSnippet snippet="channel.getSupportedFunctions(function(data){
+        <CodeSnippet>
+channel.getSupportedFunctions(function(data) {
   channel.log('GetSupportedFunctions: ', data);
-});">
+});
         </CodeSnippet>
       </p>
     </div>
@@ -37,9 +39,11 @@
         With <InlineCode>getSupportedRequests</InlineCode> you get a list of requests the map supports.<br>
         <RunExampleButton @click="getSupportedRequests">Get supported requests</RunExampleButton>
         <br><br>
-        <CodeSnippet snippet="channel.getSupportedRequests(function(data){
+        <CodeSnippet>
+channel.getSupportedRequests(function(data) {
   channel.log('GetSupportedRequests: ', data);
-});"></CodeSnippet>
+});
+        </CodeSnippet>
       </p>
     </div>
     <br>

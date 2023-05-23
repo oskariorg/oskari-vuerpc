@@ -5,7 +5,7 @@
       <a id="featureEvent" href="" @click="getLink">To the documentation</a>
     </div>
 
-    <code-component :snippet="event"></code-component>
+    <code-component>{{ event }}</code-component>
 
   </div>
 </template>

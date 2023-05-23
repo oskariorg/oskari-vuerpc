@@ -5,8 +5,10 @@
     <div>
       <a id="showProgressSpinner" href="" @click="getLink">To the documentation</a>
     </div>
-        <code-component snippet="var isVisible = true;
-        channel.postRequest('ShowProgressSpinnerRequest',[isVisible]);"></code-component>
+        <code-component>
+var isVisible = true;
+channel.postRequest('ShowProgressSpinnerRequest',[isVisible]);
+        </code-component>
   </div>
 </template>
 <script>

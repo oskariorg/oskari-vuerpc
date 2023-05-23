@@ -10,49 +10,51 @@
     </div>
     2. Add marker to center of map
     <button id="btnAddMarkerCenterOfMapForInfobox" class="btn btn-primary exampleready" @click="addMarkerRequestCenterOfMapForInfobox">AddMarkerRequest</button>
-          <code-component snippet="var MARKER_ID = 'MARKER_WITH_POPUP';
-          channel.getMapPosition(function(data) {
-            // Add marker to center map
-            var markerData = {
-              x: data.centerX,
-              y: data.centerY,
-              color: 'ff0000',
-              msg : '',
-              shape: 1, // icon number (0-6)
-              size: 3
-            };
-            channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, MARKER_ID]);
-            channel.log('MapModulePlugin.AddMarkerRequest posted with data', markerData);
-          });"></code-component>
+          <code-component>
+var MARKER_ID = 'MARKER_WITH_POPUP';
+channel.getMapPosition(function(data) {
+  // Add marker to center map
+  var markerData = {
+    x: data.centerX,
+    y: data.centerY,
+    color: 'ff0000',
+    msg : '',
+    shape: 1, // icon number (0-6)
+    size: 3
+  };
+  channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, MARKER_ID]);
+  channel.log('MapModulePlugin.AddMarkerRequest posted with data', markerData);
+});
+        </code-component>
       <div>
         3. Open popup for added marker
         <button id="btnShowInfoBoxRequestForMarker" class="btn btn-primary exampleready" @click="showInfoBoxRequestForMarker">InfoBox.ShowInfoBoxRequest</button>
         </div>
-            <code-component snippet="// Open popup for marker
-            var MARKER_ID = 'MARKER_WITH_POPUP';
-            var content = [
-              {
-                'html': '<div>Marker popup</div>'
-              }
-            ];
-            var infoboxData = [
-              'markerInfoBox',
-              'Marker info box',
-              content,
-              {
-                marker: MARKER_ID
-              },
-              {
-                mobileBreakpoints: {
-                  width: 0,
-                  height: 0
-                },
-                hidePrevious: true
-              }
-            ];
+            <code-component>
+// Open popup for marker
+var MARKER_ID = 'MARKER_WITH_POPUP';
+var content = [
+  {
+    'html': '&lt;div&gt;Marker popup&lt;/div&gt;'
+  }];
+var infoboxData = [
+  'markerInfoBox',
+  'Marker info box',
+  content,
+  {
+    marker: MARKER_ID
+  },
+  {
+    mobileBreakpoints: {
+      width: 0,
+      height: 0
+  },
+  hidePrevious: true
+  }];
 
-            channel.postRequest('InfoBox.ShowInfoBoxRequest', infoboxData);
-            channel.log('InfoBox.ShowInfoBoxRequest posted with data', infoboxData);"></code-component>
+  channel.postRequest('InfoBox.ShowInfoBoxRequest', infoboxData);
+  channel.log('InfoBox.ShowInfoBoxRequest posted with data', infoboxData);">
+            </code-component>
         </div>
 </template>
 <script>

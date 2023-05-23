@@ -13,16 +13,20 @@
       3. Zoom to all features
       <button id="btnZoomToFeaturesRequest" class="btn btn-primary exampleready" @click="zoomToFeaturesRequest">MapModulePlugin.ZoomToFeaturesRequest</button>
     </div>
-    <code-component snippet="channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[]);"></code-component>
-
+    <code-component>
+channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[]);
+    </code-component>
+    
     <div>
       Zoom to features, where featureType=='parcel' and
       layerId=='testLayer'
       <button id="btnZoomToFeaturesRequest2" class="btn btn-primary exampleready" @click="ZoomToFeaturesRequestWithParams">MapModulePlugin.ZoomToFeaturesRequest</button>
     </div>
-    <code-component snippet="var layers = {'layer': ['testLayer']};
-  var features = {'species': ['parcel']};
-  channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[layers, features]);"></code-component>
+    <code-component>
+var layers = {'layer': ['testLayer']};
+var features = {'species': ['parcel']};
+channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest',[layers, features]);">
+    </code-component>
 
     <div>
       Zoom with maxZoomLevel set

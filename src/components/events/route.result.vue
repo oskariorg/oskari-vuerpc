@@ -4,7 +4,7 @@
     <p>Occurs after a route search has been completed providing a result for it.</p>
     <DocumentationLink type="event" :apiDoc="apiDocPage">Documentation for {{title}}</DocumentationLink>
 
-    <CodeSnippet :snippet="result" />
+    <CodeSnippet>{{ result }}</CodeSnippet>
   </div>
 </template>
 

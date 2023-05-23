@@ -4,7 +4,7 @@
             <div>Request feedback service listing</div>
 
       <button id="btnGetFeedbackServiceRequest" class="btn btn-primary exampleready" @click="getFeedbackServiceRequest">GetFeedbackServiceRequest for a list</button>
-      <code-component :snippet="list"></code-component>
+      <code-component>{{ list }}</code-component>
       <br />
       <div>Request feedback service metadata.</div>
         <div> <b>Note!</b> if metadata property is false in the listing the details might not be available as it's optional in the Open311 specification.</div>
@@ -12,7 +12,7 @@
         <b>Note!</b> Our test service doesn't have any metadata, so an error will be logged when pressing the button.
       </div>
       <button id="btnGetFeedbackServiceRequest2" class="btn btn-primary exampleready" @click="GetFeedbackServiceRequestWithId">GetFeedbackServiceRequest for metadata of single service.</button>
-      <code-component :snippet="id"></code-component>
+      <code-component>{{ id }}</code-component>
       <div>
         <a ref="getFeedbackService" href="" @click="getLink">To the documentation</a>
       </div>

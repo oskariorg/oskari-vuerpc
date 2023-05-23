@@ -4,15 +4,17 @@
     <div>
       <a ref="showInfobox" id="show" href="" @click="getLink">To the documentation</a>
     </div>
-    <code-component :snippet="req"></code-component>
+    <code-component>{{ req }}</code-component>
 
     <button id="btnHideInfoBoxRequest" class="btn btn-primary exampleready" @click="hideInfoBoxRequest">InfoBox.HideInfoBoxRequest</button>
     <div>
       <a ref="hideInfobox" id="hide" href="" @click="getLink">To the documentation</a>
     </div>
-    <code-component snippet="var infoboxId = 'myInfoBox';
-    channel.postRequest('InfoBox.HideInfoBoxRequest', [infoboxId]);
-    channel.log('InfoBox.HideInfoBoxRequest posted with data', infoboxId);"></code-component>
+    <code-component>
+var infoboxId = 'myInfoBox';
+channel.postRequest('InfoBox.HideInfoBoxRequest', [infoboxId]);
+channel.log('InfoBox.HideInfoBoxRequest posted with data', infoboxId);
+    </code-component>
   </div>
 </template>
 <script>
