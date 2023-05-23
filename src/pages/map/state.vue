@@ -28,7 +28,7 @@ channel.getCurrentState(function (data) {
       below to see the map set to the state that it was in when the Save button was clicked.
       
     </p>
-    <CodeSnippet>{{ useStateSnippet }}</CodeSnippet>
+    <CodeSnippet :snippet="useStateSnippet"></CodeSnippet>
 
     <RunExampleButton @click="loadState">Load saved state</RunExampleButton>
 

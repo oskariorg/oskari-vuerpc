@@ -15,8 +15,8 @@
 
     <CodeSnippet>
 channel.getScreenshot(function (data) {
-    // set image content to an img tag in your html
-    document.getElementById('getScreenshotImgTag').src = data;
+  // set image content to an img tag in your html
+  document.getElementById('getScreenshotImgTag').src = data;
 });
     </CodeSnippet>
     <p>

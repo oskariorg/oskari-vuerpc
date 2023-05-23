@@ -17,16 +17,16 @@
       <h3>Embedding a published map on your page</h3>
 
       <CodeSnippet lang="xml">
-        &lt;iframe id='publishedMap'
-          src='http://www.mydomain.com/idofpublishedmap'
-          style='border: none; width: 100%; height: 100%;'
-        &gt;&lt;/iframe&gt;
+&lt;iframe id='publishedMap'
+        src='http://www.mydomain.com/idofpublishedmap'
+        style='border: none; width: 100%; height: 100%;'&gt;
+&lt;/iframe&gt;
       </CodeSnippet>
 
       <h3>Initialising connection</h3>
       <InlineCode>IFRAME_DOMAIN</InlineCode> must match to the source domain in the iframe.
 
-      <code-component>
+      <CodeSnippet>
 // init connection
 var IFRAME_DOMAIN = 'http://www.mydomain.com';
 var iFrame = document.getElementById('publishedMap');
@@ -34,20 +34,20 @@ var channel = OskariRPC.connect(
     iFrame,
     IFRAME_DOMAIN
 );
-      </code-component>
+      </CodeSnippet>
 
       <h3>Wait channel to get ready</h3>
       Wait for the channel to get ready for use by using <InlineCode>onReady</InlineCode> function and callback.
-      <code-component>
+      <CodeSnippet>
 channel.onReady(function() {
     //channel is now ready and listening.
     channel.log('Map is now listening');
 });
-      </code-component>
+      </CodeSnippet>
       <h3>Do your stuff. Send requests, listen to events and call functions.</h3>
-      <code-component>
+      <CodeSnippet>
 //spinning action on the map
-channel.postRequest('ShowProgressSpinnerRequest',[true]);
+channel.postRequest('ShowProgressSpinnerRequest', [true]);
 //listening to events and notifying user
 channel.handleEvent('MapClickedEvent', function(data) {
   alert('Map clicked!');
@@ -56,7 +56,7 @@ channel.handleEvent('MapClickedEvent', function(data) {
 channel.getAllLayers(function (layers) {
   alert('Got ' + layers.length + ' layers!');
 });
-      </code-component>
+      </CodeSnippet>
     </div>
 
 </template>
