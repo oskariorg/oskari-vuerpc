@@ -17,7 +17,8 @@ var geojson = {
 };
 channel.postRequest(
   '{{ requestNameAdd }}',
-  [geojson, { "prio": 5 }]);
+  [geojson, { "prio": 5 }]
+);
       </CodeSnippet>
     </p>
     <DocumentationLink type="request" :apiDoc="apiDocPageRequestAdd">Documentation for {{ requestNameAdd }}</DocumentationLink>

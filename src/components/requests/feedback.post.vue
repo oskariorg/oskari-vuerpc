@@ -9,7 +9,7 @@
         <a ref="postFeedback" href="" @click="getLink">To the documentation</a>
       </div>
 
-      <code-component>{{ one }}</code-component>
+      <CodeSnippet>{{ one }}</CodeSnippet>
 
     </div>
     <div id="PostFeedbackRequest">
@@ -21,7 +21,7 @@
         <a ref="postFeedback" href="" @click="getLink">To the documentation</a>
       </div>
 
-      <code-component>{{ two }}</code-component>
+      <CodeSnippet>{{ two }}</CodeSnippet>
     </div>
     <div id="PostFeedbackRequest">
       <div style="display: block;">
@@ -32,7 +32,7 @@
         <a ref="postFeedback" href="" @click="getLink">To the documentation</a>
       </div>
 
-      <code-component>{{ three }}</code-component>
+      <CodeSnippet>{{ three }}</CodeSnippet>
     </div>
   </div>
 </template>

@@ -23,7 +23,7 @@
         <li>
           Click <RunExampleButton @click="addFeaturesToMapRequest">Add feature</RunExampleButton>
           to add a feature added to the map.
-<CodeSnippet>
+          <CodeSnippet>
 const params = [geojson, {
   layerId: '{{ LAYER_OPTS.simple.layerId }}',
   clearPrevious: true,
@@ -31,15 +31,15 @@ const params = [geojson, {
   cursor: 'zoom-in'
 }];
 channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
-</CodeSnippet>
+          </CodeSnippet>
         However if you hover the feature on the map with mouse nothing happens (the cursor changes based on the request parameter "cursor" with value supported in CSS).
         </li>
         <li>
           Click <RunExampleButton @click="removeFeaturesFromMapRequest">Remove features</RunExampleButton>
           to clean up the map for testing VectorLayerRequest.
-      <CodeSnippet>
-        channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
-      </CodeSnippet>
+          <CodeSnippet>
+            channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
+          </CodeSnippet>
         </li>
         <li>
           Click <RunExampleButton @click="addSimpleVectorLayer">Add layer</RunExampleButton>
@@ -60,12 +60,12 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
           You can use VectorLayerRequest to remove the layer (also removes features on the layer).
           After this if you click the "Add features" button the features have lost the hover
             highlighting and you need to initialize the layer again to get it back.<br/>
-      <CodeSnippet>
+          <CodeSnippet>
 channel.postRequest('VectorLayerRequest', [{
   layerId: '{{ LAYER_OPTS.simple.layerId }}',
   remove: true
 }]);
-      </CodeSnippet>
+          </CodeSnippet>
           <RunExampleButton @click="removeSimpleLayer">Remove layer</RunExampleButton>
         </li>
         <li>
@@ -85,8 +85,8 @@ channel.postRequest('VectorLayerRequest', [{
     
       <CodeSnippet>
 channel.postRequest('VectorLayerRequest', [{
-layerId: '{{ LAYER_OPTS.simple.layerId }}',
-remove: true
+  layerId: '{{ LAYER_OPTS.simple.layerId }}',
+  remove: true
 }]);
       </CodeSnippet>
     </p>

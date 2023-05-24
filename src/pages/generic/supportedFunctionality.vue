@@ -58,20 +58,20 @@ channel.getSupportedRequests(function(data) {
         <br>
         <br>
         <CodeSnippet>
-      channel.log('Map is now listening'); //channel is now ready and listening. 
-  var expectedOskariVersion = '{{ EXPECTED_OSKARI_VERSION }}';
+channel.log('Map is now listening'); //channel is now ready and listening. 
+var expectedOskariVersion = '{{ EXPECTED_OSKARI_VERSION }}';
 
-  channel.isSupported(expectedOskariVersion, function(blnSupported) {
-    if(blnSupported) {
-      channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
-    } else {
-      channel.log('Oskari-instance is not the one we expect (' + expectedOskariVersion + ') or client not supported');
-      // getInfo can be used to get the current Oskari version
-      channel.getInfo(function(oskariInfo) {
-        channel.log('Current Oskari-instance reports version as: ', oskariInfo);
-      });
-    }
-  });
+channel.isSupported(expectedOskariVersion, function(blnSupported) {
+  if (blnSupported) {
+    channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
+  } else {
+    channel.log('Oskari-instance is not the one we expect (' + expectedOskariVersion + ') or client not supported');
+    // getInfo can be used to get the current Oskari version
+    channel.getInfo(function(oskariInfo) {
+      channel.log('Current Oskari-instance reports version as: ', oskariInfo);
+    });
+  }
+});
         </CodeSnippet>
       </p>
     </div>
@@ -86,14 +86,14 @@ channel.getSupportedRequests(function(data) {
       <br>
       <br>
       <CodeSnippet>
-  channel.isSupported(function(blnSupported) {
-    if(!blnSupported) {
-      channel.log('Oskari reported client version (' + OskariRPC.VERSION + ') is not supported.' +
-      'The client might work, but some features are not compatible.');
-    } else {
-      channel.log('Client is supported by Oskari.');
-    }
-  });
+channel.isSupported(function(blnSupported) {
+  if (!blnSupported) {
+    channel.log('Oskari reported client version (' + OskariRPC.VERSION + ') is not supported.' +
+    'The client might work, but some features are not compatible.');
+  } else {
+    channel.log('Client is supported by Oskari.');
+  }
+});
       </CodeSnippet>
       </p>
     </div>

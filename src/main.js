@@ -23,9 +23,6 @@ app.config.compilerOptions.whitespace = 'preserve';
 
 // Declare these as common components so pages don't need to declare these repeatedly
 // as they are used in all pages
-// TODO: remove code-component when its not used anymore
-app.component('code-component', code);
-// TODO: use CodeSnippet instead of code-component on pages
 app.component('CodeSnippet', code);
 app.component('RunExampleButton', RunExampleButton);
 app.component('DocumentationLink', DocumentationLink);

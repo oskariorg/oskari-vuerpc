@@ -5,24 +5,24 @@
       <button id="btnSendUIEvent"
       class="btn btn-primary exampleready" @click="sendUIEvent">SendUIevent</button>
     </div>
-    <code-component>
+    <CodeSnippet>
 var toolname = 'coordinatetool';
 channel.sendUIEvent([toolname], function(data) {
   channel.log('sendUIEvent: ', data);
 });
-    </code-component>
+    </CodeSnippet>
 
     <div>
       Toggle the map's center crosshair:
       <button id="toggleCrosshair"
       class="btn btn-primary exampleready" @click="toggleCrosshair">Toggle crosshair</button>
     </div>
-    <code-component>
+    <CodeSnippet>
 var toolname = 'mapmodule.crosshair';
 channel.sendUIEvent([toolname], function(data) {
   channel.log('sendUIEvent: ', data);
 });
-    </code-component>
+    </CodeSnippet>
   </div>
 </template>
 <script>

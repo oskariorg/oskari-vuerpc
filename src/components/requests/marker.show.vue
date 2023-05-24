@@ -10,7 +10,7 @@
         <a id="linkShowHideMarkerAddMarkersToMap" href="" @click="getLink">To the documentation</a>
       </div>
 
-      <code-component>
+      <CodeSnippet>
 var data = {
   x: 386020,
   y: 6670057,
@@ -20,7 +20,7 @@ var data = {
   size: 3
 };
 channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, MARKER_ID]);
-    </code-component>
+      </CodeSnippet>
     </div>
     <div>3. Hide marker
       <button id="btnMarkerShowHideHideMarker" class="btn btn-primary exampleready" @click="showHideMarkerHideMarker">MapModulePlugin.MarkerVisibilityRequest</button>
@@ -28,10 +28,10 @@ channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, MARKER_ID]);
         <a id="linkShowHideMarkerMarkerVisibilityRequest" href="" @click="getLink">To the documentation</a>
       </div>
 
-      <code-component>
+      <CodeSnippet>
 // If MARKER_ID is not defined then hide all visibled markers
 channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [false, MARKER_ID]);
-      </code-component>
+      </CodeSnippet>
     </div>
     <div>4. Show marker
       <button id="btnMarkerShowHideShowMarker" class="btn btn-primary exampleready" @click="showHideMarkerShowMarker">MapModulePlugin.MarkerVisibilityRequest</button>
@@ -39,10 +39,10 @@ channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [false, MARKER_ID
         <a id="linkShowHideMarkerMarkerVisibilityRequest2" href="" @click="getLink">To the documentation</a>
       </div>
 
-      <code-component>
+      <CodeSnippet>
 // If MARKER_ID is not defined then show all unvisibled markers
 channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [true, MARKER_ID]);
-      </code-component>
+      </CodeSnippet>
     </div>
   </div>
 </template>
