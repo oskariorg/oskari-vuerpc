@@ -118,11 +118,17 @@ export default {
     }
   },
   mounted() {
-    listeners.push(EVENTBUS.on('channel.available', () => {
+    try {
       this.$root.channel.getAllLayers((data) => {
       this.numberOfLayers = data.length;
       });
-    }));
+    } catch (e) {
+      listeners.push(EVENTBUS.on('channel.available', () => {
+        this.$root.channel.getAllLayers((data) => {
+        this.numberOfLayers = data.length;
+        });
+      }));
+    }
   },
   beforeUnmount: () => {
     // Clean up when user leaves the example
