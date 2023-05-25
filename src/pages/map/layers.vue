@@ -45,9 +45,13 @@ channel.getAllLayers(function (layers) {
     </CodeSnippet>
 
     <DocumentationLink type="request" :apiDoc="apiDocPageVisibility">Documentation for {{ requestNameVisibility }}</DocumentationLink>
-
-    <RunExampleButton @click="toggleVisibility">Toggle visibility</RunExampleButton>
     
+    <div v-for="n in numberOfLayers" :key="n">
+      <RunExampleButton @click="toggleVisibility(n - 1)">
+        Toggle layer {{ n }} visibility
+      </RunExampleButton>
+    </div>
+
     <p>
       {{ requestNameOpacity }} and {{ requestNameVisibility }} can also be used to control 
       vector layers that are added to the map programmatically during runtime. 
@@ -57,6 +61,8 @@ channel.getAllLayers(function (layers) {
 </template>
 
 <script>
+import EVENTBUS from '../../util/eventbus.js';
+
 const title = 'Map Layers';
 const apiDocPageRPC = 'framework/rpc';
 
@@ -65,6 +71,8 @@ const apiDocPageOpacity = 'mapping/mapmodule/request/changemaplayeropacityreques
 
 const requestNameVisibility = 'MapModulePlugin.MapLayerVisibilityRequest';
 const apiDocPageVisibility = 'mapping/mapmodule/request/MapModulePlugin.MapLayerVisibilityRequest.md';
+
+const listeners = [];
 
 export default {
   name: 'MapLayers',
@@ -76,7 +84,8 @@ export default {
       requestNameOpacity,
       apiDocPageOpacity,
       requestNameVisibility,
-      apiDocPageVisibility
+      apiDocPageVisibility,
+      numberOfLayers: 0
     }
   },
   methods: {
@@ -96,16 +105,24 @@ export default {
         me.$root.channel.log(requestNameOpacity + ' sent with parameters: ', [layerId, newOpacity]);
       });
     },
-    toggleVisibility () {
+    toggleVisibility (n = 0) {
       const me = this;
       this.$root.channel.getAllLayers(function (layers) {
-        const layerId = layers[0].id;
-        const currentVisibility = layers[0].visible;
+        if (n >= layers.length) return;
+        const layerId = layers[n].id;
+        const currentVisibility = layers[n].visible;
 
         me.$root.channel.postRequest(requestNameVisibility, [layerId, !currentVisibility]);
         me.$root.channel.log(requestNameVisibility + ' sent with parameters: ', [layerId, !currentVisibility]);
       });
     }
+  },
+  mounted() {
+    listeners.push(EVENTBUS.on('channel.available', () => {
+      this.$root.channel.getAllLayers((data) => {
+      this.numberOfLayers = data.length;
+      });
+    }));
   },
   beforeUnmount: () => {
     // Clean up when user leaves the example
