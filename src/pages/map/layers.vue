@@ -118,14 +118,14 @@ export default {
     }
   },
   mounted() {
-    try {
+    if (this.$root.channel.isReady()) {
       this.$root.channel.getAllLayers((data) => {
-      this.numberOfLayers = data.length;
+        this.numberOfLayers = data.length;
       });
-    } catch (e) {
+    } else {
       listeners.push(EVENTBUS.on('channel.available', () => {
         this.$root.channel.getAllLayers((data) => {
-        this.numberOfLayers = data.length;
+          this.numberOfLayers = data.length;
         });
       }));
     }
