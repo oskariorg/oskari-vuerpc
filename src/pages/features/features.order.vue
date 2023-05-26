@@ -114,6 +114,8 @@ const centerToGeomOpts = {
 
 const getNextPolygonStyle = createStyleCycler(polygonStyles);
 
+const listeners = [];
+
 export default {
   name: 'FeatureOrder',
   label: title,
@@ -138,15 +140,12 @@ export default {
     }]);
   },
   mounted () {
-    const init = () => {
+    if (this.$root.channel.isReady()) {
       this.addFeaturesToMap();
-    };
-    // this is required since channel might not be available (when opening this example with direct url) when loaded
-    //  but App.vue will trigger an event when the channel is ready
-    if (typeof channel !== 'object') {
-      EVENTBUS.once('channel.available', init);
     } else {
-      init();
+      listeners.push(EVENTBUS.on('channel.available', () => {
+        this.addFeaturesToMap();
+      }));
     }
   },
   methods: {
