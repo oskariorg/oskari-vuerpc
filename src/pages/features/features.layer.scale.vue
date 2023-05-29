@@ -99,6 +99,9 @@ export default {
       remove: true
     }]);
     channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
+    while (listeners.length) {
+      EVENTBUS.off('channel.available', listeners.pop());
+    }
   },
   mounted () {
     if (this.$root.channel.isReady()) {

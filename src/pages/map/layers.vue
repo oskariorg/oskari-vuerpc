@@ -137,6 +137,9 @@ export default {
     channel.resetState(() => {
         channel.log('Map state reset on exiting the example: "' + title + '"');
     });
+    while (listeners.length) {
+      EVENTBUS.off('channel.available', listeners.pop());
+    }
   }
 }
 </script>

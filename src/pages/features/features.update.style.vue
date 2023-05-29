@@ -74,6 +74,9 @@ export default {
       layerId: vectorLayerName,
       remove: true
     }]);
+    while (listeners.length) {
+      EVENTBUS.off('channel.available', listeners.pop());
+    }
   },
   mounted () {
     if (this.$root.channel.isReady()) {
