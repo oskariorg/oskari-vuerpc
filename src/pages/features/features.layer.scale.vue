@@ -59,6 +59,8 @@ const requestName = 'VectorLayerRequest';
 const polygonCollection = generator.getDefaultPolygonCollection();
 const pointCollection = generator.getDefaultPointCollection();
 
+const listeners = [];
+
 const polygonLayer = {
   layerId: 'My_polygons',
   maxZoomLevel: 7
@@ -97,18 +99,19 @@ export default {
       remove: true
     }]);
     channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
+    while (listeners.length) {
+      EVENTBUS.off('channel.available', listeners.pop());
+    }
   },
   mounted () {
-    const init = () => {
+    if (this.$root.channel.isReady()) {
       this.addVectorLayers();
       this.addFeaturesToMap();
-    };
-    // this is required since channel might not be available (when opening this example with direct url) when loaded
-    //  but App.vue will trigger an event when the channel is ready
-    if (typeof channel !== 'object') {
-      EVENTBUS.once('channel.available', init);
     } else {
-      init();
+      listeners.push(EVENTBUS.on('channel.available', () => {
+        this.addVectorLayers();
+        this.addFeaturesToMap();
+      }));
     }
   },
   methods: {

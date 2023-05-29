@@ -62,12 +62,13 @@ export default {
     }
   },
   mounted () {
-    if (this.$root.channel) {
+    if (this.$root.channel.isReady()) {
       this.mapLayerVisibilityRequest(true);
-    }
-    listeners.push(EVENTBUS.on('channel.available', () => {
+    } else {
+      listeners.push(EVENTBUS.on('channel.available', () => {
         this.mapLayerVisibilityRequest(true);
-    }));
+      }));
+    }
   },
   beforeUnmount () {
     this.mapLayerVisibilityRequest(false);
