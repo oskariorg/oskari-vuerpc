@@ -42,5 +42,11 @@ export default {
       })
     }
   }
+  ,
+  beforeUnmount: () => {
+    channel.setCursorStyle(['default'], (data) => {
+        channel.log('setCursorStyle: ', data)
+      })
+  }
 }
 </script>
