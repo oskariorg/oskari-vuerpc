@@ -136,6 +136,9 @@ export default {
       let documentPathEnd = 'mapping/mapmodule/request/zoomtofeaturesrequest.md';
       e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
+  },
+  beforeUnmount: () => {
+    channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
   }
 }
 </script>
