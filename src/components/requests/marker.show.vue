@@ -82,6 +82,9 @@ export default {
       var documentPathEnd = e.target.id === 'linkShowHideMarkerAddMarkersToMap' ? 'mapping/mapmodule/request/addmarkerrequest.md' : 'mapping/mapmodule/request/markervisibilityrequest.md';
       e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
+  },
+  beforeUnmount: () => {
+    channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
   }
 }
 </script>
