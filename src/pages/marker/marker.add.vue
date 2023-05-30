@@ -127,8 +127,8 @@ export default {
       this.$root.channel.log('RemoveMarkerRequest posted with data', []);
     }
   },
-  beforeUnmount: () => {
-    channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
+  beforeUnmount() {
+    this.$root.channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
   }
 }
 </script>

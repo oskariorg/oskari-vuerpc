@@ -83,8 +83,8 @@ export default {
       e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   },
-  beforeUnmount: () => {
-    channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
+  beforeUnmount() {
+    this.$root.channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
   }
 }
 </script>

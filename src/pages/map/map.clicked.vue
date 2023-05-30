@@ -43,7 +43,7 @@ export default {
       this.clickEvent = data;
     }));
   },
-  beforeUnmount: () => {
+  beforeUnmount() {
     // Clean up when user leaves the example
     while (listeners.length) {
       EVENTBUS.off('MapClickedEvent', listeners.pop());

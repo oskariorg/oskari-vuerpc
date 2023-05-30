@@ -90,7 +90,7 @@ export default {
       }
     }));
   },
-  beforeUnmount: () => {
+  beforeUnmount() {
     // Clean up when user leaves the example
     removeBox();
     while (listeners.length) {

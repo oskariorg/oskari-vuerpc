@@ -93,11 +93,9 @@ channel.useState([savedState], function () {
       }
     }
   },
-  beforeUnmount: () => {
+  beforeUnmount() {
     // Clean up when user leaves the example
-    // NOTE! We don't have this.$root here so relying on global channel variable
-    // const channel = this.$root.channel;
-    channel.resetState(() => {
+    this.$root.channel.resetState(() => {
         channel.log('Map state reset on exiting the example: "' + title + '"');
     });
   }
