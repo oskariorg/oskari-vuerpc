@@ -86,19 +86,17 @@ export default {
       pointCollection
     }
   },
-  beforeUnmount: () => {
+  beforeUnmount() {
     // Clean up when user leaves the example
-    // NOTE! We don't have this.$root here so relying on global channel variable
-    // const channel = this.$root.channel;
-    channel.postRequest('VectorLayerRequest', [{
+    this.$root.channel.postRequest('VectorLayerRequest', [{
       layerId: pointLayer.layerId,
       remove: true
     }]);
-    channel.postRequest('VectorLayerRequest', [{
+    this.$root.channel.postRequest('VectorLayerRequest', [{
       layerId: polygonLayer.layerId,
       remove: true
     }]);
-    channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
+    this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
     while (listeners.length) {
       EVENTBUS.off('channel.available', listeners.pop());
     }

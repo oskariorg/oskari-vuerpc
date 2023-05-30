@@ -137,8 +137,8 @@ export default {
       e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   },
-  beforeUnmount: () => {
-    channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
+  beforeUnmount() {
+    this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
   }
 }
 </script>

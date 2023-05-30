@@ -70,7 +70,7 @@ export default {
       }));
     }
   },
-  beforeUnmount () {
+  beforeUnmount() {
     this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest');
     this.mapLayerVisibilityRequest(false);
     while (listeners.length) {

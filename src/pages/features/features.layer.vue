@@ -119,19 +119,17 @@ export default {
       geojsonObject
     }
   },
-  beforeUnmount: () => {
+  beforeUnmount() {
     // Clean up when user leaves the example
-    // NOTE! We don't have this.$root here so relying on global channel variable
-    // const channel = this.$root.channel;
-    channel.postRequest('VectorLayerRequest', [{
+    this.$root.channel.postRequest('VectorLayerRequest', [{
       layerId: LAYER_OPTS.simple.layerId,
       remove: true
     }]);
-    channel.postRequest('VectorLayerRequest', [{
+    this.$root.channel.postRequest('VectorLayerRequest', [{
       layerId: LAYER_OPTS.listing.layerId,
       remove: true
     }]);
-    channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
+    this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
   },
   methods: {
     addSimpleVectorLayer () {
