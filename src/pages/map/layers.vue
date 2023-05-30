@@ -130,7 +130,7 @@ export default {
       }));
     }
   },
-  beforeUnmount:() => {
+  beforeUnmount() {
     // Clean up when user leaves the example
     this.$root.channel.resetState(() => {
         channel.log('Map state reset on exiting the example: "' + title + '"');

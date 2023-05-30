@@ -101,7 +101,7 @@
           this.rpcAppShowMessage(event.msg, event.seconds);
         }));
     },
-    beforeUnmount: () => {
+    beforeUnmount() {
       // Clean up when user leaves the example
       while (listeners.length) {
         EVENTBUS.off('rpcAppDisplayMessage', listeners.pop());
