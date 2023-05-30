@@ -34,9 +34,8 @@ export default {
     }
   },
   beforeUnmount() {
-    const isVisible = this.progressSpinnerVisible;
-    if (isVisible) {
-      channel.postRequest('ShowProgressSpinnerRequest', [!isVisible]);
+    if (this.progressSpinnerVisible) {
+      channel.postRequest('ShowProgressSpinnerRequest', [false]);
     }
   }
 }
