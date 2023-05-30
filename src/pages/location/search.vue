@@ -146,8 +146,9 @@ export default {
   mounted () {
     listeners.push(EVENTBUS.on('SearchResultEvent', (data) => handleSearchResult(data, this.$root.channel)));
   },
-  beforeUnmount: () => {
+  beforeUnmount() {
     // Clean up when user leaves the example
+    this.$root.channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
     while (listeners.length) {
       EVENTBUS.off('SearchResultEvent', listeners.pop());
     }
