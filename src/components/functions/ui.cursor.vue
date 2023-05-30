@@ -43,10 +43,8 @@ export default {
     }
   }
   ,
-  beforeUnmount: () => {
-    channel.setCursorStyle(['default'], (data) => {
-        channel.log('setCursorStyle: ', data)
-      })
+  beforeUnmount() {
+    this.$root.channel.setCursorStyle(['default'], () => {})
   }
 }
 </script>

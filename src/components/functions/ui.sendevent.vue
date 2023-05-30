@@ -31,19 +31,31 @@ export default {
   label: 'Send UI event',
   data () {
     return {
-      desc: 'Send UI event'
+      desc: 'Send UI event',
+      coordinateToolVisible: false,
+      crosshairVisible: false
     }
   },
   methods: {
     sendUIEvent () {
       this.$root.channel.sendUIEvent(['coordinatetool'], (data) => {
+        this.coordinateToolVisible = !this.coordinateToolVisible;
         this.$root.channel.log('sendUIEvent: ', data)
       })
     },
     toggleCrosshair () {
       this.$root.channel.sendUIEvent(['mapmodule.crosshair'], (data) => {
+        this.crosshairVisible = !this.crosshairVisible;
         this.$root.channel.log('sendUIEvent mapmodule.crosshair: ', data)
       })
+    }
+  },
+  beforeUnmount() {
+    if (this.coordinateToolVisible) {
+      this.$root.channel.sendUIEvent(['coordinatetool'], () => {});
+    }
+    if (this.crosshairVisible) {
+      this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
     }
   }
 }
