@@ -65,12 +65,10 @@ export default {
       vectorLayerName
     }
   },
-  beforeUnmount: () => {
+  beforeUnmount() {
     // Clean up when user leaves the example
-    // NOTE! We don't have this.$root here so relying on global channel variable
-    // const channel = this.$root.channel;
-    channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
-    channel.postRequest('VectorLayerRequest', [{
+    this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
+    this.$root.channel.postRequest('VectorLayerRequest', [{
       layerId: vectorLayerName,
       remove: true
     }]);

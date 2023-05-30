@@ -32,6 +32,11 @@ export default {
       let documentPathEnd = 'mapping/mapmodule/request/ShowProgressSpinnerRequest.md';
       e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
+  },
+  beforeUnmount() {
+    if (this.progressSpinnerVisible) {
+      channel.postRequest('ShowProgressSpinnerRequest', [false]);
+    }
   }
 }
 </script>

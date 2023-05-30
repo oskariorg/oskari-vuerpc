@@ -68,12 +68,9 @@ export default {
       showRouteOnMap(data, channel);
     }));
   },
-  beforeUnmount: () => {
+  beforeUnmount() {
     // Clean up when user leaves the example
-    // NOTE! We don't have this.$root here so relying on global channel variable
-    // const channel = this.$root.channel;
-    channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
-    // Clean up when user leaves the example
+    this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
     while (listeners.length) {
       EVENTBUS.off('RouteResultEvent', listeners.pop());
     }

@@ -114,6 +114,10 @@ export default {
       let documentPathEnd = e.target.id === 'addMarker' ? 'mapping/mapmodule/request/addmarkerrequest.md' : 'ui/infobox/request/infobox.showinfoboxrequest.md';
       e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
+  },
+  beforeUnmount() {
+    this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest');
+    this.$root.channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
   }
 }
 </script>

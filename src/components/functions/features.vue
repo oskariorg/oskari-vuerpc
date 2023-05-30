@@ -172,6 +172,9 @@ export default {
       );
       this.$root.channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params2);
     }
+  },
+  beforeUnmount() {
+    this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
   }
 }
 </script>

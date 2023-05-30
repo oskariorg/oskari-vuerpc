@@ -136,6 +136,9 @@ export default {
       let documentPathEnd = e.target.id === 'show' ? 'ui/infobox/request/infobox.showinfoboxrequest.md' : 'ui/infobox/request/infobox.hideinfoboxrequest.md';
       e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
+  },
+  beforeUnmount() {
+    this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest');
   }
 }
 </script>
