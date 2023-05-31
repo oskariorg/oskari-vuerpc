@@ -5,28 +5,23 @@
       <a ref="feedbackResult" href="" @click="getLink">To the documentation</a>
     </div>
 
-    <CodeSnippet>
-{
-
-
-}
-    </CodeSnippet>
+    <CodeSnippet> { } </CodeSnippet>
   </div>
 </template>
 <script>
 export default {
   name: 'FeedbackResultEvent',
   label: 'FeedbackResultEvent',
-  data () {
+  data() {
     return {
       desc: 'FeedbackResultEvent'
-    }
+    };
   },
   methods: {
-    getLink (e) {
+    getLink(e) {
       var documentPathEnd = 'mapping/feedbackService/event/feedbackresultevent.md';
       e.target.href = this.$root.documentPathEvent + documentPathEnd;
     }
   }
-}
+};
 </script>

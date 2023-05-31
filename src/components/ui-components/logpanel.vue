@@ -4,8 +4,9 @@
       <div class="panel-body">
         <button v-on:click="clearLog">Clear log</button>
         <div ref="debuglog">
-          <div ref="logmsg" v-for="log in logItems" :key="log.id">{{log.header}}
-            <pre v-if="log.json">{{log.json}}</pre>
+          <div ref="logmsg" v-for="log in logItems" :key="log.id">
+            {{ log.header }}
+            <pre v-if="log.json">{{ log.json }}</pre>
           </div>
         </div>
       </div>
@@ -19,20 +20,20 @@ export default {
     logEvents: Array
   },
   computed: {
-    logItems () {
-      return this.logEvents.slice().reverse()
+    logItems() {
+      return this.logEvents.slice().reverse();
     }
   },
   methods: {
-    clearLog () {
+    clearLog() {
       this.$emit('clear');
     }
   }
-}
+};
 </script>
 <style>
 .log-panel {
-  border:0.5px solid #D9D9D9;
+  border: 0.5px solid #d9d9d9;
   overflow-y: auto;
 }
 

@@ -2,14 +2,20 @@
   <div id="ShowInfoBoxForMarkers">
     <div>
       <a ref="AddMarkerRequest2" id="addMarker" href="" @click="getLink">To the documentation</a>
-      <a ref="ShowInfoBoxRequest2" id="showInfobox" href="" @click="getLink">To the documentation</a>
+      <a ref="ShowInfoBoxRequest2" id="showInfobox" href="" @click="getLink">
+        To the documentation
+      </a>
     </div>
 
-    <div>
-      1. Move map
-    </div>
+    <div>1. Move map</div>
     2. Add marker to center of map
-    <button id="btnAddMarkerCenterOfMapForInfobox" class="btn btn-primary exampleready" @click="addMarkerRequestCenterOfMapForInfobox">AddMarkerRequest</button>
+    <button
+      id="btnAddMarkerCenterOfMapForInfobox"
+      class="btn btn-primary exampleready"
+      @click="addMarkerRequestCenterOfMapForInfobox"
+    >
+      AddMarkerRequest
+    </button>
     <CodeSnippet>
 var MARKER_ID = 'MARKER_WITH_POPUP';
 channel.getMapPosition(function(data) {
@@ -28,7 +34,13 @@ channel.getMapPosition(function(data) {
     </CodeSnippet>
     <div>
       3. Open popup for added marker
-      <button id="btnShowInfoBoxRequestForMarker" class="btn btn-primary exampleready" @click="showInfoBoxRequestForMarker">InfoBox.ShowInfoBoxRequest</button>
+      <button
+        id="btnShowInfoBoxRequestForMarker"
+        class="btn btn-primary exampleready"
+        @click="showInfoBoxRequestForMarker"
+      >
+        InfoBox.ShowInfoBoxRequest
+      </button>
     </div>
     <CodeSnippet>
 // Open popup for marker
@@ -50,7 +62,8 @@ var infoboxData = [
       height: 0
     },
     hidePrevious: true
-  }];
+  }
+];
 
 channel.postRequest('InfoBox.ShowInfoBoxRequest', infoboxData);
 channel.log('InfoBox.ShowInfoBoxRequest posted with data', infoboxData);">
@@ -61,16 +74,16 @@ channel.log('InfoBox.ShowInfoBoxRequest posted with data', infoboxData);">
 export default {
   name: 'ShowInfoBoxForMarker',
   label: 'Show info box for marker',
-  data () {
+  data() {
     return {
       desc: 'Show info box for marker'
-    }
+    };
   },
   methods: {
-    addMarkerRequestCenterOfMapForInfobox () {
+    addMarkerRequestCenterOfMapForInfobox() {
       const MARKER_ID = 'MARKER_WITH_POPUP';
       this.$root.channel.getMapPosition((data) => {
-                // Add marker to center map
+        // Add marker to center map
         const markerData = {
           x: data.centerX,
           y: data.centerY,
@@ -83,12 +96,12 @@ export default {
         this.$root.channel.log('MapModulePlugin.AddMarkerRequest posted with data', markerData);
       });
     },
-    showInfoBoxRequestForMarker () {
+    showInfoBoxRequestForMarker() {
       // Open popup for marker
       const MARKER_ID = 'MARKER_WITH_POPUP';
       const content = [
         {
-          'html': '<div>Marker popup</div>'
+          html: '<div>Marker popup</div>'
         }
       ];
       const infoboxData = [
@@ -110,8 +123,11 @@ export default {
       this.$root.channel.postRequest('InfoBox.ShowInfoBoxRequest', infoboxData);
       this.$root.channel.log('InfoBox.ShowInfoBoxRequest posted with data', infoboxData);
     },
-    getLink (e) {
-      let documentPathEnd = e.target.id === 'addMarker' ? 'mapping/mapmodule/request/addmarkerrequest.md' : 'ui/infobox/request/infobox.showinfoboxrequest.md';
+    getLink(e) {
+      let documentPathEnd =
+        e.target.id === 'addMarker'
+          ? 'mapping/mapmodule/request/addmarkerrequest.md'
+          : 'ui/infobox/request/infobox.showinfoboxrequest.md';
       e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   },
@@ -119,5 +135,5 @@ export default {
     this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest');
     this.$root.channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
   }
-}
+};
 </script>

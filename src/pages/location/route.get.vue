@@ -16,13 +16,15 @@ var data = {
 };
 channel.postRequest('GetRouteRequest', [data]);
     </CodeSnippet>
-    
+
     <p>The examples here searches for a route from Pasila to the center point of the map:</p>
       <RunExampleButton @click="getRouteRequest('TRANSIT,WALK')">GetRouteRequest (transit,walk)</RunExampleButton>
       <RunExampleButton @click="getRouteRequest('WALK')">GetRouteRequest (walk)</RunExampleButton>
       <RunExampleButton @click="getRouteRequest('BICYCLE')">GetRouteRequest (bicycle)</RunExampleButton>
     <p>
-      <DocumentationLink type="request" :apiDoc="apiDocPageRequest">Documentation for {{ requestName }}</DocumentationLink>
+      <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
+        Documentation for {{ requestName }}
+      </DocumentationLink>
     </p>
   </div>
 </template>
@@ -41,32 +43,34 @@ const apiDocPageRequest = 'mapping/routingService/request/getrouterequest.md';
 const listeners = [];
 
 const getPayload = (x = 394240, y = 6675728, mode = 'TRANSIT,WALK') => {
-    return {
-        'fromlat': '6675341',
-        'fromlon': '385414',
-        'srs': 'EPSG:3067',
-        'tolat': y,
-        'tolon': x,
-        'showIntermediateStops': 'true',
-        'mode': mode
-    };
+  return {
+    fromlat: '6675341',
+    fromlon: '385414',
+    srs: 'EPSG:3067',
+    tolat: y,
+    tolon: x,
+    showIntermediateStops: 'true',
+    mode: mode
+  };
 };
 export default {
   name: 'GetRouteRequest',
   label: title,
-  data () {
+  data() {
     return {
       title,
       requestName,
       apiDocPageRequest,
       requestPayload: getPayload()
-    }
+    };
   },
-  mounted () {
-    listeners.push(EVENTBUS.on('RouteResultEvent', (data) => {
-      // using channel from global variable...
-      showRouteOnMap(data, channel);
-    }));
+  mounted() {
+    listeners.push(
+      EVENTBUS.on('RouteResultEvent', (data) => {
+        // using channel from global variable...
+        showRouteOnMap(data, channel);
+      })
+    );
   },
   beforeUnmount() {
     // Clean up when user leaves the example
@@ -76,7 +80,7 @@ export default {
     }
   },
   methods: {
-    getRouteRequest (mode) {
+    getRouteRequest(mode) {
       this.$root.channel.getMapPosition((data) => {
         const datain = getPayload(data.centerX, data.centerY, mode);
         this.$root.channel.postRequest('GetRouteRequest', [datain]);
@@ -84,38 +88,44 @@ export default {
       });
     }
   }
-}
-
+};
 
 const showPopup = (msg, seconds = 5) => {
   EVENTBUS.notify('rpcAppDisplayMessage', { msg, seconds });
 };
 
 const showRouteOnMap = (response = {}, channel) => {
-    if (!response.success) {
-        showPopup('Getting routes failed ! - zoom map center around 1 km to nearest public trafic stop');
-        return;
-    }
-    let geoJSON = response.plan && response.plan.itineraries && response.plan.itineraries.length ? response.plan.itineraries[0].geoJSON : undefined;
+  if (!response.success) {
+    showPopup(
+      'Getting routes failed ! - zoom map center around 1 km to nearest public trafic stop'
+    );
+    return;
+  }
+  let geoJSON =
+    response.plan && response.plan.itineraries && response.plan.itineraries.length
+      ? response.plan.itineraries[0].geoJSON
+      : undefined;
 
-    if (!geoJSON) {
-      showPopup('Getting geojson for route failed!');
-      return;
-    }
-    // Plot routes
-    const data = response.plan.itineraries[0];
+  if (!geoJSON) {
+    showPopup('Getting geojson for route failed!');
+    return;
+  }
+  // Plot routes
+  const data = response.plan.itineraries[0];
 
-    channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [
-        data.geoJSON, RouteHelper.getBaseStyle()
-      ]);
-      
-    const legsGeoJSON = generator.getCollectionOf(RouteHelper.generateRouteLegsForStylingPurposes(data));
-    channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [
-      legsGeoJSON, RouteHelper.getLegsStyle()
-    ]);
+  channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [
+    data.geoJSON,
+    RouteHelper.getBaseStyle()
+  ]);
+
+  const legsGeoJSON = generator.getCollectionOf(
+    RouteHelper.generateRouteLegsForStylingPurposes(data)
+  );
+  channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [
+    legsGeoJSON,
+    RouteHelper.getLegsStyle()
+  ]);
 };
 </script>
 
-
-<style>
-</style>
+<style></style>

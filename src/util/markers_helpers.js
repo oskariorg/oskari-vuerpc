@@ -8,6 +8,6 @@ const getMarkerTemplate = (x, y, msg) => {
     msg
   };
   return template;
-}
+};
 
 export { getMarkerTemplate };

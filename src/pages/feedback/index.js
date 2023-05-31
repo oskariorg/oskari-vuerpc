@@ -5,10 +5,5 @@ import feedbackResult from '../../components/events/feedback.result.vue';
 
 export default {
   name: 'Feedback',
-  pages: [
-    feedbackServices,
-    feedbackRequest,
-    feedbackPost,
-    feedbackResult
-  ]
+  pages: [feedbackServices, feedbackRequest, feedbackPost, feedbackResult]
 };

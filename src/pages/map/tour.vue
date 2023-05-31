@@ -1,23 +1,27 @@
 <template>
   <div>
     <h2>{{ title }}</h2>
-    <p>The {{requestName}} can be used to move the map programmatically
-       in an animated way along route points for visualization purposes.</p>
-    <DocumentationLink type="request" :apiDoc="apiDocPage">Documentation for {{requestName}}</DocumentationLink>
-   
+    <p>
+      The {{ requestName }} can be used to move the map programmatically in an animated way along
+      route points for visualization purposes.
+    </p>
+    <DocumentationLink type="request" :apiDoc="apiDocPage">
+      Documentation for {{ requestName }}
+    </DocumentationLink>
+
     <CodeSnippet>
 var routeSteps = {{ JSON.stringify(routeSteps, null, 2) }};
 var stepDefaults = {{ JSON.stringify(stepDefaults, null, 2) }};
 channel.postRequest('{{ requestName }}', [routeSteps, stepDefaults]);
     </CodeSnippet>
-     <p>
+    <p>
       You can send run the code above by clicking the button:
-    <RunExampleButton @click="mapTourRequest">{{requestName}}</RunExampleButton>
+      <RunExampleButton @click="mapTourRequest">{{ requestName }}</RunExampleButton>
     </p>
-     <p>
-    Note! That both AfterMapMoveEvents and MapTourEvents are triggered by the request.
-    The tour events can be used the progress of the tour and move events are triggered
-     normally since the map moves when it's going through the tour.
+    <p>
+      Note! That both AfterMapMoveEvents and MapTourEvents are triggered by the request. The tour
+      events can be used the progress of the tour and move events are triggered normally since the
+      map moves when it's going through the tour.
     </p>
   </div>
 </template>
@@ -30,17 +34,17 @@ const requestName = 'MapTourRequest';
 export default {
   name: requestName,
   label: title,
-  data () {
+  data() {
     return {
       title,
       apiDocPage,
       requestName,
       routeSteps,
       stepDefaults
-    }
+    };
   },
   methods: {
-    mapTourRequest () {
+    mapTourRequest() {
       const params = [routeSteps, stepDefaults];
       this.$root.channel.postRequest(requestName, params);
       this.$root.channel.log(requestName + ' posted with data', params);

@@ -4,15 +4,13 @@
           <code class="hljs" v-html="codeSnippet"/>
         </pre>
     <span v-if="!codeSnippet">
-      <slot>
-        Never shown - just used to capture optional body content for this tag
-      </slot>
+      <slot> Never shown - just used to capture optional body content for this tag </slot>
     </span>
   </span>
 </template>
 
 <script>
-import { useSlots } from 'vue'
+import { useSlots } from 'vue';
 import hljs from 'highlight.js/lib/core';
 import javascript from 'highlight.js/lib/languages/javascript';
 import xml from 'highlight.js/lib/languages/xml';
@@ -23,17 +21,16 @@ import '../../assets/monokai-sublime.css';
 hljs.registerLanguage('javascript', javascript);
 hljs.registerLanguage('xml', xml);
 
-
 const errorMsg = 'Code snippet missing/unable to parse';
 
 const doHighLight = (codeSnippet, lang = 'javascript') => {
   const highlightedCode = hljs.highlight(codeSnippet, { language: lang }).value;
   return highlightedCode;
-}
+};
 export default {
   props: {
-    'snippet': String,
-    'lang': String
+    snippet: String,
+    lang: String
   },
   computed: {
     codeSnippet() {
@@ -45,7 +42,7 @@ export default {
           snippet = slotEl.text.trim();
           //codeSnippet = codeSnippet.split('&lt;').join('<');
           //codeSnippet = codeSnippet.split('&gt;').join('>');
-        } catch (err) { }
+        } catch (err) {}
       }
       try {
         snippet = doHighLight(snippet, this.lang);
@@ -55,8 +52,8 @@ export default {
         /* ignored */
       }
       // expose to template and other options API hooks
-      return snippet
+      return snippet;
     }
   }
-}
+};
 </script>
