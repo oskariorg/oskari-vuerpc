@@ -1,7 +1,6 @@
 import './assets/main.css';
 
 import { createApp } from 'vue';
-import { createPinia } from 'pinia';
 import BootstrapVue from 'bootstrap-vue';
 
 import App from './App.vue';
@@ -29,7 +28,6 @@ app.component('DocumentationLink', DocumentationLink);
 app.component('InlineCode', InlineCodeSnippet);
 
 app.use(BootstrapVue);
-app.use(createPinia());
 app.use(router);
 
 app.mount('#app');

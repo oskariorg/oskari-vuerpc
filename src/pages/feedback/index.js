@@ -1,7 +1,7 @@
-import feedbackServices from '../../components/requests/feedback.services.vue';
+import feedbackServices from './feedback.services.vue';
 import feedbackRequest from './feedback.request.vue';
-import feedbackPost from '../../components/requests/feedback.post.vue';
-import feedbackResult from '../../components/events/feedback.result.vue';
+import feedbackPost from './feedback.post.vue';
+import feedbackResult from './feedback.result.vue';
 
 export default {
   name: 'Feedback',
