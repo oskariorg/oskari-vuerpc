@@ -1,21 +1,11 @@
 <template>
-  <div id="ShowInfoBoxForMarkers">
-    <div>
-      <a ref="AddMarkerRequest2" id="addMarker" href="" @click="getLink">To the documentation</a>
-      <a ref="ShowInfoBoxRequest2" id="showInfobox" href="" @click="getLink">
-        To the documentation
-      </a>
-    </div>
-
+  <div>
+    <DocumentationLink type="request" :apiDoc="apiDocPage">Documentation for InfoBox.ShowInfoBoxRequest</DocumentationLink>
     <div>1. Move map</div>
     2. Add marker to center of map
-    <button
-      id="btnAddMarkerCenterOfMapForInfobox"
-      class="btn btn-primary exampleready"
-      @click="addMarkerRequestCenterOfMapForInfobox"
-    >
+    <RunExampleButton @click="addMarkerRequestCenterOfMapForInfobox">
       AddMarkerRequest
-    </button>
+    </RunExampleButton>
     <CodeSnippet>
 var MARKER_ID = 'MARKER_WITH_POPUP';
 channel.getMapPosition(function(data) {
@@ -34,13 +24,7 @@ channel.getMapPosition(function(data) {
     </CodeSnippet>
     <div>
       3. Open popup for added marker
-      <button
-        id="btnShowInfoBoxRequestForMarker"
-        class="btn btn-primary exampleready"
-        @click="showInfoBoxRequestForMarker"
-      >
-        InfoBox.ShowInfoBoxRequest
-      </button>
+      <RunExampleButton @click="showInfoBoxRequestForMarker">InfoBox.ShowInfoBoxRequest</RunExampleButton>
     </div>
     <CodeSnippet>
 // Open popup for marker
@@ -76,7 +60,8 @@ export default {
   label: 'Show info box for marker',
   data() {
     return {
-      desc: 'Show info box for marker'
+      desc: 'Show info box for marker',
+      apiDocPage: 'ui/infobox/request/infobox.showinfoboxrequest.md'
     };
   },
   methods: {
@@ -122,13 +107,6 @@ export default {
 
       this.$root.channel.postRequest('InfoBox.ShowInfoBoxRequest', infoboxData);
       this.$root.channel.log('InfoBox.ShowInfoBoxRequest posted with data', infoboxData);
-    },
-    getLink(e) {
-      let documentPathEnd =
-        e.target.id === 'addMarker'
-          ? 'mapping/mapmodule/request/addmarkerrequest.md'
-          : 'ui/infobox/request/infobox.showinfoboxrequest.md';
-      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   },
   beforeUnmount() {
