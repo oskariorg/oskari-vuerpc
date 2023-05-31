@@ -2,7 +2,9 @@
   <div>
     <h2>{{ title }}</h2>
     <p>Occurs after a route search has been completed providing a result for it.</p>
-    <DocumentationLink type="event" :apiDoc="apiDocPage">Documentation for {{title}}</DocumentationLink>
+    <DocumentationLink type="event" :apiDoc="apiDocPage">
+      Documentation for {{ title }}
+    </DocumentationLink>
 
     <CodeSnippet>{{ result }}</CodeSnippet>
   </div>
@@ -15,14 +17,14 @@ const title = 'RouteResultEvent';
 export default {
   name: title,
   label: title,
-  data () {
+  data() {
     return {
       title,
       apiDocPage,
       result: routeResult
-    }
+    };
   }
-}
+};
 
 var routeResult = `{
     "success": true,

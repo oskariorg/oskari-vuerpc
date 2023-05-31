@@ -2,8 +2,9 @@
   <div id="SendUIEvent">
     <div>
       Open/close coordinatetool's popup:
-      <button id="btnSendUIEvent"
-      class="btn btn-primary exampleready" @click="sendUIEvent">SendUIevent</button>
+      <button id="btnSendUIEvent" class="btn btn-primary exampleready" @click="sendUIEvent">
+        SendUIevent
+      </button>
     </div>
     <CodeSnippet>
 var toolname = 'coordinatetool';
@@ -14,8 +15,9 @@ channel.sendUIEvent([toolname], function(data) {
 
     <div>
       Toggle the map's center crosshair:
-      <button id="toggleCrosshair"
-      class="btn btn-primary exampleready" @click="toggleCrosshair">Toggle crosshair</button>
+      <button id="toggleCrosshair" class="btn btn-primary exampleready" @click="toggleCrosshair">
+        Toggle crosshair
+      </button>
     </div>
     <CodeSnippet>
 var toolname = 'mapmodule.crosshair';
@@ -29,25 +31,25 @@ channel.sendUIEvent([toolname], function(data) {
 export default {
   name: 'SendUIEvent',
   label: 'Send UI event',
-  data () {
+  data() {
     return {
       desc: 'Send UI event',
       coordinateToolVisible: false,
       crosshairVisible: false
-    }
+    };
   },
   methods: {
-    sendUIEvent () {
+    sendUIEvent() {
       this.$root.channel.sendUIEvent(['coordinatetool'], (data) => {
         this.coordinateToolVisible = !this.coordinateToolVisible;
-        this.$root.channel.log('sendUIEvent: ', data)
-      })
+        this.$root.channel.log('sendUIEvent: ', data);
+      });
     },
-    toggleCrosshair () {
+    toggleCrosshair() {
       this.$root.channel.sendUIEvent(['mapmodule.crosshair'], (data) => {
         this.crosshairVisible = !this.crosshairVisible;
-        this.$root.channel.log('sendUIEvent mapmodule.crosshair: ', data)
-      })
+        this.$root.channel.log('sendUIEvent mapmodule.crosshair: ', data);
+      });
     }
   },
   beforeUnmount() {
@@ -58,5 +60,5 @@ export default {
       this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
     }
   }
-}
+};
 </script>

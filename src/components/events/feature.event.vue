@@ -1,12 +1,11 @@
 <template>
   <div id="FeatureEvent">
-    <div>Occurs after adding or removing features to or from map and after clicking a feature </div>
+    <div>Occurs after adding or removing features to or from map and after clicking a feature</div>
     <div>
       <a id="featureEvent" href="" @click="getLink">To the documentation</a>
     </div>
 
     <CodeSnippet>{{ event }}</CodeSnippet>
-
   </div>
 </template>
 <script>
@@ -14,17 +13,17 @@ import { features } from '../../util/examplecodes.js';
 export default {
   name: 'FeatureEvent',
   label: 'FeatureEvent',
-  data () {
+  data() {
     return {
       desc: 'Feature Event',
       event: features.event
-    }
+    };
   },
   methods: {
-    getLink (e) {
+    getLink(e) {
       var documentPathEnd = 'mapping/mapmodule/event/featureevent.md';
       e.target.href = this.$root.documentPathEvent + documentPathEnd;
     }
   }
-}
+};
 </script>

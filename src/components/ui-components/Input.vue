@@ -1,16 +1,15 @@
 <template>
-  <input type="text" v-model="search" placeholder="Search..." @input="search"/>
+  <input type="text" v-model="search" placeholder="Search..." @input="search" />
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       search: ''
-    }
+    };
   },
   methods: {
-    search (event) {
-    }
+    search(event) {}
   }
-}
+};
 </script>

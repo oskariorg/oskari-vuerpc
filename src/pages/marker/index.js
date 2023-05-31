@@ -4,9 +4,5 @@ import markerInfobox from '../../components/requests/marker.infobox.vue';
 
 export default {
   name: 'Markers',
-  pages: [
-    markerAdd,
-    markerShow,
-    markerInfobox
-  ]
+  pages: [markerAdd, markerShow, markerInfobox]
 };

@@ -17,10 +17,7 @@ const LAYER_OPTS = {
           color: '#000000'
         }
       },
-      content: [
-        { key: 'Layer: MY_VECTOR_LAYER' },
-        { key: 'Name', valueProperty: 'name' }
-      ]
+      content: [{ key: 'Layer: MY_VECTOR_LAYER' }, { key: 'Name', valueProperty: 'name' }]
     }
   },
   listing: {
@@ -50,7 +47,7 @@ const generator = {
         }
       },
       features: features.slice(0)
-    }
+    };
     return geojsonObject;
   },
   getRectangle: (x, y, attributes, width = 200, height = 100) => {
@@ -58,7 +55,15 @@ const generator = {
       type: 'Feature',
       geometry: {
         type: 'Polygon',
-        coordinates: [[[x, y], [x + width, y], [x + width, y + height], [x, y + height], [x, y]]]
+        coordinates: [
+          [
+            [x, y],
+            [x + width, y],
+            [x + width, y + height],
+            [x, y + height],
+            [x, y]
+          ]
+        ]
       },
       properties: { ...attributes }
     };
@@ -68,7 +73,13 @@ const generator = {
       type: 'Feature',
       geometry: {
         type: 'Polygon',
-        coordinates: [[[x, y], [x + 100000, y + 100000], [x + 25000, y + 50000]]]
+        coordinates: [
+          [
+            [x, y],
+            [x + 100000, y + 100000],
+            [x + 25000, y + 50000]
+          ]
+        ]
       },
       properties: { ...attributes }
     };
@@ -84,9 +95,7 @@ const generator = {
     };
   },
   getDefaultPolygonCollection: () => {
-    return generator.getCollectionOf([
-      generator.getPolygon(x, y, { name: `I'm a polygon` })
-    ]);
+    return generator.getCollectionOf([generator.getPolygon(x, y, { name: `I'm a polygon` })]);
   },
   getDefaultPointCollection: () => {
     return generator.getCollectionOf([

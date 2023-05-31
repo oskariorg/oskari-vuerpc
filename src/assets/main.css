@@ -1,45 +1,46 @@
-
 html {
-    min-height: 100%;
-    font-size: 100%;
+  min-height: 100%;
+  font-size: 100%;
 }
 
 body {
-    background: #D9D9D9;
-    font-family: 'Open Sans';
-    src: url('fonts/OpenSans-Regular.ttf');
-    color: #262626;
+  background: #d9d9d9;
+  font-family: 'Open Sans';
+  src: url('fonts/OpenSans-Regular.ttf');
+  color: #262626;
 }
- p {
-    color: #262626;
+p {
+  color: #262626;
 }
 h1 {
-    font-family: 'Open Sans';
-    font-size: 2rem;
-    color: #262626;
-    background-color: #D9D9D9;
-    padding: 4px;
+  font-family: 'Open Sans';
+  font-size: 2rem;
+  color: #262626;
+  background-color: #d9d9d9;
+  padding: 4px;
 }
 
 h2 {
-    font-family: 'Open Sans' !important;
-    font-size: 1.5rem;
-    color: #262626;
-    background-color: #D9D9D9;
-    /*padding: 4px;*/
-    padding: 10px;
+  font-family: 'Open Sans' !important;
+  font-size: 1.5rem;
+  color: #262626;
+  background-color: #d9d9d9;
+  /*padding: 4px;*/
+  padding: 10px;
 }
 
 h3 {
-    font-family: 'Open Sans';
-    font-size: calc(1.25rem + 1.0vh);
-    background-color: #F9F9F9;
-    /*padding: 4px;*/
-    padding: 10px;
+  font-family: 'Open Sans';
+  font-size: calc(1.25rem + 1vh);
+  background-color: #f9f9f9;
+  /*padding: 4px;*/
+  padding: 10px;
 }
 
-h4, h5, h6 {
-    font-family: 'Open Sans';
-    font-size: 1.25rem;
-    color: #262626;
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans';
+  font-size: 1.25rem;
+  color: #262626;
 }

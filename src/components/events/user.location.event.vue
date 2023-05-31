@@ -16,16 +16,16 @@
 export default {
   name: 'UserLocationEvent',
   label: 'UserLocationEvent',
-  data () {
+  data() {
     return {
       desc: 'UserLocationEvent'
-    }
+    };
   },
   methods: {
-    getLink (e) {
+    getLink(e) {
       var documentPathEnd = 'mapping/mapmodule/event/userlocationevent.md';
       e.target.href = this.$root.documentPathEvent + documentPathEnd;
     }
   }
-}
+};
 </script>

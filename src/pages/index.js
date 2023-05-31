@@ -10,16 +10,7 @@ import location from './location';
 
 const pageMap = {
   main: gettingStarted,
-  sections: [
-    map,
-    marker,
-    features,
-    drawing,
-    generic,
-    feedback,
-    ui,
-    location
-  ]
+  sections: [map, marker, features, drawing, generic, feedback, ui, location]
 };
 
 export default pageMap;

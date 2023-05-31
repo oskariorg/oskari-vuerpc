@@ -1,6 +1,6 @@
 /*
-*             IN THIS FILE YOU CAN FIND THE EXAMPLES USED IN HIGHLIGHTJS. THE EXAMPLES IN THIS FILE ARE TOO BIG TO BE USED IN TEMPLATE SO THEY ARE IMPORTED FROM HERE INSTEAD
-*/
+ *             IN THIS FILE YOU CAN FIND THE EXAMPLES USED IN HIGHLIGHTJS. THE EXAMPLES IN THIS FILE ARE TOO BIG TO BE USED IN TEMPLATE SO THEY ARE IMPORTED FROM HERE INSTEAD
+ */
 var features = {
   // EVENT feature.event.vue
   event: `{
@@ -61,7 +61,7 @@ var features = {
       }
     ]
   }`
-}
+};
 var wkt = `// Define a WKT geometry
 var WKT = 'POLYGON ((358911.7134508261 6639617.669712467, 358911.7134508261 6694516.612323322, 382536.4910289571 6694516.612323322, 382536.4910289571 6639617.669712467, 358911.7134508261 6639617.669712467))';
 
@@ -160,10 +160,10 @@ var feedback = {
   channel.postRequest('PostFeedbackRequest', [data]);`,
   // GET FEEDBACK SERVICES feedback.services.vue
   services: {
-    list: 'channel.postRequest(\'GetFeedbackServiceRequest\', []);',
+    list: "channel.postRequest('GetFeedbackServiceRequest', []);",
     id: 'channel.postRequest(\'GetFeedbackServiceRequest\', ["180"]);'
   }
-}
+};
 var infobox = {
   req: `  //get map center and then show an infobox at that location
   channel.getMapPosition(function(data) {
@@ -263,5 +263,5 @@ var infobox = {
     channel.postRequest('InfoBox.ShowInfoBoxRequest', data);
     channel.log('InfoBox.ShowInfoBoxRequest posted with data', data);
   });`
-}
+};
 export { features, wkt, feedback, infobox };
