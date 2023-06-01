@@ -1,41 +1,31 @@
 <template>
-  <div id="ZoomToFeatures">
+  <div>
     <div>
-      <a id="zoomToFeatures" href="" @click="getLink">To the documentation</a>
+      <DocumentationLink type="request" apiDoc="mapping/mapmodule/request/zoomtofeaturesrequest.md">
+        Documentation for ZoomToFeaturesRequest
+      </DocumentationLink>
     </div>
 
     <div>
       1. Add features to map
-      <button
-        id="btnAddFeaturesToMapRequest"
-        class="btn btn-primary exampleready"
-        @click="addFeaturesToMapRequestForZooming"
-      >
+      <RunExampleButton @click="addFeaturesToMapRequestForZooming">
         AddFeaturesToMapRequest
-      </button>
+      </RunExampleButton>
     </div>
     <div>2. Move map</div>
     <div>
       3. Zoom to all features
-      <button
-        id="btnZoomToFeaturesRequest"
-        class="btn btn-primary exampleready"
-        @click="zoomToFeaturesRequest"
-      >
+      <RunExampleButton @click="zoomToFeaturesRequest">
         MapModulePlugin.ZoomToFeaturesRequest
-      </button>
+      </RunExampleButton>
     </div>
     <CodeSnippet> channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', []); </CodeSnippet>
 
     <div>
       Zoom to features, where featureType=='parcel' and layerId=='testLayer'
-      <button
-        id="btnZoomToFeaturesRequest2"
-        class="btn btn-primary exampleready"
-        @click="ZoomToFeaturesRequestWithParams"
-      >
+      <RunExampleButton @click="ZoomToFeaturesRequestWithParams">
         MapModulePlugin.ZoomToFeaturesRequest
-      </button>
+      </RunExampleButton>
     </div>
     <CodeSnippet>
 var layers = {'layer': ['testLayer']};
@@ -45,17 +35,13 @@ channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [layers, features])
 
     <div>
       Zoom with maxZoomLevel set
-      <button
-        id="btnZoomToFeaturesRequest3"
-        class="btn btn-primary exampleready"
-        @click="zoomToFeaturesRequestMaxZoomLevel"
-      >
+      <RunExampleButton @click="zoomToFeaturesRequestMaxZoomLevel">
         MapModulePlugin.ZoomToFeaturesRequest
-      </button>
+      </RunExampleButton>
     </div>
     <CodeSnippet>
 var maxZoomParams = {
-    'maxZoomLevel': 4
+  'maxZoomLevel': 4
 };
 channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [maxZoomParams]);
     </CodeSnippet>
@@ -147,7 +133,6 @@ export default {
           prio: 1
         }
       ];
-
       this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
       this.$root.channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params);
     },
@@ -170,10 +155,6 @@ export default {
         'MapModulePlugin.ZoomToFeaturesRequest posted with  data',
         maxZoomParams
       );
-    },
-    getLink(e) {
-      let documentPathEnd = 'mapping/mapmodule/request/zoomtofeaturesrequest.md';
-      e.target.href = this.$root.documentPathRequest + documentPathEnd;
     }
   },
   beforeUnmount() {

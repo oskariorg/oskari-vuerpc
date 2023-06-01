@@ -12,9 +12,7 @@
 
     <div>
       <input v-model="query" placeholder="Search query" />
-      <button id="btnSearchRequest" class="btn btn-primary exampleready" @click="searchRequest">
-        SearchRequest
-      </button>
+      <RunExampleButton @click="searchRequest">SearchRequest</RunExampleButton>
     </div>
 
     <CodeSnippet :snippet="codeSnippet.request"></CodeSnippet>

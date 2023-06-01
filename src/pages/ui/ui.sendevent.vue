@@ -1,10 +1,8 @@
 <template>
-  <div id="SendUIEvent">
+  <div>
     <div>
       Open/close coordinatetool's popup:
-      <button id="btnSendUIEvent" class="btn btn-primary exampleready" @click="sendUIEvent">
-        SendUIevent
-      </button>
+      <RunExampleButton @click="sendUIEvent">SendUIEvent</RunExampleButton>
     </div>
     <CodeSnippet>
 var toolname = 'coordinatetool';
@@ -15,9 +13,7 @@ channel.sendUIEvent([toolname], function(data) {
 
     <div>
       Toggle the map's center crosshair:
-      <button id="toggleCrosshair" class="btn btn-primary exampleready" @click="toggleCrosshair">
-        Toggle crosshair
-      </button>
+      <RunExampleButton @click="toggleCrosshair">SendUIEvent</RunExampleButton>
     </div>
     <CodeSnippet>
 var toolname = 'mapmodule.crosshair';
