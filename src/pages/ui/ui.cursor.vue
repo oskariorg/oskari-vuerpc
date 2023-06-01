@@ -1,5 +1,5 @@
 <template>
-  <div id="setCursorStyle">
+  <div>
     <div>
       <p>
         Sets the cursor style on map. The value can be any valid css cursor value. Not all possible
@@ -12,9 +12,7 @@
         <option value="pointer">pointer</option>
         <option value="progress">progress</option>
       </select>
-      <button id="btnSetCursorStyle" class="btn btn-primary exampleready" @click="setCursorStyle">
-        Set cursor style
-      </button>
+      <RunExampleButton @click="setCursorStyle">Set cursor style</RunExampleButton>
     </div>
     <CodeSnippet>
 var cursorStyle = jQuery('#setCursorStyleSelect').val();
