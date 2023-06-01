@@ -7,7 +7,8 @@
     </div>
     <DocumentationLink type="request" :apiDoc="apiDocPage">To the documentation</DocumentationLink>
     <CodeSnippet>
-var isVisible = true; channel.postRequest('ShowProgressSpinnerRequest',[isVisible]);
+var isVisible = true;
+channel.postRequest('ShowProgressSpinnerRequest',[isVisible]);
     </CodeSnippet>
   </div>
 </template>

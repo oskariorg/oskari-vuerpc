@@ -10,7 +10,8 @@
       To the documentation
     </DocumentationLink>
     <CodeSnippet>
-var infoboxId = 'myInfoBox'; channel.postRequest('InfoBox.HideInfoBoxRequest', [infoboxId]);
+var infoboxId = 'myInfoBox';
+channel.postRequest('InfoBox.HideInfoBoxRequest', [infoboxId]);
 channel.log('InfoBox.HideInfoBoxRequest posted with data', infoboxId);
     </CodeSnippet>
   </div>
