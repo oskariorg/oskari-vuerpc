@@ -3,10 +3,13 @@
     <h2>{{ title }}</h2>
     <!-- RPC functions / getAllLayers() -->
     <h3>Get current map layers</h3>
-    <p>RPC API client has a function for listing available map layers: getMapLayers().</p>
-    <DocumentationLink type="bundle" :apiDoc="apiDocPageRPC"
-      >Documentation for RPC functions</DocumentationLink
-    >
+    <p>
+      RPC API client has a function for listing available map layers:
+      <inline-code>getAllLayers()</inline-code>.
+    </p>
+    <DocumentationLink type="bundle" :apiDoc="apiDocPageRPC">
+      Documentation for RPC functions
+    </DocumentationLink>
 
     <CodeSnippet>
 channel.getAllLayers(function (data) {
@@ -18,7 +21,8 @@ channel.getAllLayers(function (data) {
     <!-- ChangeMapLayerOpacityRequest -->
     <h3>Change layer opacity</h3>
     <p>
-      The request {{ requestNameOpacity }} can be used to change layer opacity programmatically.
+      The request <inline-code>{{ requestNameOpacity }}</inline-code> can be used to change layer
+      opacity programmatically.
     </p>
 
     <CodeSnippet>
@@ -31,17 +35,17 @@ channel.getAllLayers(function (layers) {
 });
     </CodeSnippet>
 
-    <DocumentationLink type="request" :apiDoc="apiDocPageOpacity"
-      >Documentation for {{ requestNameOpacity }}</DocumentationLink
-    >
+    <DocumentationLink type="request" :apiDoc="apiDocPageOpacity">
+      Documentation for {{ requestNameOpacity }}
+    </DocumentationLink>
 
     <RunExampleButton @click="toggleOpacity">Toggle opacity</RunExampleButton>
 
     <!-- MapLayerVisibilityRequest -->
     <h3>Show or hide a layer on map</h3>
     <p>
-      The request {{ requestNameVisibility }} can be used to show or hide a layer on map
-      programmatically.
+      The request <inline-code>{{ requestNameVisibility }}</inline-code> can be used to show or hide
+      a layer on map programmatically.
     </p>
 
     <CodeSnippet>
@@ -53,9 +57,9 @@ channel.getAllLayers(function (layers) {
 });
     </CodeSnippet>
 
-    <DocumentationLink type="request" :apiDoc="apiDocPageVisibility"
-      >Documentation for {{ requestNameVisibility }}</DocumentationLink
-    >
+    <DocumentationLink type="request" :apiDoc="apiDocPageVisibility">
+      Documentation for {{ requestNameVisibility }}
+    </DocumentationLink>
 
     <div v-for="n in numberOfLayers" :key="n">
       <RunExampleButton @click="toggleVisibility(n - 1)">
@@ -64,10 +68,35 @@ channel.getAllLayers(function (layers) {
     </div>
 
     <p>
-      {{ requestNameOpacity }} and {{ requestNameVisibility }} can also be used to control vector
+      <inline-code>{{ requestNameOpacity }}</inline-code> and
+      <inline-code>{{ requestNameVisibility }}</inline-code> can also be used to control vector
       layers that are added to the map programmatically during runtime. Reference the layer with the
       same id used to add vector layer/features to map.
     </p>
+
+    <p>
+      It is also possible to rearrange layers with the request
+      <inline-code>RearrangeSelectedMapLayerRequest</inline-code>. Given the id of the layer and the
+      new position, the request modifies the position of the layer in relation to other layers on
+      the map.
+      <CodeSnippet>
+channel.getAllLayers(function (layers) {
+  const layerId = layers[0].id;
+  const newPos = 1;
+  channel.postRequest('RearrangeSelectedMapLayerRequest', [layerId, newPos]);
+});
+      </CodeSnippet>
+      Note! You should have the opacity toggled on and have all layers from this page's previous
+      examples visible when trying this example. Otherwise, it will be difficult to see what happens
+      when the buttons are pressed. In this example, pressing the buttons pushes the layer back,
+      i.e. the current layer on top of the stack gets pushed one stage lower.
+    </p>
+    <div v-for="n in numberOfLayers" :key="n">
+      <RunExampleButton @click="rearrangeLayers(n - 1)"> Reorder layer {{ n }} </RunExampleButton>
+    </div>
+    <DocumentationLink type="request" :apiDoc="apiDocPageRearrange">
+      Documentation for RearrangeSelectedMapLayerRequest
+    </DocumentationLink>
   </div>
 </template>
 
@@ -83,6 +112,7 @@ const apiDocPageOpacity = 'mapping/mapmodule/request/changemaplayeropacityreques
 const requestNameVisibility = 'MapModulePlugin.MapLayerVisibilityRequest';
 const apiDocPageVisibility =
   'mapping/mapmodule/request/MapModulePlugin.MapLayerVisibilityRequest.md';
+const apiDocPageRearrange = 'mapping/mapmodule/request/rearrangeselectedmaplayerrequest.md';
 
 const listeners = [];
 
@@ -97,6 +127,7 @@ export default {
       apiDocPageOpacity,
       requestNameVisibility,
       apiDocPageVisibility,
+      apiDocPageRearrange,
       numberOfLayers: 0
     };
   },
@@ -129,6 +160,15 @@ export default {
           layerId,
           !currentVisibility
         ]);
+      });
+    },
+    rearrangeLayers(n) {
+      const me = this;
+      this.$root.channel.getAllLayers((layers) => {
+        const layerId = layers[n].id;
+        const newPos = n >= layers.length ? 0 : n + 1;
+
+        me.$root.channel.postRequest('RearrangeSelectedMapLayerRequest', [layerId, newPos]);
       });
     }
   },
