@@ -5,7 +5,7 @@
       {{ requestName }} allows more control for showing vector features on the map.
     </p>
     <p>
-      You can initializing a layer with styles, scale limits and other toggles that are used for vector features on that layer.
+      You can initialize a layer with styles, scale limits and other toggles that are used for vector features on that layer.
       This simplifies adding features to that layer since you don't need to send those toggles (some you even can't) on each AddFeaturesToMapRequest.
       For very simple applications or examples it might be easier to use the AddFeaturesToMap since it can be used to initialize a simple layer as well.
     </p>
@@ -73,22 +73,12 @@ channel.postRequest('VectorLayerRequest', [{
         </li>
       </ol>
     </p>
-    <p>You can define more than just the hover styles with the VectorLayerRequest.
-      Documentation links:
+    <p>You can define more than just the hover styles with the VectorLayerRequest. See the documentation page 'Styling' 
+      for more information about customizing the visuals of a layer. Documentation links:
       <ul>
       <li><DocumentationLink type="request" :apiDoc="apiDocPageRequest">Documentation for {{requestName}}</DocumentationLink></li>
       <li><DocumentationLink :href="styleDocLink">Styling</DocumentationLink></li>
       </ul>
-    </p>
-    <p>
-      Example for removing the layer. Reference with layerId and include a remove-flag:
-    
-      <CodeSnippet>
-channel.postRequest('VectorLayerRequest', [{
-  layerId: '{{ LAYER_OPTS.simple.layerId }}',
-  remove: true
-}]);
-      </CodeSnippet>
     </p>
   </div>
 </template>

@@ -8,7 +8,7 @@
     <DocumentationLink type="request" :apiDoc="apiDocPageRequestAdd">
       Documentation for {{ requestNameAdd }}
     </DocumentationLink>
-
+    <br />
     When you open this example the map should have a point and a polygon pushed on it with the
     {{ requestNameAdd }} with a code like this:
     <CodeSnippet>
