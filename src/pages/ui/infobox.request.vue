@@ -20,7 +20,7 @@ channel.log('InfoBox.HideInfoBoxRequest posted with data', infoboxId);
 <script>
 const showInfoBoxRequest = () => {
   //get map center and then show an infobox at that location
-  this.$root.channel.getMapPosition(function (data) {
+  channel.getMapPosition(function (data) {
     const content = [
       {
         html: '<div>Map position info</div>'
@@ -115,8 +115,8 @@ const showInfoBoxRequest = () => {
       }
     ];
 
-    this.$root.channel.postRequest('InfoBox.ShowInfoBoxRequest', data);
-    this.$root.channel.log('InfoBox.ShowInfoBoxRequest posted with data', data);
+    channel.postRequest('InfoBox.ShowInfoBoxRequest', data);
+    channel.log('InfoBox.ShowInfoBoxRequest posted with data', data);
   });
 };
 
@@ -130,7 +130,7 @@ export default {
         show: 'ui/infobox/request/infobox.showinfoboxrequest.md',
         hide: 'ui/infobox/request/infobox.hideinfoboxrequest.md'
       },
-      req: showInfoBoxRequest.toString().replace('this.$root.', '') //follow same styling as other examples
+      req: showInfoBoxRequest.toString()
     };
   },
   methods: {
