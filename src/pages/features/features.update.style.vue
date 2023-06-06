@@ -2,15 +2,15 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      AddFeaturesToMapRequest allows updating vector features that have been pushed to the map with
-      the same request.
+      The <InlineCode>AddFeaturesToMapRequest</InlineCode> allows updating vector features that have
+      been pushed to the map with the same request.
     </p>
     <DocumentationLink type="request" :apiDoc="apiDocPageRequestAdd">
       Documentation for {{ requestNameAdd }}
     </DocumentationLink>
     <br />
     When you open this example the map should have a point and a polygon pushed on it with the
-    {{ requestNameAdd }} with a code like this:
+    <InlineCode>{{ requestNameAdd }}</InlineCode> with code like this:
     <CodeSnippet>
 var geojson = {
   "type": "FeatureCollection",
@@ -20,14 +20,17 @@ channel.postRequest('{{ requestNameAdd }}', [geojson, {{ JSON.stringify(centerTo
     </CodeSnippet>
 
     <h3>Updating feature style</h3>
-    <p>You can update feature style for example when you want to higlight feature from the map.</p>
+    <p>
+      You can update feature style for example when you want to highlight a feature from the map.
+    </p>
     <RunExampleButton @click="togglePointStyle">Toggle point style</RunExampleButton>
     <RunExampleButton @click="togglePolygonStyle">Toggle polygon style</RunExampleButton>
     <p>
       Click the buttons above to cycle through styles for point and polygon. See the log for details
-      what is sent. Instead of a geojson as first parameter on {{ requestNameAdd }} when updating
-      you can send a selector that matches the feature property you want to update. The example uses
-      a random animationDuration option when updating the polygon style.
+      what is sent. Instead of a geojson as first parameter on
+      <InlineCode>{{ requestNameAdd }}</InlineCode> when updating you can send a selector that
+      matches the feature property you want to update. The example uses a random animationDuration
+      option when updating the polygon style.
     </p>
 
     <DocumentationLink href="https://oskari.org/documentation/examples/oskari-style">
