@@ -11,8 +11,8 @@
     >
     <p>
       <br />
-      Note that after zooming you will also get an AfterMapMoveEvent since zoom level is part of the
-      "map move info".
+      Note that after zooming you will also get an <InlineCode>AfterMapMoveEvent</InlineCode> since
+      zoom level is part of the "map move info".
     </p>
 
     <h3>getZoomRange()</h3>
@@ -22,8 +22,8 @@ channel.getZoomRange(function (data) {
 });
     </CodeSnippet>
     <p>
-      getZoomRange() can be used to get the map's zoom range (min, max, current). Click the button
-      to get the result shown on the log:
+      <InlineCode>getZoomRange()</InlineCode> can be used to get the map's zoom range (min, max,
+      current). Click the button to get the result shown on the log:
       <RunExampleButton @click="getZoomRange">Get zoom range</RunExampleButton>
     </p>
 
@@ -34,10 +34,10 @@ channel.zoomIn(function (data) {
 });
     </CodeSnippet>
     <p>
-      zoomIn() can be used to zoom the map one level closer and it returns the current zoom level
-      afterwards. Note if the map cannot be zoomed any closer the zoom level won't change and you
-      can catch that by comparing the parameter in the callback function. Click the button to get
-      the result shown on the log:
+      <InlineCode>zoomIn()</InlineCode> can be used to zoom the map one level closer and it returns
+      the current zoom level afterwards. Note if the map cannot be zoomed any closer the zoom level
+      won't change and you can catch that by comparing the parameter in the callback function. Click
+      the button to get the result shown on the log:
       <RunExampleButton @click="zoomIn">Zoom in</RunExampleButton>
     </p>
 
@@ -48,10 +48,10 @@ channel.zoomOut(function (data) {
 });
     </CodeSnippet>
     <p>
-      zoomOut() can be used to zoom the map one level out and it returns the current zoom level
-      afterwards. Note if the map cannot be zoomed any further the zoom level won't change and you
-      can catch that by comparing the parameter in the callback function. Click the button to get
-      the result shown on the log:
+      <InlineCode>zoomOut()</InlineCode> can be used to zoom the map one level out and it returns
+      the current zoom level afterwards. Note if the map cannot be zoomed any further the zoom level
+      won't change and you can catch that by comparing the parameter in the callback function. Click
+      the button to get the result shown on the log:
       <RunExampleButton @click="zoomOut">Zoom out</RunExampleButton>
     </p>
 
@@ -62,10 +62,10 @@ channel.zoomTo([{{ zoomLevel }}], function (data) {
 });
     </CodeSnippet>
     <p>
-      zoomTo() can be used to zoom a specific zoom level and it returns the current zoom level as
-      the callback parameter. Note if the map cannot be zoomed any further the zoom level won't
-      change and you can catch that by comparing the parameter in the callback function. Click the
-      button to get the result shown on the log:
+      <InlineCode>zoomTo()</InlineCode> can be used to zoom a specific zoom level and it returns the
+      current zoom level as the callback parameter. Note if the map cannot be zoomed any further the
+      zoom level won't change and you can catch that by comparing the parameter in the callback
+      function. Click the button to get the result shown on the log:
       <RunExampleButton @click="zoomTo">Zoom to level {{ zoomLevel }}</RunExampleButton>
     </p>
   </div>
