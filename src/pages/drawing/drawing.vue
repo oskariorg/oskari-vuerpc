@@ -11,7 +11,7 @@
     </p>
     <div>
       <RunExampleButton @click="startDrawing()">Activate drawing mode</RunExampleButton>
-      <b-dd :text="selectedShape" variant="outline-secondary">
+      <b-dd :text="selectedShape" variant="outline-success">
         <b-dd-item-button @click="setShape('Polygon')">Polygon</b-dd-item-button>
         <b-dd-item-button @click="setShape('Point')">Point</b-dd-item-button>
         <b-dd-item-button @click="setShape('Circle')">Circle</b-dd-item-button>
