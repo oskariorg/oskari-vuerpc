@@ -9,7 +9,7 @@
       Documentation for RPC functions
     </DocumentationLink>
     <p>
-      Note! This is experimental function and also requires suitable CORS-enabled map layers on the
+      Note! This is an experimental function and also requires suitable CORS-enabled map layers on the
       published map AND screenshot configuration enabled for the layers that would be used for
       screenshot on the Oskari instance.
     </p>

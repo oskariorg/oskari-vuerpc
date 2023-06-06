@@ -6,5 +6,5 @@ import search from './search.vue';
 
 export default {
   name: 'Location',
-  pages: [routeResult, routeGet, userLocation, userLocationEvent, search]
+  pages: [routeGet, routeResult, userLocation, userLocationEvent, search]
 };

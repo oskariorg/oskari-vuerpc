@@ -9,7 +9,7 @@
     <h3>Add marker with a built-in icon</h3>
     <p>
       Adding markers with Oskari default icons (shape number between 0 and 6). Icon size is an
-      abstracted number. The pixel size is calculated with <InlineCode>size * 10 + 40px</InlineCode>
+      abstracted number and calculated with <InlineCode>size * 10 + 40px</InlineCode>.
     </p>
     <CodeSnippet>
 var markerData = {{ JSON.stringify(markerIcon, null, 2) }};
@@ -67,6 +67,9 @@ channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, '{{MARKER_I
     <p><!-- Just to provide a bit of white space... --></p>
 
     <h3>Removing markers</h3>
+    Removing markers is possible with <inline-code>MapModulePlugin.RemoveMarkersRequest</inline-code>.
+    The request can include an ID for removing a single marker. When no ID is provided all markers are cleared.
+    <br />
     <RunExampleButton @click="removeMarkersRequest()">
       MapModulePlugin.RemoveMarkersRequest
     </RunExampleButton>

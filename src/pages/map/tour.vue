@@ -15,7 +15,7 @@ var stepDefaults = {{ JSON.stringify(stepDefaults, null, 2) }};
 channel.postRequest('{{ requestName }}', [routeSteps, stepDefaults]);
     </CodeSnippet>
     <p>
-      You can send run the code above by clicking the button:
+      You can run the code above by clicking the button:
       <RunExampleButton @click="mapTourRequest">{{ requestName }}</RunExampleButton>
     </p>
     <p>
