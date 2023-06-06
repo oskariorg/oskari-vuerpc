@@ -38,7 +38,7 @@ var data = ['my functionality id', 'Polygon', { showMeasureOnMap: true }];
 channel.postRequest('DrawTools.StartDrawingRequest', data);
     </CodeSnippet>
     <p>
-      To stop current drawing progress send <InlineCode>StopDrawingRequest</InlineCode> with id of
+      To stop the current drawing progress send a <InlineCode>StopDrawingRequest</InlineCode> with id of
       the feature to stop drawing for as a parameter. For accessability reasons it isn't recommended
       that <InlineCode>StopDrawingRequest</InlineCode> is initiated by double clicking map area but
       rather by placing dedicated button in the UI of application being developed.<br />
@@ -54,7 +54,7 @@ channel.postRequest('DrawTools.StopDrawingRequest', data);
     </p>
 
     <p>
-      To clear drawing from the map send <InlineCode>StopDrawingRequest</InlineCode> with second
+      To clear a drawing from the map send a <InlineCode>StopDrawingRequest</InlineCode> with second
       member of data parameter given to <InlineCode>StopDrawingRequest</InlineCode> set as <InlineCode>true</InlineCode>.
       <RunExampleButton @click="stopDrawingClear">Clear drawings</RunExampleButton>
       <CodeSnippet>
@@ -64,9 +64,9 @@ channel.postRequest('DrawTools.StopDrawingRequest', data);
     </p>
 
     <p>
-      Everytime mouse is moved on the map <InlineCode>DrawingEvent</InlineCode> occurs while drawing is in progress and
+      Everytime the cursor is moved on the map <InlineCode>DrawingEvent</InlineCode> occurs while drawing is in progress and
       contains all the information regarding current drawing. To ensure that logging isn't clogged
-      check if <code>DrawingEvent.finished</code> is set to <code>true</code> and only log when
+      check if <InlineCode>DrawingEvent.finished</InlineCode> is set to <InlineCode>true</InlineCode> and only log when
       drawing is finished.
       <br />
       <DocumentationLink type="event" apiDoc="mapping/drawtools/event/DrawingEvent.md">
