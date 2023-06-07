@@ -86,6 +86,7 @@ channel.postRequest(
     </ol>
     The lowest prio (middle) should be shown on top, then north-east and last the middle one. This
     is the same order as they were when the example page is accessed.
+    <br />
     <RunExampleButton @click="runExample(3)">Update features on map</RunExampleButton>
     <RunExampleButton @click="togglePolygonStyle">Toggle middle polygon style</RunExampleButton>
 
