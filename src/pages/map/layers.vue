@@ -5,7 +5,7 @@
     <h3>Get current map layers</h3>
     <p>
       RPC API client has a function for listing available map layers:
-      <inline-code>getAllLayers()</inline-code>.
+      <InlineCode>getAllLayers()</InlineCode>.
     </p>
     <DocumentationLink type="bundle" :apiDoc="apiDocPageRPC">
       Documentation for RPC functions
@@ -21,7 +21,7 @@ channel.getAllLayers(function (data) {
     <!-- ChangeMapLayerOpacityRequest -->
     <h3>Change layer opacity</h3>
     <p>
-      The request <inline-code>{{ requestNameOpacity }}</inline-code> can be used to change layer
+      The request <InlineCode>{{ requestNameOpacity }}</InlineCode> can be used to change layer
       opacity programmatically.
     </p>
 
@@ -44,7 +44,7 @@ channel.getAllLayers(function (layers) {
     <!-- MapLayerVisibilityRequest -->
     <h3>Show or hide a layer on map</h3>
     <p>
-      The request <inline-code>{{ requestNameVisibility }}</inline-code> can be used to show or hide
+      The request <InlineCode>{{ requestNameVisibility }}</InlineCode> can be used to show or hide
       a layer on map programmatically.
     </p>
 
@@ -68,15 +68,15 @@ channel.getAllLayers(function (layers) {
     </div>
 
     <p>
-      <inline-code>{{ requestNameOpacity }}</inline-code> and
-      <inline-code>{{ requestNameVisibility }}</inline-code> can also be used to control vector
+      <InlineCode>{{ requestNameOpacity }}</InlineCode> and
+      <InlineCode>{{ requestNameVisibility }}</InlineCode> can also be used to control vector
       layers that are added to the map programmatically during runtime. Reference the layer with the
       same id used to add vector layer/features to map.
     </p>
 
     <p>
       It is also possible to rearrange layers with the request
-      <inline-code>RearrangeSelectedMapLayerRequest</inline-code>. Given the id of the layer and the
+      <InlineCode>RearrangeSelectedMapLayerRequest</InlineCode>. Given the id of the layer and the
       new position, the request modifies the position of the layer in relation to other layers on
       the map.
       <CodeSnippet>
@@ -190,7 +190,7 @@ export default {
   beforeUnmount() {
     // Clean up when user leaves the example
     this.$root.channel.resetState(() => {
-      channel.log('Map state reset on exiting the example: "' + title + '"');
+      this.$root.channel.log('Map state reset on exiting the example: "' + title + '"');
     });
     while (listeners.length) {
       EVENTBUS.off('channel.available', listeners.pop());

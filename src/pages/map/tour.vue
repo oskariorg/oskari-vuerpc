@@ -2,8 +2,8 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      The {{ requestName }} can be used to move the map programmatically in an animated way along
-      route points for visualization purposes.
+      The <InlineCode>{{ requestName }}</InlineCode> can be used to move the map programmatically in
+      an animated way along route points for visualization purposes.
     </p>
     <DocumentationLink type="request" :apiDoc="apiDocPage">
       Documentation for {{ requestName }}
@@ -19,9 +19,10 @@ channel.postRequest('{{ requestName }}', [routeSteps, stepDefaults]);
       <RunExampleButton @click="mapTourRequest">{{ requestName }}</RunExampleButton>
     </p>
     <p>
-      Note! That both AfterMapMoveEvents and MapTourEvents are triggered by the request. The tour
-      events can be used the progress of the tour and move events are triggered normally since the
-      map moves when it's going through the tour.
+      Note! That both <InlineCode>AfterMapMoveEvent</InlineCode> and
+      <InlineCode>MapTourEvent</InlineCode> are triggered by the request. The tour events can be
+      used during the progress of the tour and move events are triggered normally since the map
+      moves when it's going through the tour.
     </p>
   </div>
 </template>

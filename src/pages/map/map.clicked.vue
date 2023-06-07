@@ -2,8 +2,8 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      The {{ eventName }} occurs after the map has been clicked. Click the map to see the events in
-      the log and below.
+      The <InlineCode>{{ eventName }}</InlineCode> occurs after the map has been clicked. Click the
+      map to see the events in the log and below.
     </p>
     <DocumentationLink type="event" :apiDoc="apiDocPage"
       >Documentation for {{ eventName }}</DocumentationLink

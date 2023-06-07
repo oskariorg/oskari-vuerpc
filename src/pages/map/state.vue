@@ -9,8 +9,9 @@
 
     <h3>getCurrentState()</h3>
     <p>
-      The getCurrentState() function returns an Object describing the state of the map. This object
-      can be saved on the app to for example provide a history/back-functionality.
+      The <InlineCode>getCurrentState()</InlineCode> function returns an Object describing the state
+      of the map. This object can be saved on the app to for example provide a
+      history/back-functionality.
     </p>
     <CodeSnippet>
 channel.getCurrentState(function (data) {
@@ -22,10 +23,10 @@ channel.getCurrentState(function (data) {
 
     <h3>useState()</h3>
     <p>
-      The useState() function takes an Object describing the state of the map as parameter. To see
-      an example of this object you can click the "Save current state" button. After clicking the
-      button, move/zoom the map and then click the "Restore state" button below to see the map set
-      to the state that it was in when the Save button was clicked.
+      The <InlineCode>useState()</InlineCode> function takes an Object describing the state of the
+      map as parameter. To see an example of this object you can click the "Save current state"
+      button. After clicking the button, move/zoom the map and then click the "Restore state" button
+      below to see the map set to the state that it was in when the Save button was clicked.
     </p>
     <CodeSnippet :snippet="useStateSnippet"></CodeSnippet>
 
@@ -33,8 +34,8 @@ channel.getCurrentState(function (data) {
 
     <h3>resetState()</h3>
     <p>
-      The resetState() function restores the map state to the original state it was in when the page
-      was loaded.
+      The <InlineCode>resetState()</InlineCode> function restores the map state to the original
+      state it was in when the page was loaded.
     </p>
     <CodeSnippet>
 channel.resetState(function () {
@@ -98,7 +99,7 @@ channel.useState([savedState], function () {
   beforeUnmount() {
     // Clean up when user leaves the example
     this.$root.channel.resetState(() => {
-      channel.log('Map state reset on exiting the example: "' + title + '"');
+      this.$root.channel.log('Map state reset on exiting the example: "' + title + '"');
     });
   }
 };

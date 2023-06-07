@@ -2,9 +2,10 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      The search for the Oskari intance can be used programmatically with {{ requestName }}. (even
-      if the search UI is not shown on the map). This usually allows searching for place names and
-      based on the Oskari instance configuration could also return any type of points of interest.
+      The search for the Oskari intance can be used programmatically with
+      <InlineCode>{{ requestName }}</InlineCode> (even if the search UI is not shown on the map).
+      This usually allows searching for place names and based on the Oskari instance configuration
+      could also return any type of points of interest.
     </p>
     <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
       Documentation for {{ requestName }}
@@ -19,7 +20,8 @@
     <br />
     <h3>Search event</h3>
     <p>
-      Search event occurs after every search request. Event response is results of request.<br /><br />
+      A <InlineCode>SearchResultEvent</InlineCode> occurs after every search request. Event response
+      is results of request.<br /><br />
       <DocumentationLink type="event" :apiDoc="apiDocPageEvent">
         Documentation for {{ eventName }}
       </DocumentationLink>

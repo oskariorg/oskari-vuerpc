@@ -56,7 +56,8 @@ channel.onReady(function() {
     </CodeSnippet>
     <h3>Do your stuff. Send requests, listen to events and call functions.</h3>
     <CodeSnippet>
-//spinning action on the map channel.postRequest('ShowProgressSpinnerRequest', [true]);
+//spinning action on the map
+channel.postRequest('ShowProgressSpinnerRequest', [true]);
 //listening to events and notifying user
 channel.handleEvent('MapClickedEvent', function(data) {
   alert('Map clicked!');

@@ -2,12 +2,12 @@
   <div>
     <h2>{{ title }}</h2>
     To show feature info box for a certain layer you must ensure first that the layer visibility is
-    set to true and then proceed to send GetFeatureInfoRequest. Note that not all layers support
-    querying feature info. In this example we have a layer called "Forest vegetation zones" that is
-    automatically toggled on the map when you access the page. That layer supports querying the
-    feature info so you can use the `MapModulePlugin.GetFeatureInfoRequest` to trigger a query. That
-    same query happens if the user clicks on the map but with the request you can do it
-    programmatically.
+    set to true and then proceed to send <InlineCode>GetFeatureInfoRequest</InlineCode>. Note that
+    not all layers support querying feature info. In this example we have a layer called "Forest
+    vegetation zones" that is automatically toggled on the map when you access the page. That layer
+    supports querying the feature info so you can use the
+    <InlineCode>MapModulePlugin.GetFeatureInfoRequest</InlineCode> to trigger a query. That same
+    query happens if the user clicks on the map but with the request you can do it programmatically.
     <ol>
       <li>
         You can programmatically change the visibility of a layer. In this example visibility for

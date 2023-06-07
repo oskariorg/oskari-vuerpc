@@ -3,7 +3,7 @@
     <h2>{{ title }}</h2>
 
     <p>
-      getPixelMeasuresInScale() function on the RPC API client can be used to get the pixel measures
+      The <InlineCode>getPixelMeasuresInScale()</InlineCode> function on the RPC API client can be used to get the pixel measures
       for given real life object like an A4 size paper sheet. This is useful for showing the end
       user what part of the map fits in the paper sheet when using a given scale.
     </p>
@@ -16,7 +16,7 @@
       <RunExampleButton @click="getPixelMeasuresInScale">
         Show A4 plot area on a map
       </RunExampleButton>
-
+      <br />
       Get pixel measures for A4 size plot area in the requested scale. Remove box by setting value
       to 0 or zooming in/out.
     </p>

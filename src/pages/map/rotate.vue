@@ -2,29 +2,32 @@
   <div>
     <h2>{{ title }}</h2>
     <h3>{{ requestName }} request</h3>
-    <p>The {{ requestName }} request can be used to rotate the map programmatically.</p>
+    <p>
+      The <InlineCode>{{ requestName }}</InlineCode> request can be used to rotate the map
+      programmatically.
+    </p>
 
-    <DocumentationLink type="request" :apiDoc="apiDocPageRequest"
-      >Documentation for request: {{ requestName }}</DocumentationLink
-    >
+    <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
+      Documentation for request: {{ requestName }}
+    </DocumentationLink>
 
     <CodeSnippet> channel.postRequest('{{ requestName }}', [{{ rotateDegrees }}]); </CodeSnippet>
     <p>
       Click the button to run the code above:
-      <RunExampleButton @click="rotateMap(rotateDegrees)"
-        >Rotate map to {{ rotateDegrees }} degrees</RunExampleButton
-      >
+      <RunExampleButton @click="rotateMap(rotateDegrees)">
+        Rotate map to {{ rotateDegrees }} degrees
+      </RunExampleButton>
     </p>
 
     <h3>{{ eventName }} event</h3>
     <p>
       The user can rotate the map by dragging it with "shift- and alt-keys" down while dragging. You
-      should see a number of '{{ eventName }}' events in the log after the map has been rotated this
-      way.
+      should see a number of <InlineCode>{{ eventName }}</InlineCode> events in the log after the
+      map has been rotated this way.
     </p>
-    <DocumentationLink type="event" :apiDoc="apiDocPageEvent"
-      >Documentation for event: {{ eventName }}</DocumentationLink
-    >
+    <DocumentationLink type="event" :apiDoc="apiDocPageEvent">
+      Documentation for event: {{ eventName }}
+    </DocumentationLink>
     <p>
       Note! The programmatically rotated map does NOT trigger the event at the time of writing this
       example. This might change in the future.

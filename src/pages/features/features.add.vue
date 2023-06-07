@@ -2,8 +2,8 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      AddFeaturesToMapRequest allows adding vector features like points, lines and polygons on the
-      map.
+      The <InlineCode>AddFeaturesToMapRequest</InlineCode> allows adding vector features like
+      points, lines and polygons on the map.
     </p>
     <DocumentationLink type="request" :apiDoc="apiDocPageRequestAdd">
       Documentation for {{ requestNameAdd }}
@@ -28,7 +28,7 @@ channel.postRequest('{{ requestNameAdd }}', [geojson]);
     <h3>Add point to map and show it</h3>
     <p>
       A common use case is that you want to show the added feature(s) immediately and you can do it
-      by giving another parameter called "centerTo" for the request:
+      by giving another parameter called <InlineCode>centerTo</InlineCode> for the request:
     </p>
     <CodeSnippet>
 channel.postRequest(
@@ -44,9 +44,11 @@ channel.postRequest(
     </p>
     <p>
       However this introduces another problem where especially with point features the map can be
-      zoomed "too close". On version 2.2.0 a flag was added for maxZoomLevel to restrict zooming (on
-      previous versions also minScale works to limit zooming). However you can also use
-      ZoomToFeaturesRequest that has even more versatile usage for moving the map to show features:
+      zoomed "too close". On version 2.2.0 a flag was added for
+      <InlineCode>maxZoomLevel</InlineCode> to restrict zooming (on previous versions also minScale
+      works to limit zooming). However you can also use
+      <InlineCode>ZoomToFeaturesRequest</InlineCode> that has even more versatile usage for moving
+      the map to show features:
     </p>
     <CodeSnippet>
 channel.postRequest(
@@ -64,12 +66,14 @@ channel.postRequest(
     </DocumentationLink>
     <CodeSnippet> channel.postRequest('{{ requestNameRemove }}', []); </CodeSnippet>
     <RunExampleButton @click="removeFeaturesFromMapRequest">
-    {{ requestNameRemove }}
+      {{ requestNameRemove }}
     </RunExampleButton>
 
     <p>
-      You can also use another toggle on the "{{ requestNameAdd }}" parameters: "clearPrevious" to
-      clear existing features from the map before adding new features:
+      You can also use another toggle on the
+      <InlineCode>{{ requestNameAdd }}</InlineCode> parameters:
+      <InlineCode>clearPrevious</InlineCode> to clear existing features from the map before adding
+      new features:
     </p>
     <CodeSnippet>
 channel.postRequest(
@@ -80,19 +84,21 @@ channel.postRequest(
 
     <h3>Changing layer visibility</h3>
     <p>
-      Note that you can also hide layer with MapLayerVisibilityRequest without removing it. For
-      example and info about it see
-      <DocumentationLink type="request" :apiDoc="apiDocLayerVisiblity"
-        >documentation.</DocumentationLink
-      >
+      Note that you can also hide layer with
+      <InlineCode>MapLayerVisibilityRequest</InlineCode> without removing it. For example and info
+      about it see
+      <DocumentationLink type="request" :apiDoc="apiDocLayerVisiblity">
+        documentation </DocumentationLink
+      >.
     </p>
 
     <h3>Events to react to</h3>
     <p>
-      When clicking the example buttons on this page you get "FeatureEvent" lines in the log-panel.
-      When a feature is added, removed or clicked on the map the event is triggered which lets you
-      react to it. You can ensure that the features were correctly added to the map for the user,
-      get a generated id for the features to reference them by later on.
+      When clicking the example buttons on this page you get
+      <InlineCode>FeatureEvent</InlineCode> lines in the log-panel. When a feature is added, removed
+      or clicked on the map the event is triggered which lets you react to it. You can ensure that
+      the features were correctly added to the map for the user, get a generated id for the features
+      to reference them by later on.
     </p>
     <DocumentationLink type="event" :apiDoc="apiDocPageEvent"
       >Documentation for FeatureEvent</DocumentationLink
@@ -100,10 +106,11 @@ channel.postRequest(
 
     <h3>Note!</h3>
     <p>
-      Using the "{{ requestNameAdd }}" without referencing a layer in extra parameters a default
-      layer with id 'VECTOR' is generated. On later examples you can see how to use different layers
-      for features can be used for more complex interaction and styling of features. You can also
-      see a layerId referenced on the FeatureEvent.
+      Using the <InlineCode>{{ requestNameAdd }}</InlineCode> without referencing a layer in extra
+      parameters a default layer with id 'VECTOR' is generated. On later examples you can see how to
+      use different layers for features can be used for more complex interaction and styling of
+      features. You can also see a <InlineCode>layerId</InlineCode> referenced on the
+      <InlineCode>FeatureEvent</InlineCode>.
     </p>
   </div>
 </template>

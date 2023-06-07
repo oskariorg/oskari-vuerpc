@@ -2,8 +2,8 @@
   <div>
     <RunExampleButton @click="showProgressSpinner">ShowProgressSpinnerRequest</RunExampleButton>
     <div>
-      ShowProgressSpinnerRequest allows starting and stopping a progress indicator on top of the
-      map.
+      <InlineCode>ShowProgressSpinnerRequest</InlineCode> allows starting and stopping a progress
+      indicator on top of the map.
     </div>
     <DocumentationLink type="request" :apiDoc="apiDocPage">To the documentation</DocumentationLink>
     <CodeSnippet>

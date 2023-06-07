@@ -2,15 +2,15 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      getScreenshot() function on the RPC API client can be used to generate a dataurl for PNG-image
-      based on the current map viewport.
+      The <InlineCode>getScreenshot()</InlineCode> function on the RPC API client can be used to
+      generate a dataurl for a PNG-image based on the current map viewport.
     </p>
     <DocumentationLink type="bundle" :apiDoc="apiDocPage">
       Documentation for RPC functions
     </DocumentationLink>
     <p>
-      Note! This is an experimental function and also requires suitable CORS-enabled map layers on the
-      published map AND screenshot configuration enabled for the layers that would be used for
+      Note! This is an experimental function and also requires suitable CORS-enabled map layers on
+      the published map AND screenshot configuration enabled for the layers that would be used for
       screenshot on the Oskari instance.
     </p>
 

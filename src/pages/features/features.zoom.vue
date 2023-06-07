@@ -22,7 +22,8 @@
     <CodeSnippet> channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', []); </CodeSnippet>
 
     <div>
-      Zoom to features, where featureType=='parcel' and layerId=='testLayer'
+      Zoom to features, where <InlineCode>featureType === 'parcel'</InlineCode> and
+      <InlineCode>layerId ==='testLayer'</InlineCode>.
       <RunExampleButton @click="ZoomToFeaturesRequestWithParams">
         MapModulePlugin.ZoomToFeaturesRequest
       </RunExampleButton>

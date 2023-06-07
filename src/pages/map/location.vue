@@ -3,7 +3,10 @@
     <h2>{{ title }}</h2>
     <!-- MapMoveRequest -->
     <h3>Move map programmatically</h3>
-    <p>The {{ requestName }} request can be used to move the map programmatically.</p>
+    <p>
+      The <InlineCode>{{ requestName }}</InlineCode> request can be used to move the map
+      programmatically.
+    </p>
     <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
       Documentation for {{ requestName }}
     </DocumentationLink>
@@ -24,9 +27,9 @@ channel.postRequest('MapMoveRequest', [x, y, zoomLevel]);
     <h3>Reacting to map movement</h3>
 
     <p>
-      Whenever the map location changes whether programmatically or by user interaction a "{{
-        eventName
-      }}" is triggered. Move or zoom the map to show these events in the log.
+      Whenever the map location changes whether programmatically or by user interaction a
+      <InlineCode>{{ eventName }}</InlineCode> is triggered. Move or zoom the map to show these
+      events in the log.
     </p>
 
     <DocumentationLink type="event" :apiDoc="apiDocPageEvent">
