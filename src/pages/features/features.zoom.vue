@@ -1,16 +1,24 @@
 <template>
   <div>
     <div>
+      <p>
+        This request is used to zoom/move the map so requested features are visible on the map
+        viewport. Requested features can be selected by referencing a vector layer and/or
+        referencing attribute data values. If selection is not made the map is zoomed out to show
+        all vector features that have been programmatically added to the map (features added
+        directly from services/map layers providing vector features are not included).
+      </p>
       <DocumentationLink type="request" apiDoc="mapping/mapmodule/request/zoomtofeaturesrequest.md">
         Documentation for ZoomToFeaturesRequest
       </DocumentationLink>
     </div>
 
     <div>
-      1. Add features to map
+      1. Add features to map with the same parameters as in the code snippet below
       <RunExampleButton @click="addFeaturesToMapRequestForZooming">
         AddFeaturesToMapRequest
       </RunExampleButton>
+      <CodeSnippet>{{ JSON.stringify(geojsonObject, null, 2) }}</CodeSnippet>
     </div>
     <div>2. Move map</div>
     <div>
@@ -22,8 +30,12 @@
     <CodeSnippet> channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', []); </CodeSnippet>
 
     <div>
-      Zoom to features, where <InlineCode>featureType === 'parcel'</InlineCode> and
-      <InlineCode>layerId ==='testLayer'</InlineCode>.
+      <p>
+        The <InlineCode>MapModulePlugin.ZoomToFeaturesRequest</InlineCode> allows selecting the
+        features to zoom in to. In this example, the map is zoomed to show only the smaller polygon,
+        i.e. where <InlineCode>featureType === 'parcel'</InlineCode> and
+        <InlineCode>layerId ==='testLayer'</InlineCode>.
+      </p>
       <RunExampleButton @click="ZoomToFeaturesRequestWithParams">
         MapModulePlugin.ZoomToFeaturesRequest
       </RunExampleButton>
@@ -54,58 +66,14 @@ export default {
   label: 'Zoom to features',
   data() {
     return {
-      desc: 'Zoom to features'
+      desc: 'Zoom to features',
+      geojsonObject
     };
   },
   methods: {
     addFeaturesToMapRequestForZooming() {
-      const geojsonObject = {
-        type: 'FeatureCollection',
-        crs: {
-          type: 'name',
-          properties: {
-            name: 'EPSG:3067'
-          }
-        },
-        features: [
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Polygon',
-              coordinates: [
-                [
-                  [323424, 6828464],
-                  [324192, 6825872],
-                  [323744, 6822384],
-                  [323424, 6828464]
-                ]
-              ]
-            },
-            properties: {
-              test_property: '123-456-7777-8888',
-              species: 'parcel'
-            }
-          },
-          {
-            type: 'Feature',
-            geometry: {
-              type: 'Polygon',
-              coordinates: [
-                [
-                  [309856, 6829840],
-                  [312576, 6833808],
-                  [315424, 6831120],
-                  [315040, 6828592],
-                  [311328, 6827472],
-                  [309856, 6829840]
-                ]
-              ]
-            }
-          }
-        ]
-      };
       const params = [
-        geojsonObject,
+        this.geojsonObject,
         {
           layerId: 'testLayer',
           clearPrevious: false,
@@ -161,5 +129,51 @@ export default {
   beforeUnmount() {
     this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
   }
+};
+
+const geojsonObject = {
+  type: 'FeatureCollection',
+  crs: {
+    type: 'name',
+    properties: {
+      name: 'EPSG:3067'
+    }
+  },
+  features: [
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [323424, 6828464],
+            [324192, 6825872],
+            [323744, 6822384],
+            [323424, 6828464]
+          ]
+        ]
+      },
+      properties: {
+        test_property: '123-456-7777-8888',
+        species: 'parcel'
+      }
+    },
+    {
+      type: 'Feature',
+      geometry: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [309856, 6829840],
+            [312576, 6833808],
+            [315424, 6831120],
+            [315040, 6828592],
+            [311328, 6827472],
+            [309856, 6829840]
+          ]
+        ]
+      }
+    }
+  ]
 };
 </script>
