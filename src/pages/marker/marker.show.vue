@@ -1,11 +1,14 @@
 <template>
   <div>
-    <div>1. Zoom map to Helsinki</div>
-    <div>
-      2. Add marker to map
-      <RunExampleButton @click="addMarker"> MapModulePlugin.AddMarkerRequest </RunExampleButton>
-      <CodeSnippet>
-var data = {
+    <p>
+      The visibility of the markers on the map can be controlled with a
+      <InlineCode>MapModulePlugin.MarkerVisibiltyRequest</InlineCode>. To try out the functionality,
+      first add a marker on the map with:
+    </p>
+    <RunExampleButton @click="addMarker"> MapModulePlugin.AddMarkerRequest </RunExampleButton>
+    <CodeSnippet>
+const MARKER_ID = 'RPC_MARKER'
+const data = {
   x: 386020,
   y: 6670057,
   color: 'ff0000',
@@ -14,10 +17,15 @@ var data = {
   size: 3
 };
 channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, MARKER_ID]);
-      </CodeSnippet>
-    </div>
+    </CodeSnippet>
     <div>
-      3. Hide marker
+      <p>
+        Hide the marker by sending a
+        <InlineCode>MapModulePlugin.MarkerVisibiltyRequest</InlineCode> with
+        <InlineCode>false</InlineCode> and <InlineCode>MARKER_ID</InlineCode> as parameters. All
+        markers are made invisible if <InlineCode>MARKER_ID</InlineCode>
+        is omitted from the parameters.
+      </p>
       <RunExampleButton @click="showHideMarker(false)">
         MapModulePlugin.MarkerVisibilityRequest
       </RunExampleButton>
@@ -32,7 +40,13 @@ channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [false, MARKER_ID
       </CodeSnippet>
     </div>
     <div>
-      4. Show marker
+      <p>
+        A marker can be made visible again by sending a
+        <InlineCode>MapModulePlugin.MarkerVisibiltyRequest</InlineCode> with
+        <InlineCode>true</InlineCode> and <InlineCode>MARKER_ID</InlineCode> as parameters. As in
+        the previous example, all markers will be affected by the request if
+        <InlineCode>MARKER_ID</InlineCode> is omitted.
+      </p>
       <RunExampleButton @click="showHideMarker(true)">
         MapModulePlugin.MarkerVisibilityRequest
       </RunExampleButton>
