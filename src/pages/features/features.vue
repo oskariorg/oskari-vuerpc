@@ -1,5 +1,10 @@
 <template>
-  <div id="GetFeatures">
+  <div>
+    <p>
+      The function <InlineCode>getFeatures()</InlineCode> returns a geojson object containing the
+      features on the map grouped by layers if the given parameter is <InlineCode>true</InlineCode>.
+      If no parameter is given, will return an array of layerIds. Usage:
+    </p>
     <div>
       1. Add features to map
       <RunExampleButton @click="addFeatures">AddFeaturesToMapRequest</RunExampleButton>
@@ -14,9 +19,6 @@ channel.getFeatures([true], function (data) {
   channel.log('GetFeatures:', data);
 });
     </CodeSnippet>
-    <DocumentationLink type="bundle" :apiDoc="apiDocBundle">
-      Documentation for RPC functions
-    </DocumentationLink>
     <div>
       Get only layerIds without features
       <RunExampleButton @click="getFeatures">getFeatures()</RunExampleButton>
@@ -26,6 +28,9 @@ channel.getFeatures([], function (data) {
   channel.log('GetFeatures:', data);
 });
     </CodeSnippet>
+    <DocumentationLink type="bundle" :apiDoc="apiDocBundle">
+      Documentation for RPC functions
+    </DocumentationLink>
   </div>
 </template>
 
