@@ -2,7 +2,7 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      The <InlineCode>AddFeaturesToMapRequest</InlineCode> allows adding vector features like
+      The <InlineCode>{{ requestNameAdd }}</InlineCode> allows adding vector features like
       points, lines and polygons on the map.
     </p>
     <DocumentationLink type="request" :apiDoc="apiDocPageRequestAdd">
@@ -87,9 +87,7 @@ import { generator } from './vectorlayer_helpers';
 
 const title = 'Add vector features';
 const requestNameAdd = 'MapModulePlugin.AddFeaturesToMapRequest';
-const requestNameRemove = 'MapModulePlugin.RemoveFeaturesFromMapRequest';
 const apiDocPageRequestAdd = 'mapping/mapmodule/request/addfeaturestomaprequest.md';
-const apiDocPageRequestRemove = 'mapping/mapmodule/request/removefeaturesfrommaprequest.md';
 const apiDocPageEvent = 'mapping/mapmodule/event/featureevent.md';
 const apiDocLayerVisiblity =
   'mapping/mapmodule/request/MapModulePlugin.MapLayerVisibilityRequest.md';
@@ -109,9 +107,7 @@ export default {
       pointGeoJSON,
       centerToGeomOpts,
       requestNameAdd,
-      requestNameRemove,
       apiDocPageRequestAdd,
-      apiDocPageRequestRemove,
       apiDocPageEvent,
       apiDocLayerVisiblity
     };
