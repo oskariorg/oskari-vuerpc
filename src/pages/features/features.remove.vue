@@ -11,29 +11,53 @@
     <CodeSnippet> channel.postRequest('{{ requestName }}', []); </CodeSnippet>
     <p>
       You can also clear all features on the map while sending a
-      <InlineCode>MapModulePlugin.AddFeaturesToMapRequest</InlineCode>. Add
+      <InlineCode>MapModulePlugin.AddFeaturesToMapRequest</InlineCode> by adding
       <InlineCode>clearPrevious: true</InlineCode> to the parameters to clear existing features from
       the map before adding new features.
-      <CodeSnippet>
+    </p>
+    <CodeSnippet>
 channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
   [geojson, { "clearPrevious": true }]);
-      </CodeSnippet>
-    </p>
-    <RunExampleButton @click="addFeaturesToMap">Add features back to map</RunExampleButton>
+    </CodeSnippet>
     <p>
       In this example, the vector features have been added to two layers. Hover over the features on
       the map to see which layer they belong to.
-      <InlineCode>{{ requestName }}</InlineCode> has the functionality to
-      remove features from a specific layer.
+      <InlineCode>{{ requestName }}</InlineCode> has the functionality to remove features from a
+      specific layer.
     </p>
+    <RunExampleButton @click="addFeaturesToMap">Add features back to map</RunExampleButton>
     <RunExampleButton @click="clearFeatures(null, null, layer1.layerId)">
       Clear layer 1
     </RunExampleButton>
     <RunExampleButton @click="clearFeatures(null, null, layer2.layerId)">
       Clear layer 2
     </RunExampleButton>
+    <CodeSnippet> channel.postRequest('{{ requestName }}', [null, null, layerId]); </CodeSnippet>
+    <p>
+      Features can also be removed by specifying the layer and a
+      <InlineCode>key: value</InlineCode> pair. The <InlineCode>key: value</InlineCode> pair has to
+      be inside the <InlineCode>properties</InlineCode> object of the feature. Multiple features who are on the
+      same layer and share a common <InlineCode>key: value</InlineCode> pair within the
+      <InlineCode>properties</InlineCode> object can be removed with a single
+      request.
+    </p>
+    <RunExampleButton @click="clearFeatures('shape', 'point', layer1.layerId)">
+      Remove points
+    </RunExampleButton>
     <CodeSnippet>
-      channel.postRequest('{{ requestName }}', [null, null, layerId]);
+      channel.postRequest({{ requestName }}, ['shape', 'point', layerId]);
+    </CodeSnippet>
+    <p>
+      A feature's <InlineCode>id</InlineCode> is always included in
+      <InlineCode>properties</InlineCode>, allowing easy removal of individual features.
+    </p>
+    <RunExampleButton
+      @click="clearFeatures('id', layer1features.features[0].properties.id, layer1.layerId)"
+    >
+      Remove rectangle
+    </RunExampleButton>
+    <CodeSnippet>
+      channel.postRequest({{ requestName }}, ['id', rectangleId, layerId]);
     </CodeSnippet>
   </div>
 </template>
@@ -51,42 +75,27 @@ export default {
     return {
       title,
       requestName,
-      polygon,
-      rectangle,
-      point,
+      layer1features,
+      layer2features,
       layer1,
-      layer2,
-      style
+      layer2
     };
   },
   methods: {
     addFeaturesToMap() {
       this.$root.channel.postRequest(this.requestName, []);
       this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [
-        this.polygon,
+        this.layer1features,
         { layerId: this.layer1.layerId }
       ]);
       this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [
-        this.point,
-        { layerId: this.layer2.layerId }
-      ]);
-      this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [
-        this.rectangle,
+        this.layer2features,
         { layerId: this.layer2.layerId }
       ]);
     },
     clearFeatures(key = null, value = null, layerId = null) {
       this.$root.channel.log(layerId);
-      this.$root.channel.postRequest(this.requestName, [
-        key,
-        value,
-        layerId
-      ]);
-    },
-    getAllFeatures(bool = false) {
-      this.$root.channel.getFeatures([bool], (data) => {
-        this.$root.channel.log('GetFeatures:', data);
-      });
+      this.$root.channel.postRequest(this.requestName, [key, value, layerId]);
     }
   },
   mounted() {
@@ -98,7 +107,7 @@ export default {
     this.$root.channel.postRequest(this.requestName, []);
   }
 };
-
+/*
 const style = {
   fill: {
     color: '#ffffff',
@@ -107,7 +116,7 @@ const style = {
     }
   }
 };
-
+*/
 const layer1 = {
   layerId: 'layer1',
   opacity: 75,
@@ -159,9 +168,16 @@ const layer2 = {
 const x = 488704;
 const y = 6939136;
 
-const polygon = generator.getCollectionOf([generator.getPolygon(x, y, { name: `I'm a polygon` })]);
-const rectangle = generator.getCollectionOf([
-  generator.getRectangle(x - 100000, y + 250000, { id: '1', name: `I'm a rectangle` }, 80000, 65000)
-]);
-const point = generator.getDefaultPointCollection();
+const polygon = generator.getPolygon(x, y, { name: `I'm a polygon` });
+const rectangle = generator.getRectangle(
+  x - 100000,
+  y + 250000,
+  { id: '1', name: `I'm a rectangle` },
+  80000,
+  65000
+);
+const point = generator.getPoint(x + 50000, y - 50000, { shape: 'point', name: "I'm a point" });
+const point2 = generator.getPoint(x - 50000, y - 50000, { shape: 'point', name: "I'm a point" });
+const layer1features = generator.getCollectionOf([rectangle, point, point2]);
+const layer2features = generator.getCollectionOf([polygon]);
 </script>
