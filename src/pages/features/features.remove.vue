@@ -23,7 +23,7 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
     <p>
       In this example, the vector features have been added to two layers. Hover over the features on
       the map to see which layer they belong to.
-      <InlineCode>MapModulePlugin.RemoveFeaturesFromMapRequest</InlineCode> has the functionality to
+      <InlineCode>{{ requestName }}</InlineCode> has the functionality to
       remove features from a specific layer.
     </p>
     <RunExampleButton @click="clearFeatures(null, null, layer1.layerId)">
@@ -33,7 +33,7 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
       Clear layer 2
     </RunExampleButton>
     <CodeSnippet>
-      channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', [null, null, layerId]);
+      channel.postRequest('{{ requestName }}', [null, null, layerId]);
     </CodeSnippet>
   </div>
 </template>
@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     addFeaturesToMap() {
-      this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
+      this.$root.channel.postRequest(this.requestName, []);
       this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [
         this.polygon,
         { layerId: this.layer1.layerId }
@@ -77,7 +77,7 @@ export default {
     },
     clearFeatures(key = null, value = null, layerId = null) {
       this.$root.channel.log(layerId);
-      this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', [
+      this.$root.channel.postRequest(this.requestName, [
         key,
         value,
         layerId
@@ -95,7 +95,7 @@ export default {
     this.addFeaturesToMap();
   },
   beforeUnmount() {
-    this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
+    this.$root.channel.postRequest(this.requestName, []);
   }
 };
 
