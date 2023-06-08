@@ -2,11 +2,14 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      Removing features is done with the
-      <InlineCode>{{ requestName }}</InlineCode
+      Removing features is done with the <InlineCode>{{ requestName }}</InlineCode
       >. Send the request without parameters to clear all vector features across all existing
       layers.
     </p>
+    <DocumentationLink type="request" :apiDoc="apiDocPage">
+      Documentation for {{ requestName }}
+    </DocumentationLink>
+    <br />
     <RunExampleButton @click="clearFeatures()">Clear all vector features</RunExampleButton>
     <CodeSnippet> channel.postRequest('{{ requestName }}', []); </CodeSnippet>
     <p>
@@ -16,9 +19,10 @@
       the map before adding new features.
     </p>
     <CodeSnippet>
-      channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [geojson, { "clearPrevious":
-      true }]);
+channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
+  [geojson, { "clearPrevious": true }]);
     </CodeSnippet>
+    <h3>Removing features by layer</h3>
     <p>
       In this example, the vector features have been added to two layers. Hover over the features on
       the map to see which layer they belong to.
@@ -33,6 +37,7 @@
       Clear layer 2
     </RunExampleButton>
     <CodeSnippet> channel.postRequest('{{ requestName }}', [null, null, layerId]); </CodeSnippet>
+    <h3>Removing features with properties</h3>
     <p>
       Features can also be removed by specifying the layer and a
       <InlineCode>key: value</InlineCode> pair. The <InlineCode>key: value</InlineCode> pair has to
@@ -61,11 +66,11 @@
     <h3>Changing layer visibility</h3>
     <p>
       Note that you can also hide a layer with
-      <InlineCode>MapLayerVisibilityRequest</InlineCode> without removing it. For an example and info
-      about it, see
+      <InlineCode>MapLayerVisibilityRequest</InlineCode> without removing it. For an example and
+      info about it, see
       <DocumentationLink type="request" :apiDoc="apiDocLayerVisiblity">
-        documentation
-      </DocumentationLink>.
+        documentation </DocumentationLink
+      >.
     </p>
   </div>
 </template>
@@ -86,7 +91,9 @@ export default {
       layer1features,
       layer2features,
       layer1,
-      layer2
+      layer2,
+      apiDocPage:'mapping/mapmodule/request/removefeaturesfrommaprequest.md'
+
     };
   },
   methods: {
