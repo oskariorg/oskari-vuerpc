@@ -16,8 +16,8 @@
       the map before adding new features.
     </p>
     <CodeSnippet>
-channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
-  [geojson, { "clearPrevious": true }]);
+      channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [geojson, { "clearPrevious":
+      true }]);
     </CodeSnippet>
     <p>
       In this example, the vector features have been added to two layers. Hover over the features on
@@ -36,10 +36,9 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
     <p>
       Features can also be removed by specifying the layer and a
       <InlineCode>key: value</InlineCode> pair. The <InlineCode>key: value</InlineCode> pair has to
-      be inside the <InlineCode>properties</InlineCode> object of the feature. Multiple features who are on the
-      same layer and share a common <InlineCode>key: value</InlineCode> pair within the
-      <InlineCode>properties</InlineCode> object can be removed with a single
-      request.
+      be inside the <InlineCode>properties</InlineCode> object of the feature. Multiple features who
+      are on the same layer and share a common <InlineCode>key: value</InlineCode> pair within the
+      <InlineCode>properties</InlineCode> object can be removed with a single request.
     </p>
     <RunExampleButton @click="clearFeatures('shape', 'point', layer1.layerId)">
       Remove points
@@ -59,6 +58,15 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
     <CodeSnippet>
       channel.postRequest({{ requestName }}, ['id', rectangleId, layerId]);
     </CodeSnippet>
+    <h3>Changing layer visibility</h3>
+    <p>
+      Note that you can also hide a layer with
+      <InlineCode>MapLayerVisibilityRequest</InlineCode> without removing it. For an example and info
+      about it, see
+      <DocumentationLink type="request" :apiDoc="apiDocLayerVisiblity">
+        documentation
+      </DocumentationLink>.
+    </p>
   </div>
 </template>
 
