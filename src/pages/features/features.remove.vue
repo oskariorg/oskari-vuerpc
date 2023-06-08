@@ -16,7 +16,7 @@
       the map before adding new features.
       <CodeSnippet>
 channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
-[geojson, { "clearPrevious": true }]);
+  [geojson, { "clearPrevious": true }]);
       </CodeSnippet>
     </p>
     <RunExampleButton @click="addFeaturesToMap">Add features back to map</RunExampleButton>
@@ -24,7 +24,7 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
       In this example, the vector features have been added to two layers. Hover over the features on
       the map to see which layer they belong to.
       <InlineCode>MapModulePlugin.RemoveFeaturesFromMapRequest</InlineCode> has the functionality to
-      remove features only from specific layers.
+      remove features from a specific layer.
     </p>
     <RunExampleButton @click="clearFeatures(null, null, layer1.layerId)">
       Clear layer 1
