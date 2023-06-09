@@ -1,6 +1,6 @@
 import featuresAdd from './features.add.vue';
-import featuresRemove from './features.remove.vue';
 import featuresLayer from './features.layer.vue';
+import featuresRemove from './features.remove.vue';
 import featuresLayerScale from './features.layer.scale.vue';
 import featuresUpdateStyle from './features.update.style.vue';
 import featuresOrder from './features.order.vue';
@@ -13,8 +13,8 @@ export default {
   name: 'Features',
   pages: [
     featuresAdd,
-    featuresRemove,
     featuresLayer,
+    featuresRemove,
     featuresLayerScale,
     featuresUpdateStyle,
     featuresOrder,
