@@ -1,6 +1,6 @@
 <template>
   <div>
-    <RunExampleButton @click="showInfoBoxRequest">InfoBox.ShowInfoBoxRequest</RunExampleButton>
+    <RunExampleButton @click="showInfoBoxRequest(this.$root.channel)">InfoBox.ShowInfoBoxRequest</RunExampleButton>
     <DocumentationLink type="request" :apiDoc="apiDocPage.show">
       To the documentation
     </DocumentationLink>
@@ -18,7 +18,7 @@ channel.log('InfoBox.HideInfoBoxRequest posted with data', infoboxId);
 </template>
 
 <script>
-const showInfoBoxRequest = () => {
+const showInfoBoxRequest = (channel) => {
   //get map center and then show an infobox at that location
   channel.getMapPosition(function (data) {
     const content = [

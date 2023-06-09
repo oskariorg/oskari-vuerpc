@@ -67,8 +67,7 @@ export default {
   mounted() {
     listeners.push(
       EVENTBUS.on('RouteResultEvent', (data) => {
-        // using channel from global variable...
-        showRouteOnMap(data, channel);
+        showRouteOnMap(data, this.$root.channel);
       })
     );
   },
