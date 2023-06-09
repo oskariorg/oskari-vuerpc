@@ -2,7 +2,7 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      The <InlineCode>AddFeaturesToMapRequest</InlineCode> allows adding vector features like
+      The <InlineCode>{{ requestNameAdd }}</InlineCode> allows adding vector features like
       points, lines and polygons on the map.
     </p>
     <DocumentationLink type="request" :apiDoc="apiDocPageRequestAdd">
@@ -59,39 +59,6 @@ channel.postRequest(
     <RunExampleButton @click="zoomToPoint">Zoom to point (limited by zoom level)</RunExampleButton>
     <p>Note! This does nothing if the point is not on map</p>
 
-    <h3>Removing features</h3>
-    <p>Remove all features across all vector layers</p>
-    <DocumentationLink type="request" :apiDoc="apiDocPageRequestRemove">
-      Documentation for {{ requestNameRemove }}
-    </DocumentationLink>
-    <CodeSnippet> channel.postRequest('{{ requestNameRemove }}', []); </CodeSnippet>
-    <RunExampleButton @click="removeFeaturesFromMapRequest">
-      {{ requestNameRemove }}
-    </RunExampleButton>
-
-    <p>
-      You can also use another toggle on the
-      <InlineCode>{{ requestNameAdd }}</InlineCode> parameters:
-      <InlineCode>clearPrevious</InlineCode> to clear existing features from the map before adding
-      new features:
-    </p>
-    <CodeSnippet>
-channel.postRequest(
-  '{{ requestNameAdd }}', 
-  [geojson, { "clearPrevious": true }]
-);
-    </CodeSnippet>
-
-    <h3>Changing layer visibility</h3>
-    <p>
-      Note that you can also hide layer with
-      <InlineCode>MapLayerVisibilityRequest</InlineCode> without removing it. For example and info
-      about it see
-      <DocumentationLink type="request" :apiDoc="apiDocLayerVisiblity">
-        documentation </DocumentationLink
-      >.
-    </p>
-
     <h3>Events to react to</h3>
     <p>
       When clicking the example buttons on this page you get
@@ -100,9 +67,9 @@ channel.postRequest(
       the features were correctly added to the map for the user, get a generated id for the features
       to reference them by later on.
     </p>
-    <DocumentationLink type="event" :apiDoc="apiDocPageEvent"
-      >Documentation for FeatureEvent</DocumentationLink
-    >
+    <DocumentationLink type="event" :apiDoc="apiDocPageEvent">
+      Documentation for FeatureEvent
+    </DocumentationLink>
 
     <h3>Note!</h3>
     <p>
@@ -118,11 +85,9 @@ channel.postRequest(
 <script>
 import { generator } from './vectorlayer_helpers';
 
-const title = 'Add/remove vector features';
+const title = 'Add vector features';
 const requestNameAdd = 'MapModulePlugin.AddFeaturesToMapRequest';
-const requestNameRemove = 'MapModulePlugin.RemoveFeaturesFromMapRequest';
 const apiDocPageRequestAdd = 'mapping/mapmodule/request/addfeaturestomaprequest.md';
-const apiDocPageRequestRemove = 'mapping/mapmodule/request/removefeaturesfrommaprequest.md';
 const apiDocPageEvent = 'mapping/mapmodule/event/featureevent.md';
 const apiDocLayerVisiblity =
   'mapping/mapmodule/request/MapModulePlugin.MapLayerVisibilityRequest.md';
@@ -142,9 +107,7 @@ export default {
       pointGeoJSON,
       centerToGeomOpts,
       requestNameAdd,
-      requestNameRemove,
       apiDocPageRequestAdd,
-      apiDocPageRequestRemove,
       apiDocPageEvent,
       apiDocLayerVisiblity
     };
