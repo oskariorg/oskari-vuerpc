@@ -14,7 +14,7 @@
     <CodeSnippet> channel.postRequest('{{ requestName }}', []); </CodeSnippet>
     <p>
       You can also clear all features on the map while sending a
-      <InlineCode>MapModulePlugin.AddFeaturesToMapRequest</InlineCode> by adding
+      <InlineCode>MapModulePlugin.AddFeaturesToMapRequest</InlineCode>, just add
       <InlineCode>clearPrevious: true</InlineCode> to the parameters to clear existing features from
       the map before adding new features.
     </p>
@@ -98,7 +98,9 @@ export default {
   },
   methods: {
     addFeaturesToMap() {
+      // clear all features from map
       this.$root.channel.postRequest(this.requestName, []);
+      // add features to layers
       this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [
         this.layer1features,
         { layerId: this.layer1.layerId }
@@ -107,6 +109,7 @@ export default {
         this.layer2features,
         { layerId: this.layer2.layerId }
       ]);
+      // zoom to features
       this.$root.channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [{layer: this.layer1.layerId }]);
     },
     clearFeatures(key = null, value = null, layerId = null) {
@@ -122,23 +125,13 @@ export default {
     this.clearFeatures();
   }
 };
-/*
-const style = {
-  fill: {
-    color: '#ffffff',
-    area: {
-      pattern: -1
-    }
-  }
-};
-*/
 const layer1 = {
   layerId: 'layer1',
   opacity: 75,
   hover: {
     featureStyle: {
       fill: {
-        color: '#ff00ff'
+        color: '#0000ff'
       },
       stroke: {
         color: '#000000'
@@ -197,7 +190,7 @@ const polygon = {
 const rectangle = generator.getRectangle(
   220178,
   6813586,
-  { id: '1', name: `I'm a rectangle` },
+  { id: 'rect', name: `I'm a rectangle` },
   80000,
   65000
 );
