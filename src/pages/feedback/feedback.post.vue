@@ -56,10 +56,12 @@ export default {
   },
   methods: {
     postFeedbackRequest(event) {
+      let postdata = {};
+      let data = {};
       switch (event.target.id) {
         case 'point':
           this.$root.channel.getMapPosition((pdata) => {
-            const postdata = {
+            postdata = {
               service_code: '180',
               description: 'Kampin bussipysäkillä on roskakori täynnä',
               first_name: 'Point',
@@ -67,7 +69,7 @@ export default {
               lat: pdata.centerY,
               long: pdata.centerX
             };
-            const data = {
+            data = {
               srs: 'EPSG:3067',
               payload: postdata
             };
@@ -76,7 +78,7 @@ export default {
           });
           break;
         case 'line':
-          let postdata = {
+          postdata = {
             service_code: '180',
             description: 'Vartiosaari kaipaa suojelua',
             first_name: 'Line',
@@ -91,7 +93,7 @@ export default {
               ]
             }
           };
-          let data = {
+          data = {
             srs: 'EPSG:3067',
             payload: postdata
           };

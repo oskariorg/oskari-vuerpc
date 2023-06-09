@@ -45,6 +45,7 @@ export default {
   watch: {
     $route(to, from) {
       // required: listen to route change so we can update current page -> update navigation outside <router-view />
+      from;
       this.currentPage = to;
     }
   },
