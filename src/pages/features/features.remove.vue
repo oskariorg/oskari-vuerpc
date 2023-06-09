@@ -92,8 +92,8 @@ export default {
       layer2features,
       layer1,
       layer2,
-      apiDocPage:'mapping/mapmodule/request/removefeaturesfrommaprequest.md'
-
+      apiDocPage: 'mapping/mapmodule/request/removefeaturesfrommaprequest.md',
+      apiDocLayerVisiblity: 'mapping/mapmodule/request/MapModulePlugin.MapLayerVisibilityRequest.md'
     };
   },
   methods: {
@@ -107,9 +107,9 @@ export default {
         this.layer2features,
         { layerId: this.layer2.layerId }
       ]);
+      this.$root.channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [{layer: this.layer1.layerId }]);
     },
     clearFeatures(key = null, value = null, layerId = null) {
-      this.$root.channel.log(layerId);
       this.$root.channel.postRequest(this.requestName, [key, value, layerId]);
     }
   },
@@ -119,7 +119,7 @@ export default {
     this.addFeaturesToMap();
   },
   beforeUnmount() {
-    this.$root.channel.postRequest(this.requestName, []);
+    this.clearFeatures();
   }
 };
 /*
@@ -180,19 +180,29 @@ const layer2 = {
   }
 };
 
-const x = 488704;
-const y = 6939136;
-
-const polygon = generator.getPolygon(x, y, { name: `I'm a polygon` });
+const polygon = {
+  type: 'Feature',
+  geometry: {
+    type: 'Polygon',
+    coordinates: [
+      [
+        [385797, 6671769],
+        [239830, 6711840],
+        [330852, 6821921]
+      ]
+    ]
+  },
+  properties: { name: `I'm a polygon` }
+};
 const rectangle = generator.getRectangle(
-  x - 100000,
-  y + 250000,
+  220178,
+  6813586,
   { id: '1', name: `I'm a rectangle` },
   80000,
   65000
 );
-const point = generator.getPoint(x + 50000, y - 50000, { shape: 'point', name: "I'm a point" });
-const point2 = generator.getPoint(x - 50000, y - 50000, { shape: 'point', name: "I'm a point" });
+const point = generator.getPoint(361796, 6764123, { shape: 'point', name: "I'm a point" });
+const point2 = generator.getPoint(314002, 6819119, { shape: 'point', name: "I'm a point" });
 const layer1features = generator.getCollectionOf([rectangle, point, point2]);
 const layer2features = generator.getCollectionOf([polygon]);
 </script>
