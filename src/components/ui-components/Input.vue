@@ -3,13 +3,11 @@
 </template>
 <script>
 export default {
+  name: 'textInput',
   data() {
     return {
       search: ''
     };
-  },
-  methods: {
-    search(event) {}
   }
 };
 </script>

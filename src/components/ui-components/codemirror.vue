@@ -13,6 +13,7 @@ import 'codemirror/theme/monokai.css';
 import 'codemirror/addon/fold/foldgutter.css';
 
 export default {
+  name: 'codeMirror',
   data() {
     return {
       codeMirror: '',

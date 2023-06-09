@@ -28,6 +28,7 @@ const doHighLight = (codeSnippet, lang = 'javascript') => {
   return highlightedCode;
 };
 export default {
+  name: 'codeSnippet',
   props: {
     snippet: String,
     lang: String
@@ -42,13 +43,15 @@ export default {
           snippet = slotEl.text.trim();
           //codeSnippet = codeSnippet.split('&lt;').join('<');
           //codeSnippet = codeSnippet.split('&gt;').join('>');
-        } catch (err) {}
+        } catch (err) {
+          err;
+        }
       }
       try {
         snippet = doHighLight(snippet, this.lang);
       } catch (err) {
         snippet = errorMsg;
-        debugger;
+        //debugger;
         /* ignored */
       }
       // expose to template and other options API hooks

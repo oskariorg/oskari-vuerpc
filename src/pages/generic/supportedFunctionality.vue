@@ -107,6 +107,7 @@ channel.isSupported(function(blnSupported) {
   </div>
 </template>
 <script>
+import OskariRPC from 'oskari-rpc';
 import { EXPECTED_OSKARI_VERSION } from '../../constants';
 
 const title = 'Supported functionality';
@@ -137,47 +138,49 @@ export default {
       });
     },
     checkClientSupport() {
-      channel.log('Map is now listening'); //channel is now ready and listening.
+      const me = this;
+      this.$root.channel.log('Map is now listening'); //channel is now ready and listening.
       const expectedOskariVersion = EXPECTED_OSKARI_VERSION;
-      channel.isSupported(expectedOskariVersion, function (blnSupported) {
+      this.$root.channel.isSupported(expectedOskariVersion, function (blnSupported) {
         if (blnSupported) {
-          channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
+          me.$root.channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
         } else {
-          channel.log(
+          me.$root.channel.log(
             'Oskari-instance is not the one we expect (' +
               expectedOskariVersion +
               ') or client not supported'
           );
           // getInfo can be used to get the current Oskari version
-          channel.getInfo(function (oskariInfo) {
-            channel.log('Current Oskari-instance reports version as: ', oskariInfo);
+          me.$root.channel.getInfo(function (oskariInfo) {
+            me.$root.channel.log('Current Oskari-instance reports version as: ', oskariInfo);
           });
         }
       });
-      channel.isSupported(function (blnSupported) {
+      this.$root.channel.isSupported(function (blnSupported) {
         if (!blnSupported) {
-          channel.log(
+          me.$root.channel.log(
             'Oskari reported client version (' +
               OskariRPC.VERSION +
               ') is not supported.' +
               'The client might work, but some features are not compatible.'
           );
         } else {
-          channel.log('Client is supported by Oskari.');
+          me.$root.channel.log('Client is supported by Oskari.');
         }
       });
     },
     checkServerSupport() {
-      channel.isSupported(function (blnSupported) {
+      const me = this;
+      this.$root.channel.isSupported(function (blnSupported) {
         if (!blnSupported) {
-          channel.log(
+          me.$root.channel.log(
             'Oskari reported client version (' +
               OskariRPC.VERSION +
               ') is not supported.' +
               'The client might work, but some features are not compatible.'
           );
         } else {
-          channel.log('Client is supported by Oskari.');
+          me.$root.channel.log('Client is supported by Oskari.');
         }
       });
     }

@@ -23,6 +23,7 @@
 import PageNavigation from './page_navigation.vue';
 
 export default {
+  name: 'actionPanel',
   components: {
     PageNavigation
   },

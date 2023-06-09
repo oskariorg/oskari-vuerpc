@@ -44,7 +44,7 @@ const initChannelListeners = (channel) => {
     channel.getSupportedEvents((data) => {
       Object.keys(data).forEach((eventName) => {
         // just to initialize empty array and know what events are being listened to
-        const ignored = getListeners(eventName);
+        getListeners(eventName);
         channel.handleEvent(eventName, (data) => notifyListeners(eventName, data, channel));
       });
       channel.log('Started listening to events from RPC:', Object.keys(data));
