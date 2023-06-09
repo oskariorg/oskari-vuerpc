@@ -107,6 +107,7 @@ channel.isSupported(function(blnSupported) {
   </div>
 </template>
 <script>
+import OskariRPC from 'oskari-rpc';
 import { EXPECTED_OSKARI_VERSION } from '../../constants';
 
 const title = 'Supported functionality';
@@ -168,16 +169,17 @@ export default {
       });
     },
     checkServerSupport() {
-      channel.isSupported(function (blnSupported) {
+      const me = this;
+      this.$root.channel.isSupported(function (blnSupported) {
         if (!blnSupported) {
-          channel.log(
+          me.$root.channel.log(
             'Oskari reported client version (' +
               OskariRPC.VERSION +
               ') is not supported.' +
               'The client might work, but some features are not compatible.'
           );
         } else {
-          channel.log('Client is supported by Oskari.');
+          me.$root.channel.log('Client is supported by Oskari.');
         }
       });
     }

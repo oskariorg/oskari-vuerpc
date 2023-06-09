@@ -59,7 +59,7 @@ export default {
     listeners.push(
       EVENTBUS.on('FeedbackResultEvent', (data) => {
         // using channel from global variable...
-        showFeedbackOnMap(data, channel);
+        showFeedbackOnMap(data, this.$root.channel);
       })
     );
   },
