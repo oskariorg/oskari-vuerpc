@@ -85,6 +85,29 @@ channel.postRequest('VectorLayerRequest', [{
         from the second step.
       </li>
     </ol>
+    <h3>Note!</h3>
+    <p>
+      By setting the layer parameter <InlineCode>showLayer</InlineCode> to 
+      <InlineCode>true</InlineCode> the layer is made visible and togglable in the
+      'Map layers' pop-up in the top-right corner of the map iframe.
+    </p>
+    <RunExampleButton 
+      @click="addSimpleVectorLayer({showLayer: true, layerName: 'Example layer'})"
+    >
+      Add togglable layer
+    </RunExampleButton>
+    <RunExampleButton @click="addFeaturesToMapRequest">
+      Add features to layer
+    </RunExampleButton>
+    <CodeSnippet>
+channel.postRequest('{{ requestName }}', [{
+  ...
+  showLayer: true,
+  layerName: 'Example layer',
+  ...
+}]);
+    </CodeSnippet>
+    <h3>Styling</h3>
     <p>
       You can define more than just the hover styles with the
       <InlineCode>VectorLayerRequest</InlineCode>. See the documentation page 'Styling' for more
@@ -143,8 +166,8 @@ export default {
     this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
   },
   methods: {
-    addSimpleVectorLayer() {
-      const layerOptions = { ...LAYER_OPTS.simple };
+    addSimpleVectorLayer(params = null) {
+      const layerOptions = { ...LAYER_OPTS.simple, ...params };
       this.$root.channel.postRequest('VectorLayerRequest', [layerOptions]);
       this.$root.channel.log('VectorLayerRequest posted with data', [layerOptions]);
     },
