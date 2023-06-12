@@ -1,7 +1,11 @@
 <template>
   <div class="header">
     <div class="nav-content">
-      <div class="oskari-logo"><a href="http://www.oskari.org"><img src="../../assets/img/oskari_logo_white.png" style="height:65px" /></a></div>
+      <div class="oskari-logo">
+        <a href="http://www.oskari.org"
+          ><img src="../../assets/img/oskari_logo_white.png" style="height: 65px"
+        /></a>
+      </div>
       <nav>
         <ul id="nav navbar-nav" role="navigation">
           <li><a href="/guides">Guides</a></li>
@@ -16,27 +20,27 @@
 </template>
 
 <script>
-
 export default {
-  data () {
-    return {}
+  name: 'pageHeader',
+  data() {
+    return {};
   }
-}
+};
 </script>
-<style lang="scss">
+<style>
 .header {
   width: 100%;
   background: #262626;
   border-bottom: 1px solid maroon;
-  -webkit-box-shadow: 0 5px 20px 0 rgba(0,0,0,.3);
-  box-shadow: 0 5px 20px 0 rgba(0,0,0,.3);
+  -webkit-box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
 }
 .header nav {
-  font-size: calc(0.6rem + 1.0vh);
+  font-size: calc(0.6rem + 1vh);
 }
 .header nav ul li {
   display: inline-block;
-  margin-left: .5em;
+  margin-left: 0.5em;
   list-style-type: none;
   padding-bottom: 5px;
   border-top: 15px solid transparent;
@@ -49,21 +53,21 @@ export default {
   height: 60px;
 }
 .oskari-logo {
-  float:left;
+  float: left;
 }
 
 #header-items {
   margin: auto;
-  font-size:  1.2em;
+  font-size: 1.2em;
   display: inline-block;
 }
 .header li {
-  margin-left: .5em;
+  margin-left: 0.5em;
   display: inline-block;
 }
 .header a {
-  color:#e8ecef;
-  padding-left: .7em;
-  padding-right: .7em;
+  color: #e8ecef;
+  padding-left: 0.7em;
+  padding-right: 0.7em;
 }
 </style>

@@ -2,10 +2,11 @@
   <div class="col-xs-12 col-md-12 col-sm-12 col-lg-6 col-xl-3 hidden-md-down full-height-panel">
     <div class="panel panel-default log-panel">
       <div class="panel-body">
-        <a href="#" v-on:click="clearLog">Clear log</a>
+        <button v-on:click="clearLog">Clear log</button>
         <div ref="debuglog">
-          <div ref="logmsg" v-for="log in logItems" :key="log.id">{{log.header}}
-            <pre v-if="log.json">{{log.json}}</pre>
+          <div ref="logmsg" v-for="log in logItems" :key="log.id">
+            {{ log.header }}
+            <pre v-if="log.json">{{ log.json }}</pre>
           </div>
         </div>
       </div>
@@ -15,24 +16,25 @@
 
 <script>
 export default {
+  name: 'logPanel',
   props: {
     logEvents: Array
   },
   computed: {
-    logItems () {
-      return this.logEvents.slice().reverse()
+    logItems() {
+      return this.logEvents.slice().reverse();
     }
   },
   methods: {
-    clearLog () {
+    clearLog() {
       this.$emit('clear');
     }
   }
-}
+};
 </script>
-<style lang="scss">
+<style>
 .log-panel {
-  border:0.5px solid #D9D9D9;
+  border: 0.5px solid #d9d9d9;
   overflow-y: auto;
 }
 

@@ -23,26 +23,27 @@
 import PageNavigation from './page_navigation.vue';
 
 export default {
+  name: 'actionPanel',
   components: {
     PageNavigation
   },
   props: {
-    'currentPage': Object
+    currentPage: Object
   },
-  data () {
-    return {}
+  data() {
+    return {};
   }
-}
+};
 </script>
 
-<style lang="scss">
+<style>
 #select-panel a {
   color: #8aa5d1;
 }
 .form-panel {
-  border:0.5px solid #D9D9D9;
+  border: 0.5px solid #d9d9d9;
 }
-#select-panel{
+#select-panel {
   margin: 0 auto;
 }
 h3 {
@@ -51,7 +52,7 @@ h3 {
 }
 
 .bottomnavi {
-    padding-bottom: 10px;
-    padding-top: 10px;
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 </style>

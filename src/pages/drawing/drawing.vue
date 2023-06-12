@@ -2,104 +2,129 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      Drawing requests can be used to mark down and measure different locations on the map. With different settings you can set the behaviour of the request
-      from drawing different plain pre-defined shapes to drawing custom styled measurement of the marked area. These pre-defined shapes consist of shapes like polygon, 
-      circle, point, box, square or line. <br><br>
-      To start drawing send <InlineCode>StartDrawingRequest</InlineCode>.<br>
-      <RunExampleButton @click="startDrawing()">Activate drawing mode</RunExampleButton><br>
-      <RunExampleButton @click="startDrawing(true)">Activate drawing mode with measurement</RunExampleButton>
-      <br>
-      <DocumentationLink type="request" apiDoc="mapping/drawtools/request/startdrawingrequest.md">Documentation for DrawTools.StartDrawingRequest</DocumentationLink>
-      <CodeSnippet>
-        var data = ['my functionality id', 'Polygon'];
-        channel.postRequest('DrawTools.StartDrawingRequest', data);
-      </CodeSnippet>
-      To start drawing with measurement turned on, send drawing request with options parameter as object containing <InlineCode>showMeasureOnMap</InlineCode> as true. 
-      <CodeSnippet>
-        var data = ['my functionality id', 'Polygon', { showMeasureOnMap: true }];
-        channel.postRequest('DrawTools.StartDrawingRequest', data);
-      </CodeSnippet>
+      Drawing requests can be used to mark down and measure different locations on the map. With
+      different settings you can set the behaviour of the request from drawing different plain
+      pre-defined shapes to drawing custom styled measurement of the marked area. These pre-defined
+      shapes consist of shapes like polygon, circle, point, box, square or line. <br /><br />
+      To start drawing, select a shape and send a <InlineCode>StartDrawingRequest</InlineCode>.
+      <br />
     </p>
-
+    <div>
+      <RunExampleButton @click="startDrawing()">Activate drawing mode</RunExampleButton>
+      <b-dd :text="selectedShape" variant="outline-success">
+        <b-dd-item-button @click="setShape('Polygon')">Polygon</b-dd-item-button>
+        <b-dd-item-button @click="setShape('Point')">Point</b-dd-item-button>
+        <b-dd-item-button @click="setShape('Circle')">Circle</b-dd-item-button>
+        <b-dd-item-button @click="setShape('Box')">Box</b-dd-item-button>
+        <b-dd-item-button @click="setShape('Square')">Square</b-dd-item-button>
+        <b-dd-item-button @click="setShape('LineString')">LineString</b-dd-item-button>
+      </b-dd>
+    </div>
+    <RunExampleButton @click="startDrawing(true)">
+      Activate drawing mode with measurement
+    </RunExampleButton>
+    <br />
+    <DocumentationLink type="request" apiDoc="mapping/drawtools/request/startdrawingrequest.md">
+      Documentation for DrawTools.StartDrawingRequest
+    </DocumentationLink>
+    <CodeSnippet>
+var data = ['my functionality id', 'Polygon'];
+channel.postRequest('DrawTools.StartDrawingRequest', data);
+    </CodeSnippet>
+    To start drawing with measurement turned on, send drawing request with options parameter as
+    object containing <InlineCode>showMeasureOnMap</InlineCode> as true.
+    <CodeSnippet>
+var data = ['my functionality id', 'Polygon', { showMeasureOnMap: true }];
+channel.postRequest('DrawTools.StartDrawingRequest', data);
+    </CodeSnippet>
     <p>
-      To stop current drawing progress send <InlineCode>StopDrawingRequest</InlineCode> with id of the feature to stop drawing for as a parameter. For accessability reasons it isn't recommended that <InlineCode>StopDrawingRequest</InlineCode> is initiated by
-      double clicking map area but rather by placing dedicated button in the UI of application being developed.<br>
+      To stop the current drawing progress send a <InlineCode>StopDrawingRequest</InlineCode> with id of
+      the feature to stop drawing for as a parameter. For accessability reasons it isn't recommended
+      that <InlineCode>StopDrawingRequest</InlineCode> is initiated by double clicking map area but
+      rather by placing dedicated button in the UI of application being developed.<br />
       <RunExampleButton @click="stopDrawing">Disable drawing mode</RunExampleButton>
-      <br>
-      <DocumentationLink type="request" apiDoc="mapping/drawtools/request/stopdrawingrequest.md">Documentation for DrawTools.StopDrawingRequest</DocumentationLink>
+      <br />
+      <DocumentationLink type="request" apiDoc="mapping/drawtools/request/stopdrawingrequest.md">
+        Documentation for DrawTools.StopDrawingRequest
+      </DocumentationLink>
       <CodeSnippet>
-        var data = ['my functionality id'];
-        channel.postRequest('DrawTools.StopDrawingRequest', data);
+var data = ['my functionality id'];
+channel.postRequest('DrawTools.StopDrawingRequest', data);
       </CodeSnippet>
     </p>
 
     <p>
-      To clear drawing from the map send <InlineCode>StopDrawingRequest</InlineCode> with second member of data parameter given to StopDrawingRequest set as true.
+      To clear a drawing from the map send a <InlineCode>StopDrawingRequest</InlineCode> with second
+      member of data parameter given to <InlineCode>StopDrawingRequest</InlineCode> set as <InlineCode>true</InlineCode>.
       <RunExampleButton @click="stopDrawingClear">Clear drawings</RunExampleButton>
       <CodeSnippet>
-        var data = ['my functionality id', true];
-      channel.postRequest('DrawTools.StopDrawingRequest', data);
+var data = ['my functionality id', true];
+channel.postRequest('DrawTools.StopDrawingRequest', data);
       </CodeSnippet>
     </p>
 
     <p>
-      Everytime mouse is moved on the map DrawingEvent occurs while drawing is in progress and contains all the information regarding current drawing. To ensure that logging isn't clogged check if <code>DrawingEvent.finished</code> is set to <code>true</code> and only log when drawing is finished.
-      <br>
-      <DocumentationLink type="event" apiDoc="mapping/drawtools/event/DrawingEvent.md">Documentation for DrawingEvent</DocumentationLink>
+      Everytime the cursor is moved on the map <InlineCode>DrawingEvent</InlineCode> occurs while drawing is in progress and
+      contains all the information regarding current drawing. To ensure that logging isn't clogged
+      check if <InlineCode>DrawingEvent.finished</InlineCode> is set to <InlineCode>true</InlineCode> and only log when
+      drawing is finished.
+      <br />
+      <DocumentationLink type="event" apiDoc="mapping/drawtools/event/DrawingEvent.md">
+        Documentation for DrawingEvent
+      </DocumentationLink>
       <CodeSnippet>
-        {
-          "name": "DrawingEvent",
-          "id": "my functionality id",
-          "geojson": {
-            "type": "FeatureCollection",
-            "features": [
-              {
-                "type": "Feature",
-                "geometry": {
-                  "type": "Polygon",
-                  "coordinates": [
-                    [
-                      [
-                        429245.623,
-                        7349501.146
-                      ],
-                      [
-                        158909.62300000002,
-                        7081213.146
-                      ],
-                      [
-                        597181.623,
-                        6853885.146
-                      ],
-                      [
-                        429245.623,
-                        7349501.146
-                      ]
-                    ]
-                  ]
-                },
-                "properties": {
-                  "area": 87187682917.60973
-                },
-                "id": "drawFeature0"
-              }
-            ],
-            "crs": "EPSG:3067"
-          },
-          "data": {
-            "buffer": 0,
-            "bufferedGeoJson": {
-              "type": "FeatureCollection",
-              "features": []
-            },
-            "shape": "Polygon",
-            "area": 87187682917.60973
-          },
-          "isFinished": true
-        }
+{
+  "name": "DrawingEvent",
+  "id": "my functionality id",
+  "geojson": {
+    "type": "FeatureCollection",
+    "features": [
+      {
+        "type": "Feature",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [
+              [
+                429245.623,
+                7349501.146
+              ],
+              [
+                158909.62300000002,
+                7081213.146
+              ],
+              [
+                597181.623,
+                6853885.146
+              ],
+              [
+                429245.623,
+                7349501.146
+              ]
+            ]
+          ]
+        },
+        "properties": {
+          "area": 87187682917.60973
+        },
+        "id": "drawFeature0"
+      }
+    ],
+    "crs": "EPSG:3067"
+  },
+  "data": {
+    "buffer": 0,
+    "bufferedGeoJson": {
+      "type": "FeatureCollection",
+      "features": []
+    },
+    "shape": "Polygon",
+    "area": 87187682917.60973
+  },
+  "isFinished": true
+}
       </CodeSnippet>
     </p>
-  
   </div>
 </template>
 <script>
@@ -107,23 +132,24 @@ const title = 'Drawing requests';
 const featureId = 'my functionality id';
 
 export default {
-  name: 'Drawing',
+  name: 'drawingExample',
   label: title,
-  data () {
+  data() {
     return {
-      title
-    }
+      title,
+      selectedShape: 'Polygon'
+    };
   },
-  beforeDestroy () {
-      const data = [featureId, true];
-      this.$root.channel.postRequest('DrawTools.StopDrawingRequest', data);
-      this.$root.channel.log('DrawTools.StopDrawingRequest posted with data:', data);
+  beforeUnmount() {
+    const data = [featureId, true];
+    this.$root.channel.postRequest('DrawTools.StopDrawingRequest', data);
+    this.$root.channel.log('DrawTools.StopDrawingRequest posted with data:', data);
   },
   methods: {
-    startDrawing (showMeasurement = false) {
+    startDrawing(showMeasurement = false) {
       const data = [
         featureId,
-        'Polygon',
+        this.selectedShape,
         {
           showMeasureOnMap: showMeasurement
         }
@@ -131,16 +157,19 @@ export default {
       this.$root.channel.postRequest('DrawTools.StartDrawingRequest', data);
       this.$root.channel.log('DrawTools.StartDrawingRequest posted with data:', data);
     },
-    stopDrawing () {
+    stopDrawing() {
       const data = [featureId];
       this.$root.channel.postRequest('DrawTools.StopDrawingRequest', data);
       this.$root.channel.log('DrawTools.StopDrawingRequest posted with data:', data);
     },
-    stopDrawingClear () {
+    stopDrawingClear() {
       const data = [featureId, true];
       this.$root.channel.postRequest('DrawTools.StopDrawingRequest', data);
       this.$root.channel.log('DrawTools.StopDrawingRequest posted with data:', data);
+    },
+    setShape(shape) {
+      this.selectedShape = shape;
     }
   }
-}
+};
 </script>

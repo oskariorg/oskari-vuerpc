@@ -1,8 +1,8 @@
 <template>
-    <div class="mirror" ref="codemirror">
-      <button @click="excecuteCode">Run!</button>
-      <div ref="output"></div>
-    </div>
+  <div class="mirror" ref="codemirror">
+    <button @click="excecuteCode">Run!</button>
+    <div ref="output"></div>
+  </div>
 </template>
 
 <script>
@@ -13,7 +13,8 @@ import 'codemirror/theme/monokai.css';
 import 'codemirror/addon/fold/foldgutter.css';
 
 export default {
-  data () {
+  name: 'codeMirror',
+  data() {
     return {
       codeMirror: '',
       editorOptions: {
@@ -26,22 +27,22 @@ export default {
         styleSelectedText: true,
         highlightSelectionMatches: { showToken: /\w/, annotateScrollbar: true }
       }
-    }
+    };
   },
   methods: {
-    initCodeMirror () {
+    initCodeMirror() {
       this.codeMirror = CodeMirror(this.$refs.codemirror, this.editorOptions);
     },
-    excecuteCode (e) {
+    excecuteCode(e) {
       let code = e.target.parentElement.getElementsByClassName('CodeMirror-code')[0].textContent;
       code = code.replace(/channel/g, 'this.$root.channel');
       eval(code);
     }
   },
-  mounted () {
+  mounted() {
     this.initCodeMirror();
   }
-}
+};
 </script>
 
 <style>

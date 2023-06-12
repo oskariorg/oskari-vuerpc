@@ -1,12 +1,14 @@
 <template>
   <div>
     <h2>{{ title }}</h2>
-    <p>Change map layer style by sending an external SLD.
-      This requires a WMS-layer from a service that supports/accepts external SLD.
-      The example map doesn't have a layer that could be used to demonstrate this
-       so there's no visual example of this.
+    <p>
+      Change map layer style by sending an external SLD. This requires a WMS-layer from a service
+      that supports/accepts external SLD. The example map doesn't have a layer that could be used to
+      demonstrate this so there's no visual example of this.
     </p>
-    <DocumentationLink type="request" :apiDoc="apiDocPageRequest">Documentation for {{requestName}}</DocumentationLink>
+    <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
+      Documentation for {{ requestName }}
+    </DocumentationLink>
 
       <CodeSnippet>
 var layerId = {{ layerId }};
@@ -20,9 +22,7 @@ channel.postRequest('{{requestName}}', [layerId, true, params]);
     </p -->
 
     <h3>Reset external SLD</h3>
-    <p>
-      You can reset the style by sending a null SLD_BODY:
-    </p>
+    <p>You can reset the style by sending a null SLD_BODY:</p>
     <CodeSnippet>
 var layerId = {{ layerId }};
 var params = {{ JSON.stringify(resetParams, null, 2) }};
@@ -40,8 +40,7 @@ const apiDocPageRequest = 'mapping/mapmodule/request/changemaplayerstylerequest.
 
 const layerId = 1387;
 const params = {
-  SLD_BODY:
-    `<StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0.0" xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd">
+  SLD_BODY: `<StyledLayerDescriptor xmlns="http://www.opengis.net/sld" xmlns:ogc="http://www.opengis.net/ogc" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0.0" xsi:schemaLocation="http://www.opengis.net/sld StyledLayerDescriptor.xsd">
       <NamedLayer>
         <Name>oskari:kunnat2013</Name>
         <UserStyle>
@@ -68,7 +67,7 @@ const resetParams = {
 export default {
   name: 'MapLayerUpdateRequest',
   label: title,
-  data () {
+  data() {
     return {
       title,
       requestName,
@@ -76,17 +75,25 @@ export default {
       layerId,
       params,
       resetParams
-    }
+    };
   },
   methods: {
-    updateMapLayer () {
-      this.$root.channel.postRequest('MapModulePlugin.MapLayerUpdateRequest', [layerId, true, params]);
+    updateMapLayer() {
+      this.$root.channel.postRequest('MapModulePlugin.MapLayerUpdateRequest', [
+        layerId,
+        true,
+        params
+      ]);
       this.$root.channel.log('MapModulePlugin.MapLayerUpdateRequest', params);
     },
-    resetMapLayer () {
-      this.$root.channel.postRequest('MapModulePlugin.MapLayerUpdateRequest', [layerId, true, resetParams]);
+    resetMapLayer() {
+      this.$root.channel.postRequest('MapModulePlugin.MapLayerUpdateRequest', [
+        layerId,
+        true,
+        resetParams
+      ]);
       this.$root.channel.log('MapModulePlugin.MapLayerUpdateRequest', params);
     }
   }
-}
+};
 </script>

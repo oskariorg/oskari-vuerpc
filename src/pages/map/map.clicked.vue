@@ -2,10 +2,13 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      The {{ eventName }} occurs after the map has been clicked. Click the map to see the events in the log and below.
+      The <InlineCode>{{ eventName }}</InlineCode> occurs after the map has been clicked. Click the
+      map to see the events in the log and below.
     </p>
-    <DocumentationLink type="event" :apiDoc="apiDocPage">Documentation for {{eventName}}</DocumentationLink>
-    <CodeSnippet v-if="clickEvent" :snippet="clickEventSnippet" />
+    <DocumentationLink type="event" :apiDoc="apiDocPage"
+      >Documentation for {{ eventName }}</DocumentationLink
+    >
+    <CodeSnippet v-if="clickEvent"> {{ clickEventSnippet }} </CodeSnippet>
   </div>
 </template>
 
@@ -23,31 +26,33 @@ const listeners = [];
 export default {
   name: 'MapClickedEvent',
   label: title,
-  data () {
+  data() {
     return {
       title,
       eventName,
       apiDocPage,
       clickEvent: null
-    }
+    };
   },
   computed: {
-    clickEventSnippet () {
+    clickEventSnippet() {
       // Changing slot content won't update the code highlight at runtime
       // If we pass the whole snippet as prop it will be updated as expected
       return JSON.stringify(this.clickEvent, null, 2);
     }
   },
-  mounted () {
-    listeners.push(EVENTBUS.on('MapClickedEvent', (data) => {
-      this.clickEvent = data;
-    }));
+  mounted() {
+    listeners.push(
+      EVENTBUS.on('MapClickedEvent', (data) => {
+        this.clickEvent = data;
+      })
+    );
   },
-  beforeDestroy: () => {
+  beforeUnmount() {
     // Clean up when user leaves the example
     while (listeners.length) {
       EVENTBUS.off('MapClickedEvent', listeners.pop());
     }
   }
-}
+};
 </script>

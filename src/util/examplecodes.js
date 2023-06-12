@@ -1,6 +1,6 @@
 /*
-*             IN THIS FILE YOU CAN FIND THE EXAMPLES USED IN HIGHLIGHTJS. THE EXAMPLES IN THIS FILE ARE TOO BIG TO BE USED IN TEMPLATE SO THEY ARE IMPORTED FROM HERE INSTEAD
-*/
+ *             IN THIS FILE YOU CAN FIND THE EXAMPLES USED IN HIGHLIGHTJS. THE EXAMPLES IN THIS FILE ARE TOO BIG TO BE USED IN TEMPLATE SO THEY ARE IMPORTED FROM HERE INSTEAD
+ */
 var features = {
   // EVENT feature.event.vue
   event: `{
@@ -61,7 +61,7 @@ var features = {
       }
     ]
   }`
-}
+};
 var wkt = `// Define a WKT geometry
 var WKT = 'POLYGON ((358911.7134508261 6639617.669712467, 358911.7134508261 6694516.612323322, 382536.4910289571 6694516.612323322, 382536.4910289571 6639617.669712467, 358911.7134508261 6639617.669712467))';
 
@@ -160,108 +160,8 @@ var feedback = {
   channel.postRequest('PostFeedbackRequest', [data]);`,
   // GET FEEDBACK SERVICES feedback.services.vue
   services: {
-    list: 'channel.postRequest(\'GetFeedbackServiceRequest\', []);',
+    list: "channel.postRequest('GetFeedbackServiceRequest', []);",
     id: 'channel.postRequest(\'GetFeedbackServiceRequest\', ["180"]);'
   }
-}
-var infobox = {
-  req: `  //get map center and then show an infobox at that location
-  channel.getMapPosition(function(data) {
-    var content = [
-      {
-        'html': '&lt;div&gt;Map position info:&lt;/div&gt;'
-      },
-      {
-        'html': '&lt;div&gt;Center: '+parseInt(data.centerX)+', '+parseInt(data.centerY)+'&lt;/div&gt;',
-        'actions': [
-          {
-            name: "My link 1",
-            type: "link",
-            action: {
-              info: "this can include any info",
-              info2: "action-object can have any number of params"
-
-            }
-          },
-          {
-            name: "My link 2",
-            type: "link",
-            action: {
-              info: "this can include any info",
-              info2: "action-object can have any number of params"
-            }
-          }
-        ]
-      },
-      {
-        'html': '&lt;div&gt;Zoom level: '+data.zoom+'&lt;/div&gt;'
-      },
-      {
-        'actions': [
-          {
-            name: "My link 3",
-            type: "link",
-            action: {
-              info: "this can include any info",
-              info2: "action-object can have any number of params",
-            }
-          },
-          {
-            name: "My link 4",
-            type: "link",
-            action: {
-              info: "this can include any info",
-              info2: "action-object can have any number of params",
-            }
-          },
-          {
-            name: "My button 1",
-            type: "button",
-            group: 1,
-            action: {
-              info: "this can include any info",
-              info2: "action-object can have any number of params",
-              buttonInfo: "This button has group 1 and is placed to the same row with other actions that have the same group"
-            }
-          },
-          {
-            name: "My button 2",
-            type: "button",
-            group: 1,
-            action: {
-              info: "this can include any info",
-              info2: "action-object can have any number of params",
-              buttonInfo: "This button has group 1 and is placed to the same row with other actions that have the same group"
-            }
-          }
-        ]
-      }
-    ];
-    var data = [
-      'myInfoBox',
-      'Generic info box',
-      content,
-      {
-        'lon': data.centerX,
-        'lat': data.centerY
-      },
-      {
-        colourScheme: {
-          bgColour: '#00CCFF',
-          titleColour: '#FFFFFF',
-          headerColour: '#0066FF',
-          iconCls: 'icon-close-white',
-          buttonBgColour: '#00CCFF',
-          buttonLabelColour: '#FFFFFF',
-          linkColour: '#000000'
-        },
-        font: 'georgia',
-        positioning: 'left'
-      }
-    ];
-
-    channel.postRequest('InfoBox.ShowInfoBoxRequest', data);
-    channel.log('InfoBox.ShowInfoBoxRequest posted with data', data);
-  });`
-}
-export { features, wkt, feedback, infobox, search };
+};
+export { features, wkt, feedback };

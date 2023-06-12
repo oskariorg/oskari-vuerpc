@@ -1,16 +1,13 @@
 <template>
-  <input type="text" v-model="search" placeholder="Search..." @input="search"/>
+  <input type="text" v-model="search" placeholder="Search..." @input="search" />
 </template>
 <script>
 export default {
-  data () {
+  name: 'textInput',
+  data() {
     return {
       search: ''
-    }
-  },
-  methods: {
-    search (event) {
-    }
+    };
   }
-}
+};
 </script>
