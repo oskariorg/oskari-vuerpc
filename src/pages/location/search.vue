@@ -75,14 +75,25 @@
 
 <script>
 import EVENTBUS from '../../util/eventbus';
-import { getMarkerTemplate } from '../../util/markers_helpers';
-const title = 'Perform a search';
 
+const title = 'Perform a search';
 const requestName = 'SearchRequest';
 const eventName = 'SearchResultEvent';
 const apiDocPageRequest = 'framework/search/request/SearchRequest.md';
 const apiDocPageEvent = 'framework/search/event/SearchResultEvent.md';
 const listeners = [];
+
+const getMarkerTemplate = (x, y, msg) => {
+  const template = {
+    size: 4,
+    shape: 2,
+    color: '00FF00',
+    x,
+    y,
+    msg
+  };
+  return template;
+};
 
 const showPopup = (msg, seconds = 5) => {
   EVENTBUS.notify('rpcAppDisplayMessage', { msg, seconds });
