@@ -175,7 +175,9 @@ export default {
   data() {
     return {
       title,
-      savedState: {}
+      savedState: {},
+      eventApiDocPage,
+      eventName
     };
   },
   computed: {
