@@ -35,15 +35,18 @@
   </div>
 </template>
 <script>
-import { feedback } from '../../util/examplecodes.js';
+const services = {
+  list: "channel.postRequest('GetFeedbackServiceRequest', []);",
+  id: 'channel.postRequest(\'GetFeedbackServiceRequest\', ["180"]);'
+};
 export default {
   name: 'GetFeedbackServices',
   label: 'Get feedback services (poc)',
   data() {
     return {
       desc: 'Get feedback services (poc)',
-      list: feedback.services.list,
-      id: feedback.services.id
+      list: services.list,
+      id: services.id
     };
   },
   methods: {
