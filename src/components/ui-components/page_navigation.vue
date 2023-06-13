@@ -16,7 +16,7 @@
 
 <script>
 import NavigationDropdown from './page_navigation_dropdown.vue';
-import routesHelper from '../../util/routesHelper';
+import routesHelper from '../../router/routesHelper';
 
 export default {
   components: {
