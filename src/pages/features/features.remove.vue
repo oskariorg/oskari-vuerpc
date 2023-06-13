@@ -110,7 +110,9 @@ export default {
         { layerId: this.layer2.layerId }
       ]);
       // zoom to features
-      this.$root.channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [{layer: this.layer1.layerId }]);
+      this.$root.channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [
+        { layer: this.layer1.layerId }
+      ]);
     },
     clearFeatures(key = null, value = null, layerId = null) {
       this.$root.channel.postRequest(this.requestName, [key, value, layerId]);
@@ -123,6 +125,12 @@ export default {
   },
   beforeUnmount() {
     this.clearFeatures();
+    this.$root.channel.postRequest('VectorLayerRequest', [
+      { layerId: this.layer1.layerId, remove: true }
+    ]);
+    this.$root.channel.postRequest('VectorLayerRequest', [
+      { layerId: this.layer2.layerId, remove: true }
+    ]);
   }
 };
 const layer1 = {

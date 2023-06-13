@@ -9,14 +9,13 @@
   </div>
 </template>
 <script>
-import { features } from '../../util/examplecodes.js';
 export default {
   name: 'FeatureEvent',
   label: 'FeatureEvent',
   data() {
     return {
       desc: 'Feature Event',
-      event: features.event
+      event
     };
   },
   methods: {
@@ -26,4 +25,64 @@ export default {
     }
   }
 };
+
+const event = `\
+{
+  "operation": "add",
+  "features": [
+    {
+      "id": "F24",
+      "geojson": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "id": "F24",
+            "geometry": {
+              "type": "LineString",
+              "coordinates": [
+                [
+                  488704,
+                  6939136
+                ],
+                [
+                  588704,
+                  7039136
+                ]
+              ]
+            },
+            "properties": {
+              "test_property": 1,
+              "oskari-cursor": "zoom-in"
+            }
+          }
+        ]
+      },
+        "layerId": "VECTOR"
+    },
+    {
+      "id": "F25",
+      "geojson": {
+        "type": "FeatureCollection",
+        "features": [
+          {
+            "type": "Feature",
+            "id": "F25",
+            "geometry": {
+              "type": "Point",
+              "coordinates": [
+                488704,
+                6939136
+              ]
+            },
+            "properties": {
+              "test_property": 2
+            }
+          }
+        ]
+      },
+      "layerId": "VECTOR"
+    }
+  ]
+}`;
 </script>
