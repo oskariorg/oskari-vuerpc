@@ -5,13 +5,15 @@
         <div id="select-panel">
           <PageNavigation :currentPage="currentPage" />
           <br />
-          <transition name="fade">
-            <!-- 
-              Router-view shows the pages based on route (== url).
-              See pages/index.js for adding/modifying order etc
-              -->
-            <router-view />
-          </transition>
+          <!-- 
+            Router-view shows the pages based on route (== url).
+            See pages/index.js for adding/modifying order etc
+          -->
+          <router-view v-slot="{ Component }">
+            <transition name="fade">
+              <component :is="Component" />
+            </transition>
+          </router-view>
           <PageNavigation :currentPage="currentPage" v-bind:hideSelect="true" class="bottomnavi" />
         </div>
       </div>
