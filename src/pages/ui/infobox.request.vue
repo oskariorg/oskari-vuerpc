@@ -1,19 +1,10 @@
 <template>
   <div>
     <RunExampleButton @click="showInfoBoxRequest(this.$root.channel)">InfoBox.ShowInfoBoxRequest</RunExampleButton>
-    <DocumentationLink type="request" :apiDoc="apiDocPage.show">
+    <DocumentationLink type="request" :apiDoc="apiDocPage">
       To the documentation
     </DocumentationLink>
     <CodeSnippet>{{ req }}</CodeSnippet>
-    <RunExampleButton @click="hideInfoBoxRequest">InfoBox.HideInfoBoxRequest</RunExampleButton>
-    <DocumentationLink type="request" :apiDoc="apiDocPage.hide">
-      To the documentation
-    </DocumentationLink>
-    <CodeSnippet>
-var infoboxId = 'myInfoBox';
-channel.postRequest('InfoBox.HideInfoBoxRequest', [infoboxId]);
-channel.log('InfoBox.HideInfoBoxRequest posted with data', infoboxId);
-    </CodeSnippet>
   </div>
 </template>
 
@@ -122,24 +113,16 @@ const showInfoBoxRequest = (channel) => {
 
 export default {
   name: 'ShowInfoBox',
-  label: 'Show or hide info box',
+  label: 'Info box continued',
   data() {
     return {
-      desc: 'Show or hide info box',
-      apiDocPage: {
-        show: 'ui/infobox/request/infobox.showinfoboxrequest.md',
-        hide: 'ui/infobox/request/infobox.hideinfoboxrequest.md'
-      },
+      desc: 'Info box continued',
+      apiDocPage: 'ui/infobox/request/infobox.showinfoboxrequest.md',
       req: showInfoBoxRequest.toString()
     };
   },
   methods: {
     showInfoBoxRequest,
-    hideInfoBoxRequest() {
-      const infoboxId = 'myInfoBox';
-      this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest', [infoboxId]);
-      this.$root.channel.log('InfoBox.HideInfoBoxRequest posted with data', infoboxId);
-    }
   },
   beforeUnmount() {
     this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest');

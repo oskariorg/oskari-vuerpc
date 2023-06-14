@@ -63,7 +63,7 @@ channel.postRequest('{{ this.request.hide }}', infoboxId);
 <script>
 export default {
   name: 'infoBoxSimple',
-  label: 'Simple infobox example',
+  label: 'Show or hide info box',
   data() {
     return {
       request: {
