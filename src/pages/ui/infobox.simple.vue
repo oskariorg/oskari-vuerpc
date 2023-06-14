@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3>Show infobox</h3>
+    <h3>Show info box</h3>
     <p>
       <InlineCode>{{ request.show }}</InlineCode> allows appending content to a specific location on
       the map as a pop-up. A simple example of adding a pop-up with only text content is located
@@ -30,30 +30,34 @@ channel.postRequest('{{ request.show }}', data);
       A more in-depth example showcasing the various functionalities of
       <InlineCode>{{ request.show }}</InlineCode> can be found on the next page.
     </p>
-    <h3>Hide infobox</h3>
-    Info boxes can be removed from the map with <InlineCode>{{ request.hide }}</InlineCode
-    >. Remove a specific info box by passing the info box's id as a parameter, or remove all info
-    boxes by passing no paramaters.
+    <DocumentationLink type="request" :apiDoc="apiDocPage.show">
+      Documentation for {{ request.show }}
+    </DocumentationLink>
+    <h3>Hide info box</h3>
+    <p>
+      Info boxes can be removed from the map with <InlineCode>{{ request.hide }}</InlineCode
+      >. Remove a specific info box by passing the info box's id as a parameter, or remove all info
+      boxes by passing no paramaters.
+    </p>
+    <DocumentationLink type="request" :apiDoc="apiDocPage.hide">
+      Documentation for {{ request.hide }}
+    </DocumentationLink>
     <CodeSnippet>
 const infoboxId = 'my infobox';
 channel.postRequest('{{ this.request.hide }}', infoboxId);
     </CodeSnippet>
-    <RunExampleButton @click="hideInfobox(infoboxId)">Hide infobox</RunExampleButton>
-    <p>An <InlineCode>Infobox.InfoBoxEvent</InlineCode> occurs when an info box is closed.</p>
+    <RunExampleButton @click="hideInfobox(infoboxId)">Hide info box</RunExampleButton>
+    <h3>Reacting to closing info boxes</h3>
+    <p>
+      An <InlineCode>Infobox.InfoBoxEvent</InlineCode> occurs when an info box is closed,
+      allowing programs to react in a defined way to closing info boxes.
+    </p>
     <CodeSnippet>
 {
   "id": "my infobox",
   "isOpen": false
 }
     </CodeSnippet>
-    <br />
-    <DocumentationLink type="request" :apiDoc="apiDocPage.show">
-      Documentation for {{ request.show }}
-    </DocumentationLink>
-    <br />
-    <DocumentationLink type="request" :apiDoc="apiDocPage.hide">
-      Documentation for {{ request.hide }}
-    </DocumentationLink>
   </div>
 </template>
 <script>
