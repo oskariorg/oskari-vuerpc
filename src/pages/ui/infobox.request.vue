@@ -15,6 +15,10 @@
 </template>
 
 <script>
+import EVENTBUS from '../../util/eventbus.js';
+
+const listeners = [];
+
 const showInfoBoxRequest = (channel) => {
   //get map center and then show an infobox at that location
   channel.getMapPosition(function (data) {
@@ -128,10 +132,21 @@ export default {
     };
   },
   methods: {
-    showInfoBoxRequest
+    showInfoBoxRequest,
+    handleEvent(data) {
+      this.$root.channel.log('info box clicked with data:', data);
+    }
+  },
+  mounted() {
+    EVENTBUS.on('InfoboxActionEvent', (data) => {
+      this.handleEvent(data);
+    });
   },
   beforeUnmount() {
     this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest');
+    while (listeners.length) {
+      EVENTBUS.off('InfoboxActionEvent', listeners.pop());
+    }
   }
 };
 
