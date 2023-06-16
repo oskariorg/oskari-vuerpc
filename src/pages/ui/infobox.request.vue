@@ -34,7 +34,8 @@ export default {
       this.$root.channel.getMapPosition((data) => {
         this.center = {
           x: data.centerX,
-          y: data.centerY
+          y: data.centerY,
+          shape: 2
         };
         const content = [
           {
@@ -120,20 +121,22 @@ export default {
       });
     },
     handleInfoboxEvent(data) {
-      this.$root.channel.log('info box clicked with data:', data);
-
       if (data.action === 'Add marker here') {
         this.$root.channel.postRequest('MapModulePlugin.AddMarkerRequest', [this.center]);
+        this.$root.channel.log('Marker added with data:', this.center);
       }
     }
   },
   mounted() {
-    EVENTBUS.on('InfoboxActionEvent', (data) => {
-      this.handleInfoboxEvent(data);
-    });
+    listeners.push(
+      EVENTBUS.on('InfoboxActionEvent', (data) => {
+        this.handleInfoboxEvent(data);
+      })
+    );
   },
   beforeUnmount() {
     this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest');
+    this.$root.channel.postRequest('MapModulePlugin.RemoveMarkersRequest');
     while (listeners.length) {
       EVENTBUS.off('InfoboxActionEvent', listeners.pop());
     }
