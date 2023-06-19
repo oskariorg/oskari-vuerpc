@@ -7,7 +7,7 @@
     <h3>Reacting to events</h3>
     <p>
       Clicking an action in the infobox triggers an <InlineCode>InfoboxActionEvent</InlineCode>,
-      making it possible to react to the events programmatically.
+      making programmatically reacting to events possible.
     </p>
     <DocumentationLink type="event" :apiDoc="apiDocPage"> To the documentation </DocumentationLink>
     <CodeSnippet>
@@ -29,6 +29,8 @@
       parameter, while the 'Remove markers' button sends a
       <InlineCode>RemoveMarkersRequest</InlineCode>.
     </p>
+    You can add an info box and try out the actions triggered by the underlying code with this
+    button:
     <RunExampleButton @click="showInfoBoxRequest"> Show info box </RunExampleButton>
     <CodeSnippet>{{ request }}</CodeSnippet>
   </div>
