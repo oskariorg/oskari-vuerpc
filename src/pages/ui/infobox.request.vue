@@ -9,6 +9,20 @@
       To the documentation
     </DocumentationLink>
     <CodeSnippet>{{ request }}</CodeSnippet>
+    <p>
+      Clicking an action in the infobox triggers an <InlineCode>InfoboxActionEvent</InlineCode>.
+      palceholder placeholder
+    </p>
+    <CodeSnippet>
+{
+  "id": "myInfoBox",
+  "action": "My link 1",
+  "actionParams": {
+    "info": "this can include any info",
+    "info2": "action-object can have any number of params"
+  }
+}
+    </CodeSnippet>
   </div>
 </template>
 
@@ -80,7 +94,7 @@ export default {
                 }
               },
               {
-                name: 'My button 2',
+                name: 'Remove markers',
                 type: 'button',
                 group: 1,
                 action: {
@@ -124,6 +138,11 @@ export default {
       if (data.action === 'Add marker here') {
         this.$root.channel.postRequest('MapModulePlugin.AddMarkerRequest', [this.center]);
         this.$root.channel.log('Marker added with data:', this.center);
+        return;
+      }
+      if (data.action === 'Remove markers') {
+        this.$root.channel.postRequest('MapModulePlugin.RemoveMarkersRequest');
+        return;
       }
     }
   },
@@ -145,13 +164,21 @@ export default {
 
 const request = `\
 //get map center and then show an infobox at that location
-channel.getMapPosition(function (data) {
+channel.getMapPosition((data) => {
   const content = [
     {
-      html: '<div>Map position info</div>'
+      html: '<div>Map position info:</div>'
     },
     {
-      html: '<div>Center: ' + parseInt(data.centerX) + ', ' + parseInt(data.centerY) + '</div>',
+      html: '<div>Center: '
+        + parseInt(data.centerX)
+        + ', '
+        + parseInt(data.centerY)
+        + '<br />Zoom level: '
+        + data.zoom
+        + '</div>'
+    },
+    {
       actions: [
         {
           name: 'My link 1',
@@ -172,28 +199,9 @@ channel.getMapPosition(function (data) {
       ]
     },
     {
-      html: '<div>Zoom level: ' + data.zoom + '</div>'
-    },
-    {
       actions: [
         {
-          name: 'My link 3',
-          type: 'link',
-          action: {
-            info: 'this can include any info',
-            info2: 'action-object can have any number of params'
-          }
-        },
-        {
-          name: 'My link 4',
-          type: 'link',
-          action: {
-            info: 'this can include any info',
-            info2: 'action-object can have any number of params'
-          }
-        },
-        {
-          name: 'My button 1',
+          name: 'Add marker here',
           type: 'button',
           group: 1,
           action: {
@@ -204,7 +212,7 @@ channel.getMapPosition(function (data) {
           }
         },
         {
-          name: 'My button 2',
+          name: 'Remove markers',
           type: 'button',
           group: 1,
           action: {
@@ -217,6 +225,7 @@ channel.getMapPosition(function (data) {
       ]
     }
   ];
+
   data = [
     'myInfoBox',
     'Generic info box',
