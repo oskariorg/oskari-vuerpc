@@ -1,18 +1,15 @@
 <template>
   <div>
     <p>
-      Info boxes support much more than just text content. Links and action buttons are an example
-      of other appendable stuff.
+      Info boxes support much more than just text content. For example, info boxes can be styled
+      with colour schemes, and action buttons and links can be appended to info boxes.
     </p>
-    <RunExampleButton @click="showInfoBoxRequest"> InfoBox.ShowInfoBoxRequest </RunExampleButton>
-    <DocumentationLink type="request" :apiDoc="apiDocPage">
-      To the documentation
-    </DocumentationLink>
-    <CodeSnippet>{{ request }}</CodeSnippet>
+    <h3>Reacting to events</h3>
     <p>
-      Clicking an action in the infobox triggers an <InlineCode>InfoboxActionEvent</InlineCode>.
-      palceholder placeholder
+      Clicking an action in the infobox triggers an <InlineCode>InfoboxActionEvent</InlineCode>,
+      making it possible to react to the events programmatically.
     </p>
+    <DocumentationLink type="event" :apiDoc="apiDocPage"> To the documentation </DocumentationLink>
     <CodeSnippet>
 {
   "id": "myInfoBox",
@@ -23,6 +20,17 @@
   }
 }
     </CodeSnippet>
+    <p>
+      In this example, an event listener is initialized to listen to
+      <InlineCode>InfoboxActionEvents</InlineCode>. The event that is sent when an action is
+      registered is captured by the event listener, and the event listener reacts in a defined way.
+      In this case, clicking the 'Add marker here' button sends an
+      <InlineCode>AddMarkerRequest</InlineCode> with the current map center coordinates as a
+      parameter, while the 'Remove markers' button sends a
+      <InlineCode>RemoveMarkersRequest</InlineCode>.
+    </p>
+    <RunExampleButton @click="showInfoBoxRequest"> Show info box </RunExampleButton>
+    <CodeSnippet>{{ request }}</CodeSnippet>
   </div>
 </template>
 
@@ -37,7 +45,7 @@ export default {
   data() {
     return {
       desc: 'Info box continued',
-      apiDocPage: 'ui/infobox/request/infobox.showinfoboxrequest.md',
+      apiDocPage: 'ui/infobox/event/infoboxactionevent.md',
       center: {},
       request
     };
@@ -116,6 +124,7 @@ export default {
             lat: this.center.y
           },
           {
+            hidePrevious: true,
             colourScheme: {
               bgColour: '#00CCFF',
               titleColour: '#FFFFFF',
@@ -235,6 +244,7 @@ channel.getMapPosition((data) => {
       lat: data.centerY
     },
     {
+      hidePrevious: true,
       colourScheme: {
         bgColour: '#00CCFF',
         titleColour: '#FFFFFF',
