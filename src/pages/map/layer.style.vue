@@ -72,6 +72,19 @@ export default {
       ]);
       this.$root.channel.log('MapModulePlugin.MapLayerUpdateRequest', params);
     }
+  },
+  mounted() {
+    this.$root.channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', [
+      this.layerId,
+      true
+    ]);
+  },
+  beforeUnmount() {
+    this.resetMapLayer();
+    this.$root.channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', [
+      this.layerId,
+      false
+    ]);
   }
 };
 </script>
