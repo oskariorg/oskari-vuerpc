@@ -107,6 +107,11 @@ channel.postRequest('{{ requestName }}', [{
   ...
 }]);
     </CodeSnippet>
+    <p>
+      Setting <InlineCode>showLayer</InlineCode> to <InlineCode>true</InlineCode>
+      also allows the layer to be reordered just like other map layers.
+      <b>TODO:</b> finish text and investigate VectorLayerRequest when removing a layer!
+    </p>
     <h3>Styling</h3>
     <p>
       You can define more than just the hover styles with the
