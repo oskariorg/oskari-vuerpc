@@ -3,24 +3,23 @@
     <h2>{{ title }}</h2>
     <p>
       Change map layer style by sending an external SLD. This requires a WMS-layer from a service
-      that supports/accepts external SLD. The example map doesn't have a layer that could be used to
-      demonstrate this so there's no visual example of this.
+      that supports/accepts external SLD.
     </p>
     <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
       Documentation for {{ requestName }}
     </DocumentationLink>
     <CodeSnippet>
-var layerId = {{ layerId }};
-var params = {{ JSON.stringify(params, null, 2) }};
+const layerId = {{ layerId }};
+const params = {{ JSON.stringify(params, null, 2) }};
 channel.postRequest('{{requestName}}', [layerId, true, params]);
     </CodeSnippet>
     Click the button to run the code above:
     <RunExampleButton @click="updateMapLayer">Change map layer style</RunExampleButton>
     <h3>Reset external SLD</h3>
-    <p>You can reset the style by sending a null SLD_BODY:</p>
+    <p>You can reset the style by sending a null <InlineCode>SLD_BODY</InlineCode>:</p>
     <CodeSnippet>
-var layerId = {{ layerId }};
-var params = {{ JSON.stringify(resetParams, null, 2) }};
+const layerId = {{ layerId }};
+const params = {{ JSON.stringify(resetParams, null, 2) }};
 channel.postRequest('{{requestName}}', [layerId, true, params]);
     </CodeSnippet>
     <RunExampleButton @click="resetMapLayer">Reset map layer style</RunExampleButton>
@@ -31,7 +30,7 @@ channel.postRequest('{{requestName}}', [layerId, true, params]);
 const title = 'Change map layer style';
 
 const requestName = 'MapModulePlugin.MapLayerUpdateRequest';
-const apiDocPageRequest = 'mapping/mapmodule/request/changemaplayerstylerequest.md';
+const apiDocPageRequest = 'mapping/mapmodule/request/MapModulePlugin.MapLayerUpdateRequest.md';
 
 const layerId = 1632;
 const params = {
@@ -57,20 +56,20 @@ export default {
   },
   methods: {
     updateMapLayer() {
-      this.$root.channel.postRequest('MapModulePlugin.MapLayerUpdateRequest', [
+      this.$root.channel.postRequest(requestName, [
         layerId,
         true,
         params
       ]);
-      this.$root.channel.log('MapModulePlugin.MapLayerUpdateRequest', params);
+      this.$root.channel.log(requestName, params);
     },
     resetMapLayer() {
-      this.$root.channel.postRequest('MapModulePlugin.MapLayerUpdateRequest', [
+      this.$root.channel.postRequest(requestName, [
         layerId,
         true,
         resetParams
       ]);
-      this.$root.channel.log('MapModulePlugin.MapLayerUpdateRequest', params);
+      this.$root.channel.log(requestName, resetParams);
     }
   },
   mounted() {
