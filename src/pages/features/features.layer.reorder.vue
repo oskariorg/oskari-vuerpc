@@ -14,7 +14,7 @@ const layer = {{ layer }}
 channel.postRequest('VectorLayerRequest', [layer]);
 channel.log('VectorLayerRequest posted with data', [layer]);
     </CodeSnippet>
-    <RunExampleButton @click="addListedLayer"> Add listed layer </RunExampleButton>
+    <RunExampleButton @click="addListedLayer(layer)"> Add listed layer </RunExampleButton>
     Then add a polygon to the map:
     <RunExampleButton @click="addFeaturesToMapRequest"> Add features to layer </RunExampleButton>
     <h3>Reordering layers</h3>
@@ -88,15 +88,20 @@ export default {
     }
   },
   beforeUnmount() {
+    const options = {
+      layerId: this.layer.layerId,
+      remove: true
+    };
+    this.$root.channel.postRequest('VectorLayerRequest', [options]);
     while (listeners.length) {
       EVENTBUS.off('channel.available', listeners.pop());
     }
   },
   methods: {
-    addListedLayer() {
-      this.layers[this.layer.layerId] = this.layer.layerName;
-      this.$root.channel.postRequest('VectorLayerRequest', [this.layer]);
-      this.$root.channel.log('VectorLayerRequest posted with data', [this.layer]);
+    addListedLayer(layer) {
+      this.layers[layer.layerId] = layer.layerName;
+      this.$root.channel.postRequest('VectorLayerRequest', [layer]);
+      this.$root.channel.log('VectorLayerRequest posted with data', [layer]);
     },
     addFeaturesToMapRequest() {
       const params = [geojsonObject, { layerId: this.layer.layerId, clearPrevious: true }];
@@ -129,7 +134,7 @@ const layer = {
   layerId: 'MY_LISTED_VECTOR_LAYER',
   opacity: 100,
   showLayer: true,
-  layerName: 'My vector layer',
+  layerName: 'My listed vector layer',
   hover: {
     featureStyle: {
       fill: {
