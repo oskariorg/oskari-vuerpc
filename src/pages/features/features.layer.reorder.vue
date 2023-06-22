@@ -21,9 +21,20 @@ channel.log('VectorLayerRequest posted with data', [layer]);
     </RunExampleButton>
     <h3>Reordering layers</h3>
     <p>
-      Setting <InlineCode>showLayer</InlineCode> to <InlineCode>true</InlineCode>
-      also allows the layer to be reordered just like other map layers.
-      <b>TODO:</b> finish text and investigate VectorLayerRequest when removing a layer!
+      Setting <InlineCode>showLayer</InlineCode> to <InlineCode>true</InlineCode> also allows the
+      layer to be reordered just like other map layers. For this example, add another layer and
+      polygon to the map with this button:
+      <RunExampleButton
+        @click="
+          () => {
+            addListedLayer(layer2);
+            addFeaturesToMapRequest(rectangle2, layer2.layerId);
+          }
+        "
+        >Add another layer!</RunExampleButton
+      >. Then you can try out reordering the layers with the buttons below and see how the layers
+      act on the map. You can also toggle the other map layers visible in the map iframe and
+      reorder them.
     </p>
     <CodeSnippet>
 const layerId = 'MY_VECTOR_LAYER';
@@ -96,11 +107,18 @@ export default {
     }
   },
   beforeUnmount() {
-    const options = {
-      layerId: this.layer.layerId,
-      remove: true
-    };
-    this.$root.channel.postRequest('VectorLayerRequest', [options]);
+    this.$root.channel.postRequest('VectorLayerRequest', [
+      {
+        layerId: this.layer.layerId,
+        remove: true
+      }
+    ]);
+    this.$root.channel.postRequest('VectorLayerRequest', [
+      {
+        layerId: this.layer2.layerId,
+        remove: true
+      }
+    ]);
     while (listeners.length) {
       EVENTBUS.off('channel.available', listeners.pop());
     }
