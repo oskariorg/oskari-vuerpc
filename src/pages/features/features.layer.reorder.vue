@@ -9,14 +9,16 @@
       iframe.
     </p>
     <CodeSnippet>
-const layer = {{ layer }}
+const layer = {{ layer }};
 
 channel.postRequest('VectorLayerRequest', [layer]);
 channel.log('VectorLayerRequest posted with data', [layer]);
     </CodeSnippet>
     <RunExampleButton @click="addListedLayer(layer)"> Add listed layer </RunExampleButton>
     Then add a polygon to the map:
-    <RunExampleButton @click="addFeaturesToMapRequest"> Add features to layer </RunExampleButton>
+    <RunExampleButton @click="addFeaturesToMapRequest(rectangle, layer.layerId)">
+      Add features to layer
+    </RunExampleButton>
     <h3>Reordering layers</h3>
     <p>
       Setting <InlineCode>showLayer</InlineCode> to <InlineCode>true</InlineCode>
@@ -58,8 +60,11 @@ const requestName = 'VectorLayerRequest';
 
 const x = 488704;
 const y = 6939136;
-const geojsonObject = generator.getCollectionOf([
-  generator.getPolygon(x, y, { name: `I'm a polygon` })
+const rectangle = generator.getCollectionOf([
+  generator.getRectangle(x - 300000, y, { name: `I'm a rectangle` }, 500000, 200000)
+]);
+const rectangle2 = generator.getCollectionOf([
+  generator.getRectangle(x - 100000, y - 200000, { name: `I'm also a rectangle` }, 200000, 500000)
 ]);
 
 const listeners = [];
@@ -71,6 +76,9 @@ export default {
     return {
       requestName,
       layer,
+      layer2,
+      rectangle,
+      rectangle2,
       layers: {},
       selectedLayerId: 801, // default to background map
       selectedPosition: 0
@@ -103,8 +111,8 @@ export default {
       this.$root.channel.postRequest('VectorLayerRequest', [layer]);
       this.$root.channel.log('VectorLayerRequest posted with data', [layer]);
     },
-    addFeaturesToMapRequest() {
-      const params = [geojsonObject, { layerId: this.layer.layerId, clearPrevious: true }];
+    addFeaturesToMapRequest(geojson, layerId) {
+      const params = [geojson, { layerId: layerId, clearPrevious: true }];
       this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
       this.$root.channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params);
     },
@@ -145,6 +153,24 @@ const layer = {
       }
     },
     content: [{ key: 'Layer: MY_LISTED_VECTOR_LAYER' }, { key: 'Name', valueProperty: 'name' }]
+  }
+};
+
+const layer2 = {
+  layerId: 'ANOTHER_LISTED_VECTOR_LAYER',
+  opacity: 100,
+  showLayer: true,
+  layerName: 'Another listed vector layer',
+  hover: {
+    featureStyle: {
+      fill: {
+        color: '#ff0000'
+      },
+      stroke: {
+        color: '#000000'
+      }
+    },
+    content: [{ key: 'Layer: ANOTHER_LISTED_VECTOR_LAYER' }, { key: 'Name', valueProperty: 'name' }]
   }
 };
 </script>
