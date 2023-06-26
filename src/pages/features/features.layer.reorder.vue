@@ -11,8 +11,8 @@
     <CodeSnippet>
 const layer = {{ layer }};
 
-channel.postRequest('VectorLayerRequest', [layer]);
-channel.log('VectorLayerRequest posted with data', [layer]);
+channel.postRequest('{{ requestName }}', [layer]);
+channel.log('{{ requestName }} posted with data', [layer]);
     </CodeSnippet>
     <RunExampleButton @click="addListedLayer(layer)"> Add listed layer </RunExampleButton>
     Then add a polygon to the map:
@@ -33,33 +33,35 @@ channel.log('VectorLayerRequest posted with data', [layer]);
         "
         >Add another layer!</RunExampleButton
       >. Then you can try out reordering the layers with the buttons below and see how the layers
-      act on the map. You can also toggle the other map layers visible in the map iframe and
-      reorder them.
+      act on the map. You can also toggle the other map layers visible in the map iframe and reorder
+      them.
     </p>
     <CodeSnippet>
 const layerId = 'MY_VECTOR_LAYER';
 const newPos = 0; // set layer to bottom
 channel.postRequest('RearrangeSelectedMapLayerRequest', [layerId, newPos]);
     </CodeSnippet>
-    <b-dd :text="layers[selectedLayerId]" variant="outline-success" style="width: 250px">
-      <b-dd-item-button
-        v-for="[id, name] in Object.entries(layers)"
-        :key="id"
-        @click="setSelectedLayerId(id)"
-      >
-        {{ name }}
-      </b-dd-item-button>
-    </b-dd>
-    <b-dd :text="selectedPosition.toString()" variant="outline-success" class="dd">
-      <b-dd-item-button
-        v-for="n in Object.keys(layers).length"
-        :key="n"
-        @click="setSelectedPosition(n - 1)"
-      >
-        {{ n - 1 }}
-      </b-dd-item-button>
-    </b-dd>
-    <RunExampleButton @click="reorderLayer">Change ordering</RunExampleButton>
+    <b-button-group>
+      <b-dd :text="layers[selectedLayerId]" variant="outline-success" style="width: 250px">
+        <b-dd-item-button
+          v-for="[id, name] in Object.entries(layers)"
+          :key="id"
+          @click="setSelectedLayerId(id)"
+        >
+          {{ name }}
+        </b-dd-item-button>
+      </b-dd>
+      <b-dd right split :text="selectedPosition.toString()" variant="outline-success">
+        <b-dd-item-button
+          v-for="n in Object.keys(layers).length"
+          :key="n"
+          @click="setSelectedPosition(n - 1)"
+        >
+          {{ n - 1 }}
+        </b-dd-item-button>
+      </b-dd>
+      <b-button @click="reorderLayer" variant="success">Change ordering</b-button>
+    </b-button-group>
   </div>
 </template>
 <script>
