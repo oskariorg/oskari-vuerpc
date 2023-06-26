@@ -16,11 +16,12 @@ npm run build
 
 # build for production and view the bundle analyzer report
 npm run build --report
-
 ```
-## Integrate to oskari-docs:
 
-`npm run build`  
+## Integrate to oskari-docs
+
+`npm run build`
+
 * copy contents from __/dist__ to __oskari-docs__ project folder: __/public/examples/rpc-api/__ (delete old files from said directory)  
 
 ## Example pages navigation
@@ -35,21 +36,22 @@ The next/previous links are generated with the same method so you only need to c
 2) Import the `./[your new example].vue` component in `pages/[section of your choice]/index.js` and add it to the desired spot on the `pages` array.
 
 The example component should have:
-- name = used for url paths and linking to direct example page
-- label = used for user friendly text to show on the dropdown/navigation
 
-The example can listen to RPC events when `mounted()` BUT should also cleanup any listeners it adds on `beforeDestroy()`:
+* name = used for url paths and linking to direct example page
+* label = used for user friendly text to show on the dropdown/navigation
 
-```
+The example can listen to RPC events when `mounted()` BUT should also cleanup any listeners it adds on `beforeUnmount()`:
+
+``` javascript
 import EVENTBUS from '../../util/eventbus';
 const listeners = []
 export default {
   name: 'InternalIdentifierAndURLpath,
   label: 'User-friendly title for example',
-  mounted () {
+  mounted() {
     listeners.push(EVENTBUS.on('SearchResultEvent', (data) => handleSearchResult(data, this.$root.channel)));
   },
-  beforeDestroy: () => {
+  beforeUnmount() {
     // Clean up when user leaves the example
     while (listeners.length) {
       EVENTBUS.off('SearchResultEvent', listeners.pop());
@@ -57,10 +59,12 @@ export default {
   }
 }
 ```
+
 *Note!* The example should also cleanup any state they might have changed for the map like remove any markers, features or layers added by that example if any.
 
 The example pages can trigger a popup to be shown to the user by doing:
-```
+
+``` javascript
 import EVENTBUS from '../../util/eventbus';
 const showPopup = (msg, seconds = 5) => {
   EVENTBUS.notify('rpcAppDisplayMessage', { msg, seconds });
@@ -71,8 +75,8 @@ const showPopup = (msg, seconds = 5) => {
 
 There's a global `<DocumentationLink>` tag for linking documentation from oskari.org/api. The type is one of `event`, `request` or `bundle` depending what you want to link:
 
-```
-    <DocumentationLink type="event" apiDoc="mapping/mapmodule/event/MapClickedEvent.md" />
+``` javascript
+<DocumentationLink type="event" apiDoc="mapping/mapmodule/event/MapClickedEvent.md" />
 ```
 
 ### Code examples
@@ -81,7 +85,7 @@ There's a global `<CodeSnippet>` tag for show-casing example code and `<RunExamp
 
 If you need the show-cased code to change during runtime you can use this approach (clickEventSnippet):
 
-```
+``` javascript
 <template>
   <div>
     <CodeSnippet>
@@ -96,7 +100,7 @@ If you need the show-cased code to change during runtime you can use this approa
 <script>
 export default {
   ...
-  data () {
+  data() {
     return {
       ...,
       clickEvent: null,
@@ -119,12 +123,12 @@ export default {
         doStuff(this.exampleParams);
     }
   },
-  mounted () {
+  mounted() {
     listeners.push(EVENTBUS.on('MapClickedEvent', (data) => {
       this.clickEvent = data;
     }));
   },
-  beforeDestroy: () => {
+  beforeUnmount() {
     // Clean up when user leaves the example
     while (listeners.length) {
       EVENTBUS.off('MapClickedEvent', listeners.pop());
@@ -133,14 +137,3 @@ export default {
 }
 </script>
 ```
-
-### Documentation links
-
-There's a global `<DocumentationLink>` tag for linking documentation from oskari.org/api. The type is one of `event`, `request` or `bundle` depending what you want to link:
-
-```
-    <DocumentationLink type="event" apiDoc="mapping/mapmodule/event/MapClickedEvent.md" />
-```
-
-
-    <RunExampleButton @click="rotateMap">Reset Rotation</RunExampleButton>
