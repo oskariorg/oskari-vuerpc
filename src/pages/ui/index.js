@@ -1,7 +1,7 @@
 import uiSendEvent from './ui.sendevent.vue';
 import uiCursor from './ui.cursor.vue';
 import progresspinner from './ui.progresspinner.vue';
-import infoBoxSimple from './infoBox.simple.vue';
+import infoBoxSimple from './infobox.simple.vue';
 import infoboxRequest from './infobox.request.vue';
 
 export default {
