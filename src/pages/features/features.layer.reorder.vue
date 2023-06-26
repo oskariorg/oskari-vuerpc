@@ -51,7 +51,7 @@ channel.postRequest('RearrangeSelectedMapLayerRequest', [layerId, newPos]);
           {{ name }}
         </b-dd-item-button>
       </b-dd>
-      <b-dd right split :text="selectedPosition.toString()" variant="outline-success">
+      <b-dd :text="selectedPosition.toString()" variant="outline-success">
         <b-dd-item-button
           v-for="n in Object.keys(layers).length"
           :key="n"
