@@ -2,17 +2,16 @@
   <div>
     <h3>Adding a layer to layer selector</h3>
     <p>
-      When sending a <InlineCode>{{ requestName }}</InlineCode
-      >, setting the parameter <InlineCode>showLayer</InlineCode> and
-      <InlineCode>layerName</InlineCode> makes the added layer visible and togglable in the layer
-      selector of the map iframe. The layer selector is located in the top-right corner of the map
-      iframe.
+      When sending a <InlineCode>VectorLayerRequest</InlineCode>, setting the parameter
+      <InlineCode>showLayer</InlineCode> and <InlineCode>layerName</InlineCode> makes the added
+      layer visible and togglable in the layer selector of the map iframe. The layer selector is
+      located in the top-right corner of the map iframe.
     </p>
     <CodeSnippet>
 const layer = {{ layer }};
 
-channel.postRequest('{{ requestName }}', [layer]);
-channel.log('{{ requestName }} posted with data', [layer]);
+channel.postRequest('VectorLayerRequest', [layer]);
+channel.log('VectorLayerRequest posted with data', [layer]);
     </CodeSnippet>
     <RunExampleButton @click="addListedLayer(layer)"> Add listed layer </RunExampleButton>
     Then add a polygon to the map:
@@ -22,8 +21,8 @@ channel.log('{{ requestName }} posted with data', [layer]);
     <h3>Reordering layers</h3>
     <p>
       Setting <InlineCode>showLayer</InlineCode> to <InlineCode>true</InlineCode> also allows the
-      layer to be reordered just like other map layers. For this example, add another layer and
-      polygon to the map with this button:
+      layer to be reordered with <InlineCode>{{ requestName }}</InlineCode> just like other map
+      layers. For this example, add another layer and polygon to the map with this button:
       <RunExampleButton
         @click="
           () => {
@@ -39,7 +38,7 @@ channel.log('{{ requestName }} posted with data', [layer]);
     <CodeSnippet>
 const layerId = 'MY_VECTOR_LAYER';
 const newPos = 0; // set layer to bottom
-channel.postRequest('RearrangeSelectedMapLayerRequest', [layerId, newPos]);
+channel.postRequest('{{ requestName }}', [layerId, newPos]);
     </CodeSnippet>
     <b-button-group>
       <b-dd :text="layers[selectedLayerId]" variant="outline-success" style="width: 250px">
@@ -69,7 +68,7 @@ import { generator } from './vectorlayer_helpers';
 import EVENTBUS from '../../util/eventbus';
 
 const title = 'Reorder vector feature layers';
-const requestName = 'VectorLayerRequest';
+const requestName = 'RearrangeSelectedMapLayerRequest';
 
 const x = 488704;
 const y = 6939136;
