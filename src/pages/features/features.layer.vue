@@ -17,7 +17,7 @@
       Initializing a layer can be done by sending the
       <InlineCode>{{ requestName }}</InlineCode> request:
       <CodeSnippet>
-        channel.postRequest('{{ requestName }}', [{{ JSON.stringify(LAYER_OPTS.simple, null, 2) }}]);
+        channel.postRequest('{{ requestName }}', [{{ JSON.stringify(layer, null, 2) }}]);
       </CodeSnippet>
 
       After sending it you can add features to it by referencing the layer by
@@ -31,7 +31,7 @@
         to add a feature added to the map.
         <CodeSnippet>
 const params = [geojson, {
-  layerId: '{{ LAYER_OPTS.simple.layerId }}',
+  layerId: '{{ layer.layerId }}',
   clearPrevious: true,
   centerTo: true,
   cursor: 'zoom-in'
@@ -54,7 +54,7 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
         to initialize a layer for vector features with hover styling.
         <CodeSnippet>
 channel.postRequest('{{ requestName }}', [{{
-  JSON.stringify(LAYER_OPTS.simple, null, 2)
+  JSON.stringify(layer, null, 2)
 }}]);
         </CodeSnippet>
         <b>Note!</b> You won't see anything happen on the map when you do this. Now click the "Add
@@ -74,7 +74,7 @@ channel.postRequest('{{ requestName }}', [{{
         lost the hover highlighting and you need to initialize the layer again to get it back.<br />
         <CodeSnippet>
 channel.postRequest('VectorLayerRequest', [{
-  layerId: '{{ LAYER_OPTS.simple.layerId }}',
+  layerId: '{{ layer.layerId }}',
   remove: true
 }]);
         </CodeSnippet>
@@ -85,28 +85,6 @@ channel.postRequest('VectorLayerRequest', [{
         from the second step.
       </li>
     </ol>
-    <h3>Note!</h3>
-    <p>
-      By setting the layer parameter <InlineCode>showLayer</InlineCode> to 
-      <InlineCode>true</InlineCode> the layer is made visible and togglable in the
-      'Map layers' pop-up in the top-right corner of the map iframe.
-    </p>
-    <RunExampleButton 
-      @click="addSimpleVectorLayer({showLayer: true, layerName: 'Example layer'})"
-    >
-      Add togglable layer
-    </RunExampleButton>
-    <RunExampleButton @click="addFeaturesToMapRequest">
-      Add features to layer
-    </RunExampleButton>
-    <CodeSnippet>
-channel.postRequest('{{ requestName }}', [{
-  ...
-  showLayer: true,
-  layerName: 'Example layer',
-  ...
-}]);
-    </CodeSnippet>
     <h3>Styling</h3>
     <p>
       You can define more than just the hover styles with the
@@ -145,7 +123,7 @@ export default {
       requestName,
       apiDocPageRequest: 'mapping/mapmodule/request/vectorlayerrequest.md',
       styleDocLink: 'https://oskari.org/documentation/examples/oskari-style',
-      LAYER_OPTS,
+      layer,
       geojsonObject
     };
   },
@@ -153,27 +131,20 @@ export default {
     // Clean up when user leaves the example
     this.$root.channel.postRequest('VectorLayerRequest', [
       {
-        layerId: LAYER_OPTS.simple.layerId,
-        remove: true
-      }
-    ]);
-    this.$root.channel.postRequest('VectorLayerRequest', [
-      {
-        layerId: LAYER_OPTS.listing.layerId,
+        layerId: layer.layerId,
         remove: true
       }
     ]);
     this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
   },
   methods: {
-    addSimpleVectorLayer(params = null) {
-      const layerOptions = { ...LAYER_OPTS.simple, ...params };
-      this.$root.channel.postRequest('VectorLayerRequest', [layerOptions]);
-      this.$root.channel.log('VectorLayerRequest posted with data', [layerOptions]);
+    addSimpleVectorLayer() {
+      this.$root.channel.postRequest('VectorLayerRequest', [this.layer]);
+      this.$root.channel.log('VectorLayerRequest posted with data', [this.layer]);
     },
     removeSimpleLayer() {
       const layerOptions = {
-        layerId: LAYER_OPTS.simple.layerId,
+        layerId: layer.layerId,
         remove: true
       };
       this.$root.channel.postRequest('VectorLayerRequest', [layerOptions]);
@@ -183,7 +154,7 @@ export default {
       const params = [
         geojsonObject,
         {
-          layerId: LAYER_OPTS.simple.layerId,
+          layerId: layer.layerId,
           clearPrevious: true,
           centerTo: true,
           cursor: 'zoom-in'
@@ -199,37 +170,19 @@ export default {
   }
 };
 
-const LAYER_OPTS = {
-  simple: {
-    layerId: 'MY_VECTOR_LAYER',
-    opacity: 75,
-    // TODO: layer style can't be configured. Only hover style is supported
-    hover: {
-      featureStyle: {
-        // FIXME: inherit and effect don't work if features don't have styles specified in AddFeaturesToMap
-        //   inherit: true,
-        //   effect: 'darken'
-        // FIXME: stroke without fill makes the feature blink while hovering
-        fill: {
-          color: '#ff00ff'
-        },
-        // FIXME: fill without stroke makes the feature blink while hovering
-        stroke: {
-          color: '#000000'
-        }
+const layer = {
+  layerId: 'MY_VECTOR_LAYER',
+  opacity: 75,
+  hover: {
+    featureStyle: {
+      fill: {
+        color: '#ff00ff'
       },
-      content: [{ key: 'Layer: MY_VECTOR_LAYER' }, { key: 'Name', valueProperty: 'name' }]
-    }
-  },
-  listing: {
-    layerId: 'MY_LISTED_VECTOR_LAYER',
-    layerInspireName: 'My layer group',
-    layerOrganizationName: 'Organization name',
-    showLayer: true,
-    opacity: 100,
-    layerName: 'Layer name',
-    layerDescription: 'Description text',
-    minZoomLevel: 6
+      stroke: {
+        color: '#000000'
+      }
+    },
+    content: [{ key: 'Layer: MY_VECTOR_LAYER' }, { key: 'Name', valueProperty: 'name' }]
   }
 };
 </script>
