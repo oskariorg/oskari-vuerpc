@@ -123,6 +123,7 @@ export default {
 .wrapper {
   position: absolute;
   width: 100%;
+  height: 90%;
   margin-left: 0;
   margin-right: 0;
   min-height: 750px;
@@ -132,7 +133,7 @@ export default {
   height: 98% !important;
 }
 .panel {
-  height: 800px;
+  height: 100%;
 
   @media screen and (max-height: 899px) {
     height: 750px;
