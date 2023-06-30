@@ -15,9 +15,12 @@ export default {
   data() {
     return {
       id: `${this.$.uid}`,
+      editor: null,
+      isCollapsed: true,
+      defaultSize: 20,
       modeSelector: {
         javascript: 'ace/mode/typescript',
-        xml: 'ace/mode/html_ruby'
+        html: 'ace/mode/html_ruby'
       }
     };
   },
@@ -34,7 +37,7 @@ export default {
   mounted() {
     // create editor and set its properties
     const editor = ace.edit(this.id, {
-      maxLines: 20,
+      maxLines: this.defaultSize,
       minLines: 10,
       fontSize: 14,
       theme: 'ace/theme/monokai',
@@ -42,64 +45,69 @@ export default {
     });
     const session = ace.createEditSession(this.code);
     const mode =
-      this.modeSelector[this.mode] === undefined ? 'ace/mode/typescript' : this.modeSelector[this.mode];
+      this.modeSelector[this.mode] === undefined
+        ? 'ace/mode/typescript'
+        : this.modeSelector[this.mode];
     session.setMode(mode);
     editor.setSession(session);
+    this.editor = editor;
 
     // add button on click event so that button styling works
     const button = document.getElementById(`expand-button-${this.id}`);
     button.addEventListener('click', () => {
       button.classList.toggle('toggled');
-      this.expandEditor();
+      this.expandCollapseEditor();
     });
   },
   methods: {
-    expandEditor() {
-      console.log('expand...');
+    expandCollapseEditor() {
+      if (this.isCollapsed) {
+        const length = this.editor.session.getLength();
+        this.editor.setOption('maxLines', length);
+      } else {
+        this.editor.setOption('maxLines', this.defaultSize);
+      }
+      this.isCollapsed = !this.isCollapsed;
     }
   }
 };
 </script>
 
 <style scoped>
+.editor-wrapper {
+  display: grid;
+}
 .editor {
   width: 100%;
   height: 400px;
 }
-
-.editor-wrapper {
-  display: grid;
-}
 /** 
-This style creates an upside down triangle inside the button and flips it by 180 degrees when clicked.
+This style creates an upside down triangle inside the button and flips it by 180 degrees
+when clicked.
 */
 .expand-button {
   background-color: #23241f;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
 }
-
 .expand-content {
   width: 0;
   height: 0;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-top: 14px solid #fff;
+  border-top: 14px solid #f00;
 }
-
 .expand-content,
 .expand-content::before,
 .expand-content::after {
   position: absolute;
-  transform: translate(-50%, -50%);
 }
 .toggled .expand-content {
-  transform: rotate(180deg) translate(50%, 50%);
-  -webkit-transform: rotate(180deg) translate(50%, 50%);
-  -moz-transform: rotate(180deg) translate(50%, -50%);
-  -o-transform: rotate(180deg) translate(50%, -50%);
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
 }
-
 .toggled .expand-content::after {
   transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
