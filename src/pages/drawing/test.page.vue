@@ -1,6 +1,11 @@
 <template>
   <div>
     <h3>header</h3>
+    <p>
+      placeholder text placeholder text placeholder text placeholder text placeholder text
+      placeholder textplaceholder text placeholder textplaceholder text placeholder textplaceholder
+      text placeholder text placeholder textplaceholder textplaceholder text
+    </p>
     <CodeEditor :code="event" :mode="mode1" />
     <p>
       placeholder text placeholder text placeholder text placeholder text placeholder text
