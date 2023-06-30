@@ -19,7 +19,7 @@
 const mode1 = 'javascript';
 
 const code2 = `<div>moikka kaikille</div>`;
-const mode2 = 'xml';
+const mode2 = 'html';
 
 const event = `\
 {
