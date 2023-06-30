@@ -1,8 +1,7 @@
 <template>
   <div class="editor-wrapper">
     <div :id="id" class="editor"></div>
-    <button class="expand-button" style="height: 20px; width: 100%">
-      <!--TODO: add image to button <img src="..." />-->
+    <button class="expand-button" :id="`expand-button-${id}`" style="height: 20px; width: 100%">
       <span class="expand-content"></span>
     </button>
   </div>
@@ -48,7 +47,7 @@ export default {
     editor.setSession(session);
 
     // add button on click event so that button styling works
-    const button = document.querySelector('.expand-button');
+    const button = document.getElementById(`expand-button-${this.id}`);
     button.addEventListener('click', () => {
       button.classList.toggle('toggled');
       this.expandEditor();

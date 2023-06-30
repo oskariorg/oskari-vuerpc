@@ -12,6 +12,7 @@
       placeholder textplaceholder text placeholder textplaceholder text placeholder textplaceholder
       text placeholder text placeholder textplaceholder textplaceholder text
     </p>
+    <CodeEditor :code="code2" :mode="mode2"></CodeEditor>
   </div>
 </template>
 <script>
