@@ -5,10 +5,16 @@
       The <InlineCode>{{ eventName }}</InlineCode> occurs after the map has been clicked. Click the
       map to see the events in the log and below.
     </p>
-    <DocumentationLink type="event" :apiDoc="apiDocPage"
-      >Documentation for {{ eventName }}</DocumentationLink
-    >
-    <CodeSnippet v-if="clickEvent"> {{ clickEventSnippet }} </CodeSnippet>
+    <DocumentationLink type="event" :apiDoc="apiDocPage">
+      Documentation for {{ eventName }}
+    </DocumentationLink>
+    <CodeSnippet :snippet="clickEventSnippet" />
+    If a map click opens an info box, a <InlineCode>DataForMapLocationEvent</InlineCode> is
+    triggered. The event contains the data of the opened info box, allowing programmatic access to
+    the data. Press the 'Toggle layer' button and then click on the map to see the events in the
+    codebox below.
+    <RunExampleButton @click="toggleLayerVisibility">Toggle layer</RunExampleButton>
+    <CodeSnippet :snippet="mapLocationEventSnippet" />
   </div>
 </template>
 
@@ -31,7 +37,9 @@ export default {
       title,
       eventName,
       apiDocPage,
-      clickEvent: null
+      isVisible: false,
+      clickEvent: {},
+      mapLocationEvent: {}
     };
   },
   computed: {
@@ -39,6 +47,18 @@ export default {
       // Changing slot content won't update the code highlight at runtime
       // If we pass the whole snippet as prop it will be updated as expected
       return JSON.stringify(this.clickEvent, null, 2);
+    },
+    mapLocationEventSnippet() {
+      return JSON.stringify(this.mapLocationEvent, null, 2);
+    }
+  },
+  methods: {
+    toggleLayerVisibility() {
+      this.isVisible = !this.isVisible;
+      this.$root.channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', [
+        492,
+        this.isVisible
+      ]);
     }
   },
   mounted() {
@@ -47,11 +67,21 @@ export default {
         this.clickEvent = data;
       })
     );
+    listeners.push(
+      EVENTBUS.on('DataForMapLocationEvent', (data) => {
+        this.mapLocationEvent = data;
+      })
+    );
   },
   beforeUnmount() {
     // Clean up when user leaves the example
     while (listeners.length) {
       EVENTBUS.off('MapClickedEvent', listeners.pop());
+      EVENTBUS.off('DataForMapLocationEvent', listeners.pop());
+    }
+    this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest', ['getinforesult']);
+    if (this.isVisible) {
+      this.toggleLayerVisibility();
     }
   }
 };
