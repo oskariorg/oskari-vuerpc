@@ -3,8 +3,15 @@
     <div :id="id" class="editor"></div>
     <!-- never rendered, used only for capturing content-->
     <slot v-if="false"></slot>
-    <button v-if="runnable" @click="evaluateContent" class="run-code-button">Run code</button>
-    <button class="expand-button" :id="`expand-button-${id}`">
+    <button
+      v-if="runnable"
+      @click="evaluateContent"
+      class="run-code-button"
+      :id="`run-code-button-${id}`"
+    >
+      Run code
+    </button>
+    <button v-if="expandable" class="expand-button" :id="`expand-button-${id}`">
       <span class="expand-content"></span>
     </button>
   </div>
@@ -20,6 +27,7 @@ export default {
     return {
       id: `${this.$.uid}`,
       editor: null,
+      expandable: true,
       isCollapsed: true,
       defaultSize: 20,
       modeSelector: {
@@ -46,7 +54,7 @@ export default {
     // create editor and set its properties
     const editor = ace.edit(this.id, {
       maxLines: this.defaultSize,
-      minLines: 10,
+      minLines: 5,
       fontSize: 14,
       theme: 'ace/theme/monokai',
       tabSize: 2
@@ -60,12 +68,29 @@ export default {
     editor.setSession(session);
     this.editor = editor;
 
-    // add button on click event so that button styling works
-    const button = document.getElementById(`expand-button-${this.id}`);
-    button.addEventListener('click', () => {
-      button.classList.toggle('toggled');
-      this.expandCollapseEditor();
-    });
+    const snippetLineCount = this.editor.session.getLength();
+    if (snippetLineCount < this.defaultSize) {
+      this.expandable = false;
+      // render at least 5 lines
+      this.editor.setOption('maxLines', Math.max(snippetLineCount, 5));
+    }
+
+    // add rounded corners to bottom element
+    if (this.expandable) {
+      const elem = document.getElementById(`expand-button-${this.id}`);
+      elem.classList.add('bottom-element');
+      // add event listener so that button is styled and functions as intended
+      elem.addEventListener('click', () => {
+        elem.classList.toggle('toggled');
+        this.expandCollapseEditor();
+      });
+    } else if (this.runnable) {
+      const elem = document.getElementById(`run-code-button-${this.id}`);
+      elem.classList.add('bottom-element');
+    } else {
+      const elem = document.getElementById(this.id);
+      elem.classList.add('bottom-element');
+    }
   },
   computed: {
     codeSnippet() {
@@ -116,14 +141,16 @@ export default {
   padding: 1em;
 }
 .editor {
-  width: 100%;
-  height: 400px;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
 }
 .run-code-button {
   background-color: #23241f;
   color: #f92672;
+}
+.bottom-element {
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
 }
 /** 
 This style creates an upside down triangle inside the button and flips it by 180 degrees
@@ -133,8 +160,6 @@ when clicked.
   width: 100%;
   height: 20px;
   background-color: #23241f;
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
   position: relative;
 }
 .expand-content {
