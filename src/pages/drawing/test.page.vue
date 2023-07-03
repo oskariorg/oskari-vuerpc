@@ -6,13 +6,13 @@
       placeholder textplaceholder text placeholder textplaceholder text placeholder textplaceholder
       text placeholder text placeholder textplaceholder textplaceholder text
     </p>
-    <CodeEditor :code="event" :mode="mode1" />
+    <CodeEditor :code="event" :mode="mode1" :runnable="true" />
     <p>
       placeholder text placeholder text placeholder text placeholder text placeholder text
       placeholder textplaceholder text placeholder textplaceholder text placeholder textplaceholder
       text placeholder text placeholder textplaceholder textplaceholder text
     </p>
-    <CodeEditor :code="code2" :mode="mode2"></CodeEditor>
+    <CodeEditor>const a = 1;</CodeEditor>
   </div>
 </template>
 <script>
@@ -21,65 +21,34 @@ const mode1 = 'javascript';
 const code2 = `<div>moikka kaikille</div>`;
 const mode2 = 'html';
 
-const event = `\
-{
-  "operation": "add",
+const event = `
+var geojson = {
+  "type": "FeatureCollection",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "EPSG:3067"
+    }
+  },
   "features": [
     {
-      "id": "F24",
-      "geojson": {
-        "type": "FeatureCollection",
-        "features": [
-          {
-            "type": "Feature",
-            "id": "F24",
-            "geometry": {
-              "type": "LineString",
-              "coordinates": [
-                [
-                  488704,
-                  6939136
-                ],
-                [
-                  588704,
-                  7039136
-                ]
-              ]
-            },
-            "properties": {
-              "test_property": 1,
-              "oskari-cursor": "zoom-in"
-            }
-          }
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          528704,
+          6969136
         ]
       },
-        "layerId": "VECTOR"
-    },
-    {
-      "id": "F25",
-      "geojson": {
-        "type": "FeatureCollection",
-        "features": [
-          {
-            "type": "Feature",
-            "id": "F25",
-            "geometry": {
-              "type": "Point",
-              "coordinates": [
-                488704,
-                6939136
-              ]
-            },
-            "properties": {
-              "test_property": 2
-            }
-          }
-        ]
-      },
-      "layerId": "VECTOR"
+      "properties": {
+        "name": "I'm a point"
+      }
     }
   ]
-}`;
+};
+// push vector features on geojson to map
+channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [geojson]);
+`.trim()
 
 export default {
   name: 'testPage',
