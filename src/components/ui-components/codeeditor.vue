@@ -1,6 +1,8 @@
 <template>
   <div class="editor-wrapper">
     <div :id="id" class="editor"></div>
+    <!-- never rendered, used only for capturing content-->
+    <slot v-if="false"></slot>
     <button v-if="runnable" @click="evaluateContent" class="run-code-button">Run code</button>
     <button class="expand-button" :id="`expand-button-${id}`">
       <span class="expand-content"></span>
@@ -10,6 +12,7 @@
 <script>
 import ace from 'ace-builds';
 import 'ace-builds/esm-resolver';
+import { useSlots } from 'vue';
 
 export default {
   name: 'codeEditor',
@@ -48,7 +51,7 @@ export default {
       theme: 'ace/theme/monokai',
       tabSize: 2
     });
-    const session = ace.createEditSession(this.code);
+    const session = ace.createEditSession(this.codeSnippet);
     const mode =
       this.modeSelector[this.mode] === undefined
         ? 'ace/mode/typescript'
@@ -63,6 +66,25 @@ export default {
       button.classList.toggle('toggled');
       this.expandCollapseEditor();
     });
+  },
+  computed: {
+    codeSnippet() {
+      // try to use props
+      let snippet = this.code;
+      if (!snippet) {
+        // no props, use slots intead
+        try {
+          const slots = useSlots();
+          const slotEl = slots.default()[0];
+          snippet = slotEl.text.trim();
+        } catch (err) {
+          snippet = 'Code snippet missing/unable to parse';
+          err;
+        }
+      }
+      // expose to template and other options API hooks
+      return snippet;
+    }
   },
   methods: {
     expandCollapseEditor() {
@@ -81,7 +103,7 @@ export default {
         const expression = Function(content);
         expression();
       } catch (e) {
-        console.log(`Error '${e}' while parsing statement: '${content}'`);
+        this.$root.channel.log(`Error '${e}' while parsing statement: '${content}'`);
       }
     }
   }
@@ -91,6 +113,7 @@ export default {
 <style scoped>
 .editor-wrapper {
   display: grid;
+  padding: 1em;
 }
 .editor {
   width: 100%;
