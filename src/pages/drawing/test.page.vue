@@ -13,6 +13,18 @@
       text placeholder text placeholder textplaceholder textplaceholder text
     </p>
     <CodeEditor>const a = 1;</CodeEditor>
+    <CodeEditor :runnable="true">
+const MARKER_ID = 'RPC_MARKER'
+const data = {
+  x: 386020,
+  y: 6670057,
+  color: 'ff0000',
+  msg : '',
+  shape: 3, // icon number (0-6)
+  size: 3
+};
+channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, MARKER_ID]);
+    </CodeEditor>
   </div>
 </template>
 <script>
