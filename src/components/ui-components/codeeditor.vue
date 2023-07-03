@@ -1,3 +1,21 @@
+<!---
+This component is a PoC live code editor, which allows editing and running example code in the browser.
+
+Props:
+code: String value, contains the output code
+mode: String, defines the language mode, possible values are 'javascript' and 'html', defaults to 'javascript'
+runnable: Boolean, if 'true', renders a button which runs the in-editor code when pressed
+
+Can be used without passing props like this:
+<CodeEditor>code here</CodeEditor>
+
+Or with props:
+<CodeEditor
+  :code="`console.log('Hello World!')`"
+  :mode="'javascript'"
+  :runnable="true"
+/>
+-->
 <template>
   <div class="editor-wrapper">
     <div :id="id" class="editor"></div>
