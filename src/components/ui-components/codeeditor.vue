@@ -4,6 +4,7 @@
     <button class="expand-button" :id="`expand-button-${id}`">
       <span class="expand-content"></span>
     </button>
+    <button @click="evaluateContent">eval</button>
   </div>
 </template>
 <script>
@@ -68,6 +69,15 @@ export default {
         this.editor.setOption('maxLines', this.defaultSize);
       }
       this.isCollapsed = !this.isCollapsed;
+    },
+    evaluateContent() {
+      const content = this.editor.session.getValue();
+      try {
+        const expression = Function(content);
+        expression()
+      } catch (e) {
+        console.log(`Error '${e}' while parsing statement: '${content}'`);
+      }
     }
   }
 };
@@ -80,6 +90,8 @@ export default {
 .editor {
   width: 100%;
   height: 400px;
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
 }
 /** 
 This style creates an upside down triangle inside the button and flips it by 180 degrees
@@ -97,7 +109,7 @@ when clicked.
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
   border-top: 14px solid #75715e;
-  top: 1px
+  top: 1px;
 }
 .expand-content,
 .expand-content::before,
