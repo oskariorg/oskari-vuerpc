@@ -37,7 +37,6 @@ Or with props:
 <script>
 import ace from 'ace-builds';
 import 'ace-builds/esm-resolver';
-import { useSlots } from 'vue';
 
 export default {
   name: 'codeEditor',
@@ -117,8 +116,7 @@ export default {
       if (!snippet) {
         // no props, use slots intead
         try {
-          const slots = useSlots();
-          const slotEl = slots.default()[0];
+          const slotEl = this.$slots.default()[0];
           snippet = slotEl.text.trim();
         } catch (err) {
           snippet = 'Code snippet missing/unable to parse';
