@@ -1,10 +1,10 @@
 <template>
   <div class="editor-wrapper">
     <div :id="id" class="editor"></div>
+    <button v-if="runnable" @click="evaluateContent" class="run-code-button">Run code</button>
     <button class="expand-button" :id="`expand-button-${id}`">
       <span class="expand-content"></span>
     </button>
-    <button @click="evaluateContent">eval</button>
   </div>
 </template>
 <script>
@@ -33,6 +33,10 @@ export default {
     mode: {
       type: String,
       default: 'javascript'
+    },
+    runnable: {
+      type: Boolean,
+      default: false
     }
   },
   mounted() {
@@ -71,10 +75,11 @@ export default {
       this.isCollapsed = !this.isCollapsed;
     },
     evaluateContent() {
+      if (!this.runnable) return;
       const content = this.editor.session.getValue();
       try {
         const expression = Function(content);
-        expression()
+        expression();
       } catch (e) {
         console.log(`Error '${e}' while parsing statement: '${content}'`);
       }
@@ -92,6 +97,10 @@ export default {
   height: 400px;
   border-top-right-radius: 15px;
   border-top-left-radius: 15px;
+}
+.run-code-button {
+  background-color: #23241f;
+  color: #f92672;
 }
 /** 
 This style creates an upside down triangle inside the button and flips it by 180 degrees
