@@ -1,7 +1,7 @@
 <template>
   <div class="editor-wrapper">
     <div :id="id" class="editor"></div>
-    <button class="expand-button" :id="`expand-button-${id}`" style="height: 20px; width: 100%">
+    <button class="expand-button" :id="`expand-button-${id}`">
       <span class="expand-content"></span>
     </button>
   </div>
@@ -86,16 +86,18 @@ This style creates an upside down triangle inside the button and flips it by 180
 when clicked.
 */
 .expand-button {
+  width: 100%;
+  height: 20px;
   background-color: #23241f;
   border-bottom-right-radius: 15px;
   border-bottom-left-radius: 15px;
+  position: relative;
 }
 .expand-content {
-  width: 0;
-  height: 0;
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-top: 14px solid #f00;
+  border-top: 14px solid #75715e;
+  top: 1px
 }
 .expand-content,
 .expand-content::before,
