@@ -18,18 +18,13 @@ Or with props:
 -->
 <template>
   <div class="editor-wrapper">
-    <div :id="id" class="editor"></div>
+    <div ref="editorRef" class="editor"></div>
     <!-- never rendered, used only for capturing content-->
     <slot v-if="false"></slot>
-    <button
-      v-if="runnable"
-      @click="evaluateContent"
-      class="run-code-button"
-      :id="`run-code-button-${id}`"
-    >
+    <button v-if="runnable" @click="evaluateContent" ref="runnableRef" class="run-code-button">
       Run code
     </button>
-    <button v-if="expandable" class="expand-button" :id="`expand-button-${id}`">
+    <button v-if="expandable" ref="expandRef" class="expand-button">
       <span class="expand-content"></span>
     </button>
   </div>
@@ -42,7 +37,6 @@ export default {
   name: 'codeEditor',
   data() {
     return {
-      id: `${this.$.uid}`,
       editor: null,
       expandable: true,
       isCollapsed: true,
@@ -69,7 +63,7 @@ export default {
   },
   mounted() {
     // create editor and set its properties
-    const editor = ace.edit(this.id, {
+    const editor = ace.edit(this.$refs.editorRef, {
       maxLines: this.defaultSize,
       minLines: 5,
       fontSize: 14,
@@ -94,7 +88,7 @@ export default {
 
     // add rounded corners to bottom element
     if (this.expandable) {
-      const elem = document.getElementById(`expand-button-${this.id}`);
+      const elem = this.$refs.expandRef;
       elem.classList.add('bottom-element');
       // add event listener so that button is styled and functions as intended
       elem.addEventListener('click', () => {
@@ -102,11 +96,9 @@ export default {
         this.expandCollapseEditor();
       });
     } else if (this.runnable) {
-      const elem = document.getElementById(`run-code-button-${this.id}`);
-      elem.classList.add('bottom-element');
+      this.$refs.runnableRef.classList.add('bottom-element');
     } else {
-      const elem = document.getElementById(this.id);
-      elem.classList.add('bottom-element');
+      this.$refs.editorRef.classList.add('bottom-element');
     }
   },
   computed: {
