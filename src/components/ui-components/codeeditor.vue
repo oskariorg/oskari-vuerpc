@@ -180,21 +180,13 @@ when clicked.
 .expand-content::before,
 .expand-content::after {
   position: absolute;
+  transition: all 0.3s linear;
 }
-.toggled .expand-content {
-  transform: rotate(180deg);
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-}
+.toggled .expand-content,
 .toggled .expand-content::after {
   transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
   -moz-transform: rotate(180deg);
   -o-transform: rotate(180deg);
-}
-.expand-content,
-.expand-content::after {
-  transition: all 0.3s linear;
 }
 </style>
