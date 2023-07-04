@@ -143,17 +143,16 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
 .editor-wrapper {
   display: grid;
-  padding: 1em;
-}
-.editor {
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
+  padding-top: 1em;
+  background-color: #272822;
+  border-radius: 15px;
+  margin: 1em;
 }
 .run-code-button {
-  background-color: #23241f;
+  background-color: #272822;
   color: #f92672;
 }
 .bottom-element {
@@ -161,13 +160,13 @@ export default {
   border-bottom-left-radius: 15px;
 }
 /** 
-This style creates an upside down triangle inside the button and flips it by 180 degrees
-when clicked.
+* This style creates an upside down triangle inside the button and flips it by 180 degrees
+* when clicked.
 */
 .expand-button {
   width: 100%;
   height: 20px;
-  background-color: #23241f;
+  background-color: #272822;
   position: relative;
 }
 .expand-content {
@@ -189,4 +188,28 @@ when clicked.
   -moz-transform: rotate(180deg);
   -o-transform: rotate(180deg);
 }
+/**
+* Set editor scrollbar style
+*/
+.ace_scrollbar::-webkit-scrollbar {
+  height: 7px;
+  width: 7px;
+}
+.ace_scrollbar::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #272822;
+  border-radius: 10px;
+}
+.ace_scrollbar::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 10px;
+}
+/** 
+* TODO: Set editors line column padding to match editor
+*/
+.ace_gutter {
+  border-top-left-radius: 15px;
+}
+
 </style>

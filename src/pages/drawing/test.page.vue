@@ -29,10 +29,6 @@ channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, MARKER_ID]);
 </template>
 <script>
 const mode1 = 'javascript';
-
-const code2 = `<div>moikka kaikille</div>`;
-const mode2 = 'html';
-
 const event = `
 var geojson = {
   "type": "FeatureCollection",
@@ -68,8 +64,6 @@ export default {
     return {
       event,
       mode1,
-      code2,
-      mode2
     };
   }
 };
