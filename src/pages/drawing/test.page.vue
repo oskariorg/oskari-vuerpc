@@ -25,6 +25,8 @@ const data = {
 };
 channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, MARKER_ID]);
     </CodeEditor>
+
+    <CodeEditor lang="xml">{{ xml }}</CodeEditor>
   </div>
 </template>
 <script>
@@ -56,7 +58,9 @@ var geojson = {
 };
 // push vector features on geojson to map
 channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', [geojson]);
-`.trim()
+`.trim();
+
+const xml = '<div>moikka kaikille</div>';
 
 export default {
   name: 'testPage',
@@ -64,6 +68,7 @@ export default {
     return {
       event,
       mode1,
+      xml
     };
   }
 };
