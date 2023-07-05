@@ -3,8 +3,9 @@ This component is a PoC live code editor, which allows editing and running examp
 
 Props:
 snippet: String value, contains the output code
-mode: String, defines the language mode, possible values are 'javascript' and 'html', defaults to 'javascript'
+mode: String, defines the language mode, possible values are 'javascript' and 'xml', defaults to 'javascript'
 runnable: Boolean, if 'true', renders a button which runs the in-editor code when pressed
+readOnly: sets the editor in read-only mode
 
 Can be used without passing props like this:
 <CodeEditor>code here</CodeEditor>
@@ -14,6 +15,7 @@ Or with props:
   :code="`console.log('Hello World!')`"
   :lang="'javascript'"
   :runnable="true"
+  :readOnly="false"
 />
 -->
 <template>
@@ -169,7 +171,7 @@ export default {
   display: grid;
   padding-top: 1em;
   background-color: #272822;
-  border-radius: 15px;
+  border-radius: 5px;
   margin: 1em;
 }
 .run-code-button {
@@ -177,8 +179,8 @@ export default {
   color: #f92672;
 }
 .bottom-element {
-  border-bottom-right-radius: 15px;
-  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 /** 
 * This style creates an upside down triangle inside the button and flips it by 180 degrees
