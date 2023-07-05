@@ -3,9 +3,10 @@
     <h2>{{ title }}</h2>
 
     <p>
-      The <InlineCode>getPixelMeasuresInScale()</InlineCode> function on the RPC API client can be used to get the pixel measures
-      for given real life object like an A4 size paper sheet. This is useful for showing the end
-      user what part of the map fits in the paper sheet when using a given scale.
+      The <InlineCode>getPixelMeasuresInScale()</InlineCode> function on the RPC API client can be
+      used to get the pixel measures for given real life object like an A4 size paper sheet. This is
+      useful for showing the end user what part of the map fits in the paper sheet when using a
+      given scale.
     </p>
 
     <DocumentationLink type="bundle" :apiDoc="apiDocPage">
@@ -83,10 +84,18 @@ export default {
   },
   mounted() {
     const channel = this.$root.channel;
-    channel.getMapPosition((data) => {
-      // initialize current scale when mounted
-      currentScale = data.scale;
-    });
+    // initialize current scale when mounted
+    if (channel.isReady()) {
+      channel.getMapPosition((data) => {
+        currentScale = data.scale;
+      });
+    } else {
+      EVENTBUS.once('channel.available', () => {
+        channel.getMapPosition((data) => {
+          currentScale = data.scale;
+        });
+      });
+    }
     listeners.push(
       EVENTBUS.on('AfterMapMoveEvent', (data) => {
         if (currentScale !== data.scale) {
