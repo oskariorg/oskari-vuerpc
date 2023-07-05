@@ -83,8 +83,10 @@ export default {
     if (snippetLineCount < this.defaultSize) {
       this.expandable = false;
       // render at least 5 lines
-      this.editor.setOption('minLines', Math.max(snippetLineCount + 1, 5));
-      this.editor.setOption('maxLines', Math.max(snippetLineCount + 1, 5));
+      this.editor.setOptions({
+        minLines: Math.max(snippetLineCount + 1, 5),
+        maxLines: Math.max(snippetLineCount + 1, 5)
+      });
     }
 
     // add rounded corners to bottom element
@@ -124,6 +126,12 @@ export default {
     codeSnippet() {
       // update editor content when props value changes
       this.editor.setValue(this.codeSnippet);
+      // render at most 20 lines
+      const lineCount = Math.min(this.editor.session.getLength() + 1, 20);
+      this.editor.setOptions({
+        minLines: lineCount,
+        maxLines: lineCount
+      });
     }
   },
   methods: {
@@ -204,11 +212,12 @@ export default {
 }
 .ace_scrollbar::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #272822;
+  background-color: rgba(39, 40, 34, 0.2);
   border-radius: 10px;
 }
 .ace_scrollbar::-webkit-scrollbar-thumb {
   background-color: darkgrey;
+  background-color: rgba(169, 169, 169, 0.2);
   outline: 1px solid slategrey;
   border-radius: 10px;
 }
