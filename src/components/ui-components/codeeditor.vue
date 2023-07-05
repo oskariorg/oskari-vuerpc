@@ -12,7 +12,7 @@ Can be used without passing props like this:
 Or with props:
 <CodeEditor
   :code="`console.log('Hello World!')`"
-  :mode="'javascript'"
+  :lang="'javascript'"
   :runnable="true"
 />
 -->
@@ -43,7 +43,7 @@ export default {
       defaultSize: 20,
       modeSelector: {
         javascript: 'ace/mode/typescript',
-        html: 'ace/mode/html_ruby'
+        xml: 'ace/mode/html_ruby'
       }
     };
   },
@@ -52,7 +52,7 @@ export default {
       type: String,
       default: ''
     },
-    mode: {
+    lang: {
       type: String,
       default: 'javascript'
     },
@@ -72,9 +72,9 @@ export default {
     });
     const session = ace.createEditSession(this.codeSnippet);
     const mode =
-      this.modeSelector[this.mode] === undefined
+      this.modeSelector[this.lang] === undefined
         ? 'ace/mode/typescript'
-        : this.modeSelector[this.mode];
+        : this.modeSelector[this.lang];
     session.setMode(mode);
     editor.setSession(session);
     this.editor = editor;
