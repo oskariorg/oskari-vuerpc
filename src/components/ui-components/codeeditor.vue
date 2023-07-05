@@ -2,7 +2,7 @@
 This component is a PoC live code editor, which allows editing and running example code in the browser.
 
 Props:
-code: String value, contains the output code
+snippet: String value, contains the output code
 mode: String, defines the language mode, possible values are 'javascript' and 'html', defaults to 'javascript'
 runnable: Boolean, if 'true', renders a button which runs the in-editor code when pressed
 
@@ -48,7 +48,7 @@ export default {
     };
   },
   props: {
-    code: {
+    snippet: {
       type: String,
       default: ''
     },
@@ -65,7 +65,7 @@ export default {
     // create editor and set its properties
     const editor = ace.edit(this.$refs.editorRef, {
       maxLines: this.defaultSize,
-      minLines: 5,
+      minLines: this.defaultSize,
       fontSize: 14,
       theme: 'ace/theme/monokai',
       tabSize: 2
@@ -83,7 +83,8 @@ export default {
     if (snippetLineCount < this.defaultSize) {
       this.expandable = false;
       // render at least 5 lines
-      this.editor.setOption('maxLines', Math.max(snippetLineCount, 5));
+      this.editor.setOption('minLines', Math.max(snippetLineCount + 1, 5));
+      this.editor.setOption('maxLines', Math.max(snippetLineCount + 1, 5));
     }
 
     // add rounded corners to bottom element
@@ -104,7 +105,7 @@ export default {
   computed: {
     codeSnippet() {
       // try to use props
-      let snippet = this.code;
+      let snippet = this.snippet;
       if (!snippet) {
         // no props, use slots intead
         try {
@@ -117,6 +118,12 @@ export default {
       }
       // expose to template and other options API hooks
       return snippet;
+    }
+  },
+  watch: {
+    codeSnippet() {
+      // update editor content when props value changes
+      this.editor.setValue(this.codeSnippet);
     }
   },
   methods: {
@@ -205,11 +212,4 @@ export default {
   outline: 1px solid slategrey;
   border-radius: 10px;
 }
-/** 
-* TODO: Set editors line column padding to match editor
-*/
-.ace_gutter {
-  border-top-left-radius: 15px;
-}
-
 </style>

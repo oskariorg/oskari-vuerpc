@@ -6,7 +6,7 @@
       placeholder textplaceholder text placeholder textplaceholder text placeholder textplaceholder
       text placeholder text placeholder textplaceholder textplaceholder text
     </p>
-    <CodeEditor :code="event" :mode="mode1" :runnable="true" />
+    <CodeEditor :snippet="event" :mode="mode1" :runnable="true" />
     <p>
       placeholder text placeholder text placeholder text placeholder text placeholder text
       placeholder textplaceholder text placeholder textplaceholder text placeholder textplaceholder
