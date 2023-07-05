@@ -80,12 +80,11 @@ export default {
     this.editor = editor;
 
     const snippetLineCount = this.editor.session.getLength();
-    if (snippetLineCount < this.defaultSize) {
+    if (snippetLineCount <= this.defaultSize) {
       this.expandable = false;
-      // render at least 5 lines
       this.editor.setOptions({
-        minLines: Math.max(snippetLineCount + 1, 5),
-        maxLines: Math.max(snippetLineCount + 1, 5)
+        minLines: snippetLineCount + 1,
+        maxLines: snippetLineCount + 1
       });
     }
 
