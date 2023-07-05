@@ -59,6 +59,10 @@ export default {
     runnable: {
       type: Boolean,
       default: false
+    },
+    readOnly: {
+      type: Boolean,
+      default: false
     }
   },
   mounted() {
@@ -68,7 +72,8 @@ export default {
       minLines: this.defaultSize,
       fontSize: 14,
       theme: 'ace/theme/monokai',
-      tabSize: 2
+      tabSize: 2,
+      readOnly: this.readOnly
     });
     const session = ace.createEditSession(this.codeSnippet);
     const mode =
@@ -77,22 +82,24 @@ export default {
         : this.modeSelector[this.lang];
     session.setMode(mode);
     editor.setSession(session);
-    this.editor = editor;
 
-    const snippetLineCount = this.editor.session.getLength();
+    const snippetLineCount = editor.session.getLength();
     if (snippetLineCount <= this.defaultSize) {
       this.expandable = false;
-      this.editor.setOptions({
+      editor.setOptions({
         minLines: snippetLineCount + 1,
         maxLines: snippetLineCount + 1
       });
     }
 
+    // expose to template and options API
+    this.editor = editor;
+
     // add rounded corners to bottom element
     if (this.expandable) {
       const elem = this.$refs.expandRef;
       elem.classList.add('bottom-element');
-      // add event listener so that button is styled and functions as intended
+      // add event listener that toggles the element class style and invokes method
       elem.addEventListener('click', () => {
         elem.classList.toggle('toggled');
         this.expandCollapseEditor();
