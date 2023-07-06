@@ -75,7 +75,8 @@ export default {
       fontSize: 14,
       theme: 'ace/theme/monokai',
       tabSize: 2,
-      readOnly: this.readOnly
+      readOnly: this.readOnly,
+      showPrintMargin: false
     });
     const session = ace.createEditSession(this.codeSnippet);
     const mode =
