@@ -18,9 +18,13 @@ channel.postRequest('GetRouteRequest', [data]);
     </CodeSnippet>
 
     <p>The examples here searches for a route from Pasila to the center point of the map:</p>
-      <RunExampleButton @click="getRouteRequest('TRANSIT,WALK')">GetRouteRequest (transit,walk)</RunExampleButton>
-      <RunExampleButton @click="getRouteRequest('WALK')">GetRouteRequest (walk)</RunExampleButton>
-      <RunExampleButton @click="getRouteRequest('BICYCLE')">GetRouteRequest (bicycle)</RunExampleButton>
+    <RunExampleButton @click="getRouteRequest('TRANSIT,WALK')">
+      GetRouteRequest (transit,walk)
+    </RunExampleButton>
+    <RunExampleButton @click="getRouteRequest('WALK')">GetRouteRequest (walk)</RunExampleButton>
+    <RunExampleButton @click="getRouteRequest('BICYCLE')">
+      GetRouteRequest (bicycle)
+    </RunExampleButton>
     <p>
       <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
         Documentation for {{ requestName }}
@@ -65,6 +69,14 @@ export default {
     };
   },
   mounted() {
+    // Show map crosshair when entering page
+    if (this.$root.channel.isReady()) {
+      this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
+    } else {
+      EVENTBUS.once('channel.available', () => {
+        this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
+      });
+    }
     listeners.push(
       EVENTBUS.on('RouteResultEvent', (data) => {
         showRouteOnMap(data, this.$root.channel);
@@ -73,6 +85,7 @@ export default {
   },
   beforeUnmount() {
     // Clean up when user leaves the example
+    this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
     this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
     while (listeners.length) {
       EVENTBUS.off('RouteResultEvent', listeners.pop());
