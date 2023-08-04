@@ -109,7 +109,7 @@ const showPopup = (msg, seconds = 5) => {
 const showRouteOnMap = (response = {}, channel) => {
   if (!response.success) {
     showPopup(
-      'Getting routes failed ! - zoom map center around 1 km to nearest public trafic stop'
+      'Getting routes failed ! - zoom map center around 1 km to nearest public traffic stop'
     );
     return;
   }
