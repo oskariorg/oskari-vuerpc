@@ -2,7 +2,19 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      Allows usage of routing integrations (requires configuration on the Oskari-based application).
+      Oskari allows usage of routing integrations though it requires configuration on the
+      Oskari-based application. <InlineCode>{{ requestName }}</InlineCode> can be used to draw a
+      route on the map from a pair of starting coordinates to destination coordinates. The request
+      supports different transit modes and other options, like maximum walk distance. For more
+      information about <InlineCode>{{ requestName }}</InlineCode
+      >, see the documentation page: <br />
+      <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
+        Documentation for {{ requestName }}
+      </DocumentationLink>
+    </p>
+    <p>
+      A <InlineCode>GetRouteRequest</InlineCode> can be sent for example with data of the following
+      form:
     </p>
 
     <CodeSnippet>
@@ -25,11 +37,6 @@ channel.postRequest('GetRouteRequest', [data]);
     <RunExampleButton @click="getRouteRequest('BICYCLE')">
       GetRouteRequest (bicycle)
     </RunExampleButton>
-    <p>
-      <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
-        Documentation for {{ requestName }}
-      </DocumentationLink>
-    </p>
   </div>
 </template>
 
@@ -139,5 +146,3 @@ const showRouteOnMap = (response = {}, channel) => {
   ]);
 };
 </script>
-
-<style></style>
