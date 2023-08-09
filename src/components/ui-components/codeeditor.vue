@@ -24,7 +24,7 @@ Or with props:
     <!-- never rendered, used only for capturing content-->
     <slot v-if="false"></slot>
     <button v-if="runnable" @click="evaluateContent" ref="runnableRef" class="run-code-button">
-      Run code
+      {{ buttonText }}
     </button>
     <button v-if="expandable" ref="expandRef" class="expand-button">
       <span class="expand-content"></span>
@@ -57,6 +57,10 @@ export default {
     lang: {
       type: String,
       default: 'javascript'
+    },
+    buttonText: {
+      type: String,
+      default: 'Run code'
     },
     runnable: {
       type: Boolean,
