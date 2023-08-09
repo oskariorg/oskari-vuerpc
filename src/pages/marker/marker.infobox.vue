@@ -1,8 +1,8 @@
 <template>
   <div>
     <p>
-      It is possible to show relevant information to a marker with an info box.
-      First, a marker has to be added to the map.
+      It is possible to show relevant information to a marker with an info box. First, a marker has
+      to be added to the map.
     </p>
     <RunExampleButton @click="addMarkerRequestCenterOfMapForInfobox">
       AddMarkerRequest
@@ -23,13 +23,17 @@ channel.getMapPosition(function(data) {
   channel.log('MapModulePlugin.AddMarkerRequest posted with data', markerData);
 });
     </CodeSnippet>
-      <p>
-        An info box is added to a marker with an <InlineCode>InfoBox.ShowInfoBoxRequest</InlineCode>.
-        Remember to include a reference to the marker in the parameters. See the request documentation 
-        for further details on usage.
-      </p>
-      <DocumentationLink type="request" :apiDoc="apiDocPage">Documentation for InfoBox.ShowInfoBoxRequest</DocumentationLink>
-      <RunExampleButton @click="showInfoBoxRequestForMarker">InfoBox.ShowInfoBoxRequest</RunExampleButton>
+    <p>
+      An info box is added to a marker with an <InlineCode>InfoBox.ShowInfoBoxRequest</InlineCode>.
+      Remember to include a reference to the marker in the parameters. See the request documentation
+      for further details on usage.
+    </p>
+    <DocumentationLink type="request" :apiDoc="apiDocPage">
+      Documentation for InfoBox.ShowInfoBoxRequest
+    </DocumentationLink>
+    <RunExampleButton @click="showInfoBoxRequestForMarker">
+      InfoBox.ShowInfoBoxRequest
+    </RunExampleButton>
     <CodeSnippet>
 // Open popup for marker
 var MARKER_ID = 'MARKER_WITH_POPUP';
