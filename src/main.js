@@ -9,7 +9,7 @@ import router from './router';
 import DocumentationLink from './components/ui-components/documentation_link.vue';
 import RunExampleButton from './components/ui-components/run_example_button.vue';
 import InlineCodeSnippet from './components/ui-components/inline_code_snippet.vue';
-import CodeEditor from './components/ui-components/codeeditor.vue'
+import CodeEditor from './components/ui-components/codeeditor.vue';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';

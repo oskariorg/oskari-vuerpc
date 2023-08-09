@@ -44,8 +44,8 @@ channel.getAllLayers(function (layers) {
     <!-- MapLayerVisibilityRequest -->
     <h3>Show or hide a layer on map</h3>
     <p>
-      The request <InlineCode>{{ requestNameVisibility }}</InlineCode> can be used to show or hide
-      a layer on map programmatically.
+      The request <InlineCode>{{ requestNameVisibility }}</InlineCode> can be used to show or hide a
+      layer on map programmatically.
     </p>
 
     <CodeSnippet>
@@ -69,9 +69,9 @@ channel.getAllLayers(function (layers) {
 
     <p>
       <InlineCode>{{ requestNameOpacity }}</InlineCode> and
-      <InlineCode>{{ requestNameVisibility }}</InlineCode> can also be used to control vector
-      layers that are added to the map programmatically during runtime. Reference the layer with the
-      same id used to add vector layer/features to map.
+      <InlineCode>{{ requestNameVisibility }}</InlineCode> can also be used to control vector layers
+      that are added to the map programmatically during runtime. Reference the layer with the same
+      id used to add vector layer/features to map.
     </p>
 
     <p>

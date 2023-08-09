@@ -1,4 +1,4 @@
-import OskariRPC from "oskari-rpc";
+import OskariRPC from 'oskari-rpc';
 
 const createLogger = (logStore) => {
   let id = logStore.length;

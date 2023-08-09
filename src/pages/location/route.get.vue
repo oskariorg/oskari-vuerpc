@@ -18,9 +18,13 @@ channel.postRequest('GetRouteRequest', [data]);
     </CodeSnippet>
 
     <p>The examples here searches for a route from Pasila to the center point of the map:</p>
-      <RunExampleButton @click="getRouteRequest('TRANSIT,WALK')">GetRouteRequest (transit,walk)</RunExampleButton>
-      <RunExampleButton @click="getRouteRequest('WALK')">GetRouteRequest (walk)</RunExampleButton>
-      <RunExampleButton @click="getRouteRequest('BICYCLE')">GetRouteRequest (bicycle)</RunExampleButton>
+    <RunExampleButton @click="getRouteRequest('TRANSIT,WALK')">
+      GetRouteRequest (transit,walk)
+    </RunExampleButton>
+    <RunExampleButton @click="getRouteRequest('WALK')"> GetRouteRequest (walk) </RunExampleButton>
+    <RunExampleButton @click="getRouteRequest('BICYCLE')">
+      GetRouteRequest (bicycle)
+    </RunExampleButton>
     <p>
       <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
         Documentation for {{ requestName }}

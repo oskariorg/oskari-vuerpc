@@ -56,19 +56,11 @@ export default {
   },
   methods: {
     updateMapLayer() {
-      this.$root.channel.postRequest(requestName, [
-        layerId,
-        true,
-        params
-      ]);
+      this.$root.channel.postRequest(requestName, [layerId, true, params]);
       this.$root.channel.log(requestName, params);
     },
     resetMapLayer() {
-      this.$root.channel.postRequest(requestName, [
-        layerId,
-        true,
-        resetParams
-      ]);
+      this.$root.channel.postRequest(requestName, [layerId, true, resetParams]);
       this.$root.channel.log(requestName, resetParams);
     }
   },
