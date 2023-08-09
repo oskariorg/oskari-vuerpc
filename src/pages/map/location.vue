@@ -10,17 +10,16 @@
     <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
       Documentation for {{ requestName }}
     </DocumentationLink>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Move map to Posio">
 var x = {{ LOCATION_POSIO[0] }};
-var y =  {{ LOCATION_POSIO[1] }};;
+var y =  {{ LOCATION_POSIO[1] }};
 var zoomLevel = {{ zoomLevel }};
 channel.postRequest('MapMoveRequest', [x, y, zoomLevel]);
     </CodeSnippet>
 
     <p>
-      Click the button to run the code above (you should also see a move event in the log after the
+      Click the button in the editor to run the code (you should also see a move event in the log after the
       map has moved):
-      <RunExampleButton @click="moveMap">Move map to Posio</RunExampleButton>
     </p>
 
     <!-- AfterMapMoveEvent -->
@@ -61,23 +60,21 @@ channel.postRequest('MapMoveRequest', [x, y, zoomLevel]);
       This function can be used to get the center coordinates and zoom level for the current map
       viewport.
     </p>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Show position in log">
 channel.getMapPosition(function (data) {
   channel.log('GetMapPosition:', data);
 });
     </CodeSnippet>
-    <RunExampleButton @click="logMapPosition">Show position in log</RunExampleButton>
 
     <!-- getMapBbox() -->
     <h4>getMapBbox()</h4>
     <p>This function can be used to get the bbox coordinates for the current map viewport.</p>
 
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Show bbox in log">
 channel.getMapBbox(function (data) {
   channel.log('GetMapBbox:', data);
 });
     </CodeSnippet>
-    <RunExampleButton @click="getMapBbox">Show bbox in log</RunExampleButton>
   </div>
 </template>
 
@@ -104,30 +101,6 @@ export default {
       LOCATION_POSIO: [552935, 7332639],
       zoomLevel: 7
     };
-  },
-  methods: {
-    moveMap() {
-      this.$root.channel.postRequest('MapMoveRequest', [
-        this.LOCATION_POSIO[0],
-        this.LOCATION_POSIO[1],
-        this.zoomLevel
-      ]);
-      this.$root.channel.log('MapModulePlugin.MapMoveRequest posted with data', [
-        this.LOCATION_POSIO[0],
-        this.LOCATION_POSIO[1],
-        7
-      ]);
-    },
-    logMapPosition() {
-      this.$root.channel.getMapPosition((data) => {
-        this.$root.channel.log('GetMapPosition: ', data);
-      });
-    },
-    getMapBbox() {
-      this.$root.channel.getMapBbox((data) => {
-        this.$root.channel.log('GetMapBbox: ', data);
-      });
-    }
   }
 };
 </script>
