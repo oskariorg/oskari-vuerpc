@@ -114,8 +114,6 @@ const apiDocPageVisibility =
   'mapping/mapmodule/request/MapModulePlugin.MapLayerVisibilityRequest.md';
 const apiDocPageRearrange = 'mapping/mapmodule/request/rearrangeselectedmaplayerrequest.md';
 
-const listeners = [];
-
 export default {
   name: 'MapLayers',
   label: title,
@@ -178,13 +176,11 @@ export default {
         this.numberOfLayers = data.length;
       });
     } else {
-      listeners.push(
-        EVENTBUS.on('channel.available', () => {
-          this.$root.channel.getAllLayers((data) => {
-            this.numberOfLayers = data.length;
-          });
-        })
-      );
+      EVENTBUS.once('channel.available', () => {
+        this.$root.channel.getAllLayers((data) => {
+          this.numberOfLayers = data.length;
+        });
+      });
     }
   },
   beforeUnmount() {
@@ -192,9 +188,6 @@ export default {
     this.$root.channel.resetState(() => {
       this.$root.channel.log('Map state reset on exiting the example: "' + title + '"');
     });
-    while (listeners.length) {
-      EVENTBUS.off('channel.available', listeners.pop());
-    }
   }
 };
 </script>
