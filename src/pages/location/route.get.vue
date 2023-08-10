@@ -2,7 +2,19 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      Allows usage of routing integrations (requires configuration on the Oskari-based application).
+      Oskari allows usage of routing integrations though it requires configuration on the
+      Oskari-based application. <InlineCode>{{ requestName }}</InlineCode> can be used to draw a
+      route on the map from a pair of starting coordinates to destination coordinates. The request
+      supports different transit modes and other options, like maximum walk distance. For more
+      information about <InlineCode>{{ requestName }}</InlineCode
+      >, see the documentation page: <br />
+      <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
+        Documentation for {{ requestName }}
+      </DocumentationLink>
+    </p>
+    <p>
+      A <InlineCode>GetRouteRequest</InlineCode> can be sent for example with data of the following
+      form:
     </p>
 
     <CodeSnippet>
@@ -18,14 +30,13 @@ channel.postRequest('GetRouteRequest', [data]);
     </CodeSnippet>
 
     <p>The examples here searches for a route from Pasila to the center point of the map:</p>
-      <RunExampleButton @click="getRouteRequest('TRANSIT,WALK')">GetRouteRequest (transit,walk)</RunExampleButton>
-      <RunExampleButton @click="getRouteRequest('WALK')">GetRouteRequest (walk)</RunExampleButton>
-      <RunExampleButton @click="getRouteRequest('BICYCLE')">GetRouteRequest (bicycle)</RunExampleButton>
-    <p>
-      <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
-        Documentation for {{ requestName }}
-      </DocumentationLink>
-    </p>
+    <RunExampleButton @click="getRouteRequest('TRANSIT,WALK')">
+      GetRouteRequest (transit,walk)
+    </RunExampleButton>
+    <RunExampleButton @click="getRouteRequest('WALK')">GetRouteRequest (walk)</RunExampleButton>
+    <RunExampleButton @click="getRouteRequest('BICYCLE')">
+      GetRouteRequest (bicycle)
+    </RunExampleButton>
   </div>
 </template>
 
@@ -65,6 +76,14 @@ export default {
     };
   },
   mounted() {
+    // Show map crosshair when entering page
+    if (this.$root.channel.isReady()) {
+      this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
+    } else {
+      EVENTBUS.once('channel.available', () => {
+        this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
+      });
+    }
     listeners.push(
       EVENTBUS.on('RouteResultEvent', (data) => {
         showRouteOnMap(data, this.$root.channel);
@@ -73,6 +92,7 @@ export default {
   },
   beforeUnmount() {
     // Clean up when user leaves the example
+    this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
     this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
     while (listeners.length) {
       EVENTBUS.off('RouteResultEvent', listeners.pop());
@@ -96,7 +116,7 @@ const showPopup = (msg, seconds = 5) => {
 const showRouteOnMap = (response = {}, channel) => {
   if (!response.success) {
     showPopup(
-      'Getting routes failed ! - zoom map center around 1 km to nearest public trafic stop'
+      'Getting routes failed ! - zoom map center around 1 km to nearest public traffic stop'
     );
     return;
   }
@@ -126,5 +146,3 @@ const showRouteOnMap = (response = {}, channel) => {
   ]);
 };
 </script>
-
-<style></style>
