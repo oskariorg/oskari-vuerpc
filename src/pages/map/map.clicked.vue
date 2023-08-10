@@ -27,7 +27,7 @@ const eventName = 'MapClickedEvent';
 
 // listeners is references to event listeners registered
 // by this example so we can remove them when the user leaves the page
-const listeners = [];
+const listeners = {};
 
 export default {
   name: 'MapClickedEvent',
@@ -62,23 +62,19 @@ export default {
     }
   },
   mounted() {
-    listeners.push(
-      EVENTBUS.on('MapClickedEvent', (data) => {
-        this.clickEvent = data;
-      })
-    );
-    listeners.push(
-      EVENTBUS.on('DataForMapLocationEvent', (data) => {
-        this.mapLocationEvent = data;
-      })
-    );
+    listeners['MapClickedEvent'] = EVENTBUS.on('MapClickedEvent', (data) => {
+      this.clickEvent = data;
+    });
+    listeners['DataForMapLocationEvent'] = EVENTBUS.on('DataForMapLocationEvent', (data) => {
+      this.mapLocationEvent = data;
+    });
   },
   beforeUnmount() {
     // Clean up when user leaves the example
-    while (listeners.length) {
-      EVENTBUS.off('MapClickedEvent', listeners.pop());
-      EVENTBUS.off('DataForMapLocationEvent', listeners.pop());
-    }
+    Object.entries(listeners).forEach(([event, callback]) => {
+      EVENTBUS.off(event, callback);
+      delete listeners[event];
+    });
     this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest', ['getinforesult']);
     if (this.isVisible) {
       this.toggleLayerVisibility();
