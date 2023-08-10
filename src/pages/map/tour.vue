@@ -9,15 +9,13 @@
       Documentation for {{ requestName }}
     </DocumentationLink>
 
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" :buttonText="`Send a ${requestName}`">
 var routeSteps = {{ JSON.stringify(routeSteps, null, 2) }};
+
 var stepDefaults = {{ JSON.stringify(stepDefaults, null, 2) }};
+
 channel.postRequest('{{ requestName }}', [routeSteps, stepDefaults]);
     </CodeSnippet>
-    <p>
-      You can run the code above by clicking the button:
-      <RunExampleButton @click="mapTourRequest">{{ requestName }}</RunExampleButton>
-    </p>
     <p>
       Note! That both <InlineCode>AfterMapMoveEvent</InlineCode> and
       <InlineCode>MapTourEvent</InlineCode> are triggered by the request. The tour events can be
@@ -43,13 +41,6 @@ export default {
       routeSteps,
       stepDefaults
     };
-  },
-  methods: {
-    mapTourRequest() {
-      const params = [routeSteps, stepDefaults];
-      this.$root.channel.postRequest(requestName, params);
-      this.$root.channel.log(requestName + ' posted with data', params);
-    }
   }
 };
 
