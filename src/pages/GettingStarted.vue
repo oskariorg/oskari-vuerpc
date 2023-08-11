@@ -14,15 +14,13 @@
         ok without escaping. Might change if we ever update Vue version...
        -->
         <CodeSnippet lang="xml">
-&lt;script src='https://oskari.org/js/rpc/rpc-client.min.js'&gt;&lt;/script&gt;
+          &lt;script src='https://oskari.org/js/rpc/rpc-client.min.js'&gt;&lt;/script&gt;
         </CodeSnippet>
       </b-tab>
       <b-tab title="npm">
-        Include OskariRPC to your project by running <inline-code>npm install oskari-rpc</inline-code>.
-        Then include it in source files with:
-        <CodeSnippet>
-import OskariRPC from 'oskari-rpc';
-        </CodeSnippet>
+        Include OskariRPC to your project by running
+        <inline-code>npm install oskari-rpc</inline-code>. Then include it in source files with:
+        <CodeSnippet> import OskariRPC from 'oskari-rpc'; </CodeSnippet>
       </b-tab>
     </b-tabs>
 

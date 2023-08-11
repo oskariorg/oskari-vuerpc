@@ -191,6 +191,6 @@ const feedback = {
     "srs": "EPSG:3067",
     "payload": postdata
   };
-  channel.postRequest('PostFeedbackRequest', [data]);`,
+  channel.postRequest('PostFeedbackRequest', [data]);`
 };
 </script>

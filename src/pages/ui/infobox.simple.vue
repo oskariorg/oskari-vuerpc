@@ -49,8 +49,8 @@ channel.postRequest('{{ this.request.hide }}', infoboxId);
     <RunExampleButton @click="hideInfobox(infoboxId)">Hide info box</RunExampleButton>
     <h3>Reacting to closing info boxes</h3>
     <p>
-      An <InlineCode>Infobox.InfoBoxEvent</InlineCode> occurs when an info box is closed,
-      allowing programs to react in a defined way to closing info boxes.
+      An <InlineCode>Infobox.InfoBoxEvent</InlineCode> occurs when an info box is closed, allowing
+      programs to react in a defined way to closing info boxes.
     </p>
     <CodeSnippet>
 {
