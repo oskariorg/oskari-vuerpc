@@ -103,8 +103,4 @@ ol li {
   display: list-item;
   list-style-type: decimal;
 }
-a.btn.btn-primary.exampleready {
-  /* Need to overwrite the "#select-panel a" color */
-  color: white !important;
-}
 </style>
