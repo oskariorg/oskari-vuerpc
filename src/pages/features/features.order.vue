@@ -128,8 +128,6 @@ const centerToGeomOpts = {
 
 const getNextPolygonStyle = createStyleCycler(polygonStyles);
 
-const listeners = [];
-
 export default {
   name: 'FeatureOrder',
   label: title,
@@ -152,19 +150,14 @@ export default {
         remove: true
       }
     ]);
-    while (listeners.length) {
-      EVENTBUS.off('channel.available', listeners.pop());
-    }
   },
   mounted() {
     if (this.$root.channel.isReady()) {
       this.addFeaturesToMap();
     } else {
-      listeners.push(
-        EVENTBUS.on('channel.available', () => {
-          this.addFeaturesToMap();
-        })
-      );
+      EVENTBUS.once('channel.available', () => {
+        this.addFeaturesToMap();
+      });
     }
   },
   methods: {
