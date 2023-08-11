@@ -90,8 +90,8 @@ channel.isSupported(expectedOskariVersion, function(blnSupported) {
         <br />
         <RunExampleButton @click="checkServerSupport">Check server support</RunExampleButton>
 
-      <br />
-      <br />
+        <br />
+        <br />
       <CodeSnippet>
 channel.isSupported(function(blnSupported) {
   if (!blnSupported) {
@@ -143,7 +143,9 @@ export default {
       const expectedOskariVersion = EXPECTED_OSKARI_VERSION;
       this.$root.channel.isSupported(expectedOskariVersion, function (blnSupported) {
         if (blnSupported) {
-          me.$root.channel.log('Client is supported and Oskari version is ' + expectedOskariVersion);
+          me.$root.channel.log(
+            'Client is supported and Oskari version is ' + expectedOskariVersion
+          );
         } else {
           me.$root.channel.log(
             'Oskari-instance is not the one we expect (' +

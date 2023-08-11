@@ -28,9 +28,7 @@ var markerData = {{ JSON.stringify(markerSVG, null, 2) }};
 channel.postRequest('MapMoveRequest', [markerData.x, markerData.y,  {{zoomLevel}}]);
 channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, '{{MARKER_ID}}']);
     </CodeSnippet>
-    <RunExampleButton @click="addMarkerSVGIcon()">
-      Add marker with custom SVG
-    </RunExampleButton>
+    <RunExampleButton @click="addMarkerSVGIcon()"> Add marker with custom SVG </RunExampleButton>
     <br />
 
     <h3>Add marker with custom PNG</h3>
@@ -40,9 +38,7 @@ var markerData = {{ JSON.stringify(markerPNG, null, 2) }};
 channel.postRequest('MapMoveRequest', [markerData.x, markerData.y,  {{zoomLevel}}]);
 channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, '{{MARKER_ID}}']);
     </CodeSnippet>
-    <RunExampleButton @click="addMarkerPNGIcon()">
-      Add marker with custom PNG
-    </RunExampleButton>
+    <RunExampleButton @click="addMarkerPNGIcon()"> Add marker with custom PNG </RunExampleButton>
     <br />
 
     <h3>Marker events</h3>
@@ -67,8 +63,9 @@ channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, '{{MARKER_I
     <p><!-- Just to provide a bit of white space... --></p>
 
     <h3>Removing markers</h3>
-    Removing markers is possible with <inline-code>MapModulePlugin.RemoveMarkersRequest</inline-code>.
-    The request can include an ID for removing a single marker. When no ID is provided all markers are cleared.
+    Removing markers is possible with
+    <InlineCode>MapModulePlugin.RemoveMarkersRequest</InlineCode>. The request can include an ID
+    for removing a single marker. When no ID is provided all markers are cleared.
     <br />
     <RunExampleButton @click="removeMarkersRequest()">
       MapModulePlugin.RemoveMarkersRequest

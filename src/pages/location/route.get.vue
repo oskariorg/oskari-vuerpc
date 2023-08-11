@@ -33,10 +33,15 @@ channel.postRequest('GetRouteRequest', [data]);
     <RunExampleButton @click="getRouteRequest('TRANSIT,WALK')">
       GetRouteRequest (transit,walk)
     </RunExampleButton>
-    <RunExampleButton @click="getRouteRequest('WALK')">GetRouteRequest (walk)</RunExampleButton>
+    <RunExampleButton @click="getRouteRequest('WALK')"> GetRouteRequest (walk) </RunExampleButton>
     <RunExampleButton @click="getRouteRequest('BICYCLE')">
       GetRouteRequest (bicycle)
     </RunExampleButton>
+    <p>
+      <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
+        Documentation for {{ requestName }}
+      </DocumentationLink>
+    </p>
   </div>
 </template>
 

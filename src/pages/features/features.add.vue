@@ -2,8 +2,8 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      The <InlineCode>{{ requestNameAdd }}</InlineCode> allows adding vector features like
-      points, lines and polygons on the map.
+      The <InlineCode>{{ requestNameAdd }}</InlineCode> allows adding vector features like points,
+      lines and polygons on the map.
     </p>
     <DocumentationLink type="request" :apiDoc="apiDocPageRequestAdd">
       Documentation for {{ requestNameAdd }}

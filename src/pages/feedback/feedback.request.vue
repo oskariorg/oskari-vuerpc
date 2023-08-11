@@ -12,9 +12,7 @@
     <CodeSnippet>
       channel.postRequest('GetFeedbackRequest', [{{ JSON.stringify(requestPayload, null, 2) }}]);
     </CodeSnippet>
-    <p>
-      Note! You can get the bbox for current map viewport by calling
-    </p>
+    <p>Note! You can get the bbox for current map viewport by calling</p>
     <CodeSnippet>
 channel.getMapBbox((data) => {
   /* pass data.left, bottom, right, top to GetFeedbackRequest*/
