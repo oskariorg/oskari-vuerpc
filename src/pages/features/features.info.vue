@@ -50,7 +50,6 @@ import EVENTBUS from '../../util/eventbus.js';
 const title = 'Get feature info';
 const requestName = 'MapModulePlugin.GetFeatureInfoRequest';
 const gfiLayerId = 492;
-const listeners = [];
 
 export default {
   name: 'GetFeatureInfoRequest',
@@ -86,19 +85,14 @@ export default {
     if (this.$root.channel.isReady()) {
       this.mapLayerVisibilityRequest(true);
     } else {
-      listeners.push(
-        EVENTBUS.on('channel.available', () => {
-          this.mapLayerVisibilityRequest(true);
-        })
-      );
+      EVENTBUS.once('channel.available', () => {
+        this.mapLayerVisibilityRequest(true);
+      });
     }
   },
   beforeUnmount() {
     this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest');
     this.mapLayerVisibilityRequest(false);
-    while (listeners.length) {
-      EVENTBUS.off('channel.available', listeners.pop());
-    }
   }
 };
 </script>
@@ -108,9 +102,5 @@ export default {
 ol li {
   display: list-item;
   list-style-type: decimal;
-}
-a.btn.btn-primary.exampleready {
-  /* Need to overwrite the "#select-panel a" color */
-  color: white !important;
 }
 </style>

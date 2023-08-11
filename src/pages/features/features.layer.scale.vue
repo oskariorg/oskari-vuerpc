@@ -62,8 +62,6 @@ const requestName = 'VectorLayerRequest';
 const polygonCollection = generator.getDefaultPolygonCollection();
 const pointCollection = generator.getDefaultPointCollection();
 
-const listeners = [];
-
 const polygonLayer = {
   layerId: 'My_polygons',
   maxZoomLevel: 7
@@ -103,21 +101,16 @@ export default {
       }
     ]);
     this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
-    while (listeners.length) {
-      EVENTBUS.off('channel.available', listeners.pop());
-    }
   },
   mounted() {
     if (this.$root.channel.isReady()) {
       this.addVectorLayers();
       this.addFeaturesToMap();
     } else {
-      listeners.push(
-        EVENTBUS.on('channel.available', () => {
-          this.addVectorLayers();
-          this.addFeaturesToMap();
-        })
-      );
+      EVENTBUS.once('channel.available', () => {
+        this.addVectorLayers();
+        this.addFeaturesToMap();
+      });
     }
   },
   methods: {

@@ -79,8 +79,6 @@ const rectangle2 = generator.getCollectionOf([
   generator.getRectangle(x - 100000, y - 200000, { name: `I'm also a rectangle` }, 200000, 500000)
 ]);
 
-const listeners = [];
-
 export default {
   name: 'layerReorder',
   label: title,
@@ -100,11 +98,9 @@ export default {
     if (this.$root.channel.isReady()) {
       this.initLayers();
     } else {
-      listeners.push(
-        EVENTBUS.on('channel.available', () => {
-          this.initLayers();
-        })
-      );
+      EVENTBUS.once('channel.available', () => {
+        this.initLayers();
+      });
     }
   },
   beforeUnmount() {
@@ -120,9 +116,6 @@ export default {
         remove: true
       }
     ]);
-    while (listeners.length) {
-      EVENTBUS.off('channel.available', listeners.pop());
-    }
   },
   methods: {
     addListedLayer(layer) {

@@ -6,7 +6,6 @@ import BootstrapVue from 'bootstrap-vue';
 import App from './App.vue';
 
 import router from './router';
-import code from './components/ui-components/codehighlight.vue';
 import DocumentationLink from './components/ui-components/documentation_link.vue';
 import RunExampleButton from './components/ui-components/run_example_button.vue';
 import InlineCodeSnippet from './components/ui-components/inline_code_snippet.vue';
@@ -23,7 +22,7 @@ app.config.compilerOptions.whitespace = 'preserve';
 
 // Declare these as common components so pages don't need to declare these repeatedly
 // as they are used in all pages
-app.component('CodeSnippet', code);
+app.component('CodeSnippet', CodeEditor);
 app.component('RunExampleButton', RunExampleButton);
 app.component('DocumentationLink', DocumentationLink);
 app.component('InlineCode', InlineCodeSnippet);
