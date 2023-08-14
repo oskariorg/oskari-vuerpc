@@ -9,9 +9,9 @@
     <DocumentationLink type="request" :apiDoc="apiDocPage">
       Documentation for {{ requestName }}
     </DocumentationLink>
-    <br />
-    <RunExampleButton @click="clearFeatures()">Clear all vector features</RunExampleButton>
-    <CodeSnippet> channel.postRequest('{{ requestName }}', []); </CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Clear all vector features">
+      channel.postRequest('{{ requestName }}', []);
+    </CodeSnippet>
     <p>
       You can also clear all features on the map while sending a
       <InlineCode>MapModulePlugin.AddFeaturesToMapRequest</InlineCode>, just add
@@ -45,23 +45,18 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest',
       are on the same layer and share a common <InlineCode>key: value</InlineCode> pair within the
       <InlineCode>properties</InlineCode> object can be removed with a single request.
     </p>
-    <RunExampleButton @click="clearFeatures('shape', 'point', layer1.layerId)">
-      Remove points
-    </RunExampleButton>
-    <CodeSnippet>
-      channel.postRequest({{ requestName }}, ['shape', 'point', layerId]);
+    <CodeSnippet :runnable="true" buttonText="Remove points">
+var layerId = '{{ layer1.layerId }}';
+channel.postRequest('{{ requestName }}', ['shape', 'point', layerId]);
     </CodeSnippet>
     <p>
       A feature's <InlineCode>id</InlineCode> is always included in
       <InlineCode>properties</InlineCode>, allowing easy removal of individual features.
     </p>
-    <RunExampleButton
-      @click="clearFeatures('id', layer1features.features[0].properties.id, layer1.layerId)"
-    >
-      Remove rectangle
-    </RunExampleButton>
-    <CodeSnippet>
-      channel.postRequest({{ requestName }}, ['id', rectangleId, layerId]);
+    <CodeSnippet :runnable="true" buttonText="Remove rectangle">
+var rectangleId = '{{ layer1features.features[0].properties.id }}';
+var layerId = '{{ layer1.layerId}}';
+channel.postRequest('{{ requestName }}', ['id', rectangleId, layerId]);
     </CodeSnippet>
     <h3>Changing layer visibility</h3>
     <p>
@@ -198,7 +193,7 @@ const polygon = {
 const rectangle = generator.getRectangle(
   220178,
   6813586,
-  { id: 'rect', name: `I'm a rectangle` },
+  { id: 'rectangle_feature', name: `I'm a rectangle` },
   80000,
   65000
 );
