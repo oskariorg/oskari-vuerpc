@@ -28,7 +28,7 @@ channel.postRequest(
       <li>
         Show feature info box
 
-        <CodeSnippet>
+        <CodeSnippet :runnable="true" buttonText="Get map information">
 // get map center and display feature info box for the center coordinates
 channel.getMapPosition(function (data) {
   channel.postRequest('MapModulePlugin.GetFeatureInfoRequest', [data.centerX, data.centerY]);
@@ -36,9 +36,6 @@ channel.getMapPosition(function (data) {
         </CodeSnippet>
       </li>
     </ol>
-    <RunExampleButton @click="getFeatureInfoRequest">
-      Send {{ requestName }} with map center coordinates
-    </RunExampleButton>
     <DocumentationLink type="request" :apiDoc="apiDocPage">
       Documentation for {{ requestName }}
     </DocumentationLink>
@@ -72,26 +69,22 @@ export default {
         gfiLayerId,
         true
       ]);
-    },
-    getFeatureInfoRequest() {
-      this.$root.channel.getMapPosition((data) => {
-        const lonlat = [data.centerX, data.centerY];
-        this.$root.channel.postRequest(requestName, lonlat);
-        this.$root.channel.log(requestName + ' posted with data', lonlat);
-      });
     }
   },
   mounted() {
     if (this.$root.channel.isReady()) {
       this.mapLayerVisibilityRequest(true);
+      this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
     } else {
       EVENTBUS.once('channel.available', () => {
         this.mapLayerVisibilityRequest(true);
+        this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
       });
     }
   },
   beforeUnmount() {
     this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest');
+    this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
     this.mapLayerVisibilityRequest(false);
   }
 };
