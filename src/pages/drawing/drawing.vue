@@ -7,18 +7,22 @@
       pre-defined shapes to drawing custom styled measurement of the marked area. These pre-defined
       shapes consist of shapes like polygon, circle, point, box, square or line. <br /><br />
       To start drawing, select a shape and send a <InlineCode>StartDrawingRequest</InlineCode>.
-      <br />
     </p>
+
     <div>
-      <b-dd :text="selectedShape" variant="outline-success">
-        <b-dd-item-button @click="setShape('Polygon')">Polygon</b-dd-item-button>
-        <b-dd-item-button @click="setShape('Point')">Point</b-dd-item-button>
-        <b-dd-item-button @click="setShape('Circle')">Circle</b-dd-item-button>
-        <b-dd-item-button @click="setShape('Box')">Box</b-dd-item-button>
-        <b-dd-item-button @click="setShape('Square')">Square</b-dd-item-button>
-        <b-dd-item-button @click="setShape('LineString')">LineString</b-dd-item-button>
-      </b-dd>
+      <b-button-group>
+        <b-button 
+          v-for="(shape, id) in drawingShapes"
+          :pressed="isSelected(shape)"
+          :key="id"
+          variant="success"
+          @click="setShape(shape)"
+        >
+          {{ shape }}
+        </b-button>
+      </b-button-group>
     </div>
+
     <br />
     <DocumentationLink type="request" apiDoc="mapping/drawtools/request/startdrawingrequest.md">
       Documentation for DrawTools.StartDrawingRequest
@@ -33,7 +37,7 @@ channel.postRequest('DrawTools.StartDrawingRequest', data);
 var data = ['my functionality id', '{{ selectedShape }}', { showMeasureOnMap: true }];
 channel.postRequest('DrawTools.StartDrawingRequest', data);
     </CodeSnippet>
-    
+
     <p>
       To stop the current drawing progress send a <InlineCode>StopDrawingRequest</InlineCode> with
       id of the feature to stop drawing for as a parameter. For accessability reasons it isn't
@@ -132,6 +136,7 @@ export default {
   data() {
     return {
       title,
+      drawingShapes: ['Polygon', 'Point', 'Circle', 'Box', 'Square', 'LineString'],
       selectedShape: 'Polygon'
     };
   },
@@ -143,6 +148,9 @@ export default {
   methods: {
     setShape(shape) {
       this.selectedShape = shape;
+    },
+    isSelected(shape) {
+      return shape === this.selectedShape;
     }
   }
 };
