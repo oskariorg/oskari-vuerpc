@@ -10,20 +10,14 @@
       <RunExampleButton @click="addFeatures">AddFeaturesToMapRequest</RunExampleButton>
     </div>
 
-    <div>
-      2. Get features grouped by layers
-      <RunExampleButton @click="getFeatures(true)">getFeatures(true)</RunExampleButton>
-    </div>
-    <CodeSnippet>
+    <div>2. Get features grouped by layers</div>
+    <CodeSnippet :runnable="true" buttonText="getFeatures([true])">
 channel.getFeatures([true], function (data) {
   channel.log('GetFeatures:', data);
 });
     </CodeSnippet>
-    <div>
-      Get only layerIds without features
-      <RunExampleButton @click="getFeatures">getFeatures()</RunExampleButton>
-    </div>
-    <CodeSnippet>
+    <div>Get only layerIds without features</div>
+    <CodeSnippet :runnable="true" buttonText="getFeatures()">
 channel.getFeatures([], function (data) {
   channel.log('GetFeatures:', data);
 });
@@ -48,11 +42,6 @@ export default {
     };
   },
   methods: {
-    getFeatures(includeFeatures = false) {
-      this.$root.channel.getFeatures([includeFeatures], (data) => {
-        this.$root.channel.log('GetFeatures: ', data);
-      });
-    },
     addFeatures() {
       const x = 488704;
       const y = 6939136;

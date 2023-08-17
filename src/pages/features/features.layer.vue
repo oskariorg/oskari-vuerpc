@@ -27,14 +27,13 @@
     <p>You can try different combinations below:</p>
     <ol>
       <li>
-        Click <RunExampleButton @click="addFeaturesToMapRequest">Add feature</RunExampleButton>
-        to add a feature added to the map.
-        <CodeSnippet>
-const params = [geojson, {
+        Click the <InlineCode>Add feature</InlineCode> button to add a feature to the map.
+        <CodeSnippet :runnable="true" buttonText="Add feature">
+const params = [
+{{ JSON.stringify(geojsonObject, null, 2) }},
+{
   layerId: '{{ layer.layerId }}',
-  clearPrevious: true,
-  centerTo: true,
-  cursor: 'zoom-in'
+  clearPrevious: true, centerTo: true, cursor: 'zoom-in'
 }];
 channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
         </CodeSnippet>
@@ -42,24 +41,22 @@ channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
         based on the request parameter "cursor" with value supported in CSS).
       </li>
       <li>
-        Click
-        <RunExampleButton @click="removeFeaturesFromMapRequest">Remove features</RunExampleButton>
-        to clean up the map for testing <InlineCode>VectorLayerRequest</InlineCode>.
-        <CodeSnippet>
+        Click <InlineCode>Remove features</InlineCode> to clean up the map for testing
+        <InlineCode>VectorLayerRequest</InlineCode>.
+        <CodeSnippet :runnable="true" buttonText="Remove features">
           channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
         </CodeSnippet>
       </li>
       <li>
-        Click <RunExampleButton @click="addSimpleVectorLayer">Add layer</RunExampleButton>
-        to initialize a layer for vector features with hover styling.
-        <CodeSnippet>
+        Click <InlineCode>Add layer</InlineCode> to initialize a layer for vector features with
+        hover styling.
+        <CodeSnippet :runnable="true" buttonText="Add layer">
 channel.postRequest('{{ requestName }}', [{{
   JSON.stringify(layer, null, 2)
 }}]);
         </CodeSnippet>
-        <b>Note!</b> You won't see anything happen on the map when you do this. Now click the "Add
-        feature" button below or on the first step to add a feature to the layer.<br />
-        <RunExampleButton @click="addFeaturesToMapRequest">Add feature</RunExampleButton><br />
+        <b>Note!</b> You won't see anything happen on the map when you do this. Now click the
+        <InlineCode>Add feature</InlineCode> button on the first step to add a feature to the layer.
         The important part is that the <InlineCode>layerId</InlineCode> on both requests match.
       </li>
       <li>
@@ -72,13 +69,12 @@ channel.postRequest('{{ requestName }}', [{{
         You can use <InlineCode>VectorLayerRequest</InlineCode> to remove the layer (also removes
         features on the layer). After this if you click the "Add features" button the features have
         lost the hover highlighting and you need to initialize the layer again to get it back.<br />
-        <CodeSnippet>
+        <CodeSnippet :runnable="true" buttonText="Remove layer">
 channel.postRequest('VectorLayerRequest', [{
   layerId: '{{ layer.layerId }}',
   remove: true
 }]);
         </CodeSnippet>
-        <RunExampleButton @click="removeSimpleLayer">Remove layer</RunExampleButton>
       </li>
       <li>
         To keep the initialized layer but remove any features on it you can use the "Remove feature"
@@ -136,37 +132,6 @@ export default {
       }
     ]);
     this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
-  },
-  methods: {
-    addSimpleVectorLayer() {
-      this.$root.channel.postRequest('VectorLayerRequest', [this.layer]);
-      this.$root.channel.log('VectorLayerRequest posted with data', [this.layer]);
-    },
-    removeSimpleLayer() {
-      const layerOptions = {
-        layerId: layer.layerId,
-        remove: true
-      };
-      this.$root.channel.postRequest('VectorLayerRequest', [layerOptions]);
-      this.$root.channel.log('VectorLayerRequest posted with data', [layerOptions]);
-    },
-    addFeaturesToMapRequest() {
-      const params = [
-        geojsonObject,
-        {
-          layerId: layer.layerId,
-          clearPrevious: true,
-          centerTo: true,
-          cursor: 'zoom-in'
-        }
-      ];
-      this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
-      this.$root.channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params);
-    },
-    removeFeaturesFromMapRequest() {
-      this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
-      this.$root.channel.log('MapModulePlugin.RemoveFeaturesFromMapRequest posted without params');
-    }
   }
 };
 
@@ -191,9 +156,5 @@ const layer = {
 ol li {
   display: list-item;
   list-style-type: decimal;
-}
-a.btn.btn-primary.exampleready {
-  /* Need to overwrite the "#select-panel a" color */
-  color: white !important;
 }
 </style>

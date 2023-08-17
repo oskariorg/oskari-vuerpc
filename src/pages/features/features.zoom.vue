@@ -23,11 +23,8 @@
     <div>2. Move map</div>
     <div>
       3. Zoom to all features
-      <RunExampleButton @click="zoomToFeaturesRequest">
-        MapModulePlugin.ZoomToFeaturesRequest
-      </RunExampleButton>
     </div>
-    <CodeSnippet> channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', []); </CodeSnippet>
+    <CodeSnippet :runnable="true"> channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', []); </CodeSnippet>
 
     <div>
       <p>
@@ -36,23 +33,17 @@
         i.e. where <InlineCode>featureType === 'parcel'</InlineCode> and
         <InlineCode>layerId ==='testLayer'</InlineCode>.
       </p>
-      <RunExampleButton @click="ZoomToFeaturesRequestWithParams">
-        MapModulePlugin.ZoomToFeaturesRequest
-      </RunExampleButton>
     </div>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true">
 var layers = {'layer': ['testLayer']};
 var features = {'species': ['parcel']};
-channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [layers, features]);">
+channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [layers, features]);
     </CodeSnippet>
 
     <div>
-      Zoom with maxZoomLevel set
-      <RunExampleButton @click="zoomToFeaturesRequestMaxZoomLevel">
-        MapModulePlugin.ZoomToFeaturesRequest
-      </RunExampleButton>
+      Zoom with maxZoomLevel set:
     </div>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true">
 var maxZoomParams = {
   'maxZoomLevel': 4
 };
@@ -76,7 +67,7 @@ export default {
         this.geojsonObject,
         {
           layerId: 'testLayer',
-          clearPrevious: false,
+          clearPrevious: true,
           centerTo: true,
           featureStyle: {
             fill: {
@@ -104,26 +95,6 @@ export default {
       ];
       this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
       this.$root.channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params);
-    },
-    zoomToFeaturesRequest() {
-      this.$root.channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', []);
-      this.$root.channel.log('MapModulePlugin.ZoomToFeaturesRequest posted without params');
-    },
-    ZoomToFeaturesRequestWithParams() {
-      const layers = { layer: ['testLayer'] };
-      const features = { species: ['parcel'] };
-      this.$root.channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [layers, features]);
-      this.$root.channel.log('MapModulePlugin.ZoomToFeaturesRequest posted without params');
-    },
-    zoomToFeaturesRequestMaxZoomLevel() {
-      var maxZoomParams = {
-        maxZoomLevel: 4
-      };
-      this.$root.channel.postRequest('MapModulePlugin.ZoomToFeaturesRequest', [maxZoomParams]);
-      this.$root.channel.log(
-        'MapModulePlugin.ZoomToFeaturesRequest posted with  data',
-        maxZoomParams
-      );
     }
   },
   beforeUnmount() {
