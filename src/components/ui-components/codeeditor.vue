@@ -13,7 +13,8 @@ Can be used without passing props like this:
 Or with props:
 <CodeEditor
   :code="`console.log('Hello World!')`"
-  :lang="'javascript'"
+  lang="javascript"
+  buttonText="Run example"
   :runnable="true"
   :readOnly="false"
 />
@@ -24,7 +25,7 @@ Or with props:
     <!-- never rendered, used only for capturing content-->
     <slot v-if="false"></slot>
     <button v-if="runnable" @click="evaluateContent" ref="runnableRef" class="run-code-button">
-      {{ buttonText }}
+      {{ buttonText }} <i class="enterIcon"></i>
     </button>
     <button v-if="expandable" ref="expandRef" class="expand-button">
       <span class="expand-content"></span>
@@ -233,5 +234,32 @@ export default {
   background-color: rgba(169, 169, 169, 0.2);
   outline: 1px solid slategrey;
   border-radius: 10px;
+}
+
+/**
+* Create enter icon
+*/
+.enterIcon {
+  border: solid white;
+  position: relative;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding-left: 6px;
+  padding-top: 6px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  left: 20px;
+  top: -2px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 14px solid white;
+    left: -10px;
+    top: 1px;
+    transform: rotate(90deg);
+  }
 }
 </style>
