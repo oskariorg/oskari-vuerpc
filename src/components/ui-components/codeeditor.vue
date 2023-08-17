@@ -181,8 +181,11 @@ export default {
   margin: 1em;
 }
 .run-code-button {
+  background-color: #49483e;
+  color: #E6DB74;
+}
+.run-code-button:hover {
   background-color: #272822;
-  color: #f92672;
 }
 .bottom-element {
   border-bottom-right-radius: 5px;
@@ -195,13 +198,16 @@ export default {
 .expand-button {
   width: 100%;
   height: 20px;
-  background-color: #272822;
+  background-color: #49483e;
   position: relative;
+}
+.expand-button:hover {
+  background-color: #272822;
 }
 .expand-content {
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-top: 14px solid #75715e;
+  border-top: 14px solid white;
   top: 1px;
 }
 .expand-content,
@@ -226,7 +232,7 @@ export default {
 }
 .ace_scrollbar::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: rgba(39, 40, 34, 0.2);
+  background-color: #272822;
   border-radius: 10px;
 }
 .ace_scrollbar::-webkit-scrollbar-thumb {
@@ -235,7 +241,6 @@ export default {
   outline: 1px solid slategrey;
   border-radius: 10px;
 }
-
 /**
 * Create enter icon
 */
