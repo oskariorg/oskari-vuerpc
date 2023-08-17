@@ -11,35 +11,27 @@
       Adding markers with Oskari default icons (shape number between 0 and 6). Icon size is an
       abstracted number and calculated with <InlineCode>size * 10 + 40px</InlineCode>.
     </p>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Add marker with built-in symbol">
 var markerData = {{ JSON.stringify(markerIcon, null, 2) }};
 channel.postRequest('MapMoveRequest', [markerData.x, markerData.y,  {{zoomLevel}}]);
 channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, '{{MARKER_ID}}']);
     </CodeSnippet>
-    <RunExampleButton @click="addMarkerDefaultIcon()">
-      Add marker with built-in symbol
-    </RunExampleButton>
-    <br />
 
     <h3>Add marker with custom SVG</h3>
     <p>Adding markers with own svg icon (happy face icon). Note that icon size is in pixels.</p>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Add marker with custom SVG">
 var markerData = {{ JSON.stringify(markerSVG, null, 2) }};
 channel.postRequest('MapMoveRequest', [markerData.x, markerData.y,  {{zoomLevel}}]);
 channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, '{{MARKER_ID}}']);
     </CodeSnippet>
-    <RunExampleButton @click="addMarkerSVGIcon()"> Add marker with custom SVG </RunExampleButton>
-    <br />
 
     <h3>Add marker with custom PNG</h3>
     <p>Adding markers with own icon. Note that icon size is in pixels.</p>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Add marker with custom PNG">
 var markerData = {{ JSON.stringify(markerPNG, null, 2) }};
 channel.postRequest('MapMoveRequest', [markerData.x, markerData.y,  {{zoomLevel}}]);
 channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, '{{MARKER_ID}}']);
     </CodeSnippet>
-    <RunExampleButton @click="addMarkerPNGIcon()"> Add marker with custom PNG </RunExampleButton>
-    <br />
 
     <h3>Marker events</h3>
     <p>
@@ -67,16 +59,14 @@ channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, '{{MARKER_I
     <InlineCode>MapModulePlugin.RemoveMarkersRequest</InlineCode>. The request can include an ID
     for removing a single marker. When no ID is provided all markers are cleared.
     <br />
-    <RunExampleButton @click="removeMarkersRequest()">
-      MapModulePlugin.RemoveMarkersRequest
-    </RunExampleButton>
-    <br />
     <DocumentationLink type="request" apiDoc="mapping/mapmodule/request/removemarkersrequest.md">
       Documentation for MapModulePlugin.RemoveMarkersRequest
     </DocumentationLink>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Remove marker with ID">
 channel.postRequest('MapModulePlugin.RemoveMarkersRequest', ['{{MARKER_ID}}']);
-// Or all markers
+    </CodeSnippet>
+    <p>or</p>
+    <CodeSnippet :runnable="true" buttonText="Remove all markers">
 channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
     </CodeSnippet>
   </div>
@@ -124,39 +114,6 @@ export default {
       markerSVG,
       markerPNG
     };
-  },
-  methods: {
-    addMarkerDefaultIcon() {
-      const markerData = markerIcon;
-      this.$root.channel.postRequest('MapMoveRequest', [markerData.x, markerData.y, zoomLevel]);
-      this.$root.channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, MARKER_ID]);
-      this.$root.channel.log('MapModulePlugin.AddMarkerRequest posted with data', [
-        markerData,
-        MARKER_ID
-      ]);
-    },
-    addMarkerSVGIcon() {
-      const markerData = markerSVG;
-      this.$root.channel.postRequest('MapMoveRequest', [markerData.x, markerData.y, zoomLevel]);
-      this.$root.channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, MARKER_ID]);
-      this.$root.channel.log('MapModulePlugin.AddMarkerRequest posted with data', [
-        markerData,
-        MARKER_ID
-      ]);
-    },
-    addMarkerPNGIcon() {
-      const markerData = markerPNG;
-      this.$root.channel.postRequest('MapMoveRequest', [markerData.x, markerData.y, zoomLevel]);
-      this.$root.channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, MARKER_ID]);
-      this.$root.channel.log('MapModulePlugin.AddMarkerRequest posted with data', [
-        markerData,
-        MARKER_ID
-      ]);
-    },
-    removeMarkersRequest() {
-      this.$root.channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
-      this.$root.channel.log('RemoveMarkerRequest posted with data', []);
-    }
   },
   beforeUnmount() {
     this.$root.channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);

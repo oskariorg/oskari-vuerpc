@@ -5,8 +5,7 @@
       <InlineCode>MapModulePlugin.MarkerVisibiltyRequest</InlineCode>. To try out the functionality,
       first add a marker on the map with:
     </p>
-    <RunExampleButton @click="addMarker"> MapModulePlugin.AddMarkerRequest </RunExampleButton>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Add marker">
 const MARKER_ID = 'RPC_MARKER'
 const data = {
   x: 386020,
@@ -26,16 +25,13 @@ channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, MARKER_ID]);
         markers are made invisible if <InlineCode>MARKER_ID</InlineCode>
         is omitted from the parameters.
       </p>
-      <RunExampleButton @click="showHideMarker(false)">
-        MapModulePlugin.MarkerVisibilityRequest
-      </RunExampleButton>
-      <br />
       <DocumentationLink type="request" :apiDoc="apiDocPage">
         To the documentation of MapModulePlugin.MarkerVisibilityRequest
       </DocumentationLink>
 
-      <CodeSnippet>
+      <CodeSnippet :runnable="true" buttonText="Hide marker">
 // If MARKER_ID is not defined then hide all visibled markers
+var MARKER_ID = 'RPC_MARKER';
 channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [false, MARKER_ID]);
       </CodeSnippet>
     </div>
@@ -47,11 +43,9 @@ channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [false, MARKER_ID
         the previous example, all markers will be affected by the request if
         <InlineCode>MARKER_ID</InlineCode> is omitted.
       </p>
-      <RunExampleButton @click="showHideMarker(true)">
-        MapModulePlugin.MarkerVisibilityRequest
-      </RunExampleButton>
-      <CodeSnippet>
+      <CodeSnippet :runnable="true" buttonText="Show marker">
 // If MARKER_ID is not defined then show all unvisibled markers
+var MARKER_ID = 'RPC_MARKER';
 channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [true, MARKER_ID]);
       </CodeSnippet>
     </div>
@@ -67,34 +61,6 @@ export default {
       MARKER_ID: 'RPC_MARKER',
       apiDocPage: 'mapping/mapmodule/request/markervisibilityrequest.md'
     };
-  },
-  methods: {
-    addMarker() {
-      const data = {
-        x: 386020,
-        y: 6670057,
-        color: 'ff0000',
-        msg: '',
-        shape: 3, // icon number (0-6)
-        size: 3
-      };
-      this.$root.channel.postRequest('MapMoveRequest', [data.x, data.y, 7]);
-      this.$root.channel.postRequest('MapModulePlugin.AddMarkerRequest', [data, this.MARKER_ID]);
-      this.$root.channel.log('MapModulePlugin.AddMarkerRequest posted with data', [
-        data,
-        this.MARKER_ID
-      ]);
-    },
-    showHideMarker(bool) {
-      this.$root.channel.postRequest('MapModulePlugin.MarkerVisibilityRequest', [
-        bool,
-        this.MARKER_ID
-      ]);
-      this.$root.channel.log('MapModulePlugin.MarkerVisibilityRequest posted with data', [
-        bool,
-        this.MARKER_ID
-      ]);
-    }
   },
   beforeUnmount() {
     this.$root.channel.postRequest('MapModulePlugin.RemoveMarkersRequest', []);
