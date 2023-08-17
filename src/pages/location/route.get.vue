@@ -17,26 +17,24 @@
       form:
     </p>
 
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Send request">
 var data = {
-  'fromlat': '6683840',
-  'fromlon': '360448',
+  'fromlat': '6675341',
+  'fromlon': '385414',
   'srs': 'EPSG:3067',
-  'tolat': '6675728',
-  'tolon': '394240',
+  'tolat': '{{ y }}',
+  'tolon': '{{ x }}',
+  'showIntermediateStops': true,
   'mode': 'TRANSIT,WALK' // TRANSIT, WALK, BICYCLE, TRAIN and so on
 };
 channel.postRequest('GetRouteRequest', [data]);
     </CodeSnippet>
 
-    <p>The examples here searches for a route from Pasila to the center point of the map:</p>
-    <RunExampleButton @click="getRouteRequest('TRANSIT,WALK')">
-      GetRouteRequest (transit,walk)
-    </RunExampleButton>
-    <RunExampleButton @click="getRouteRequest('WALK')"> GetRouteRequest (walk) </RunExampleButton>
-    <RunExampleButton @click="getRouteRequest('BICYCLE')">
-      GetRouteRequest (bicycle)
-    </RunExampleButton>
+    <p>
+      The example above searches for a route from Pasila to the center point of the map, but note
+      that you can try out different transit modes and start and end coordinates by modifying the
+      values in the code editor.
+    </p>
     <p>
       <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
         Documentation for {{ requestName }}
@@ -56,19 +54,8 @@ const apiDocPageRequest = 'mapping/routingService/request/getrouterequest.md';
 
 // listeners is references to event listeners registered
 // by this example so we can remove them when the user leaves the page
-const listeners = [];
+const listeners = {};
 
-const getPayload = (x = 394240, y = 6675728, mode = 'TRANSIT,WALK') => {
-  return {
-    fromlat: '6675341',
-    fromlon: '385414',
-    srs: 'EPSG:3067',
-    tolat: y,
-    tolon: x,
-    showIntermediateStops: 'true',
-    mode: mode
-  };
-};
 export default {
   name: 'GetRouteRequest',
   label: title,
@@ -77,7 +64,8 @@ export default {
       title,
       requestName,
       apiDocPageRequest,
-      requestPayload: getPayload()
+      x: 320047,
+      y: 7094234,
     };
   },
   mounted() {
@@ -89,28 +77,23 @@ export default {
         this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
       });
     }
-    listeners.push(
-      EVENTBUS.on('RouteResultEvent', (data) => {
-        showRouteOnMap(data, this.$root.channel);
-      })
-    );
+
+    listeners['RouteResultEvent'] = EVENTBUS.on('RouteResultEvent', (data) => {
+      showRouteOnMap(data, this.$root.channel);
+    });
+    listeners['AfterMapMoveEvent'] = EVENTBUS.on('AfterMapMoveEvent', (data) => {
+      this.x = parseInt(data.centerX);
+      this.y = parseInt(data.centerY);
+    });
   },
   beforeUnmount() {
     // Clean up when user leaves the example
     this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
     this.$root.channel.postRequest('MapModulePlugin.RemoveFeaturesFromMapRequest', []);
-    while (listeners.length) {
-      EVENTBUS.off('RouteResultEvent', listeners.pop());
-    }
-  },
-  methods: {
-    getRouteRequest(mode) {
-      this.$root.channel.getMapPosition((data) => {
-        const datain = getPayload(data.centerX, data.centerY, mode);
-        this.$root.channel.postRequest('GetRouteRequest', [datain]);
-        this.$root.channel.log('GetRouteRequest posted with data', datain);
-      });
-    }
+    Object.entries(listeners).forEach(([event, callback]) => {
+      EVENTBUS.off(event, callback);
+      delete listeners[event];
+    });
   }
 };
 

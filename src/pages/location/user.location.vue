@@ -1,13 +1,13 @@
 <template>
   <div>
-    <RunExampleButton @click="getUserLocation">
-      MyLocationPlugin.GetUserLocationRequest
-    </RunExampleButton>
-    <br />
+    <p>
+      Allows app to fetch user's geolocation. Additional configurations needed in application for
+      geolocation to work.
+    </p>
     <DocumentationLink type="request" :apiDoc="apiDocpage">
       Documentation for GetUserLocationRequest
     </DocumentationLink>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Get user location">
       channel.postRequest('MyLocationPlugin.GetUserLocationRequest', [true]);
     </CodeSnippet>
   </div>
@@ -21,12 +21,6 @@ export default {
       desc: 'Get users location',
       apiDocpage: 'mapping/mapmodule/request/getuserlocationrequest.md'
     };
-  },
-  methods: {
-    getUserLocation() {
-      this.$root.channel.postRequest('MyLocationPlugin.GetUserLocationRequest', [true]);
-      this.$root.channel.log('MyLocationPlugin.GetUserLocationRequest posted with data', true);
-    }
   }
 };
 </script>

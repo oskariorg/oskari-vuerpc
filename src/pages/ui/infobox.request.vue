@@ -31,8 +31,7 @@
     </p>
     You can add an info box and try out the actions triggered by the underlying code with this
     button:
-    <RunExampleButton @click="showInfoBoxRequest"> Show info box </RunExampleButton>
-    <CodeSnippet>{{ request }}</CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Show info box">{{ request }}</CodeSnippet>
   </div>
 </template>
 
@@ -48,107 +47,19 @@ export default {
     return {
       desc: 'Info box continued',
       apiDocPage: 'ui/infobox/event/infoboxactionevent.md',
-      center: {},
       request
     };
   },
   methods: {
-    showInfoBoxRequest() {
-      //get map center and then show an infobox at that location
-      this.$root.channel.getMapPosition((data) => {
-        this.center = {
-          x: data.centerX,
-          y: data.centerY,
-          shape: 2
-        };
-        const content = [
-          {
-            html: '<div>Map position info:</div>'
-          },
-          {
-            html: `<div>Center: ${parseInt(data.centerX)}, ${parseInt(
-              data.centerY
-            )}<br />Zoom level: ${data.zoom}</div>`
-          },
-          {
-            actions: [
-              {
-                name: 'My link 1',
-                type: 'link',
-                action: {
-                  info: 'this can include any info',
-                  info2: 'action-object can have any number of params'
-                }
-              },
-              {
-                name: 'My link 2',
-                type: 'link',
-                action: {
-                  info: 'this can include any info',
-                  info2: 'action-object can have any number of params'
-                }
-              }
-            ]
-          },
-          {
-            actions: [
-              {
-                name: 'Add marker here',
-                type: 'button',
-                group: 1,
-                action: {
-                  info: 'this can include any info',
-                  info2: 'action-object can have any number of params',
-                  buttonInfo:
-                    'This button has group 1 and is placed to the same row with other actions that have the same group'
-                }
-              },
-              {
-                name: 'Remove markers',
-                type: 'button',
-                group: 1,
-                action: {
-                  info: 'this can include any info',
-                  info2: 'action-object can have any number of params',
-                  buttonInfo:
-                    'This button has group 1 and is placed to the same row with other actions that have the same group'
-                }
-              }
-            ]
-          }
-        ];
-        data = [
-          'myInfoBox',
-          'Generic info box',
-          content,
-          {
-            lon: this.center.x,
-            lat: this.center.y
-          },
-          {
-            hidePrevious: true,
-            colourScheme: {
-              bgColour: '#00CCFF',
-              titleColour: '#FFFFFF',
-              headerColour: '#0066FF',
-              iconCls: 'icon-close-white',
-              buttonBgColour: '#00CCFF',
-              buttonLabelColour: '#FFFFFF',
-              linkColour: '#000000'
-            },
-            font: 'georgia',
-            positioning: 'left'
-          }
-        ];
-
-        this.$root.channel.postRequest('InfoBox.ShowInfoBoxRequest', data);
-        this.$root.channel.log('InfoBox.ShowInfoBoxRequest posted with data', data);
-      });
-    },
     handleInfoboxEvent(data) {
       if (data.action === 'Add marker here') {
-        this.$root.channel.postRequest('MapModulePlugin.AddMarkerRequest', [this.center]);
-        this.$root.channel.log('Marker added with data:', this.center);
+        const coords = {
+          x: data.actionParams.centerX,
+          y: data.actionParams.centerY
+        };
+
+        this.$root.channel.postRequest('MapModulePlugin.AddMarkerRequest', [coords]);
+        this.$root.channel.log('Marker added with data:', coords);
         return;
       }
       if (data.action === 'Remove markers') {
@@ -158,6 +69,13 @@ export default {
     }
   },
   mounted() {
+    if (this.$root.channel.isReady()) {
+      this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
+    } else {
+      EVENTBUS.once('channel.available', () => {
+        this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
+      });
+    }
     listeners.push(
       EVENTBUS.on('InfoboxActionEvent', (data) => {
         this.handleInfoboxEvent(data);
@@ -167,6 +85,7 @@ export default {
   beforeUnmount() {
     this.$root.channel.postRequest('InfoBox.HideInfoBoxRequest');
     this.$root.channel.postRequest('MapModulePlugin.RemoveMarkersRequest');
+    this.$root.channel.sendUIEvent(['mapmodule.crosshair'], () => {});
     while (listeners.length) {
       EVENTBUS.off('InfoboxActionEvent', listeners.pop());
     }
@@ -218,6 +137,8 @@ channel.getMapPosition((data) => {
           action: {
             info: 'this can include any info',
             info2: 'action-object can have any number of params',
+            centerX: parseInt(data.centerX),
+            centerY: parseInt(data.centerY),
             buttonInfo:
               'This button has group 1 and is placed to the same row with other actions that have the same group'
           }

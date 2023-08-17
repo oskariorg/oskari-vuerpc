@@ -11,12 +11,13 @@
       Documentation for {{ requestName }}
     </DocumentationLink>
 
-    <div>
-      <input v-model="query" placeholder="Search query" />
-      <RunExampleButton @click="searchRequest">SearchRequest</RunExampleButton>
-    </div>
-
-    <CodeSnippet :snippet="codeSnippet.request"></CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Send request">
+      channel.postRequest('{{ requestName }}', ['Oulunkylä']);
+    </CodeSnippet>
+    <p>
+      You can try different search parameters by editing the code above. The query string can be for
+      example a location or an address.
+    </p>
     <br />
     <h3>Search event</h3>
     <p>
@@ -151,22 +152,6 @@ export default {
       apiDocPageEvent,
       query: 'Oulunkylä'
     };
-  },
-  computed: {
-    codeSnippet() {
-      // Changing slot content won't update the code highlight at runtime
-      // If we pass the whole snippet as prop it will be updated as expected
-      return {
-        request: `channel.postRequest('${requestName}', ['${this.query}']);`,
-        result: ``
-      };
-    }
-  },
-  methods: {
-    searchRequest() {
-      this.$root.channel.postRequest(requestName, [this.query]);
-      this.$root.channel.log(requestName + ' posted with data', this.query);
-    }
   },
   mounted() {
     listeners.push(
