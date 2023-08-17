@@ -3,10 +3,10 @@
     <div class="selectExamples">
       <h2 v-if="!hideSelect">Select Action <NavigationDropdown :current="currentPage.name" /></h2>
       <div class="navigationLinkParent">
-        <div v-if="navLinks.prev">
+        <div class="prev" v-if="navLinks.prev">
           <router-link :to="navLinks.prev.path">Previous: {{ navLinks.prev.label }}</router-link>
         </div>
-        <div v-if="navLinks.next">
+        <div class="next" v-if="navLinks.next">
           <router-link :to="navLinks.next.path">Next: {{ navLinks.next.label }}</router-link>
         </div>
       </div>
@@ -58,5 +58,14 @@ export default {
 .navigationLinkParent {
   padding-left: 0.7em;
   padding-right: 0.7em;
+  overflow: hidden;
+}
+
+.prev {
+  float: left;
+}
+
+.next {
+  float: right;
 }
 </style>
