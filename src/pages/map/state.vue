@@ -14,8 +14,11 @@
       history/back-functionality.
     </p>
     <CodeSnippet>
+var savedState = {};
+
 channel.getCurrentState(function (data) {
   channel.log('GetCurrentState: ', data);
+  savedState = data;
 });
     </CodeSnippet>
 
@@ -25,25 +28,21 @@ channel.getCurrentState(function (data) {
     <p>
       The <InlineCode>useState()</InlineCode> function takes an Object describing the state of the
       map as parameter. To see an example of this object you can click the "Save current state"
-      button. After clicking the button, move/zoom the map and then click the "Restore state" button
-      below to see the map set to the state that it was in when the Save button was clicked.
+      button. After clicking the button, move/zoom the map and then click the "Load saved state"
+      button below to see the map set to the state that it was in when the Save button was clicked.
     </p>
-    <CodeSnippet :snippet="useStateSnippet"></CodeSnippet>
-
-    <RunExampleButton @click="loadState">Load saved state</RunExampleButton>
+    <CodeSnippet :runnable="true" buttonText="Load saved state">{{ useStateSnippet }}</CodeSnippet>
 
     <h3>resetState()</h3>
     <p>
       The <InlineCode>resetState()</InlineCode> function restores the map state to the original
       state it was in when the page was loaded.
     </p>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Reset state">
 channel.resetState(function () {
   channel.log('State Reset');
 });
     </CodeSnippet>
-
-    <RunExampleButton @click="resetState">Reset state</RunExampleButton>
   </div>
 </template>
 
@@ -72,28 +71,12 @@ channel.useState([savedState], function () {
 });`;
     }
   },
-
   methods: {
-    resetState() {
-      this.$root.channel.resetState(() => {
-        this.$root.channel.log('State Reset');
-      });
-    },
     saveState() {
       this.$root.channel.getCurrentState((data) => {
         this.savedState = data;
         this.$root.channel.log('GetCurrentState: ', data);
       });
-    },
-    loadState() {
-      this.$root.channel.useState([this.savedState], () => {
-        this.$root.channel.log('UseState: ', this.savedState);
-      });
-      if (Object.keys(this.savedState).length === 0) {
-        this.$root.channel.log(
-          'UseState() without params or with an empty object as param doesn\'t do anything. Click "Save state", move the map and then click "Load state" to see the effect.'
-        );
-      }
     }
   },
   beforeUnmount() {

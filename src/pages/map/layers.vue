@@ -11,12 +11,11 @@
       Documentation for RPC functions
     </DocumentationLink>
 
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Show layers in log">
 channel.getAllLayers(function (data) {
   channel.log('GetAllLayers:', data);
 });
     </CodeSnippet>
-    <RunExampleButton @click="getAllLayers">Show layers in log</RunExampleButton>
 
     <!-- ChangeMapLayerOpacityRequest -->
     <h3>Change layer opacity</h3>
@@ -25,7 +24,7 @@ channel.getAllLayers(function (data) {
       opacity programmatically.
     </p>
 
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Toggle opacity">
 channel.getAllLayers(function (layers) {
   // get the bottom layer
   var layerId = layers[0].id;
@@ -38,8 +37,6 @@ channel.getAllLayers(function (layers) {
     <DocumentationLink type="request" :apiDoc="apiDocPageOpacity">
       Documentation for {{ requestNameOpacity }}
     </DocumentationLink>
-
-    <RunExampleButton @click="toggleOpacity">Toggle opacity</RunExampleButton>
 
     <!-- MapLayerVisibilityRequest -->
     <h3>Show or hide a layer on map</h3>
@@ -130,22 +127,6 @@ export default {
     };
   },
   methods: {
-    getAllLayers() {
-      this.$root.channel.getAllLayers((data) => {
-        this.$root.channel.log('GetAllLayers: ', data);
-      });
-    },
-    toggleOpacity() {
-      const me = this;
-      this.$root.channel.getAllLayers(function (layers) {
-        const layerId = layers[0].id;
-        const currentOpacity = layers[0].opacity;
-        var newOpacity = currentOpacity !== 100 ? 100 : 50;
-
-        me.$root.channel.postRequest(requestNameOpacity, [layerId, newOpacity]);
-        me.$root.channel.log(requestNameOpacity + ' sent with parameters: ', [layerId, newOpacity]);
-      });
-    },
     toggleVisibility(n = 0) {
       const me = this;
       this.$root.channel.getAllLayers(function (layers) {

@@ -11,14 +11,9 @@
       Documentation for request: {{ requestName }}
     </DocumentationLink>
 
-    <CodeSnippet> channel.postRequest('{{ requestName }}', [{{ rotateDegrees }}]); </CodeSnippet>
-    <p>
-      Click the button to run the code above:
-      <RunExampleButton @click="rotateMap(rotateDegrees)">
-        Rotate map to {{ rotateDegrees }} degrees
-      </RunExampleButton>
-    </p>
-
+    <CodeSnippet :runnable="true" :buttonText="`Rotate map to ${rotateDegrees} degrees`">
+      channel.postRequest('{{ requestName }}', [{{ rotateDegrees }}]);
+    </CodeSnippet>
     <h3>{{ eventName }} event</h3>
     <p>
       The user can rotate the map by dragging it with "shift- and alt-keys" down while dragging. You
@@ -35,9 +30,9 @@
 
     <h3>Resetting rotation</h3>
     <p>To reset rotation you can use the same request without parameters:</p>
-    <CodeSnippet> channel.postRequest('{{ requestName }}', []); </CodeSnippet>
-
-    <RunExampleButton @click="rotateMap">Reset Rotation</RunExampleButton>
+    <CodeSnippet :runnable="true" buttonText="Reset rotation">
+      channel.postRequest('{{ requestName }}', []);
+    </CodeSnippet>
   </div>
 </template>
 <script>
@@ -59,16 +54,6 @@ export default {
       requestName,
       rotateDegrees: 180
     };
-  },
-  methods: {
-    rotateMap(amount) {
-      const params = [];
-      if (amount) {
-        params.push(amount);
-      }
-      this.$root.channel.postRequest('rotate.map', params);
-      this.$root.channel.log('rotate.map posted with data', params);
-    }
   },
   beforeUnmount() {
     // Clean up when user leaves the example

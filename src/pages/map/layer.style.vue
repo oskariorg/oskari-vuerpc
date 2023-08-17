@@ -8,21 +8,20 @@
     <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
       Documentation for {{ requestName }}
     </DocumentationLink>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Change map layer style">
 const layerId = {{ layerId }};
 const params = {{ JSON.stringify(params, null, 2) }};
 channel.postRequest('{{requestName}}', [layerId, true, params]);
     </CodeSnippet>
-    Click the button to run the code above:
-    <RunExampleButton @click="updateMapLayer">Change map layer style</RunExampleButton>
+    
     <h3>Reset external SLD</h3>
+    
     <p>You can reset the style by sending a null <InlineCode>SLD_BODY</InlineCode>:</p>
-    <CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Reset map layer style">
 const layerId = {{ layerId }};
 const params = {{ JSON.stringify(resetParams, null, 2) }};
 channel.postRequest('{{requestName}}', [layerId, true, params]);
     </CodeSnippet>
-    <RunExampleButton @click="resetMapLayer">Reset map layer style</RunExampleButton>
   </div>
 </template>
 
@@ -54,24 +53,17 @@ export default {
       resetParams
     };
   },
-  methods: {
-    updateMapLayer() {
-      this.$root.channel.postRequest(requestName, [layerId, true, params]);
-      this.$root.channel.log(requestName, params);
-    },
-    resetMapLayer() {
-      this.$root.channel.postRequest(requestName, [layerId, true, resetParams]);
-      this.$root.channel.log(requestName, resetParams);
-    }
-  },
   mounted() {
+    // Show map layer used in example
     this.$root.channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', [
       this.layerId,
       true
     ]);
   },
   beforeUnmount() {
-    this.resetMapLayer();
+    // Reset map layer style before exiting
+    this.$root.channel.postRequest(requestName, [this.layerId, true, this.resetParams]);
+    // Hide map layer
     this.$root.channel.postRequest('MapModulePlugin.MapLayerVisibilityRequest', [
       this.layerId,
       false
