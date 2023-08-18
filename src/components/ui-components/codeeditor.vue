@@ -182,7 +182,7 @@ export default {
 }
 .run-code-button {
   background-color: #49483e;
-  color: #E6DB74;
+  color: #e6db74;
 }
 .run-code-button:hover {
   background-color: #272822;
@@ -255,16 +255,15 @@ export default {
   padding-bottom: 0px;
   left: 20px;
   top: -2px;
-
-  &:after {
-    content: '';
-    position: absolute;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 14px solid white;
-    left: -10px;
-    top: 1px;
-    transform: rotate(90deg);
-  }
+}
+.enterIcon:after {
+  content: '';
+  position: absolute;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 14px solid white;
+  left: -10px;
+  top: 1px;
+  transform: rotate(90deg);
 }
 </style>
