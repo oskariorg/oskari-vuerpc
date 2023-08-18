@@ -69,13 +69,15 @@ export default {
 .navigationLink {
   padding: 0.5em;
   border: solid 1px black;
-  border-radius: 5px;
-  background-color: aqua;
+  background-color: #d9d9d9;
+  color: black;
+  box-shadow: 2px 2px 1px #888888
 }
 
 .navigationLink:hover {
   text-decoration: none;
-  background-color: blue;
+  color: black;
+  background-color: #888888;
 }
 
 .prev {
