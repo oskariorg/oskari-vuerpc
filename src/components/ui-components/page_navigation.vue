@@ -6,12 +6,12 @@
         <div class="prev" v-if="navLinks.prev">
           <router-link class="navigationLink" :to="navLinks.prev.path">
             <i class="arrow left"></i>
-            Previous: {{ navLinks.prev.label }}
+            {{ navLinks.prev.label }}
           </router-link>
         </div>
         <div class="next" v-if="navLinks.next">
           <router-link class="navigationLink" :to="navLinks.next.path">
-            Next: {{ navLinks.next.label }}
+            {{ navLinks.next.label }}
             <i class="arrow right"></i>
           </router-link>
         </div>
