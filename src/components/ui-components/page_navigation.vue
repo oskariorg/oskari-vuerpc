@@ -67,6 +67,9 @@ export default {
 }
 
 .navigationLink {
+  display: block;
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
   padding: 0.5em;
   border: solid 1px black;
   background-color: #d9d9d9;
