@@ -13,7 +13,8 @@ Can be used without passing props like this:
 Or with props:
 <CodeEditor
   :code="`console.log('Hello World!')`"
-  :lang="'javascript'"
+  lang="javascript"
+  buttonText="Run example"
   :runnable="true"
   :readOnly="false"
 />
@@ -24,7 +25,7 @@ Or with props:
     <!-- never rendered, used only for capturing content-->
     <slot v-if="false"></slot>
     <button v-if="runnable" @click="evaluateContent" ref="runnableRef" class="run-code-button">
-      {{ buttonText }}
+      {{ buttonText }} <i class="enterIcon"></i>
     </button>
     <button v-if="expandable" ref="expandRef" class="expand-button">
       <span class="expand-content"></span>
@@ -180,8 +181,11 @@ export default {
   margin: 1em;
 }
 .run-code-button {
+  background-color: #49483e;
+  color: #e6db74;
+}
+.run-code-button:hover {
   background-color: #272822;
-  color: #f92672;
 }
 .bottom-element {
   border-bottom-right-radius: 5px;
@@ -194,13 +198,16 @@ export default {
 .expand-button {
   width: 100%;
   height: 20px;
-  background-color: #272822;
+  background-color: #49483e;
   position: relative;
+}
+.expand-button:hover {
+  background-color: #272822;
 }
 .expand-content {
   border-left: 7px solid transparent;
   border-right: 7px solid transparent;
-  border-top: 14px solid #75715e;
+  border-top: 14px solid white;
   top: 1px;
 }
 .expand-content,
@@ -225,7 +232,7 @@ export default {
 }
 .ace_scrollbar::-webkit-scrollbar-track {
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: rgba(39, 40, 34, 0.2);
+  background-color: #272822;
   border-radius: 10px;
 }
 .ace_scrollbar::-webkit-scrollbar-thumb {
@@ -233,5 +240,30 @@ export default {
   background-color: rgba(169, 169, 169, 0.2);
   outline: 1px solid slategrey;
   border-radius: 10px;
+}
+/**
+* Create enter icon
+*/
+.enterIcon {
+  border: solid white;
+  position: relative;
+  border-width: 0 4px 4px 0;
+  display: inline-block;
+  padding-left: 6px;
+  padding-top: 6px;
+  padding-right: 10px;
+  padding-bottom: 0px;
+  left: 20px;
+  top: -2px;
+}
+.enterIcon:after {
+  content: '';
+  position: absolute;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 14px solid white;
+  left: -10px;
+  top: 1px;
+  transform: rotate(90deg);
 }
 </style>
