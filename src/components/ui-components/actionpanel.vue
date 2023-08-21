@@ -39,9 +39,6 @@ export default {
 </script>
 
 <style>
-#select-panel a {
-  color: #8aa5d1;
-}
 .form-panel {
   border: 0.5px solid #d9d9d9;
 }
