@@ -24,6 +24,7 @@ Or with props:
     <div ref="editorRef" class="editor"></div>
     <!-- never rendered, used only for capturing content-->
     <slot v-if="false"></slot>
+    <button @click="copyText">Copy to clipboard</button>
     <button v-if="runnable" @click="evaluateContent" ref="runnableRef" class="run-code-button">
       {{ buttonText }} <i class="enterIcon"></i>
     </button>
@@ -35,6 +36,7 @@ Or with props:
 <script>
 import ace from 'ace-builds';
 import 'ace-builds/esm-resolver';
+import EVENTBUS from '../../util/eventbus';
 
 export default {
   name: 'codeEditor',
@@ -167,25 +169,33 @@ export default {
       } catch (e) {
         this.$root.channel.log(`Error '${e}' while parsing statement: '${content}'`);
       }
+    },
+    copyText() {
+      // Copy editor content to clipboard
+      const content = this.editor.getValue();
+      navigator.clipboard.writeText(content);
+      // Show popup
+      EVENTBUS.notify('rpcAppDisplayMessage', { msg: 'Copied to clipboard!', seconds: 3 });
     }
   }
 };
 </script>
 
 <style>
+button {
+  background-color: #49483e;
+  color: #e6db74;
+}
+button:hover {
+  background-color: #272822;
+}
+
 .editor-wrapper {
   display: grid;
   padding-top: 1em;
   background-color: #272822;
   border-radius: 5px;
   margin: 1em;
-}
-.run-code-button {
-  background-color: #49483e;
-  color: #e6db74;
-}
-.run-code-button:hover {
-  background-color: #272822;
 }
 .bottom-element {
   border-bottom-right-radius: 5px;
@@ -198,11 +208,7 @@ export default {
 .expand-button {
   width: 100%;
   height: 20px;
-  background-color: #49483e;
   position: relative;
-}
-.expand-button:hover {
-  background-color: #272822;
 }
 .expand-content {
   border-left: 7px solid transparent;
