@@ -24,7 +24,7 @@ Or with props:
     <div ref="editorRef" class="editor"></div>
     <!-- never rendered, used only for capturing content-->
     <slot v-if="false"></slot>
-    <button ref="copyRef" @click="copyText">Copy text</button>
+    <button @click="copyText">Copy to clipboard</button>
     <button v-if="runnable" @click="evaluateContent" ref="runnableRef" class="run-code-button">
       {{ buttonText }} <i class="enterIcon"></i>
     </button>
@@ -36,6 +36,7 @@ Or with props:
 <script>
 import ace from 'ace-builds';
 import 'ace-builds/esm-resolver';
+import EVENTBUS from '../../util/eventbus';
 
 export default {
   name: 'codeEditor',
@@ -168,6 +169,13 @@ export default {
       } catch (e) {
         this.$root.channel.log(`Error '${e}' while parsing statement: '${content}'`);
       }
+    },
+    copyText() {
+      // Copy editor content to clipboard
+      const content = this.editor.getValue();
+      navigator.clipboard.writeText(content);
+      // Show popup
+      EVENTBUS.notify('rpcAppDisplayMessage', { msg: 'Copied to clipboard!', seconds: 3 });
     }
   }
 };
