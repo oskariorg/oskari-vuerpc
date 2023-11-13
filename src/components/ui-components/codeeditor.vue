@@ -24,7 +24,7 @@ Or with props:
     <div ref="editorRef" class="editor"></div>
     <!-- never rendered, used only for capturing content-->
     <slot v-if="false"></slot>
-    <button @click="copyText">Copy to clipboard</button>
+    <button @click="copyText" ref="copyTextRef">Copy to clipboard</button>
     <button v-if="runnable" @click="evaluateContent" ref="runnableRef" class="run-code-button">
       {{ buttonText }} <i class="enterIcon"></i>
     </button>
@@ -117,7 +117,7 @@ export default {
     } else if (this.runnable) {
       this.$refs.runnableRef.classList.add('bottom-element');
     } else {
-      this.$refs.editorRef.classList.add('bottom-element');
+      this.$refs.copyTextRef.classList.add('bottom-element');
     }
   },
   computed: {
