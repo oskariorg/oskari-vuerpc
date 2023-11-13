@@ -4,7 +4,7 @@
       <div class="nav-container">
         <div class="oskari-logo">
           <a href="http://www.oskari.org"
-            ><img src="../../assets/img/oskari_logo_black_horizontal.svg">
+            ><img src="../../assets/img/oskari_logo_black_horizontal.svg" />
           </a>
         </div>
         <nav>
@@ -101,7 +101,7 @@ export default {
   color: var(--main-bg-color);
 }
 
-.oskari-logo img{
+.oskari-logo img {
   height: var(--el-height);
 }
 </style>
