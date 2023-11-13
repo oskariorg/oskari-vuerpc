@@ -1,14 +1,14 @@
 <template>
-  <div class="header">
-    <div class="nav-container">
-      <div class="nav-content">
+  <div class="nav">
+    <div class="nav-wrapper">
+      <div class="nav-container">
         <div class="oskari-logo">
           <a href="http://www.oskari.org"
             ><img src="../../assets/img/oskari_logo_black_horizontal.svg" style="height: 3rem"
           /></a>
         </div>
         <nav>
-          <ul id="nav" role="navigation">
+          <ul class="nav-menu" role="navigation">
             <li><a href="/guides">Guides</a></li>
             <li><a href="/documentation">Documentation</a></li>
             <li><a href="/gallery">Gallery</a></li>
@@ -16,7 +16,7 @@
             <li><a href="/about">About</a></li>
           </ul>
         </nav>
-        <button id="nav-download">Download</button>
+        <button class="nav-download">Download</button>
       </div>
     </div>
   </div>
@@ -30,14 +30,14 @@ export default {
 };
 </script>
 <style>
-.nav-container {
+.nav-wrapper {
   max-width: 83rem;
   font-family: 'League Spartan', Helvetica, sans-serif;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
-  height: 80px
+  height: 80px;
 }
-.nav-content {
+.nav-container {
   max-width: 1920px;
   display: grid;
   grid-template-columns: 1fr 7fr auto;
@@ -46,13 +46,13 @@ export default {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
-.nav-container,
-.nav-content {
+.nav-wrapper,
+.nav-container {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
 }
-#nav {
+.nav-menu {
   list-style: none;
   display: flex;
   align-items: center;
@@ -64,12 +64,12 @@ export default {
   margin-bottom: 0;
   padding-right: 1.5rem;
 }
-#nav a,
-#nav a:hover {
+.nav-menu a,
+.nav-menu a:hover {
   text-decoration: none;
   color: #222222;
 }
-#nav-download {
+.nav-download {
   height: auto;
   background-color: #ffd400;
   color: #222222;
@@ -84,7 +84,7 @@ export default {
   background-color: #ffd400;
   color: #222222;
 }
-a:hover {
+.nav a:hover {
   color: #222222;
 }
 .oskari-logo {
