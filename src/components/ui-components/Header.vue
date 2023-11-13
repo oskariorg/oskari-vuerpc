@@ -4,8 +4,8 @@
       <div class="nav-container">
         <div class="oskari-logo">
           <a href="http://www.oskari.org"
-            ><img src="../../assets/img/oskari_logo_black_horizontal.svg" style="height: 3rem"
-          /></a>
+            ><img src="../../assets/img/oskari_logo_black_horizontal.svg">
+          </a>
         </div>
         <nav>
           <ul class="nav-menu" role="navigation">
@@ -31,14 +31,18 @@ export default {
 </script>
 <style>
 .nav-wrapper {
-  max-width: 83rem;
-  font-family: 'League Spartan', Helvetica, sans-serif;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  --text-color: #222222;
+  --button-color: #ffd400;
+  --f-size: 14px;
+  --f-weight: bold;
+  --l-spacing: 1px;
+  --el-height: 3rem;
+
+  font-family: 'League Spartan', sans-serif;
   height: 80px;
 }
+
 .nav-container {
-  max-width: 1920px;
   display: grid;
   grid-template-columns: 1fr 7fr auto;
   align-items: center;
@@ -46,50 +50,58 @@ export default {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+
 .nav-wrapper,
 .nav-container {
+  max-width: 90rem;
+  width: 100%;
   margin-left: auto;
   margin-right: auto;
-  width: 100%;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
 }
+
 .nav-menu {
   list-style: none;
   display: flex;
-  align-items: center;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-size: var(--f-size);
+  font-weight: var(--f-weight);
+  letter-spacing: var(--l-spacing);
   gap: 1.5rem;
   float: right;
   margin-bottom: 0;
   padding-right: 1.5rem;
 }
+
 .nav-menu a,
 .nav-menu a:hover {
   text-decoration: none;
-  color: #222222;
+  color: var(--main-bg-color);
 }
+
 .nav-download {
-  height: auto;
-  background-color: #ffd400;
-  color: #222222;
-  float: right;
+  height: var(--el-height);
+  background-color: var(--button-color);
+  color: var(--main-bg-color);
+  font-size: var(--f-size);
+  font-weight: var(--f-weight);
+  letter-spacing: var(--l-spacing);
   border-radius: 50rem;
   border-color: transparent;
-  font-weight: 700;
   padding: 0.8rem 1.6rem;
 }
+
 .nav-download:hover {
   text-decoration: none;
-  background-color: #ffd400;
-  color: #222222;
+  background-color: var(--button-color);
+  color: var(--main-bg-color);
 }
+
 .nav a:hover {
-  color: #222222;
+  color: var(--main-bg-color);
 }
-.oskari-logo {
-  display: flex;
-  justify-content: flex-start;
-  vertical-align: baseline;
+
+.oskari-logo img{
+  height: var(--el-height);
 }
 </style>
