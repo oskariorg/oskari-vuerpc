@@ -182,11 +182,11 @@ export default {
 </script>
 
 <style>
-button {
+.editor-wrapper button {
   background-color: #49483e;
   color: #e6db74;
 }
-button:hover {
+.editor-wrapper button:hover {
   background-color: #272822;
 }
 
