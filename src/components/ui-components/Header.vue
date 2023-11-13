@@ -39,12 +39,10 @@ export default {
 }
 .nav-content {
   max-width: 1920px;
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr 7fr auto;
   align-items: center;
   gap: 1rem;
-  height: auto;
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
@@ -60,6 +58,7 @@ export default {
   align-items: center;
   font-size: 14px;
   font-weight: 700;
+  letter-spacing: 1px;
   gap: 1.5rem;
   float: right;
   margin-bottom: 0;
