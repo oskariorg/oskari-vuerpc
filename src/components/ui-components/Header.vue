@@ -31,7 +31,7 @@ export default {
 </script>
 <style>
 .nav-container {
-  max-width: 82rem; /*Hard-coding not optimal*/
+  max-width: 83rem;
   font-family: 'League Spartan', Helvetica, sans-serif;
   padding-left: 1.5rem;
   padding-right: 1.5rem;
