@@ -49,6 +49,8 @@ export default {
   gap: 1rem;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
 
 .nav-wrapper,
@@ -57,8 +59,6 @@ export default {
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
 }
 
 .nav-menu {
