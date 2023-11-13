@@ -33,7 +33,7 @@ export default {
 .nav-wrapper {
   --text-color: #222222;
   --button-color: #ffd400;
-  --f-size: 14px;
+  --f-size: 16px;
   --f-weight: bold;
   --l-spacing: 1px;
   --el-height: 3rem;
