@@ -1,24 +1,26 @@
 <template>
-  <div class="header">
-    <div class="nav-content">
-      <div class="oskari-logo">
-        <a href="http://www.oskari.org"
-          ><img src="../../assets/img/oskari_logo_white.png" style="height: 65px"
-        /></a>
+  <div class="nav">
+    <div class="nav-wrapper">
+      <div class="nav-container">
+        <div class="oskari-logo">
+          <a href="http://www.oskari.org"
+            ><img src="../../assets/img/oskari_logo_black_horizontal.svg" />
+          </a>
+        </div>
+        <nav>
+          <ul class="nav-menu" role="navigation">
+            <li><a href="/guides">Guides</a></li>
+            <li><a href="/documentation">Documentation</a></li>
+            <li><a href="/gallery">Gallery</a></li>
+            <li><a href="/download">Download</a></li>
+            <li><a href="/about">About</a></li>
+          </ul>
+        </nav>
+        <button class="nav-download">Download</button>
       </div>
-      <nav>
-        <ul id="nav navbar-nav" role="navigation">
-          <li><a href="/guides">Guides</a></li>
-          <li><a href="/documentation">Documentation</a></li>
-          <li><a href="/gallery">Gallery</a></li>
-          <li><a href="/download">Download</a></li>
-          <li><a href="/about">About</a></li>
-        </ul>
-      </nav>
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: 'pageHeader',
@@ -28,46 +30,78 @@ export default {
 };
 </script>
 <style>
-.header {
-  width: 100%;
-  background: #262626;
-  border-bottom: 1px solid maroon;
-  -webkit-box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.3);
-}
-.header nav {
-  font-size: calc(0.6rem + 1vh);
-}
-.header nav ul li {
-  display: inline-block;
-  margin-left: 0.5em;
-  list-style-type: none;
-  padding-bottom: 5px;
-  border-top: 15px solid transparent;
-}
-.nav-content {
-  max-width: 1200px;
-  margin-right: auto;
-  margin-left: auto;
-  padding: 0 0 2em;
-  height: 60px;
-}
-.oskari-logo {
-  float: left;
+.nav-wrapper {
+  --text-color: #222222;
+  --button-color: #ffd400;
+  --f-size: 16px;
+  --f-weight: bold;
+  --l-spacing: 1px;
+  --el-height: 3rem;
+
+  font-family: 'League Spartan', sans-serif;
+  height: 80px;
 }
 
-#header-items {
-  margin: auto;
-  font-size: 1.2em;
-  display: inline-block;
+.nav-container {
+  display: grid;
+  grid-template-columns: 1fr 7fr auto;
+  align-items: center;
+  gap: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
 }
-.header li {
-  margin-left: 0.5em;
-  display: inline-block;
+
+.nav-wrapper,
+.nav-container {
+  max-width: 90rem;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
 }
-.header a {
-  color: #e8ecef;
-  padding-left: 0.7em;
-  padding-right: 0.7em;
+
+.nav-menu {
+  list-style: none;
+  display: flex;
+  font-size: var(--f-size);
+  font-weight: var(--f-weight);
+  letter-spacing: var(--l-spacing);
+  gap: 1.5rem;
+  float: right;
+  margin-bottom: 0;
+  padding-right: 1.5rem;
+}
+
+.nav-menu a,
+.nav-menu a:hover {
+  text-decoration: none;
+  color: var(--main-bg-color);
+}
+
+.nav-download {
+  height: var(--el-height);
+  background-color: var(--button-color);
+  color: var(--main-bg-color);
+  font-size: var(--f-size);
+  font-weight: var(--f-weight);
+  letter-spacing: var(--l-spacing);
+  border-radius: 50rem;
+  border-color: transparent;
+  padding: 0.8rem 1.6rem;
+}
+
+.nav-download:hover {
+  text-decoration: none;
+  background-color: var(--button-color);
+  color: var(--main-bg-color);
+}
+
+.nav a:hover {
+  color: var(--main-bg-color);
+}
+
+.oskari-logo img {
+  height: var(--el-height);
 }
 </style>
