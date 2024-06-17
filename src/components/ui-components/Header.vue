@@ -9,14 +9,15 @@
         </div>
         <nav>
           <ul class="nav-menu" role="navigation">
-            <li><a href="/guides">Guides</a></li>
-            <li><a href="/documentation">Documentation</a></li>
-            <li><a href="/gallery">Gallery</a></li>
-            <li><a href="/download">Download</a></li>
-            <li><a href="/about">About</a></li>
+            <li><a href="">Home</a></li>
+            <li><a href="/discover/">Discover Oskari</a></li>
+            <li><a href="/documentation/docs/latest/">Documentation</a></li>
+            <li><a href="/community/">Community</a></li>
+            <li><a href="/blog/">Blog</a></li>
+            <li><a href="/contribute/">Contribute</a></li>
           </ul>
         </nav>
-        <button class="nav-download">Download</button>
+        <button class="nav-download" href="/download">Download</button>
       </div>
     </div>
   </div>
