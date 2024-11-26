@@ -101,15 +101,15 @@ channel.getAllLayers(function (layers) {
 import EVENTBUS from '../../util/eventbus.js';
 
 const title = 'Map Layers';
-const apiDocPageRPC = 'framework/rpc';
+const apiDocPageRPC = 'framework/RPC';
 
 const requestNameOpacity = 'ChangeMapLayerOpacityRequest';
-const apiDocPageOpacity = 'mapping/mapmodule/request/changemaplayeropacityrequest.md';
+const apiDocPageOpacity = 'mapping/mapmodule/request/ChangeMapLayerOpacityRequest.md';
 
 const requestNameVisibility = 'MapModulePlugin.MapLayerVisibilityRequest';
 const apiDocPageVisibility =
   'mapping/mapmodule/request/MapModulePlugin.MapLayerVisibilityRequest.md';
-const apiDocPageRearrange = 'mapping/mapmodule/request/rearrangeselectedmaplayerrequest.md';
+const apiDocPageRearrange = 'mapping/mapmodule/request/RearrangeSelectedMapLayerRequest.md';
 
 export default {
   name: 'MapLayers',

@@ -85,7 +85,7 @@ const eventName = 'AfterMapMoveEvent';
 const apiDocPageEvent = 'mapping/mapmodule/event/AfterMapMoveEvent.md';
 const requestName = 'MapMoveRequest';
 const apiDocPageRequest = 'mapping/mapmodule/request/MapMoveRequest.md';
-const apiDocPageRPC = 'framework/rpc';
+const apiDocPageRPC = 'framework/RPC';
 
 export default {
   name: 'MapLocation',
