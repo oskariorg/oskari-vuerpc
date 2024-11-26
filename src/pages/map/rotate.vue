@@ -36,7 +36,7 @@
   </div>
 </template>
 <script>
-const apiDocPageRequest = 'mapping/maprotator/request/rotate.map.md';
+const apiDocPageRequest = 'mapping/maprotator/request/rotate.map-request';
 const apiDocPageEvent = 'mapping/maprotator/event/map.rotated.md';
 const title = 'Rotate map';
 const requestName = 'rotate.map';

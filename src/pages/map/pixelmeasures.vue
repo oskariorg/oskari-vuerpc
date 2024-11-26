@@ -33,7 +33,7 @@ channel.getPixelMeasuresInScale([A4_size_mm, {{ scale }}], function (data) {
 <script>
 import EVENTBUS from '../../util/eventbus';
 
-const apiDocPage = 'framework/rpc';
+const apiDocPage = 'framework/RPC';
 const title = 'Get pixel measures in scale';
 const A4_size_mm = [210, 297];
 const BOX_ID = 'id_plot_bbox';

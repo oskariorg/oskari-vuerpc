@@ -110,7 +110,7 @@ import EVENTBUS from '../../util/eventbus.js';
 
 const title = 'Order of features';
 const requestNameAdd = 'MapModulePlugin.AddFeaturesToMapRequest';
-const apiDocPageRequestAdd = 'mapping/mapmodule/request/addfeaturestomaprequest.md';
+const apiDocPageRequestAdd = 'mapping/mapmodule/request/AddFeaturesToMapRequest.md';
 const vectorLayerName = 'MY_VECTOR_LAYER';
 
 const x = 488704;
