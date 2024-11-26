@@ -46,7 +46,7 @@ export default {
   margin: 0 auto;
 }
 h3 {
-  font-family: 'Open Sans';
+  font-family: 'League Spartan', sans-serif;
   font-size: 1.25rem !important;
 }
 

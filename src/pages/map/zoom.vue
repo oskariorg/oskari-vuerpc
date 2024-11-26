@@ -10,7 +10,6 @@
       >Documentation for RPC functions</DocumentationLink
     >
     <p>
-      <br />
       Note that after zooming you will also get an <InlineCode>AfterMapMoveEvent</InlineCode> since
       zoom level is part of the "map move info".
     </p>
@@ -68,7 +67,7 @@ channel.zoomTo([{{ zoomLevel }}], function (data) {
 </template>
 
 <script>
-const apiDocPage = 'framework/rpc';
+const apiDocPage = 'framework/RPC';
 const title = 'Zoom functions';
 
 export default {

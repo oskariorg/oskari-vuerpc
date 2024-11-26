@@ -40,7 +40,7 @@ export default {
       if (!snippet) {
         try {
           const slotEl = slots.default()[0];
-          snippet = slotEl.text.trim();
+          snippet = slotEl.children.trim();
           //codeSnippet = codeSnippet.split('&lt;').join('<');
           //codeSnippet = codeSnippet.split('&gt;').join('>');
         } catch (err) {

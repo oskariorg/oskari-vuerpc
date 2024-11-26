@@ -72,6 +72,7 @@ export default {
 }
 select {
   font-size: calc(0.8rem + 1vh) !important;
+  padding: 0.3em;
 }
 option {
   font-size: 18px !important;

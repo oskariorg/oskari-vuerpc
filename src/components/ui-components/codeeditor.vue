@@ -34,6 +34,7 @@ Or with props:
   </div>
 </template>
 <script>
+import { useSlots } from 'vue';
 import ace from 'ace-builds';
 import 'ace-builds/esm-resolver';
 import EVENTBUS from '../../util/eventbus';
@@ -127,8 +128,9 @@ export default {
       if (!snippet) {
         // no props, use slots intead
         try {
-          const slotEl = this.$slots.default()[0];
-          snippet = slotEl.text.trim();
+          const slots = useSlots();
+          const slotEl = slots.default()[0];
+          snippet = slotEl.children.trim();
         } catch (err) {
           snippet = 'Code snippet missing/unable to parse';
           err;
