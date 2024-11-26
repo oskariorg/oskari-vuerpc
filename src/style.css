@@ -272,7 +272,10 @@ div.container {
   font-size: smaller;
   font-weight: normal;
 }
-
+p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
 h2 {
   margin-top: 0;
   margin-bottom: 0;

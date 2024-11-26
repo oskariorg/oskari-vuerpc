@@ -34,7 +34,7 @@ export default {
   --text-color: #222222;
   --button-color: #ffd400;
   --f-size: 16px;
-  --f-weight: bold;
+  --f-weight: 400;
   --l-spacing: 1px;
   --el-height: 3rem;
 
@@ -76,19 +76,21 @@ export default {
 .nav-menu a,
 .nav-menu a:hover {
   text-decoration: none;
+  font-weight: 700;
   color: var(--main-bg-color);
 }
 
 .nav-download {
+  font-family: "League Spartan", sans-serif;
   height: var(--el-height);
   background-color: var(--button-color);
   color: var(--main-bg-color);
+  font-weight: 700;
   font-size: var(--f-size);
-  font-weight: var(--f-weight);
   letter-spacing: var(--l-spacing);
   border-radius: 50rem;
   border-color: transparent;
-  padding: 0.8rem 1.6rem;
+  padding: 0.6rem 1.6rem;
 }
 
 .nav-download:hover {

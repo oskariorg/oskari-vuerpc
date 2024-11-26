@@ -2,8 +2,21 @@
   <div>
     <h2>{{ title }}</h2>
     <h3>Including the necessary stuff to get RPC up and running</h3>
-    <b-tabs>
-      <b-tab title="JavaScript">
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item" role="presentation">
+        <button class="nav-link active" id="npm-tab" data-bs-toggle="tab" data-bs-target="#npm" type="button" role="tab" aria-controls="JavaScript" aria-selected="true">NPM</button>
+      </li>
+      <li class="nav-item" role="presentation">
+        <button class="nav-link" id="JavaScript-tab" data-bs-toggle="tab" data-bs-target="#JavaScript" type="button" role="tab" aria-controls="JavaScript" aria-selected="false">&lt;SCRIPT&gt;</button>
+      </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="npm" role="tabpanel" aria-labelledby="npm-tab">
+        Include OskariRPC to your project by running
+        <inline-code>npm install oskari-rpc</inline-code>. Then include it in source files with:
+        <CodeSnippet>import OskariRPC from 'oskari-rpc';</CodeSnippet>
+      </div>
+      <div class="tab-pane fade show" id="JavaScript" role="tabpanel" aria-labelledby="JavaScript-tab">
         Including RPC javascript in html available from:<br />
         <a href="https://github.com/oskariorg/rpc-client/tree/master/dist"
           target="_blank">https://github.com/oskariorg/rpc-client/tree/master/dist</a>
@@ -16,13 +29,9 @@
         <CodeSnippet lang="xml">
           &lt;script src='https://oskari.org/js/rpc/rpc-client.min.js'&gt;&lt;/script&gt;
         </CodeSnippet>
-      </b-tab>
-      <b-tab title="npm">
-        Include OskariRPC to your project by running
-        <inline-code>npm install oskari-rpc</inline-code>. Then include it in source files with:
-        <CodeSnippet> import OskariRPC from 'oskari-rpc'; </CodeSnippet>
-      </b-tab>
-    </b-tabs>
+      </div>
+    </div>
+    <hr/>
 
     <h3>Embedding a published map on your page</h3>
 
