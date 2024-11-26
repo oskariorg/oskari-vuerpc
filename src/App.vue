@@ -53,14 +53,14 @@ export default {
     // Set these up when created so they are available for
     // components when accessed through non-root router path
     this.$root.documentPathRequest =
-      'https://oskari.org/api/requests#' + this.expectedOskariVersion + '/';
+      'https://oskari.org/documentation/api/requests/latest/';
     this.$root.documentPathEvent =
-      'https://oskari.org/api/events#' + this.expectedOskariVersion + '/';
+      'https://oskari.org/documentation/api/events/latest/';
     this.$root.documentationLinks = {
-      base: 'https://oskari.org/api',
-      event: '/events#' + this.expectedOskariVersion + '/',
-      request: '/requests#' + this.expectedOskariVersion + '/',
-      bundle: '/bundles#' + this.expectedOskariVersion + '/'
+      base: 'https://oskari.org/documentation/api',
+      event: '/events/latest/',
+      request: '/requests/latest/',
+      bundle: '/bundles/latest/'
     };
   },
   methods: {
