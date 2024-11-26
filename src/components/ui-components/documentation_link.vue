@@ -27,8 +27,14 @@ export default {
       }
       const typePath = linkConfig[this.type];
       if (typePath) {
+        const pathToMd = this.apiDoc.split('/');
+        const mdFile = pathToMd.pop();
+        let requestPath = mdFile;
+        if (mdFile.endsWith('.md')) {
+          requestPath = mdFile.slice(0, -3);
+        }
         // link to events/requests/bundles
-        return baseUrl + typePath + this.apiDoc;
+        return baseUrl + typePath + requestPath;
       }
       // fallback to api doc root
       return baseUrl;
