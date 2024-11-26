@@ -9,14 +9,12 @@
         </div>
         <nav>
           <ul class="nav-menu" role="navigation">
-            <li><a href="/guides">Guides</a></li>
-            <li><a href="/documentation">Documentation</a></li>
-            <li><a href="/gallery">Gallery</a></li>
-            <li><a href="/download">Download</a></li>
-            <li><a href="/about">About</a></li>
+            <li><a target="_blank" href="https://oskari.org/documentation">Documentation: </a></li> {
+            <li><a target="_blank" href="https://oskari.org/documentation/api/requests">Requests</a></li> | 
+            <li><a target="_blank" href="https://oskari.org/documentation/api/events">Events</a></li>}
           </ul>
         </nav>
-        <button class="nav-download">Download</button>
+        <a href="https://oskari.org/download" class="nav-download" role="button">Download</a>
       </div>
     </div>
   </div>
@@ -90,7 +88,8 @@ export default {
   letter-spacing: var(--l-spacing);
   border-radius: 50rem;
   border-color: transparent;
-  padding: 0.6rem 1.6rem;
+  padding: 0.8rem 1.6rem;
+  text-decoration: none;
 }
 
 .nav-download:hover {

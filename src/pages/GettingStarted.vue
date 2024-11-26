@@ -4,10 +4,10 @@
     <h3>Including the necessary stuff to get RPC up and running</h3>
     <ul class="nav nav-tabs" id="myTab" role="tablist">
       <li class="nav-item" role="presentation">
-        <button class="nav-link active" id="npm-tab" data-bs-toggle="tab" data-bs-target="#npm" type="button" role="tab" aria-controls="JavaScript" aria-selected="true">NPM</button>
+        <button class="nav-link active" id="npm-tab" data-bs-toggle="tab" data-bs-target="#npm" type="button" role="tab" aria-controls="JavaScript" aria-selected="true">npm</button>
       </li>
       <li class="nav-item" role="presentation">
-        <button class="nav-link" id="JavaScript-tab" data-bs-toggle="tab" data-bs-target="#JavaScript" type="button" role="tab" aria-controls="JavaScript" aria-selected="false">&lt;SCRIPT&gt;</button>
+        <button class="nav-link" id="JavaScript-tab" data-bs-toggle="tab" data-bs-target="#JavaScript" type="button" role="tab" aria-controls="JavaScript" aria-selected="false">&lt;script&gt;</button>
       </li>
     </ul>
     <div class="tab-content" id="myTabContent">
