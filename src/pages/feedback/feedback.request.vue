@@ -2,7 +2,7 @@
   <div>
     <h2>{{ title }}</h2>
     <p>
-      Request feedback data on current map area.
+      Request feedback data for current map area.
       <RunExampleButton @click="getFeedbackRequest">GetFeedbackRequest</RunExampleButton>
     </p>
     <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
@@ -25,7 +25,7 @@ import EVENTBUS from '../../util/eventbus';
 
 const title = 'Get posted feedback data (poc)';
 const requestName = 'GetFeedbackRequest';
-const apiDocPageRequest = 'mapping/feedbackService/request/getfeedbackrequest.md';
+const apiDocPageRequest = 'mapping/feedbackService/request/GetFeedbackRequest.md';
 
 // listeners is references to event listeners registered
 // by this example so we can remove them when the user leaves the page

@@ -2,7 +2,9 @@
   <div id="FeatureEvent">
     <div>Occurs after adding or removing features to or from map and after clicking a feature</div>
     <div>
-      <a id="featureEvent" href="" @click="getLink">To the documentation</a>
+    <DocumentationLink type="event" :apiDoc="apiDocPageEvent">
+      Documentation for FeatureEvent
+    </DocumentationLink>
     </div>
 
     <CodeSnippet>{{ event }}</CodeSnippet>
@@ -15,14 +17,9 @@ export default {
   data() {
     return {
       desc: 'Feature Event',
-      event
+      event,
+      apiDocPageEvent: 'mapping/mapmodule/event/FeatureEvent.md'
     };
-  },
-  methods: {
-    getLink(e) {
-      var documentPathEnd = 'mapping/mapmodule/event/featureevent.md';
-      e.target.href = this.$root.documentPathEvent + documentPathEnd;
-    }
   }
 };
 

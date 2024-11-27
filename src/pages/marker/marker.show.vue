@@ -59,7 +59,7 @@ export default {
     return {
       desc: 'Show or hide a marker',
       MARKER_ID: 'RPC_MARKER',
-      apiDocPage: 'mapping/mapmodule/request/markervisibilityrequest.md'
+      apiDocPage: 'mapping/mapmodule/request/MapModulePlugin.MarkerVisibilityRequest.md'
     };
   },
   beforeUnmount() {

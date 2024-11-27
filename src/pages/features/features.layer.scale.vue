@@ -79,7 +79,7 @@ export default {
     return {
       title,
       requestName,
-      apiDocPageRequest: 'mapping/mapmodule/request/vectorlayerrequest.md',
+      apiDocPageRequest: 'mapping/mapmodule/request/VectorLayerRequest.md',
       polygonLayer,
       pointLayer,
       polygonCollection,

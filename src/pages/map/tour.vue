@@ -26,7 +26,7 @@ channel.postRequest('{{ requestName }}', [routeSteps, stepDefaults]);
 </template>
 
 <script>
-const apiDocPage = 'mapping/mapmodule/request/MapMoveRequest.md';
+const apiDocPage = 'mapping/mapmodule/request/MapTourRequest.md';
 const title = 'Move map along route';
 const requestName = 'MapTourRequest';
 

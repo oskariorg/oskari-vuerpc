@@ -1,23 +1,27 @@
 <template>
   <div>
-    <div>
+    <h2>{{ title }}</h2>
+    <p>
       <InlineCode>ShowProgressSpinnerRequest</InlineCode> allows starting and stopping a progress
       indicator on top of the map. The request takes a boolean as its only parameter.
-    </div>
-    <DocumentationLink type="request" :apiDoc="apiDocPage">To the documentation</DocumentationLink>
-    <CodeSnippet :runnable="true" buttonText="Send request">
+    </p>
+    <CodeSnippet :runnable="true" buttonText="Start spinner">
       channel.postRequest('ShowProgressSpinnerRequest', [true]);
     </CodeSnippet>
+    <CodeSnippet :runnable="true" buttonText="Stop spinner">
+      channel.postRequest('ShowProgressSpinnerRequest', [false]);
+    </CodeSnippet>
+    <DocumentationLink type="request" apiDoc="ShowProgressSpinnerRequest">To the documentation</DocumentationLink>
   </div>
 </template>
 <script>
+const title = 'Show a progress spinner';
 export default {
   name: 'ShowProgressSpinnerRequest',
-  label: 'Show a progress spinner',
+  label: title,
   data() {
     return {
-      desc: 'Show a progress spinner',
-      apiDocPage: 'mapping/mapmodule/request/ShowProgressSpinnerRequest.md'
+      title
     };
   },
   beforeUnmount() {

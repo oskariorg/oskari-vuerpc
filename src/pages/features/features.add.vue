@@ -87,8 +87,8 @@ import { generator } from './vectorlayer_helpers';
 
 const title = 'Add vector features';
 const requestNameAdd = 'MapModulePlugin.AddFeaturesToMapRequest';
-const apiDocPageRequestAdd = 'mapping/mapmodule/request/addfeaturestomaprequest.md';
-const apiDocPageEvent = 'mapping/mapmodule/event/featureevent.md';
+const apiDocPageRequestAdd = 'mapping/mapmodule/request/AddFeaturesToMapRequest.md';
+const apiDocPageEvent = 'mapping/mapmodule/event/FeatureEvent.md';
 const apiDocLayerVisiblity =
   'mapping/mapmodule/request/MapModulePlugin.MapLayerVisibilityRequest.md';
 

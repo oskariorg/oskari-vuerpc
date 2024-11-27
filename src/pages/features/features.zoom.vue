@@ -8,7 +8,7 @@
         all vector features that have been programmatically added to the map (features added
         directly from services/map layers providing vector features are not included).
       </p>
-      <DocumentationLink type="request" apiDoc="mapping/mapmodule/request/zoomtofeaturesrequest.md">
+      <DocumentationLink type="request" apiDoc="mapping/mapmodule/request/ZoomToFeaturesRequest.md">
         Documentation for ZoomToFeaturesRequest
       </DocumentationLink>
     </div>

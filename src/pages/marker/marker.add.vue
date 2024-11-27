@@ -2,7 +2,7 @@
   <div>
     <h2>{{ title }}</h2>
     <p>Clicking the buttons will zoom the map to Helsinki to see markers working.</p>
-    <DocumentationLink type="request" apiDoc="mapping/mapmodule/request/addmarkerrequest.md">
+    <DocumentationLink type="request" apiDoc="mapping/mapmodule/request/AddMarkerRequest.md">
       Documentation for MapModulePlugin.AddMarkerRequest
     </DocumentationLink>
 
@@ -59,7 +59,7 @@ channel.postRequest('MapModulePlugin.AddMarkerRequest', [markerData, '{{MARKER_I
     <InlineCode>MapModulePlugin.RemoveMarkersRequest</InlineCode>. The request can include an ID
     for removing a single marker. When no ID is provided all markers are cleared.
     <br />
-    <DocumentationLink type="request" apiDoc="mapping/mapmodule/request/removemarkersrequest.md">
+    <DocumentationLink type="request" apiDoc="mapping/mapmodule/request/RemoveMarkersRequest.md">
       Documentation for MapModulePlugin.RemoveMarkersRequest
     </DocumentationLink>
     <CodeSnippet :runnable="true" buttonText="Remove marker with ID">

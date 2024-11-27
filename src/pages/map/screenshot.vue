@@ -32,7 +32,7 @@ channel.getScreenshot(function (data) {
 </template>
 
 <script>
-const apiDocPage = 'framework/rpc';
+const apiDocPage = 'framework/RPC';
 const title = 'Get a screenshot of the map';
 
 export default {

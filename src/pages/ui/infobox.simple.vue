@@ -34,7 +34,7 @@ channel.postRequest('{{ request.show }}', data);
       A more in-depth example showcasing the various functionalities of
       <InlineCode>{{ request.show }}</InlineCode> can be found on the next page.
     </p>
-    <DocumentationLink type="request" :apiDoc="apiDocPage.show">
+    <DocumentationLink type="request" apiDoc="InfoBox.ShowInfoBoxRequest">
       Documentation for {{ request.show }}
     </DocumentationLink>
     <h3>Hide info box</h3>
@@ -43,7 +43,7 @@ channel.postRequest('{{ request.show }}', data);
       >. Remove a specific info box by passing the info box's id as a parameter, or remove all info
       boxes by passing no paramaters.
     </p>
-    <DocumentationLink type="request" :apiDoc="apiDocPage.hide">
+    <DocumentationLink type="request" apiDoc="InfoBox.HideInfoBoxRequest">
       Documentation for {{ request.hide }}
     </DocumentationLink>
     <CodeSnippet :runnable="true" buttonText="Hide info box">
@@ -61,6 +61,10 @@ channel.postRequest('{{ this.request.hide }}', [infoboxId]);
   "isOpen": false
 }
     </CodeSnippet>
+    <DocumentationLink type="event" apiDoc="InfoBox.InfoBoxEvent">
+      Documentation for InfoBoxEvent
+    </DocumentationLink>
+    
   </div>
 </template>
 <script>
@@ -72,10 +76,6 @@ export default {
       request: {
         show: 'InfoBox.ShowInfoBoxRequest',
         hide: 'InfoBox.HideInfoBoxRequest'
-      },
-      apiDocPage: {
-        show: 'ui/infobox/request/infobox.showinfoboxrequest.md',
-        hide: 'ui/infobox/request/infobox.hideinfoboxrequest.md'
       },
       infoboxId: 'my infobox'
     };

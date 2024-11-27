@@ -1,7 +1,8 @@
 <template>
   <div>
+    <h2>{{ title }}</h2>
     <div>Occurs after user's location is fetched</div>
-    <DocumentationLink type="event" :apiDoc="apiDocPage"> To the documentation</DocumentationLink>
+    <DocumentationLink type="event" apiDoc="UserLocationEvent"> To the documentation</DocumentationLink>
     <CodeSnippet>
 {
   'lon': 386436.3607007161,
@@ -11,13 +12,13 @@
   </div>
 </template>
 <script>
+const title = 'UserLocationEvent';
 export default {
   name: 'UserLocationEvent',
-  label: 'UserLocationEvent',
+  label: title,
   data() {
     return {
-      desc: 'UserLocationEvent',
-      apiDocPage: 'mapping/mapmodule/event/userlocationevent.md'
+      title
     };
   }
 };

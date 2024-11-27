@@ -1,10 +1,11 @@
 <template>
   <div>
+    <h2>{{ title }}</h2>
     <p>
       Allows app to fetch user's geolocation. Additional configurations needed in application for
       geolocation to work.
     </p>
-    <DocumentationLink type="request" :apiDoc="apiDocpage">
+    <DocumentationLink type="request" apiDoc="GetUserLocationRequest">
       Documentation for GetUserLocationRequest
     </DocumentationLink>
     <CodeSnippet :runnable="true" buttonText="Get user location">
@@ -13,13 +14,13 @@
   </div>
 </template>
 <script>
+const title = 'Get users location';
 export default {
   name: 'GetUserLocationRequest',
-  label: 'Get users location',
+  label: title,
   data() {
     return {
-      desc: 'Get users location',
-      apiDocpage: 'mapping/mapmodule/request/getuserlocationrequest.md'
+      title
     };
   }
 };

@@ -62,7 +62,7 @@ export default {
   data() {
     return {
       desc: 'Show info box for marker',
-      apiDocPage: 'ui/infobox/request/infobox.showinfoboxrequest.md'
+      apiDocPage: 'ui/infobox/request/InfoBox.ShowInfoBoxRequest.md'
     };
   },
   beforeUnmount() {

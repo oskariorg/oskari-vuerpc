@@ -87,7 +87,7 @@ export default {
       layer2features,
       layer1,
       layer2,
-      apiDocPage: 'mapping/mapmodule/request/removefeaturesfrommaprequest.md',
+      apiDocPage: 'mapping/mapmodule/request/RemoveFeaturesFromMapRequest.md',
       apiDocLayerVisiblity: 'mapping/mapmodule/request/MapModulePlugin.MapLayerVisibilityRequest.md'
     };
   },

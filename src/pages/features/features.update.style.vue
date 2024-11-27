@@ -33,7 +33,7 @@ channel.postRequest('{{ requestNameAdd }}', [geojson, {{ JSON.stringify(centerTo
       option when updating the polygon style.
     </p>
 
-    <DocumentationLink href="https://oskari.org/documentation/examples/oskari-style">
+    <DocumentationLink href="https://www.oskari.org/documentation/docs/latest/7-Operating-instructions#How-to-use-Oskari-style">
       Documentation for styles
     </DocumentationLink>
   </div>
@@ -47,7 +47,7 @@ import EVENTBUS from '../../util/eventbus.js';
 
 const title = 'Update vector feature style';
 const requestNameAdd = 'MapModulePlugin.AddFeaturesToMapRequest';
-const apiDocPageRequestAdd = 'mapping/mapmodule/request/addfeaturestomaprequest.md';
+const apiDocPageRequestAdd = 'mapping/mapmodule/request/AddFeaturesToMapRequest.md';
 const vectorLayerName = 'MY_VECTOR_LAYER';
 
 const x = 488704;

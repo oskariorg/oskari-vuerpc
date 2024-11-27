@@ -8,7 +8,7 @@
       supports different transit modes and other options, like maximum walk distance. For more
       information about <InlineCode>{{ requestName }}</InlineCode
       >, see the documentation page: <br />
-      <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
+      <DocumentationLink type="request" :apiDoc="requestName">
         Documentation for {{ requestName }}
       </DocumentationLink>
     </p>
@@ -36,7 +36,7 @@ channel.postRequest('GetRouteRequest', [data]);
       values in the code editor.
     </p>
     <p>
-      <DocumentationLink type="request" :apiDoc="apiDocPageRequest">
+      <DocumentationLink type="request" :apiDoc="requestName">
         Documentation for {{ requestName }}
       </DocumentationLink>
     </p>
@@ -50,7 +50,7 @@ import { generator } from '../features/vectorlayer_helpers';
 
 const title = 'Get route';
 const requestName = 'GetRouteRequest';
-const apiDocPageRequest = 'mapping/routingService/request/getrouterequest.md';
+// const apiDocPageRequest = 'mapping/routingService/request/getrouterequest.md';
 
 // listeners is references to event listeners registered
 // by this example so we can remove them when the user leaves the page
@@ -63,7 +63,6 @@ export default {
     return {
       title,
       requestName,
-      apiDocPageRequest,
       x: 320047,
       y: 7094234,
     };

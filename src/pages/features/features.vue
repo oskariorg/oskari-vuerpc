@@ -30,7 +30,7 @@ channel.getFeatures([], function (data) {
 
 <script>
 const title = 'Get features';
-const apiDocBundle = 'framework/rpc';
+const apiDocBundle = 'framework/RPC';
 
 export default {
   name: 'GetFeatures',
