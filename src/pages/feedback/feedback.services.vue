@@ -1,65 +1,39 @@
 <template>
-  <div id="GetFeedbackServices">
-    <div style="display: block">
-      <div>Request feedback service listing</div>
-
-      <button
-        id="btnGetFeedbackServiceRequest"
-        class="btn btn-primary exampleready"
-        @click="getFeedbackServiceRequest"
-      >
-        GetFeedbackServiceRequest for a list
-      </button>
-      <CodeSnippet>{{ list }}</CodeSnippet>
-      <br />
-      <div>Request feedback service metadata.</div>
-      <div>
-        <b>Note!</b> if metadata property is false in the listing the details might not be available
-        as it's optional in the Open311 specification.
-      </div>
-      <br />
+  <div>
+    <h2>{{ title }}</h2>
+    <h3>Request a list of services for feedback</h3>
+    <CodeSnippet :runnable="true" buttonText="Get list of available services">
+      channel.postRequest('GetFeedbackServiceRequest', []);
+    </CodeSnippet>
+    <h3>Request additional metadata for feedback service</h3>
+    <p>
+      <b>Note!</b> if metadata property is false in the listing the details might not be available
+      as it's optional in the Open311 specification.
+    </p>
+    <p>
       <b>Note!</b> Our test service doesn't have any metadata, so an error will be logged when
       pressing the button.
-    </div>
-    <button
-      id="btnGetFeedbackServiceRequest2"
-      class="btn btn-primary exampleready"
-      @click="GetFeedbackServiceRequestWithId"
-    >
-      GetFeedbackServiceRequest for metadata of single service.
-    </button>
-    <CodeSnippet>{{ id }}</CodeSnippet>
-    <div>
-      <a ref="getFeedbackService" href="" @click="getLink">To the documentation</a>
-    </div>
+    </p>
+    <CodeSnippet :runnable="true" buttonText="Request metadata for service id">
+      channel.postRequest('GetFeedbackServiceRequest', ["180"]);
+    </CodeSnippet>
+    <p>
+      <DocumentationLink type="request" apiDoc="GetFeedbackRequest">
+        To the documentation
+      </DocumentationLink>
+    </p>
   </div>
 </template>
 <script>
-const services = {
-  list: "channel.postRequest('GetFeedbackServiceRequest', []);",
-  id: 'channel.postRequest(\'GetFeedbackServiceRequest\', ["180"]);'
-};
+const title = 'Get feedback services (poc)';
 export default {
   name: 'GetFeedbackServices',
-  label: 'Get feedback services (poc)',
+  label: title,
   data() {
     return {
-      desc: 'Get feedback services (poc)',
-      list: services.list,
-      id: services.id
+      title,
+      apiDocPageRequest: 'GetFeedbackRequest'
     };
-  },
-  methods: {
-    getFeedbackServiceRequest() {
-      this.$root.channel.postRequest('GetFeedbackServiceRequest', []);
-    },
-    GetFeedbackServiceRequestWithId() {
-      this.$root.channel.postRequest('GetFeedbackServiceRequest', ['180']);
-    },
-    getLink(e) {
-      var documentPathEnd = 'mapping/feedbackService/request/getfeedbackservicerequest.md';
-      e.target.href = this.$root.documentPathRequest + documentPathEnd;
-    }
   }
 };
 </script>

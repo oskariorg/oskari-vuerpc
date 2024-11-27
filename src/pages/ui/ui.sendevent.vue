@@ -1,21 +1,22 @@
 <template>
   <div>
-    <div>
-      Open/close coordinatetool's popup:
-      <RunExampleButton @click="sendUIEvent">SendUIEvent</RunExampleButton>
-    </div>
-    <CodeSnippet>
+    <h2>{{ title }}</h2>
+    <p>
+      UIEvent can be used through RPC API to trigger miscellaneous things on the UI such as:
+    </p>
+    
+    <h3>Open/close coordinatetool's popup</h3>
+
+      <CodeSnippet :runnable="true" buttonText="Open/close">
 var toolname = 'coordinatetool';
 channel.sendUIEvent([toolname], function(data) {
   channel.log('sendUIEvent: ', data);
 });
-    </CodeSnippet>
+      </CodeSnippet>
+    
 
-    <div>
-      Toggle the map's center crosshair:
-      <RunExampleButton @click="toggleCrosshair">SendUIEvent</RunExampleButton>
-    </div>
-    <CodeSnippet>
+      <h3>Toggle the map's center crosshair</h3>
+    <CodeSnippet :runnable="true" buttonText="Toggle crosshair">
 var toolname = 'mapmodule.crosshair';
 channel.sendUIEvent([toolname], function(data) {
   channel.log('sendUIEvent: ', data);
@@ -24,31 +25,20 @@ channel.sendUIEvent([toolname], function(data) {
   </div>
 </template>
 <script>
+const title = 'Send UI event';
 export default {
   name: 'SendUIEvent',
-  label: 'Send UI event',
+  label: title,
   data() {
     return {
-      desc: 'Send UI event',
+      title,
       coordinateToolVisible: false,
       crosshairVisible: false
     };
   },
-  methods: {
-    sendUIEvent() {
-      this.$root.channel.sendUIEvent(['coordinatetool'], (data) => {
-        this.coordinateToolVisible = !this.coordinateToolVisible;
-        this.$root.channel.log('sendUIEvent: ', data);
-      });
-    },
-    toggleCrosshair() {
-      this.$root.channel.sendUIEvent(['mapmodule.crosshair'], (data) => {
-        this.crosshairVisible = !this.crosshairVisible;
-        this.$root.channel.log('sendUIEvent mapmodule.crosshair: ', data);
-      });
-    }
-  },
   beforeUnmount() {
+    // we can no longer track these with runnable codesnippet,
+    //  but we could do something else to track and reset when user leaves the page
     if (this.coordinateToolVisible) {
       this.$root.channel.sendUIEvent(['coordinatetool'], () => {});
     }

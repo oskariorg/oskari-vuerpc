@@ -9,7 +9,7 @@
       Clicking an action in the infobox triggers an <InlineCode>InfoboxActionEvent</InlineCode>,
       making programmatically reacting to events possible.
     </p>
-    <DocumentationLink type="event" :apiDoc="apiDocPage"> To the documentation </DocumentationLink>
+    <DocumentationLink type="event" apiDoc="InfoboxActionEvent"> To the documentation </DocumentationLink>
     <CodeSnippet>
 {
   "id": "myInfoBox",
@@ -46,7 +46,6 @@ export default {
   data() {
     return {
       desc: 'Info box continued',
-      apiDocPage: 'ui/infobox/event/infoboxactionevent.md',
       request
     };
   },

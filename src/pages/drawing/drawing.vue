@@ -24,7 +24,7 @@
     </div>
 
     <br />
-    <DocumentationLink type="request" apiDoc="mapping/drawtools/request/startdrawingrequest.md">
+    <DocumentationLink type="request" apiDoc="mapping/drawtools/request/StartDrawingRequest.md">
       Documentation for DrawTools.StartDrawingRequest
     </DocumentationLink>
     <CodeSnippet :runnable="true" buttonText="Activate drawing mode">
@@ -43,7 +43,7 @@ channel.postRequest('DrawTools.StartDrawingRequest', data);
       id of the feature to stop drawing for as a parameter. For accessability reasons it isn't
       recommended that <InlineCode>StopDrawingRequest</InlineCode> is initiated by double clicking
       map area but rather by placing dedicated button in the UI of application being developed.<br />
-      <DocumentationLink type="request" apiDoc="mapping/drawtools/request/stopdrawingrequest.md">
+      <DocumentationLink type="request" apiDoc="mapping/drawtools/request/StopDrawingRequest.md">
         Documentation for DrawTools.StopDrawingRequest
       </DocumentationLink>
       <CodeSnippet :runnable="true" buttonText="Disable drawing mode">

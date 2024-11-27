@@ -11,7 +11,7 @@
 </template>
 
 <script>
-const apiDocPage = 'mapping/routingService/event/routeresultevent.md';
+const apiDocPage = 'mapping/routingService/event/RouteResultEvent.md';
 const title = 'RouteResultEvent';
 
 export default {

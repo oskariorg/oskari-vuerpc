@@ -1,18 +1,13 @@
 <template>
   <div>
-    <div>
-      <p>
-        Sets the cursor style on map. The value can be any valid css cursor value. Not all possible
-        values are supported by all browsers.
-      </p>
-      <b-dd text="Select cursor style" variant="outline-dark" style="padding-left: 1em">
-        <b-dd-item-button v-for="(cursor, id) in cursorStyles" :key="id" @click="setCursor(cursor)">
-          {{ cursor }}
-        </b-dd-item-button>
-      </b-dd>
-    </div>
+    <h2>{{ title }}</h2>
+    <p>
+      Sets the cursor style on map. The value can be any valid CSS cursor value.
+      Note! Not all possible values are supported by all browsers.
+    </p>
     <CodeSnippet :runnable="true" buttonText="Set cursor style">
-var cursorStyle = '{{ selected }}';
+// one of 'default', 'crosshair', 'move', 'pointer', 'progress'
+var cursorStyle = 'crosshair';
 channel.setCursorStyle([cursorStyle], function(data) {
   channel.log('setCursorStyle: ', data);
 });
@@ -20,20 +15,14 @@ channel.setCursorStyle([cursorStyle], function(data) {
   </div>
 </template>
 <script>
+const title = 'Set cursor style';
 export default {
   name: 'setCursorStyle',
-  label: 'Set cursor style',
+  label: title,
   data() {
     return {
-      desc: 'Set cursor style',
-      selected: 'default',
-      cursorStyles: ['default', 'crosshair', 'move', 'pointer', 'progress']
+      title
     };
-  },
-  methods: {
-    setCursor(cursor) {
-      this.selected = cursor;
-    }
   },
   beforeUnmount() {
     this.$root.channel.setCursorStyle(['default'], () => {});
