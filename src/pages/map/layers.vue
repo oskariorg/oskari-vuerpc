@@ -17,6 +17,24 @@ channel.getAllLayers(function (data) {
 });
     </CodeSnippet>
 
+    <!-- RPC functions / getGroupsWithLayerIds() -->
+    <h3>Get layer groups</h3>
+    <p>
+      The <InlineCode>getGroupsWithLayerIds()</InlineCode> function is used to get the layer groups
+      with the layer ids in each group. The function returns the groups in a hierarchical and sorted
+      structure based on the hierarchy and orderNumber defined for the map. Each group includes
+      its ID and name, along with the IDs of layers within the group and its subgroups.
+    </p>
+    <DocumentationLink type="bundle" :apiDoc="apiDocPageRPC">
+      Documentation for RPC functions
+    </DocumentationLink>
+
+    <CodeSnippet :runnable="true" buttonText="Show layer groups in log">
+channel.getGroupsWithLayerIds(function (data) {
+  channel.log('GetGroupsWithLayerIds:', data);
+});
+    </CodeSnippet>
+
     <!-- ChangeMapLayerOpacityRequest -->
     <h3>Change layer opacity</h3>
     <p>
