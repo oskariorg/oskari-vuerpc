@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     codeSnippet() {
-      const slots = useSlots();
+      const slots = useSlots();;
       let snippet = this.snippet;
       if (!snippet) {
         try {
@@ -51,7 +51,8 @@ export default {
         snippet = doHighLight(snippet, this.lang);
       } catch (err) {
         snippet = errorMsg;
-        //debugger;
+        // for eslint
+        err;
         /* ignored */
       }
       // expose to template and other options API hooks
