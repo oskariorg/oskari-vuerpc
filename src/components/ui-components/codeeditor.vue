@@ -33,8 +33,9 @@ Or with props:
     </button>
   </div>
 </template>
+
 <script>
-import { useSlots } from 'vue';
+import { useSlots, computed } from 'vue';
 import ace from 'ace-builds';
 import 'ace-builds/esm-resolver';
 import EVENTBUS from '../../util/eventbus';
@@ -74,6 +75,29 @@ export default {
       type: Boolean,
       default: false
     }
+  },
+  setup() {
+    const slots = useSlots();
+
+    // need to define contents of computed in setup to be able to use slots.
+    const codeSnippet = computed(() => {
+      if (!slots.default) {
+        return 'Code snippet missing/unable to parse'
+      }
+
+      try {
+        const slotEl = slots.default()[0]
+        if (typeof slotEl.children === 'string') {
+          return slotEl.children.trim()
+        } else {
+          return 'Code snippet missing/unable to parse'
+        }
+      } catch (err) {
+        console.error(err)
+        return 'Code snippet missing/unable to parse'
+      }
+    })
+    return { codeSnippet };
   },
   mounted() {
     // create editor and set its properties
@@ -119,25 +143,6 @@ export default {
       this.$refs.runnableRef.classList.add('bottom-element');
     } else {
       this.$refs.copyTextRef.classList.add('bottom-element');
-    }
-  },
-  computed: {
-    codeSnippet() {
-      // try to use props
-      let snippet = this.snippet;
-      if (!snippet) {
-        // no props, use slots intead
-        try {
-          const slots = useSlots();
-          const slotEl = slots.default()[0];
-          snippet = slotEl.children.trim();
-        } catch (err) {
-          snippet = 'Code snippet missing/unable to parse';
-          err;
-        }
-      }
-      // expose to template and other options API hooks
-      return snippet;
     }
   },
   watch: {
@@ -203,7 +208,7 @@ export default {
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
-/** 
+/**
 * This style creates an upside down triangle inside the button and flips it by 180 degrees
 * when clicked.
 */
