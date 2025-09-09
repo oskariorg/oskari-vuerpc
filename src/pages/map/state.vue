@@ -31,7 +31,9 @@ channel.getCurrentState(function (data) {
       button. After clicking the button, move/zoom the map and then click the "Load saved state"
       button below to see the map set to the state that it was in when the Save button was clicked.
     </p>
-    <CodeSnippet :runnable="true" buttonText="Load saved state" :snippet="useStateSnippet" />
+    <CodeSnippet :runnable="true" buttonText="Load saved state">
+      {{ useStateSnippet }}
+     </CodeSnippet>
 
     <h3>resetState()</h3>
     <p>
