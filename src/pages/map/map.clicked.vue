@@ -8,13 +8,17 @@
     <DocumentationLink type="event" :apiDoc="apiDocPage">
       Documentation for {{ eventName }}
     </DocumentationLink>
-    <CodeSnippet :snippet="clickEventSnippet" />
+    <CodeSnippet>
+      {{ clickEventSnippet }}
+    </CodeSnippet>
     If a map click opens an info box, a <InlineCode>DataForMapLocationEvent</InlineCode> is
     triggered. The event contains the data of the opened info box, allowing programmatic access to
     the data. Press the 'Toggle layer' button and then click on the map to see the events in the
     codebox below.
     <RunExampleButton @click="toggleLayerVisibility">Toggle layer</RunExampleButton>
-    <CodeSnippet :snippet="mapLocationEventSnippet" />
+    <CodeSnippet>
+      {{ mapLocationEventSnippet }}
+    </CodeSnippet>
   </div>
 </template>
 
