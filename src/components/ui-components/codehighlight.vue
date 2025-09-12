@@ -35,7 +35,7 @@ export default {
   },
   computed: {
     codeSnippet() {
-      const slots = useSlots();;
+      const slots = useSlots();
       let snippet = this.snippet;
       if (!snippet) {
         try {
@@ -43,17 +43,12 @@ export default {
           snippet = slotEl.children.trim();
           //codeSnippet = codeSnippet.split('&lt;').join('<');
           //codeSnippet = codeSnippet.split('&gt;').join('>');
-        } catch (err) {
-          err;
-        }
+        } catch (err) { /* eslint-disable-line no-unused-vars */ }
       }
       try {
         snippet = doHighLight(snippet, this.lang);
-      } catch (err) {
+      } catch (err) { // eslint-disable-line no-unused-vars
         snippet = errorMsg;
-        // for eslint
-        err;
-        /* ignored */
       }
       // expose to template and other options API hooks
       return snippet;
