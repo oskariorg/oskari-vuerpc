@@ -33,7 +33,7 @@ channel.postRequest('{{ requestNameAdd }}', [geojson, {{ JSON.stringify(centerTo
       option when updating the polygon style.
     </p>
 
-    <DocumentationLink href="https://www.oskari.org/documentation/docs/latest/7-Operating-instructions#How-to-use-Oskari-style">
+    <DocumentationLink href="https://www.oskari.org/documentation/docs/latest/6-Operating-instructions#How-to-use-Oskari-style">
       Documentation for styles
     </DocumentationLink>
   </div>
@@ -116,6 +116,7 @@ export default {
         }
       ];
       this.$root.channel.postRequest('MapModulePlugin.AddFeaturesToMapRequest', params);
+      this.$root.channel.log('MapModulePlugin.AddFeaturesToMapRequest posted with data', params);
     },
     togglePointStyle() {
       // Define the feature to be updated

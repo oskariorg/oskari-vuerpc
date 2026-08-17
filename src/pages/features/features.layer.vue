@@ -118,7 +118,7 @@ export default {
       title,
       requestName,
       apiDocPageRequest: 'mapping/mapmodule/request/VectorLayerRequest.md',
-      styleDocLink: 'https://www.oskari.org/documentation/docs/latest/7-Operating-instructions#How-to-use-Oskari-style',
+      styleDocLink: 'https://www.oskari.org/documentation/docs/latest/6-Operating-instructions#How-to-use-Oskari-style',
       layer,
       geojsonObject
     };
